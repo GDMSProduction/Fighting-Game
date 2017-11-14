@@ -41,8 +41,61 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
 
+	TotalStamina = 100.0f;
+	CurrentStamina = TotalStamina;
+
+	TotalHealth = 100.0f;
+	CurrentHealth = TotalHealth;
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+}
+
+float ASuper80sFighterCharacter::GetTotalStamina()
+{
+	return TotalStamina;
+}
+
+float ASuper80sFighterCharacter::GetCurrentStamina()
+{
+	return CurrentStamina;
+}
+
+void ASuper80sFighterCharacter::UpdateCurrentStamina(float Stamina)
+{
+	CurrentStamina = CurrentStamina + Stamina;
+}
+
+float ASuper80sFighterCharacter::GetTotalHealth()
+{
+	return TotalHealth;
+}
+
+float ASuper80sFighterCharacter::GetCurrentHealth()
+{
+	return CurrentHealth;
+}
+
+void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
+{
+	CurrentHealth = CurrentHealth + Health;
+}
+
+void ASuper80sFighterCharacter::TakingDamage()
+{
+	UpdateCurrentStamina((1.0f * -0.01f) * TotalStamina);
+
+	UpdateCurrentHealth((1.0f * -0.01f) * TotalHealth);
+}
+
+void ASuper80sFighterCharacter::SuperAbility()
+{
+	UpdateCurrentStamina((-0.25f) * TotalStamina);
+}
+
+void ASuper80sFighterCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -57,6 +110,9 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
+
+	PlayerInputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASuper80sFighterCharacter::TakingDamage);
+	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 }
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
