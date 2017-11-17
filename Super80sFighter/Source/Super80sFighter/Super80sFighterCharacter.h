@@ -30,7 +30,7 @@ protected:
 	void Attack2();
 	void Attack3();
 
-	void StopAttacking();
+	void QueStopAttacking();
 
 
 	/** Handle touch inputs. */

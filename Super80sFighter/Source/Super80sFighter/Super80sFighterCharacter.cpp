@@ -59,6 +59,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::Attack2);
 	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::Attack3);
 
+	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 }
@@ -71,7 +76,7 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 }
 void ASuper80sFighterCharacter::Attack0()
 {
-	StopAttacking();
+	QueStopAttacking();
 	isAttacking0 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
 
@@ -80,7 +85,7 @@ void ASuper80sFighterCharacter::Attack0()
 
 void ASuper80sFighterCharacter::Attack1()
 {
-	StopAttacking();
+	QueStopAttacking();
 	isAttacking1 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
 	
@@ -88,7 +93,7 @@ void ASuper80sFighterCharacter::Attack1()
 }
 void ASuper80sFighterCharacter::Attack2()
 {
-	StopAttacking();
+	QueStopAttacking();
 	isAttacking2 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
 
@@ -96,7 +101,7 @@ void ASuper80sFighterCharacter::Attack2()
 }
 void ASuper80sFighterCharacter::Attack3()
 {
-	StopAttacking();
+	QueStopAttacking();
 	isAttacking3 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
 
@@ -104,7 +109,7 @@ void ASuper80sFighterCharacter::Attack3()
 }
 
 
-void ASuper80sFighterCharacter::StopAttacking() {
+void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
