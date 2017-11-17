@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -23,6 +24,14 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+	//Testing the first attack
+	void Attack0();
+	void Attack1();
+	void Attack2();
+	void Attack3();
+
+	void QueStopAttacking();
+
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -34,6 +43,22 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
+private:
+	/**Player Total Stamina*/
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float TotalStamina;
+
+	/**Player Current Stamina*/
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float CurrentStamina;
+
+	/**Player Total Health*/
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float TotalHealth;
+
+	/**Player Current Health*/
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float CurrentHealth;
 
 public:
 	ASuper80sFighterCharacter();
@@ -42,4 +67,50 @@ public:
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere,  meta = (AllowPrivateAccess = "true"))
+	bool isAttacking0;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking1;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking2;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking3;
+	
+
+	/**Accessor function for Total Stamina*/
+	UFUNCTION(BlueprintPure, Category = "Stats")
+		float GetTotalStamina();
+
+	/**Accessor function for Current Stamina*/
+	UFUNCTION(BlueprintPure, Category = "Stats")
+		float GetCurrentStamina();
+
+	/**Updates the Players Current Stamina
+	* @param Stamina Amount to change Stamina by(Posivive or Negative).
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void UpdateCurrentStamina(float Stamina);
+
+	/**Accessor function for Total Health*/
+	UFUNCTION(BlueprintPure, Category = "Stats")
+		float GetTotalHealth();
+
+	/**Accessor function for Current Health*/
+	UFUNCTION(BlueprintPure, Category = "Stats")
+		float GetCurrentHealth();
+
+	/**Updates the Players Current Stamina
+	* @param Health Amount to change Stamina by(Posivive or Negative).
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void UpdateCurrentHealth(float Health);
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void TakingDamage();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void SuperAbility();
+
+	virtual void Tick(float DeltaTime) override;
 };
