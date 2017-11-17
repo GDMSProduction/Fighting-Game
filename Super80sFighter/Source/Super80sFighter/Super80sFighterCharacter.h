@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -23,6 +24,14 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+	//Testing the first attack
+	void Attack0();
+	void Attack1();
+	void Attack2();
+	void Attack3();
+
+	void QueStopAttacking();
+
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -58,6 +67,16 @@ public:
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere,  meta = (AllowPrivateAccess = "true"))
+	bool isAttacking0;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking1;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking2;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isAttacking3;
+	
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
