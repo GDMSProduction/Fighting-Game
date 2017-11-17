@@ -54,6 +54,10 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::Attack0);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::Attack1);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::Attack2);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::Attack3);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
@@ -62,9 +66,53 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
+
 	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
 }
+void ASuper80sFighterCharacter::Attack0()
+{
+	StopAttacking();
+	isAttacking0 = true;
+	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
 
+
+}
+
+void ASuper80sFighterCharacter::Attack1()
+{
+	StopAttacking();
+	isAttacking1 = true;
+	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
+	
+
+}
+void ASuper80sFighterCharacter::Attack2()
+{
+	StopAttacking();
+	isAttacking2 = true;
+	UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
+
+
+}
+void ASuper80sFighterCharacter::Attack3()
+{
+	StopAttacking();
+	isAttacking3 = true;
+	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
+
+
+}
+
+
+void ASuper80sFighterCharacter::StopAttacking() {
+	isAttacking0 = false;
+	isAttacking1 = false;
+	isAttacking2 = false;
+	isAttacking3 = false;
+
+
+
+}
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	// jump on any touch
