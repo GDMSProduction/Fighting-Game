@@ -135,16 +135,15 @@ void ASuper80sFighterCharacter::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
-
-
+	spawnHitbox();
+	//rebuild
+	
 }
-
 void ASuper80sFighterCharacter::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
-	
 
 }
 void ASuper80sFighterCharacter::Attack2()
@@ -153,7 +152,6 @@ void ASuper80sFighterCharacter::Attack2()
 	isAttacking2 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
 
-
 }
 void ASuper80sFighterCharacter::Attack3()
 {
@@ -161,9 +159,21 @@ void ASuper80sFighterCharacter::Attack3()
 	isAttacking3 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
 
+}
+void ASuper80sFighterCharacter::spawnHitbox()
+{
+	FVector tempVec;
+	tempVec = GetTransform().GetLocation();
+	FRotator rot;
+	FActorSpawnParameters sp = FActorSpawnParameters();
+	sp.bDeferConstruction = true;
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(tempVec, rot, sp);
+	tempHitbox->GetTransform().SetLocation(tempVec);
+	tempHitbox->AttachRootComponentToActor(this);
+	tempHitbox->SetHitboxProperties(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(0, 0, 0), 1.0f, 1.0f, 0.0f);
+
 
 }
-
 
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;

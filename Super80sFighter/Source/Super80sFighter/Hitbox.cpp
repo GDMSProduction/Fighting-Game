@@ -24,7 +24,7 @@ AHitbox::AHitbox()
 
 	//instantiate the hitbox itself
 	hitbox = CreateDefaultSubobject<UBoxComponent>(TEXT("hitboxShapeComponent"));
-	hitbox->SetWorldScale3D(hitboxDimensions);
+	hitbox->SetBoxExtent(hitboxDimensions);
 	hitbox->AddRelativeLocation(hitboxPosition);
 
 	//determine the color of this hitbox
@@ -69,9 +69,9 @@ AHitbox::AHitbox()
 	default:
 		break;
 	}
-
+	RootComponent = hitbox;
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
-	hitbox->SetActive(false);
+	//hitbox->SetActive(false);
 }
 
 AHitbox::AHitbox(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, float _hWidth, float _hHeight, float _damage)
@@ -135,9 +135,9 @@ AHitbox::AHitbox(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, float _hWidt
 	default:
 		break;
 	}
-
+	RootComponent = hitbox;
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
-	hitbox->SetActive(false);
+	//hitbox->SetActive(false);
 }
 
 void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, float _hWidth, float _hHeight, float _damage)
@@ -155,7 +155,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	hitboxDimensions.Z = hitboxHeight;
 
 	//change the properties of the hitbox
-	hitbox->SetWorldScale3D(hitboxDimensions);
+	hitbox->SetBoxExtent(hitboxDimensions);
 	hitbox->AddRelativeLocation(hitboxPosition);
 
 	//determine the color of this hitbox
@@ -202,7 +202,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	}
 
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
-	hitbox->SetActive(false);
+	//hitbox->SetActive(false);
 }
 
 void AHitbox::beginStartup()

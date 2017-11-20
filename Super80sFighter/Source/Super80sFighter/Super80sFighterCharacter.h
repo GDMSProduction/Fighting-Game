@@ -4,23 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-
+#include "Hitbox.h"
 #include "Super80sFighterCharacter.generated.h"
 
-UCLASS(config=Game)
+UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Side view camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* SideViewCameraComponent;
+		/** Side view camera */
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class UCameraComponent* SideViewCameraComponent;
 
 	/** Camera boom positioning the camera beside the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
+		class USpringArmComponent* CameraBoom;
 
 protected:
+
+	void spawnHitbox();
+	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
@@ -29,7 +32,6 @@ protected:
 	void Attack1();
 	void Attack2();
 	void Attack3();
-
 	void QueStopAttacking();
 
 
@@ -68,15 +70,15 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,  meta = (AllowPrivateAccess = "true"))
-	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking1;
+		bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking2;
+		bool isAttacking1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking3;
-	
+		bool isAttacking2;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isAttacking3;
+
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
