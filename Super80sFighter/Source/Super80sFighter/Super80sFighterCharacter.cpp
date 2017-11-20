@@ -170,9 +170,6 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
-
-
-
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
