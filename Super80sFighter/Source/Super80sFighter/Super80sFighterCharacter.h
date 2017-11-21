@@ -24,13 +24,17 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
-	//Testing the first attack
+#pragma region Brennans Functions
 	void Attack0();
 	void Attack1();
 	void Attack2();
 	void Attack3();
-
 	void QueStopAttacking();
+
+	void StartCrouch();
+	void StopCrouch();
+#pragma endregion
+
 
 
 	/** Handle touch inputs. */
@@ -68,6 +72,8 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
+#pragma region Brennan Variables
+	//Attacking variables
 	UPROPERTY(BlueprintReadWrite,EditAnywhere,  meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -76,7 +82,10 @@ public:
 	bool isAttacking2;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking3;
-	
+	//Movement Variables
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isCrouching;
+#pragma endregion
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")

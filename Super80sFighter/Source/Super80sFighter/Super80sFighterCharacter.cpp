@@ -46,6 +46,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
+	UE_LOG(LogTemp, Warning, TEXT("TOTALHPIS"), TotalHealth);
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -91,6 +92,7 @@ void ASuper80sFighterCharacter::TakingDamage()
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
+	
 }
 
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
@@ -107,15 +109,19 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
+
+
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::Attack0);
 	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::Attack1);
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::Attack2);
 	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::Attack3);
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
 	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
 	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
 	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
@@ -162,6 +168,16 @@ void ASuper80sFighterCharacter::Attack3()
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
 
 
+}
+
+void ASuper80sFighterCharacter::StartCrouch()
+{
+	isCrouching = true;
+}
+
+void ASuper80sFighterCharacter::StopCrouch()
+{
+	isCrouching = false;
 }
 
 
