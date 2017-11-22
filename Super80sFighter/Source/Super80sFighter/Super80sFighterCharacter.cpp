@@ -6,6 +6,9 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
+
 
 ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 {
@@ -46,7 +49,12 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
-	UE_LOG(LogTemp, Warning, TEXT("TOTALHPIS"), TotalHealth);
+
+#pragma region Brennans Variables Init
+	CustomHighJumpVelocity = 1000.0f;
+	CustomShortJumpVelocity = 700.0f;
+#pragma endregion
+
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -106,8 +114,11 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	// set up gameplay key bindings
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("HighJump", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
+	PlayerInputComponent->BindAction("HighJump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
+	PlayerInputComponent->BindAction("ShortHop", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
+	PlayerInputComponent->BindAction("ShortHop", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
+
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
 
@@ -180,15 +191,48 @@ void ASuper80sFighterCharacter::StopCrouch()
 	isCrouching = false;
 }
 
+void ASuper80sFighterCharacter::PressShortHop()
+{
+	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
+	PressJump();
+}
+
+void ASuper80sFighterCharacter::ReleaseShortHop()
+{
+	ReleaseJump();
+}
+
+void ASuper80sFighterCharacter::PressHighJump()
+{
+	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
+	PressJump();
+}
+
+void ASuper80sFighterCharacter::ReleaseHighJump()
+{
+	ReleaseJump();
+}
+
+void ASuper80sFighterCharacter::PressJump()
+{
+	
+	ACharacter::Jump();
+	isHoldingJump = false;
+
+}
+
+void ASuper80sFighterCharacter::ReleaseJump()
+{
+	ACharacter::StopJumping();
+	isHoldingJump = false;
+}
+
 
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
-
-
-
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {

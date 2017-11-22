@@ -7,23 +7,24 @@
 
 #include "Super80sFighterCharacter.generated.h"
 
-UCLASS(config=Game)
+UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Side view camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* SideViewCameraComponent;
+		/** Side view camera */
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class UCameraComponent* SideViewCameraComponent;
 
 	/** Camera boom positioning the camera beside the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
+		class USpringArmComponent* CameraBoom;
 
 protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+
 #pragma region Brennans Functions
 	void Attack0();
 	void Attack1();
@@ -33,10 +34,15 @@ protected:
 
 	void StartCrouch();
 	void StopCrouch();
+
+	void PressShortHop();
+	void ReleaseShortHop();
+	void PressHighJump();
+	void ReleaseHighJump();
+
+	void PressJump();
+	void ReleaseJump();
 #pragma endregion
-
-
-
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
 
@@ -50,19 +56,19 @@ protected:
 private:
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float TotalStamina;
+	float TotalStamina;
 
 	/**Player Current Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float CurrentStamina;
+	float CurrentStamina;
 
 	/**Player Total Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float TotalHealth;
+	float TotalHealth;
 
 	/**Player Current Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float CurrentHealth;
+	float CurrentHealth;
 
 public:
 	ASuper80sFighterCharacter();
@@ -74,7 +80,7 @@ public:
 
 #pragma region Brennan Variables
 	//Attacking variables
-	UPROPERTY(BlueprintReadWrite,EditAnywhere,  meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking1;
@@ -82,44 +88,54 @@ public:
 	bool isAttacking2;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking3;
+
+
 	//Movement Variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isCrouching;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isHoldingJump;
+
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		float CustomHighJumpVelocity;//Demo jump velocity was 1000.0f
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		float CustomShortJumpVelocity;
 #pragma endregion
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetTotalStamina();
+	float GetTotalStamina();
 
 	/**Accessor function for Current Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetCurrentStamina();
+	float GetCurrentStamina();
 
 	/**Updates the Players Current Stamina
 	* @param Stamina Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void UpdateCurrentStamina(float Stamina);
+	void UpdateCurrentStamina(float Stamina);
 
 	/**Accessor function for Total Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetTotalHealth();
+	float GetTotalHealth();
 
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetCurrentHealth();
+	float GetCurrentHealth();
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void UpdateCurrentHealth(float Health);
+	void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void TakingDamage();
+	void TakingDamage();
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void SuperAbility();
+	void SuperAbility();
 
 	virtual void Tick(float DeltaTime) override;
 };
