@@ -134,7 +134,7 @@ void ASuper80sFighterCharacter::Attack0()
 {
 	QueStopAttacking();
 	isAttacking0 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
+	//UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
 	spawnHitbox();
 	//rebuild
 	
@@ -143,21 +143,21 @@ void ASuper80sFighterCharacter::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
+	//UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
 
 }
 void ASuper80sFighterCharacter::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
+	//UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
 
 }
 void ASuper80sFighterCharacter::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
+	//UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
 
 }
 void ASuper80sFighterCharacter::spawnHitbox()
