@@ -105,7 +105,7 @@ void ASuper80sFighterCharacter::SuperAbility()
 
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ void ASuper80sFighterCharacter::PressJump()
 {
 	
 	ACharacter::Jump();
-	isHoldingJump = false;
+	isHoldingJump = true;
 
 }
 
