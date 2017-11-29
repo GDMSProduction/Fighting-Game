@@ -1,13 +1,7 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterCharacter.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "Components/InputComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
-#include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
+
 
 
 ASuper80sFighterCharacter::ASuper80sFighterCharacter()
@@ -26,8 +20,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	CameraBoom->bAbsoluteRotation = true; // Rotation of the character should not affect rotation of boom
 	CameraBoom->bDoCollisionTest = false;
 	CameraBoom->TargetArmLength = 500.f;
-	CameraBoom->SocketOffset = FVector(0.f,0.f,75.f);
-	CameraBoom->RelativeRotation = FRotator(0.f,180.f,0.f);
+	CameraBoom->SocketOffset = FVector(0.f, 0.f, 75.f);
+	CameraBoom->RelativeRotation = FRotator(0.f, 180.f, 0.f);
 
 	// Create a camera and attach to boom
 	SideViewCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("SideViewCamera"));
@@ -53,6 +47,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 #pragma region Brennans Variables Init
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
+	JumpThreshold = 0.1f;
 #pragma endregion
 
 
@@ -100,12 +95,12 @@ void ASuper80sFighterCharacter::TakingDamage()
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
-	
+
 }
 
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);	
+	Super::Tick(DeltaTime);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -118,6 +113,8 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("HighJump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
 	PlayerInputComponent->BindAction("ShortHop", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
 	PlayerInputComponent->BindAction("ShortHop", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
@@ -145,7 +142,7 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
 
-	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
+	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
 }
 void ASuper80sFighterCharacter::Attack0()
 {
@@ -161,7 +158,7 @@ void ASuper80sFighterCharacter::Attack1()
 	QueStopAttacking();
 	isAttacking1 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
-	
+
 
 }
 void ASuper80sFighterCharacter::Attack2()
@@ -185,48 +182,63 @@ void ASuper80sFighterCharacter::StartCrouch()
 {
 	isCrouching = true;
 }
-
 void ASuper80sFighterCharacter::StopCrouch()
 {
 	isCrouching = false;
 }
-
+#pragma region Jump functions
 void ASuper80sFighterCharacter::PressShortHop()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	PressJump();
 }
-
 void ASuper80sFighterCharacter::ReleaseShortHop()
 {
 	ReleaseJump();
 }
-
 void ASuper80sFighterCharacter::PressHighJump()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
 	PressJump();
 }
-
 void ASuper80sFighterCharacter::ReleaseHighJump()
 {
 	ReleaseJump();
 }
+void ASuper80sFighterCharacter::PressNormalJump() {
+	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
+	HasJumpReachedThreshold = false;
 
+	UE_LOG(LogTemp, Warning, TEXT("Pressing Normal Jump"));
+}
+void ASuper80sFighterCharacter::ReleaseNormalJump() {
+	if (HasJumpReachedThreshold) {
+		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
+		UE_LOG(LogTemp, Warning, TEXT("Jumping High"));
+	}
+	else {
+		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
+		UE_LOG(LogTemp, Warning, TEXT("Jumping Low"));
+	}
+	PressJump();
+}
+void ASuper80sFighterCharacter::JumpReachesThreshold()
+{
+	HasJumpReachedThreshold = true;
+	UE_LOG(LogTemp, Warning, TEXT("JumpThreshReached"));
+	ReleaseJump();
+}
 void ASuper80sFighterCharacter::PressJump()
 {
-	
 	ACharacter::Jump();
 	isHoldingJump = true;
-
 }
-
 void ASuper80sFighterCharacter::ReleaseJump()
 {
 	ACharacter::StopJumping();
 	isHoldingJump = false;
 }
-
+#pragma endregion
 
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;

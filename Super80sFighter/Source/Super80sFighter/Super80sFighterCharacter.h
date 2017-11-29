@@ -4,7 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
+#include "Runtime/Engine/Public/TimerManager.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -39,9 +47,12 @@ protected:
 	void ReleaseShortHop();
 	void PressHighJump();
 	void ReleaseHighJump();
+	void PressNormalJump();
+	void ReleaseNormalJump();
 
 	void PressJump();
 	void ReleaseJump();
+	void JumpReachesThreshold();
 #pragma endregion
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -101,6 +112,14 @@ public:
 		float CustomHighJumpVelocity;//Demo jump velocity was 1000.0f
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		float CustomShortJumpVelocity;
+#pragma region Jumping Variables
+	FTimerHandle JumpTimer;
+	bool HasJumpReachedThreshold;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float JumpThreshold;
+#pragma endregion
+
 #pragma endregion
 
 	/**Accessor function for Total Stamina*/
