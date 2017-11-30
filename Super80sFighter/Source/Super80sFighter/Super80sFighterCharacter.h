@@ -22,7 +22,8 @@ class ASuper80sFighterCharacter : public ACharacter
 
 protected:
 
-	void spawnHitbox();
+	UFUNCTION(BlueprintCallable, Category = "Hellothere")
+	void spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
 	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */

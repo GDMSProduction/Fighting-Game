@@ -39,18 +39,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hitbox Details")
 	FVector hitboxPosition;
 
-	//width of the hitbox
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hitbox Details")
-	float hitboxWidth;
-
-	//height of the hitbox
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hitbox Details")
-	float hitboxHeight;
-
-	//depth of the hitbox
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Hitbox Details")
-	float hitboxDepth;
-
 	//whether or not to display the hitbox to the user (off by default)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Hitbox Details")
 	bool showHitbox;
@@ -59,9 +47,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Hitbox Details")
 	FColor color;
 
-	//box component pointer to reference the actual hitbox space
+	//a mesh to show the hitbox
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Hitbox Details")
-	class UBoxComponent * hitbox;
+	UStaticMeshComponent * hitbox;
+
+	//material of the hibox object
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Hitbox Details")
+	UMaterialInstanceDynamic * hitboxMaterial;
 
 	//---------------------------------------------------------------------------------------------------------------
 
@@ -76,11 +68,12 @@ public:
 	//---------------------------------------------------------------------------------------------------------------
 	// Sets default values for this actor's properties
 	AHitbox();
-	AHitbox(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, float _hWidth, float _hHeight, float _damage);
-
 	//sets the values for the hitbox
-	void SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, float _hWidth, float _hHeight, float _damage);
+	void SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector _dimensions, float _damage);
 	
+	//hitbox collision function
+	UFUNCTION(BlueprintCallable, Category="Hitboxes")
+	void OnHit(UPrimitiveComponent* thisHitbox, AActor* otherActor, UPrimitiveComponent* otherComp, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	void beginStartup();		//called when the button is pressed, activates proximitybox
 	void beginActive();			//called during the animation, starts active frames of attack

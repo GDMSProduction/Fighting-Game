@@ -47,8 +47,9 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
 
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
 
 float ASuper80sFighterCharacter::GetTotalStamina()
@@ -135,7 +136,7 @@ void ASuper80sFighterCharacter::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
-	spawnHitbox();
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
 	//rebuild
 	
 }
@@ -144,6 +145,7 @@ void ASuper80sFighterCharacter::Attack1()
 	QueStopAttacking();
 	isAttacking1 = true;
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -70), FVector(.5f, 1, 1.5f), 0);
 
 }
 void ASuper80sFighterCharacter::Attack2()
@@ -160,17 +162,25 @@ void ASuper80sFighterCharacter::Attack3()
 	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
 
 }
-void ASuper80sFighterCharacter::spawnHitbox()
+void ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
-	FRotator rot;
+	FRotator rot(GetTransform().GetRotation());
 	FActorSpawnParameters sp = FActorSpawnParameters();
 	sp.bDeferConstruction = true;
+
 	tempHitbox = GetWorld()->SpawnActor<AHitbox>(tempVec, rot, sp);
 	tempHitbox->GetTransform().SetLocation(tempVec);
-	tempHitbox->AttachRootComponentToActor(this);
-	tempHitbox->SetHitboxProperties(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(0, 0, 0), 1.0f, 1.0f, 0.0f);
+
+	//reenable if we don't want all hitboxes to move with the player
+	//if (type == EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX || type == EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX)
+	//{
+	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
+	tempHitbox->AttachToComponent(RootComponent, rules);
+	//}
+
+	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
 
 }
