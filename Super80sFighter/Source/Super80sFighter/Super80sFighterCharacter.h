@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Hitbox.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -30,6 +31,10 @@ class ASuper80sFighterCharacter : public ACharacter
 		class USpringArmComponent* CameraBoom;
 
 protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Hellothere")
+	void spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
@@ -105,10 +110,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking1;
+		bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking2;
+		bool isAttacking1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isAttacking2;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isAttacking3;
 	bool isAttacking3;
 
 

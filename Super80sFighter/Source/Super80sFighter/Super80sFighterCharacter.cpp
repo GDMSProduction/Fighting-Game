@@ -52,7 +52,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
 
 float ASuper80sFighterCharacter::GetTotalStamina()
@@ -149,10 +149,10 @@ void ASuper80sFighterCharacter::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_0);
-
-
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
+	//rebuild
+	
 }
-
 void ASuper80sFighterCharacter::Attack1()
 {
 	QueStopAttacking();
@@ -167,13 +167,33 @@ void ASuper80sFighterCharacter::Attack2()
 	isAttacking2 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_2);
 
-
 }
 void ASuper80sFighterCharacter::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_3);
+
+}
+void ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
+{
+	FVector tempVec;
+	tempVec = GetTransform().GetLocation();
+	FRotator rot(GetTransform().GetRotation());
+	FActorSpawnParameters sp = FActorSpawnParameters();
+	sp.bDeferConstruction = true;
+
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(tempVec, rot, sp);
+	tempHitbox->GetTransform().SetLocation(tempVec);
+
+	//reenable if we don't want all hitboxes to move with the player
+	//if (type == EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX || type == EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX)
+	//{
+	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
+	tempHitbox->AttachToComponent(RootComponent, rules);
+	//}
+
+	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
 
 }
