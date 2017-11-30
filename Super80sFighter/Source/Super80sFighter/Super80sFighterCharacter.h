@@ -13,6 +13,7 @@
 #include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "Runtime/Engine/Public/TimerManager.h"
+#include <vector.h>
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -53,6 +54,16 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 	void JumpReachesThreshold();
+
+	enum ATTACK_TYPE
+	{
+		ATTACK_0,
+		ATTACK_1,
+		ATTACK_2,
+		ATTACK_3,
+		NUM_ATTACKS
+	};
+	void AddAttack(ATTACK_TYPE incomingAttack);
 #pragma endregion
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -112,6 +123,8 @@ public:
 		float CustomHighJumpVelocity;//Demo jump velocity was 1000.0f
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		float CustomShortJumpVelocity;
+
+	
 #pragma region Jumping Variables
 	FTimerHandle JumpTimer;
 	bool HasJumpReachedThreshold;
@@ -119,6 +132,13 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	float JumpThreshold;
 #pragma endregion
+
+#pragma region Combo variables
+
+
+	TArray<ATTACK_TYPE> last5Attacks;
+#pragma endregion
+
 
 #pragma endregion
 

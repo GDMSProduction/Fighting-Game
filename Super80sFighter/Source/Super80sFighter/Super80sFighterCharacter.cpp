@@ -148,7 +148,7 @@ void ASuper80sFighterCharacter::Attack0()
 {
 	QueStopAttacking();
 	isAttacking0 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with first attack"));
+	AddAttack(ATTACK_TYPE::ATTACK_0);
 
 
 }
@@ -157,7 +157,7 @@ void ASuper80sFighterCharacter::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with second attack"));
+	AddAttack(ATTACK_TYPE::ATTACK_1);
 
 
 }
@@ -165,7 +165,7 @@ void ASuper80sFighterCharacter::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with third attack"));
+	AddAttack(ATTACK_TYPE::ATTACK_2);
 
 
 }
@@ -173,7 +173,7 @@ void ASuper80sFighterCharacter::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
-	UE_LOG(LogTemp, Warning, TEXT("Attacking with fourth attack"));
+	AddAttack(ATTACK_TYPE::ATTACK_3);
 
 
 }
@@ -245,6 +245,12 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
+}
+void ASuper80sFighterCharacter::AddAttack(ATTACK_TYPE incomingAttack)
+{
+	last5Attacks.Add(incomingAttack);
+	if (last5Attacks.Num() > 5)
+		last5Attacks.RemoveAt(0);
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
