@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Hitbox.h"
+#include "../Source/Super80sFighter/Hitbox.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -33,7 +33,7 @@ class ASuper80sFighterCharacter : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hellothere")
-	void spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
 	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
@@ -97,6 +97,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Stats")
 	float CurrentHealth;
 
+	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
+	TArray<AHitbox*> hitboxes;
+
 public:
 	ASuper80sFighterCharacter();
 
@@ -110,14 +113,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		bool isAttacking0;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking2;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking3;
-	bool isAttacking3;
+
 
 
 	//Movement Variables

@@ -149,7 +149,7 @@ void ASuper80sFighterCharacter::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_0);
-	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
+	//spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
 	//rebuild
 	
 }
@@ -175,7 +175,7 @@ void ASuper80sFighterCharacter::Attack3()
 	AddAttack(ATTACK_TYPE::ATTACK_3);
 
 }
-void ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
+AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
@@ -195,7 +195,8 @@ void ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, F
 
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
-
+	hitboxes.Add(tempHitbox);
+	return tempHitbox;
 }
 
 void ASuper80sFighterCharacter::StartCrouch()

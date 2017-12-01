@@ -28,7 +28,7 @@ AHitbox::AHitbox()
 	}
 
 	//create a UMaterialInstanceDynamic for our mesh
-	static auto hitboxMaterialTemp = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("Material'/Game/StarterContent/Materials/Hitbox.Hitbox'"));
+	static auto hitboxMaterialTemp = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("Material'/Game/SideScrollerCPP/Hitbox.Hitbox'"));
 	hitboxMaterial = UMaterialInstanceDynamic::Create(hitboxMaterialTemp.Object, NULL);
 
 	hitbox->SetMaterial(0, hitboxMaterial);
@@ -43,7 +43,6 @@ AHitbox::AHitbox()
 	RootComponent = hitbox;
 
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
-	//hitbox->SetActive(false);
 }
 
 void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector dimensions, float _damage)
@@ -114,6 +113,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	TArray<AActor*> actors;
 	hitbox->GetOverlappingActors(actors);
 	UE_LOG(LogTemp, Warning, TEXT("%d"), actors.Num());
+	//hitbox->SetActive(false);
 }
 
 void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrimitiveComponent * otherComp, int32 otherBodyIndex,  bool bFromSweep, const FHitResult & SweepResult)
