@@ -45,6 +45,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
 
+
 #pragma region Brennans Variables Init
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
@@ -168,6 +169,8 @@ void ASuper80sFighterCharacter::Attack2()
 	isAttacking2 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_2);
 
+	//add a hitbox to the character
+	hitboxes.Add(spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1.f, 1.5f), 0));
 }
 void ASuper80sFighterCharacter::Attack3()
 {

@@ -25,6 +25,7 @@ AHitbox::AHitbox()
 	if (meshAsset.Object != nullptr)
 	{
 		hitbox->SetStaticMesh(meshAsset.Object);
+		hitbox->UpdateCollisionFromStaticMesh();
 	}
 
 	//create a UMaterialInstanceDynamic for our mesh
@@ -35,7 +36,9 @@ AHitbox::AHitbox()
 
 	//set collision types for the mesh and the actual hitbox
 	hitbox->SetCollisionProfileName(TEXT("OverlapAll"));
-	hitbox->bAlwaysCreatePhysicsState = true;
+	hitbox->SetNotifyRigidBodyCollision(true);
+	//hitbox->SetSimulatePhysics(true);
+	//hitbox->SetEnableGravity(false);
 	hitbox->Mobility = EComponentMobility::Movable;
 
 	//set the hitbox to call OnHit when triggered
