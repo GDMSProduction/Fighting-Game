@@ -184,7 +184,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FActorSpawnParameters sp = FActorSpawnParameters();
 	sp.bDeferConstruction = true;
 
-	tempHitbox = GetWorld()->SpawnActor<AHitbox>(tempVec, rot, sp);
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(),tempVec, rot, sp);
 	tempHitbox->GetTransform().SetLocation(tempVec);
 
 	//reenable if we don't want all hitboxes to move with the player

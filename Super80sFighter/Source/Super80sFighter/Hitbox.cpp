@@ -35,6 +35,8 @@ AHitbox::AHitbox()
 
 	//set collision types for the mesh and the actual hitbox
 	hitbox->SetCollisionProfileName(TEXT("OverlapAll"));
+	hitbox->bAlwaysCreatePhysicsState = true;
+	hitbox->Mobility = EComponentMobility::Movable;
 
 	//set the hitbox to call OnHit when triggered
 	hitbox->bGenerateOverlapEvents = true;
@@ -109,6 +111,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
 	//hitbox->SetActive(false);
 
+	hitbox->UpdateCollisionFromStaticMesh();
 	//debugging stuff, delete before final version
 	TArray<AActor*> actors;
 	hitbox->GetOverlappingActors(actors);
