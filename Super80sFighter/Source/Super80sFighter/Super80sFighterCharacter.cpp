@@ -144,6 +144,13 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 	// add movement in that direction
 
 	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
+
+	if (Value > 0)//Moving right
+		FlipCharacter(true);
+	else if (Value < 0)
+		FlipCharacter(false);
+
+
 }
 void ASuper80sFighterCharacter::Attack0()
 {
@@ -152,7 +159,7 @@ void ASuper80sFighterCharacter::Attack0()
 	AddAttack(ATTACK_TYPE::ATTACK_0);
 	//spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
 	//rebuild
-	
+
 }
 void ASuper80sFighterCharacter::Attack1()
 {
@@ -231,16 +238,16 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 
-	
+
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	if (HasJumpReachedThreshold) {
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-		
+
 	}
 	else {
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-		
+
 	}
 	PressJump();
 }
@@ -261,6 +268,34 @@ void ASuper80sFighterCharacter::ReleaseJump()
 	isHoldingJump = false;
 }
 #pragma endregion
+
+void ASuper80sFighterCharacter::FlipCharacter()
+{
+	FlipCharacter(!IsFacingRight);
+
+}
+void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
+{
+	if (forceFaceRight)//If we're forcing them to face right, face them right
+	{
+		 //Set the transform scale x component to 1
+		FVector trans = GetTransform().GetScale3D();
+		trans.X = 1.0f;
+		SetActorScale3D(trans);
+	
+
+	}
+	else//If we're forcing them to face left, face them left
+	{
+		//Set the transform scale x component to -1
+		FVector trans = GetTransform().GetScale3D();
+		trans.X = -1.0f;
+		SetActorScale3D(trans);
+	
+	}
+
+	IsFacingRight = forceFaceRight;
+}
 
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;

@@ -60,6 +60,10 @@ protected:
 	void ReleaseJump();
 	void JumpReachesThreshold();
 
+	//Mirrors the character to face the other direction, keeping their front facing the players
+	void FlipCharacter();
+	void FlipCharacter(bool forceFaceRight);
+
 	enum ATTACK_TYPE
 	{
 		ATTACK_0,
@@ -100,6 +104,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
 	TArray<AHitbox*> hitboxes;
 
+	UPROPERTY(VisibleAnywhere, Category = "Orientation")
+	bool IsFacingRight;
+
 public:
 	ASuper80sFighterCharacter();
 
@@ -108,7 +115,7 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-#pragma region Brennan Variables
+#pragma region Controlling Variables
 	//Attacking variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
@@ -172,6 +179,8 @@ public:
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
 	float GetCurrentHealth();
+
+	
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
