@@ -62,6 +62,9 @@ protected:
 
 	//Mirrors the character to face the other direction, keeping their front facing the players
 	void FlipCharacter();
+	//Sets their direction, regardless of their previous orientation. 
+	//Args:
+	//forceFaceRight - Set this to true if they should face right, or false to face left
 	void FlipCharacter(bool forceFaceRight);
 
 	enum ATTACK_TYPE
