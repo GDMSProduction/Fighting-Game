@@ -40,6 +40,7 @@ AHitbox::AHitbox()
 	//hitbox->SetSimulatePhysics(true);
 	//hitbox->SetEnableGravity(false);
 	hitbox->Mobility = EComponentMobility::Movable;
+	hitbox->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
 
 	//set the hitbox to call OnHit when triggered
 	hitbox->bGenerateOverlapEvents = true;
@@ -47,7 +48,7 @@ AHitbox::AHitbox()
 
 	RootComponent = hitbox;
 
-	//disable the hitbox (will be enabled at the appropriate time in the animation)
+	FinishSpawning(GetTransform());
 }
 
 void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector dimensions, float _damage)
@@ -114,25 +115,18 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
 	//hitbox->SetActive(false);
 
-	hitbox->UpdateCollisionFromStaticMesh();
-	//debugging stuff, delete before final version
-	TArray<AActor*> actors;
-	hitbox->GetOverlappingActors(actors);
-	UE_LOG(LogTemp, Warning, TEXT("%d"), actors.Num());
-	//hitbox->SetActive(false);
+	//finish spawning the hitbox so unreal knows to check it for collision
+	/*FinishSpawning(GetTransform());*/
 }
 
 void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrimitiveComponent * otherComp, int32 otherBodyIndex,  bool bFromSweep, const FHitResult & SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("possibly colliding with something"));
 	//other actor isnt null or us
 	if ((otherActor != nullptr) && (otherActor != this) && (otherComp != nullptr))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("collided with something"));
 		//check if the actor is a hitbox
 		if (otherActor->IsA(AHitbox::StaticClass()))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("collided with a hitbox"));
 			AHitbox * otherHitbox = (AHitbox*)otherActor;
 			switch (hitboxType)
 			{

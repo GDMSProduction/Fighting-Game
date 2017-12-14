@@ -34,6 +34,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hellothere")
 	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+	UPROPERTY()
 	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */

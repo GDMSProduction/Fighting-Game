@@ -9,6 +9,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	//I love asian qt3.14s
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	//disable overlap events on the characters capsule component
+	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
 	// Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
