@@ -30,8 +30,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Face in the direction we are moving..
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->AirControl = 0.80f;
 	GetCharacterMovement()->JumpZVelocity = 1000.f;
@@ -231,23 +231,23 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 
-	UE_LOG(LogTemp, Warning, TEXT("Pressing Normal Jump"));
+	
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	if (HasJumpReachedThreshold) {
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-		UE_LOG(LogTemp, Warning, TEXT("Jumping High"));
+		
 	}
 	else {
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-		UE_LOG(LogTemp, Warning, TEXT("Jumping Low"));
+		
 	}
 	PressJump();
 }
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
-	UE_LOG(LogTemp, Warning, TEXT("JumpThreshReached"));
+
 	ReleaseJump();
 }
 void ASuper80sFighterCharacter::PressJump()
