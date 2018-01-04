@@ -125,7 +125,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 	if ((otherActor != nullptr) && (otherActor != this) && (otherComp != nullptr))
 	{
 		//check if the actor is a hitbox
-		if (otherActor->IsA(AHitbox::StaticClass()))
+		if (otherActor->IsA(AHitbox::StaticClass()) && otherActor->GetParentActor() != this->GetParentActor())
 		{
 			AHitbox * otherHitbox = (AHitbox*)otherActor;
 			switch (hitboxType)
