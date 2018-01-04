@@ -140,6 +140,10 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASuper80sFighterCharacter::TakingDamage);
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
+
+
+	//spawn a hitbox on the player that can be hit and attacked
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1, 1.6f), 0);
 }
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
@@ -162,24 +166,18 @@ void ASuper80sFighterCharacter::Attack1()
 	QueStopAttacking();
 	isAttacking1 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_1);
-
-
 }
 void ASuper80sFighterCharacter::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_2);
-
-	//add a hitbox to the character
-	hitboxes.Add(spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1.f, 1.5f), 0));
 }
 void ASuper80sFighterCharacter::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
 	AddAttack(ATTACK_TYPE::ATTACK_3);
-
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {

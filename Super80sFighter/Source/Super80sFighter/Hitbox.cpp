@@ -73,7 +73,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	switch (hitboxType)
 	{
 	case EHITBOX_TYPE::VE_HITBOX_STRIKE: //red
-		color.A = 127;
+		color.A = 200;
 		color.R = 255;
 		color.G = 0;
 		color.B = 0;
@@ -258,124 +258,6 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				break;
 			}
 		}
-	}
-}
-
-void AHitbox::beginStartup()
-{
-	switch (hitboxType)
-	{
-	case EHITBOX_TYPE::VE_HITBOX_STRIKE:
-		//do nothing for strike hitboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROJECTILE:
-		//do nothing for projectile hitboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROXIMITY:
-		//activate the proximity hitbox
-		hitbox->SetActive(true);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_THROW:
-		//do nothing for throw hitboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
-		//do nothing for painboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
-		//do nothing for throwboxes
-		break;
-	default:
-		break;
-	}
-}
-
-void AHitbox::beginActive()
-{
-	switch (hitboxType)
-	{
-	case EHITBOX_TYPE::VE_HITBOX_STRIKE:
-		//set strike hitboxes to be active
-		hitbox->SetActive(true);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROJECTILE:
-		//set projectile hitboxes to be active
-		hitbox->SetActive(true);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROXIMITY:
-		//do nothing for proximity hitboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_THROW:
-		//set throw hitboxes to be active
-		hitbox->SetActive(true);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
-		//do nothing for painboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
-		//do nothing for throwboxes
-		break;
-	default:
-		break;
-	}
-}
-
-void AHitbox::beginRecovery()
-{
-	switch (hitboxType)
-	{
-	case EHITBOX_TYPE::VE_HITBOX_STRIKE:
-		//set strike hitboxes to be inactive
-		hitbox->SetActive(false);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROJECTILE:
-		//do nothing for projectile hitboxes (these will be destroyed when the projectile itself is destroyed)
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROXIMITY:
-		//set proximity hitboxes to be inactive
-		hitbox->SetActive(false);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_THROW:
-		//set throw hitboxes to be inactive
-		hitbox->SetActive(false);
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
-		//do nothing for painboxes
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
-		//do nothing for throwboxes
-		break;
-	default:
-		break;
-	}
-}
-
-void AHitbox::end()
-{
-	switch (hitboxType)
-	{
-	case EHITBOX_TYPE::VE_HITBOX_STRIKE:
-		//destroy the strike hitbox
-		Destroy();
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROJECTILE:
-		//do nothing for projectile hitboxes (these will be destroyed when the projectile itself is destroyed)
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_PROXIMITY:
-		//destroy the proximity hitbox
-		Destroy();
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_THROW:
-		//destroy the throw hitbox
-		Destroy();
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
-		//do nothing for the painbox
-		break;
-	case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
-		//do nothing for the throwbox
-		break;
-	default:
-		break;
 	}
 }
 
