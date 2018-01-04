@@ -120,10 +120,10 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
 
-	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::Attack0);
-	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::Attack1);
-	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::Attack2);
-	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::Attack3);
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
@@ -146,42 +146,32 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
 
 	if (Value > 0)//Moving right
+	{
 		FlipCharacter(true);
-	else if (Value < 0)
+
+	}
+
+	else if (Value < 0) {
 		FlipCharacter(false);
+	}
 
 
 }
-void ASuper80sFighterCharacter::Attack0()
+void ASuper80sFighterCharacter::PressPunch()
 {
-	QueStopAttacking();
-	isAttacking0 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_0);
-	//spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
-	//rebuild
-
+	AddInput(INPUT_TYPE::PUNCH);
 }
-void ASuper80sFighterCharacter::Attack1()
+void ASuper80sFighterCharacter::PressKick()
 {
-	QueStopAttacking();
-	isAttacking1 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_1);
-
-
+	AddInput(INPUT_TYPE::KICK);
 }
-void ASuper80sFighterCharacter::Attack2()
+void ASuper80sFighterCharacter::PressHeavy()
 {
-	QueStopAttacking();
-	isAttacking2 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_2);
-
+	AddInput(INPUT_TYPE::HEAVY);
 }
-void ASuper80sFighterCharacter::Attack3()
+void ASuper80sFighterCharacter::PressSpecial()
 {
-	QueStopAttacking();
-	isAttacking3 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_3);
-
+	AddInput(INPUT_TYPE::SPECIAL);
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
@@ -257,6 +247,7 @@ void ASuper80sFighterCharacter::JumpReachesThreshold()
 
 	ReleaseJump();
 }
+
 void ASuper80sFighterCharacter::PressJump()
 {
 	ACharacter::Jump();
@@ -269,6 +260,86 @@ void ASuper80sFighterCharacter::ReleaseJump()
 }
 #pragma endregion
 
+
+#pragma region
+void ASuper80sFighterCharacter::CheckCommand()
+{
+	if (last5Attacks.Num() == 0)
+		return;
+
+	if (last5Attacks.Num() == 1)
+	{
+		switch (last5Attacks[0])
+		{
+		case ASuper80sFighterCharacter::PUNCH:
+			Attack0();
+			break;
+		case ASuper80sFighterCharacter::KICK:
+			Attack1();
+			break;
+		case ASuper80sFighterCharacter::HEAVY:
+			Attack2();
+			break;
+		case ASuper80sFighterCharacter::SPECIAL:
+			Attack3();
+			break;
+		case ASuper80sFighterCharacter::LEFT:
+			break;
+		case ASuper80sFighterCharacter::RIGHT:
+			break;
+		case ASuper80sFighterCharacter::UP:
+			break;
+		case ASuper80sFighterCharacter::DOWN:
+			break;
+		case ASuper80sFighterCharacter::NUM_ATTACKS:
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (last5Attacks.Num() == 2)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 3)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 4)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 5)
+	{
+
+	}
+
+}
+void ASuper80sFighterCharacter::Attack0()
+{
+	QueStopAttacking();
+	isAttacking0 = true;
+}
+void ASuper80sFighterCharacter::Attack1()
+{
+	QueStopAttacking();
+	isAttacking1 = true;
+}
+void ASuper80sFighterCharacter::Attack2()
+{
+	QueStopAttacking();
+	isAttacking2 = true;
+}
+void ASuper80sFighterCharacter::Attack3()
+{
+	QueStopAttacking();
+	isAttacking3 = true;
+}
+#pragma endregion
 void ASuper80sFighterCharacter::FlipCharacter()
 {
 	FlipCharacter(!IsFacingRight);
@@ -278,11 +349,11 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 {
 	if (forceFaceRight)//If we're forcing them to face right, face them right
 	{
-		 //Set the transform scale x component to 1
+		//Set the transform scale x component to 1
 		FVector trans = GetTransform().GetScale3D();
 		trans.X = 1.0f;
 		SetActorScale3D(trans);
-	
+
 
 	}
 	else//If we're forcing them to face left, face them left
@@ -291,7 +362,7 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 		FVector trans = GetTransform().GetScale3D();
 		trans.X = -1.0f;
 		SetActorScale3D(trans);
-	
+
 	}
 
 	IsFacingRight = forceFaceRight;
@@ -303,11 +374,12 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddAttack(ATTACK_TYPE incomingAttack)
+void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
 {
 	last5Attacks.Add(incomingAttack);
 	if (last5Attacks.Num() > 5)
 		last5Attacks.RemoveAt(0);
+	CheckCommand();
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {

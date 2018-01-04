@@ -40,10 +40,10 @@ protected:
 	void MoveRight(float Val);
 
 #pragma region Brennans Functions
-	void Attack0();
-	void Attack1();
-	void Attack2();
-	void Attack3();
+	void PressPunch();
+	void PressKick();
+	void PressHeavy();
+	void PressSpecial();
 	void QueStopAttacking();
 
 	void StartCrouch();
@@ -59,6 +59,19 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 	void JumpReachesThreshold();
+	//Call this every time a new input is given. 
+	//This will go through the command list (the inputs list) and check to see if there is a matching command. 
+	//If there is, it calls the appropriate function to indicate that the player controller wishes to use the set command. 
+	//The animation and event graphs will manage these commands to know how to deal with those commands
+	void CheckCommand();
+
+#pragma region Attacks
+	void Attack0();
+	void Attack1();
+	void Attack2();
+	void Attack3();
+#pragma endregion
+
 
 	//Mirrors the character to face the other direction, keeping their front facing the players
 	void FlipCharacter();
@@ -67,15 +80,19 @@ protected:
 	//forceFaceRight - Set this to true if they should face right, or false to face left
 	void FlipCharacter(bool forceFaceRight);
 
-	enum ATTACK_TYPE
+	enum INPUT_TYPE
 	{
-		ATTACK_0,
-		ATTACK_1,
-		ATTACK_2,
-		ATTACK_3,
+		PUNCH,
+		KICK,
+		HEAVY,
+		SPECIAL,
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
 		NUM_ATTACKS
 	};
-	void AddAttack(ATTACK_TYPE incomingAttack);
+	void AddInput(INPUT_TYPE incomingAttack);
 #pragma endregion
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -153,9 +170,7 @@ public:
 #pragma endregion
 
 #pragma region Combo variables
-
-
-	TArray<ATTACK_TYPE> last5Attacks;
+	TArray<INPUT_TYPE> last5Attacks;
 #pragma endregion
 
 
