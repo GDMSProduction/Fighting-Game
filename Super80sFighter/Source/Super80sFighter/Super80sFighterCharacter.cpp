@@ -9,6 +9,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	//I love asian qt3.14s
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	//disable overlap events on the characters capsule component
+	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
 	// Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
@@ -44,6 +46,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
+
 
 #pragma region Brennans Variables Init
 	CustomHighJumpVelocity = 1000.0f;
@@ -121,6 +124,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
 
+
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
 	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
@@ -138,6 +142,10 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASuper80sFighterCharacter::TakingDamage);
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
+
+
+	//spawn a hitbox on the player that can be hit and attacked
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1, 1.6f), 0);
 }
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
@@ -158,20 +166,25 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 
 
 }
+
 void ASuper80sFighterCharacter::PressPunch()
 {
 	AddInput(INPUT_TYPE::PUNCH);
 }
 void ASuper80sFighterCharacter::PressKick()
 {
+
 	AddInput(INPUT_TYPE::KICK);
 }
 void ASuper80sFighterCharacter::PressHeavy()
 {
+
 	AddInput(INPUT_TYPE::HEAVY);
 }
+
 void ASuper80sFighterCharacter::PressSpecial()
 {
+
 	AddInput(INPUT_TYPE::SPECIAL);
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
@@ -182,7 +195,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FActorSpawnParameters sp = FActorSpawnParameters();
 	sp.bDeferConstruction = true;
 
-	tempHitbox = GetWorld()->SpawnActor<AHitbox>(tempVec, rot, sp);
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(),tempVec, rot, sp);
 	tempHitbox->GetTransform().SetLocation(tempVec);
 
 	//reenable if we don't want all hitboxes to move with the player
@@ -229,15 +242,18 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 
+	
 
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	if (HasJumpReachedThreshold) {
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
+	
 
 	}
 	else {
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
+		
 
 	}
 	PressJump();
@@ -245,6 +261,7 @@ void ASuper80sFighterCharacter::ReleaseNormalJump() {
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
+	
 
 	ReleaseJump();
 }
