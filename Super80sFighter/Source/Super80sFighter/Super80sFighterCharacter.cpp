@@ -49,6 +49,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
+	AttackThreshold = 0.2f;
 #pragma endregion
 
 
@@ -261,7 +262,7 @@ void ASuper80sFighterCharacter::ReleaseJump()
 #pragma endregion
 
 
-#pragma region
+#pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
 	if (last5Attacks.Num() == 0)
@@ -318,6 +319,12 @@ void ASuper80sFighterCharacter::CheckCommand()
 
 	}
 
+}
+void ASuper80sFighterCharacter::ClearCommands()
+{
+	while(last5Attacks.Num() != 0)
+		last5Attacks.RemoveAt(0);
+	
 }
 void ASuper80sFighterCharacter::Attack0()
 {
@@ -380,6 +387,9 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
 	if (last5Attacks.Num() > 5)
 		last5Attacks.RemoveAt(0);
 	CheckCommand();
+
+	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
+
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {

@@ -64,6 +64,8 @@ protected:
 	//If there is, it calls the appropriate function to indicate that the player controller wishes to use the set command. 
 	//The animation and event graphs will manage these commands to know how to deal with those commands
 	void CheckCommand();
+	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
+	void ClearCommands();
 
 #pragma region Attacks
 	void Attack0();
@@ -171,6 +173,9 @@ public:
 
 #pragma region Combo variables
 	TArray<INPUT_TYPE> last5Attacks;
+	FTimerHandle AttackTimer;
+
+	float AttackThreshold;
 #pragma endregion
 
 
