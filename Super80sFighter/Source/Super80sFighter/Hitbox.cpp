@@ -118,7 +118,6 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 
 	//finish spawning the hitbox so unreal knows to check it for collision
 	/*FinishSpawning(GetTransform());*/
-	UE_LOG(LogTemp, Warning, TEXT("%d %d"), damage, _damage);
 }
 
 void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrimitiveComponent * otherComp, int32 otherBodyIndex,  bool bFromSweep, const FHitResult & SweepResult)
@@ -146,7 +145,6 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
 					//deal damage and stun enemy (maybe)... implement function for damage
-					UE_LOG(LogTemp, Warning, TEXT("%d"), damage);
 					otherCharacter->TakeDamage(damage);
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
@@ -213,6 +211,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
 					//throw enemy
 					UE_LOG(LogTemp, Warning, TEXT("Throw box has hit enemy throw area, begin throw"));
+					otherCharacter->TakeDamage(damage);
 					break;
 				default:
 					break;

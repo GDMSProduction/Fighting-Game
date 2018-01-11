@@ -145,6 +145,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
 }
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
@@ -203,8 +204,6 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
 	tempHitbox->AttachToComponent(RootComponent, rules);
 	//}
-
-	UE_LOG(LogTemp, Warning, TEXT("%f"), damage);
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
 	hitboxes.Add(tempHitbox);
