@@ -8,7 +8,8 @@ void ASuper80sFighterGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ASuper80sFighterCharacter* MyPlayer = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	ASuper80sFighterCharacter* Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	ASuper80sFighterCharacter* Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::CreatePlayer(this, 1));
 
 	if (PlayerHUDClass != nullptr)
 	{

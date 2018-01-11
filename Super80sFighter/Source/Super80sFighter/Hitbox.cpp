@@ -3,6 +3,7 @@
 #include "Hitbox.h"
 #include "Components/BoxComponent.h"
 #include "ConstructorHelpers.h"
+#include "Super80sFighterCharacter.h"
 
 // Sets default values
 AHitbox::AHitbox()
@@ -117,6 +118,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 
 	//finish spawning the hitbox so unreal knows to check it for collision
 	/*FinishSpawning(GetTransform());*/
+	UE_LOG(LogTemp, Warning, TEXT("%d %d"), damage, _damage);
 }
 
 void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrimitiveComponent * otherComp, int32 otherBodyIndex,  bool bFromSweep, const FHitResult & SweepResult)
@@ -125,9 +127,10 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 	if ((otherActor != nullptr) && (otherActor != this) && (otherComp != nullptr))
 	{
 		//check if the actor is a hitbox
-		if (otherActor->IsA(AHitbox::StaticClass()) && otherActor->GetParentActor() != this->GetParentActor())
+		if (otherActor->IsA(AHitbox::StaticClass()) && otherComp->GetAttachParent() != thisHitbox->GetAttachParent())
 		{
 			AHitbox * otherHitbox = (AHitbox*)otherActor;
+			ASuper80sFighterCharacter* otherCharacter = (ASuper80sFighterCharacter*)(otherComp->GetAttachParent()->GetAttachmentRootActor());
 			switch (hitboxType)
 			{
 			case EHITBOX_TYPE::VE_HITBOX_STRIKE:
@@ -143,7 +146,8 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
 					//deal damage and stun enemy (maybe)... implement function for damage
-					UE_LOG(LogTemp, Warning, TEXT("Strike has hit painbox, deal damage"));
+					UE_LOG(LogTemp, Warning, TEXT("%d"), damage);
+					otherCharacter->TakeDamage(damage);
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
 					break;

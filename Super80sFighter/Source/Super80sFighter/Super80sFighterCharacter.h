@@ -213,7 +213,7 @@ public:
 	void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void TakingDamage();
+	void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 	void SuperAbility();

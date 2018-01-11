@@ -90,11 +90,11 @@ void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 	CurrentHealth = CurrentHealth + Health;
 }
 
-void ASuper80sFighterCharacter::TakingDamage()
+void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
-	UpdateCurrentStamina((1.0f * -0.01f) * TotalStamina);
-
-	UpdateCurrentHealth((1.0f * -0.01f) * TotalHealth);
+	UpdateCurrentStamina(damage * -.5f);
+	UE_LOG(LogTemp, Warning, TEXT("YOU TAKING DAMAGE THIS MUCH DAMAGE %f OH NO"), damage);
+	UpdateCurrentHealth(-damage);
 }
 
 void ASuper80sFighterCharacter::SuperAbility()
@@ -140,12 +140,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
-	PlayerInputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASuper80sFighterCharacter::TakingDamage);
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
 
 	//spawn a hitbox on the player that can be hit and attacked
-	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1, 1.6f), 0);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 }
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
@@ -205,6 +204,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	tempHitbox->AttachToComponent(RootComponent, rules);
 	//}
 
+	UE_LOG(LogTemp, Warning, TEXT("%f"), damage);
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
 	hitboxes.Add(tempHitbox);
