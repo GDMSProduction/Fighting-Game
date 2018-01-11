@@ -4,7 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Hitbox.h"
+#include "../Source/Super80sFighter/Hitbox.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
+#include "Runtime/Engine/Public/TimerManager.h"
+#include <vector.h>
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -22,19 +32,44 @@ class ASuper80sFighterCharacter : public ACharacter
 
 protected:
 
-	void spawnHitbox();
+	UFUNCTION(BlueprintCallable, Category = "Hellothere")
+	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
 	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
-	//Testing the first attack
+
+#pragma region Brennans Functions
 	void Attack0();
 	void Attack1();
 	void Attack2();
 	void Attack3();
 	void QueStopAttacking();
 
+	void StartCrouch();
+	void StopCrouch();
 
+	void PressShortHop();
+	void ReleaseShortHop();
+	void PressHighJump();
+	void ReleaseHighJump();
+	void PressNormalJump();
+	void ReleaseNormalJump();
+
+	void PressJump();
+	void ReleaseJump();
+	void JumpReachesThreshold();
+
+	enum ATTACK_TYPE
+	{
+		ATTACK_0,
+		ATTACK_1,
+		ATTACK_2,
+		ATTACK_3,
+		NUM_ATTACKS
+	};
+	void AddAttack(ATTACK_TYPE incomingAttack);
+#pragma endregion
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
 
@@ -48,19 +83,22 @@ protected:
 private:
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float TotalStamina;
+	float TotalStamina;
 
 	/**Player Current Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float CurrentStamina;
+	float CurrentStamina;
 
 	/**Player Total Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float TotalHealth;
+	float TotalHealth;
 
 	/**Player Current Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-		float CurrentHealth;
+	float CurrentHealth;
+
+	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
+	TArray<AHitbox*> hitboxes;
 
 public:
 	ASuper80sFighterCharacter();
@@ -70,8 +108,10 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
+#pragma region Brennan Variables
+	//Attacking variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		bool isAttacking0;
+	bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -80,39 +120,70 @@ public:
 		bool isAttacking3;
 
 
+
+	//Movement Variables
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isCrouching;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool isHoldingJump;
+
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		float CustomHighJumpVelocity;//Demo jump velocity was 1000.0f
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		float CustomShortJumpVelocity;
+
+	
+#pragma region Jumping Variables
+	FTimerHandle JumpTimer;
+	bool HasJumpReachedThreshold;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float JumpThreshold;
+#pragma endregion
+
+#pragma region Combo variables
+
+
+	TArray<ATTACK_TYPE> last5Attacks;
+#pragma endregion
+
+
+#pragma endregion
+
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetTotalStamina();
+	float GetTotalStamina();
 
 	/**Accessor function for Current Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetCurrentStamina();
+	float GetCurrentStamina();
 
 	/**Updates the Players Current Stamina
 	* @param Stamina Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void UpdateCurrentStamina(float Stamina);
+	void UpdateCurrentStamina(float Stamina);
 
 	/**Accessor function for Total Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetTotalHealth();
+	float GetTotalHealth();
 
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-		float GetCurrentHealth();
+	float GetCurrentHealth();
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void UpdateCurrentHealth(float Health);
+	void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void TakingDamage();
+	void TakingDamage();
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void SuperAbility();
+	void SuperAbility();
 
 	virtual void Tick(float DeltaTime) override;
 };
