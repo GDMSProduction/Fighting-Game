@@ -15,6 +15,8 @@
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "Runtime/Engine/Public/TimerManager.h"
 #include <vector.h>
+#include "EngineUtils.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -67,6 +69,11 @@ protected:
 	void CheckCommand();
 	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
 	void ClearCommands();
+
+
+
+
+
 
 #pragma region Attacks
 	void Attack0();
@@ -130,6 +137,8 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Orientation")
 	bool IsFacingRight;
 
+	ASuper80sFighterCharacter* EnemyPlayer;
+
 public:
 	ASuper80sFighterCharacter();
 
@@ -181,6 +190,9 @@ public:
 
 
 #pragma endregion
+
+
+	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
