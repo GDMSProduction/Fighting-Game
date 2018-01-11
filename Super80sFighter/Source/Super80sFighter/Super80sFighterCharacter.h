@@ -15,6 +15,8 @@
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "Runtime/Engine/Public/TimerManager.h"
 #include <vector.h>
+#include "EngineUtils.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -32,18 +34,19 @@ class ASuper80sFighterCharacter : public ACharacter
 
 protected:
 
-	UFUNCTION(BlueprintCallable, Category = "Hellothere")
+	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
 	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+	UPROPERTY()
 	class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
 
 #pragma region Brennans Functions
-	void Attack0();
-	void Attack1();
-	void Attack2();
-	void Attack3();
+	void PressPunch();
+	void PressKick();
+	void PressHeavy();
+	void PressSpecial();
 	void QueStopAttacking();
 
 	void StartCrouch();
@@ -59,16 +62,47 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 	void JumpReachesThreshold();
+	//Call this every time a new input is given. 
+	//This will go through the command list (the inputs list) and check to see if there is a matching command. 
+	//If there is, it calls the appropriate function to indicate that the player controller wishes to use the set command. 
+	//The animation and event graphs will manage these commands to know how to deal with those commands
+	void CheckCommand();
+	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
+	void ClearCommands();
 
-	enum ATTACK_TYPE
+
+
+
+
+
+#pragma region Attacks
+	void Attack0();
+	void Attack1();
+	void Attack2();
+	void Attack3();
+#pragma endregion
+
+
+	//Mirrors the character to face the other direction, keeping their front facing the players
+	void FlipCharacter();
+	//Sets their direction, regardless of their previous orientation. 
+	//Args:
+	//forceFaceRight - Set this to true if they should face right, or false to face left
+	void FlipCharacter(bool forceFaceRight);
+
+	enum INPUT_TYPE
 	{
-		ATTACK_0,
-		ATTACK_1,
-		ATTACK_2,
-		ATTACK_3,
+		PUNCH,
+		KICK,
+		HEAVY,
+		SPECIAL,
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
 		NUM_ATTACKS
 	};
-	void AddAttack(ATTACK_TYPE incomingAttack);
+	void AddInput(INPUT_TYPE incomingAttack);
 #pragma endregion
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -100,6 +134,11 @@ private:
 	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
 	TArray<AHitbox*> hitboxes;
 
+	UPROPERTY(VisibleAnywhere, Category = "Orientation")
+	bool IsFacingRight;
+
+	ASuper80sFighterCharacter* EnemyPlayer;
+
 public:
 	ASuper80sFighterCharacter();
 
@@ -108,7 +147,7 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
-#pragma region Brennan Variables
+#pragma region Controlling Variables
 	//Attacking variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isAttacking0;
@@ -143,13 +182,17 @@ public:
 #pragma endregion
 
 #pragma region Combo variables
+	TArray<INPUT_TYPE> last5Attacks;
+	FTimerHandle AttackTimer;
 
-
-	TArray<ATTACK_TYPE> last5Attacks;
+	float AttackThreshold;
 #pragma endregion
 
 
 #pragma endregion
+
+
+	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
@@ -173,6 +216,8 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Stats")
 	float GetCurrentHealth();
 
+	
+
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
@@ -180,7 +225,7 @@ public:
 	void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void TakingDamage();
+	void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 	void SuperAbility();

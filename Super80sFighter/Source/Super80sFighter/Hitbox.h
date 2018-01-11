@@ -75,11 +75,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Hitboxes")
 	void OnHit(UPrimitiveComponent* thisHitbox, AActor* otherActor, UPrimitiveComponent* otherComp, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	void beginStartup();		//called when the button is pressed, activates proximitybox
-	void beginActive();			//called during the animation, starts active frames of attack
-	void beginRecovery();		//called during the animation, ends active frames of attack
-	void end();					//called at the end of the animation, destroys the hitbox
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

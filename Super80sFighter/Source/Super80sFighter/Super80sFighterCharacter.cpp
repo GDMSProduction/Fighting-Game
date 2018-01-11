@@ -9,6 +9,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	//I love asian qt3.14s
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	//disable overlap events on the characters capsule component
+	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
 	// Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
@@ -30,8 +32,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Face in the direction we are moving..
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->AirControl = 0.80f;
 	GetCharacterMovement()->JumpZVelocity = 1000.f;
@@ -50,11 +52,17 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
+	AttackThreshold = 0.2f;
 #pragma endregion
 
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
+}
+
+void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
+{
+	EnemyPlayer = OtherPlayer;
 }
 
 float ASuper80sFighterCharacter::GetTotalStamina()
@@ -87,11 +95,11 @@ void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 	CurrentHealth = CurrentHealth + Health;
 }
 
-void ASuper80sFighterCharacter::TakingDamage()
+void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
-	UpdateCurrentStamina((1.0f * -0.01f) * TotalStamina);
-
-	UpdateCurrentHealth((1.0f * -0.01f) * TotalHealth);
+	UpdateCurrentStamina(damage * -.5f);
+	UE_LOG(LogTemp, Warning, TEXT("YOU TAKING DAMAGE THIS MUCH DAMAGE %f OH NO"), damage);
+	UpdateCurrentHealth(-damage);
 }
 
 void ASuper80sFighterCharacter::SuperAbility()
@@ -103,6 +111,15 @@ void ASuper80sFighterCharacter::SuperAbility()
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (/*They are touching the ground only*/ true) {
+		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
+			FlipCharacter(false);
+		else
+			FlipCharacter(true);
+	}
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -121,10 +138,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
 
-	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::Attack0);
-	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::Attack1);
-	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::Attack2);
-	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::Attack3);
+
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
@@ -136,48 +154,51 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
-	PlayerInputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASuper80sFighterCharacter::TakingDamage);
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
-}
 
+
+
+
+	//spawn a hitbox on the player that can be hit and attacked
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
+}
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
 
 	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
-}
-void ASuper80sFighterCharacter::Attack0()
-{
-	QueStopAttacking();
-	isAttacking0 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_0);
-	//spawnHitbox(EHITBOX_TYPE::VE_HITBOX_STRIKE, FVector(50, 0, 30), FVector(.5f, 1, .25f), 10);
-	//rebuild
-	
-}
-void ASuper80sFighterCharacter::Attack1()
-{
-	QueStopAttacking();
-	isAttacking1 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_1);
+
+	if (Value > 0)//Moving right
+	{
+		FlipCharacter(true);
+
+	}
+
+	else if (Value < 0) {
+		FlipCharacter(false);
+	}
 
 
 }
-void ASuper80sFighterCharacter::Attack2()
+void ASuper80sFighterCharacter::PressPunch()
 {
-	QueStopAttacking();
-	isAttacking2 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_2);
-
-	//add a hitbox to the character
-	hitboxes.Add(spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, 1.f, 1.5f), 0));
+	AddInput(INPUT_TYPE::PUNCH);
 }
-void ASuper80sFighterCharacter::Attack3()
+void ASuper80sFighterCharacter::PressKick()
 {
-	QueStopAttacking();
-	isAttacking3 = true;
-	AddAttack(ATTACK_TYPE::ATTACK_3);
 
+	AddInput(INPUT_TYPE::KICK);
+}
+void ASuper80sFighterCharacter::PressHeavy()
+{
+
+	AddInput(INPUT_TYPE::HEAVY);
+}
+void ASuper80sFighterCharacter::PressSpecial()
+{
+
+	AddInput(INPUT_TYPE::SPECIAL);
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
@@ -187,7 +208,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FActorSpawnParameters sp = FActorSpawnParameters();
 	sp.bDeferConstruction = true;
 
-	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(),tempVec, rot, sp);
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(), tempVec, rot, sp);
 	tempHitbox->GetTransform().SetLocation(tempVec);
 
 	//reenable if we don't want all hitboxes to move with the player
@@ -196,7 +217,6 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
 	tempHitbox->AttachToComponent(RootComponent, rules);
 	//}
-
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
 
 	hitboxes.Add(tempHitbox);
@@ -234,25 +254,30 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 
-	UE_LOG(LogTemp, Warning, TEXT("Pressing Normal Jump"));
+
+
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	if (HasJumpReachedThreshold) {
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-		UE_LOG(LogTemp, Warning, TEXT("Jumping High"));
+
+
 	}
 	else {
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-		UE_LOG(LogTemp, Warning, TEXT("Jumping Low"));
+
+
 	}
 	PressJump();
 }
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
-	UE_LOG(LogTemp, Warning, TEXT("JumpThreshReached"));
+
+
 	ReleaseJump();
 }
+
 void ASuper80sFighterCharacter::PressJump()
 {
 	ACharacter::Jump();
@@ -265,17 +290,135 @@ void ASuper80sFighterCharacter::ReleaseJump()
 }
 #pragma endregion
 
+
+#pragma region Attacks
+void ASuper80sFighterCharacter::CheckCommand()
+{
+	if (last5Attacks.Num() == 0)
+		return;
+
+	if (last5Attacks.Num() == 1)
+	{
+		switch (last5Attacks[0])
+		{
+		case ASuper80sFighterCharacter::PUNCH:
+			Attack0();
+			break;
+		case ASuper80sFighterCharacter::KICK:
+			Attack1();
+			break;
+		case ASuper80sFighterCharacter::HEAVY:
+			Attack2();
+			break;
+		case ASuper80sFighterCharacter::SPECIAL:
+			Attack3();
+			break;
+		case ASuper80sFighterCharacter::LEFT:
+			break;
+		case ASuper80sFighterCharacter::RIGHT:
+			break;
+		case ASuper80sFighterCharacter::UP:
+			break;
+		case ASuper80sFighterCharacter::DOWN:
+			break;
+		case ASuper80sFighterCharacter::NUM_ATTACKS:
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (last5Attacks.Num() == 2)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 3)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 4)
+	{
+
+	}
+
+	if (last5Attacks.Num() == 5)
+	{
+
+	}
+
+}
+void ASuper80sFighterCharacter::ClearCommands()
+{
+	while (last5Attacks.Num() != 0)
+		last5Attacks.RemoveAt(0);
+
+}
+void ASuper80sFighterCharacter::Attack0()
+{
+	QueStopAttacking();
+	isAttacking0 = true;
+}
+void ASuper80sFighterCharacter::Attack1()
+{
+	QueStopAttacking();
+	isAttacking1 = true;
+}
+void ASuper80sFighterCharacter::Attack2()
+{
+	QueStopAttacking();
+	isAttacking2 = true;
+}
+void ASuper80sFighterCharacter::Attack3()
+{
+	QueStopAttacking();
+	isAttacking3 = true;
+}
+#pragma endregion
+void ASuper80sFighterCharacter::FlipCharacter()
+{
+	FlipCharacter(!IsFacingRight);
+
+}
+void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
+{
+	if (forceFaceRight)//If we're forcing them to face right, face them right
+	{
+		//Set the transform scale x component to 1
+		FVector trans = GetTransform().GetScale3D();
+		trans.X = 1.0f;
+		SetActorScale3D(trans);
+
+
+	}
+	else//If we're forcing them to face left, face them left
+	{
+		//Set the transform scale x component to -1
+		FVector trans = GetTransform().GetScale3D();
+		trans.X = -1.0f;
+		SetActorScale3D(trans);
+
+	}
+
+	IsFacingRight = forceFaceRight;
+}
+
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddAttack(ATTACK_TYPE incomingAttack)
+void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
 {
 	last5Attacks.Add(incomingAttack);
 	if (last5Attacks.Num() > 5)
 		last5Attacks.RemoveAt(0);
+	CheckCommand();
+
+	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
+
 }
 void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
