@@ -10,6 +10,10 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	ASuper80sFighterCharacter* Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
 	ASuper80sFighterCharacter* Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::CreatePlayer(this, 1));
+	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
+
+	Player1->SetOtherPlayer(Player2);
+	Player2->SetOtherPlayer(Player1);
 
 	if (PlayerHUDClass != nullptr)
 	{

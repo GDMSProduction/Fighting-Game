@@ -112,7 +112,12 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-
+	if (/*They are touching the ground only*/ true) {
+		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
+			FlipCharacter(false);
+		else
+			FlipCharacter(true);
+	}
 
 
 }
