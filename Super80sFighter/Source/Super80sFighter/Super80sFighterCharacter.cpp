@@ -60,6 +60,11 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
 
+void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
+{
+	EnemyPlayer = OtherPlayer;
+}
+
 float ASuper80sFighterCharacter::GetTotalStamina()
 {
 	return TotalStamina;
@@ -106,6 +111,10 @@ void ASuper80sFighterCharacter::SuperAbility()
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -143,11 +152,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
 
+
+
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
 }
-
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
@@ -166,7 +176,6 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 
 
 }
-
 void ASuper80sFighterCharacter::PressPunch()
 {
 	AddInput(INPUT_TYPE::PUNCH);
@@ -181,7 +190,6 @@ void ASuper80sFighterCharacter::PressHeavy()
 
 	AddInput(INPUT_TYPE::HEAVY);
 }
-
 void ASuper80sFighterCharacter::PressSpecial()
 {
 
@@ -195,7 +203,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FActorSpawnParameters sp = FActorSpawnParameters();
 	sp.bDeferConstruction = true;
 
-	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(),tempVec, rot, sp);
+	tempHitbox = GetWorld()->SpawnActor<AHitbox>(AHitbox::StaticClass(), tempVec, rot, sp);
 	tempHitbox->GetTransform().SetLocation(tempVec);
 
 	//reenable if we don't want all hitboxes to move with the player
@@ -241,18 +249,18 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 
-	
+
 
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	if (HasJumpReachedThreshold) {
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-	
+
 
 	}
 	else {
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-		
+
 
 	}
 	PressJump();
@@ -260,7 +268,7 @@ void ASuper80sFighterCharacter::ReleaseNormalJump() {
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
-	
+
 
 	ReleaseJump();
 }
@@ -338,9 +346,9 @@ void ASuper80sFighterCharacter::CheckCommand()
 }
 void ASuper80sFighterCharacter::ClearCommands()
 {
-	while(last5Attacks.Num() != 0)
+	while (last5Attacks.Num() != 0)
 		last5Attacks.RemoveAt(0);
-	
+
 }
 void ASuper80sFighterCharacter::Attack0()
 {
