@@ -15,15 +15,15 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
 
-	if (PlayerHUDClass != nullptr)
-	{
-		PlayerWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
-
-		if (PlayerWidget != nullptr)
-		{
-			PlayerWidget->AddToViewport();
-		}
-	}
+	//if (PlayerHUDClass != nullptr)
+	//{
+	//	PlayerWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
+	//
+	//	if (PlayerWidget != nullptr)
+	//	{
+	//		PlayerWidget->AddToViewport();
+	//	}
+	//}
 }
 
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
