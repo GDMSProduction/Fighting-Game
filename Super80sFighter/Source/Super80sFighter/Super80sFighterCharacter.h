@@ -17,6 +17,7 @@
 #include <vector.h>
 #include "EngineUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
+#include "EngineGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -192,6 +193,9 @@ public:
 #pragma endregion
 
 
+#pragma endregion
+#pragma region Testing
+	void PrintMessage();
 #pragma endregion
 
 
