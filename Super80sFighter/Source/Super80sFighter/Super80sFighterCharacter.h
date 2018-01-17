@@ -17,6 +17,7 @@
 #include <vector.h>
 #include "EngineUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
+#include "EngineGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -42,13 +43,16 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Val);
 
-#pragma region Brennans Functions
+
+
+#pragma region Input Functions
+
+
+
 	void PressPunch();
 	void PressKick();
 	void PressHeavy();
 	void PressSpecial();
-	void QueStopAttacking();
-
 	void StartCrouch();
 	void StopCrouch();
 
@@ -61,6 +65,8 @@ protected:
 
 	void PressJump();
 	void ReleaseJump();
+#pragma region Variable Manipulation in relation to inputs
+	void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
 	//This will go through the command list (the inputs list) and check to see if there is a matching command. 
@@ -69,26 +75,6 @@ protected:
 	void CheckCommand();
 	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
 	void ClearCommands();
-
-
-
-
-
-
-#pragma region Attacks
-	void Attack0();
-	void Attack1();
-	void Attack2();
-	void Attack3();
-#pragma endregion
-
-
-	//Mirrors the character to face the other direction, keeping their front facing the players
-	void FlipCharacter();
-	//Sets their direction, regardless of their previous orientation. 
-	//Args:
-	//forceFaceRight - Set this to true if they should face right, or false to face left
-	void FlipCharacter(bool forceFaceRight);
 
 	enum INPUT_TYPE
 	{
@@ -104,6 +90,24 @@ protected:
 	};
 	void AddInput(INPUT_TYPE incomingAttack);
 #pragma endregion
+#pragma endregion
+#pragma region Attacks
+	void Attack0();
+	void Attack1();
+	void Attack2();
+	void Attack3();
+#pragma endregion
+
+
+	//Mirrors the character to face the other direction, keeping their front facing the players
+	void FlipCharacter();
+	//Sets their direction, regardless of their previous orientation. 
+	//Args:
+	//forceFaceRight - Set this to true if they should face right, or false to face left
+	void FlipCharacter(bool forceFaceRight);
+
+
+
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
 
@@ -150,7 +154,7 @@ public:
 #pragma region Controlling Variables
 	//Attacking variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isAttacking0;
+		bool isAttacking0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking1;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -162,9 +166,9 @@ public:
 
 	//Movement Variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isCrouching;
+		bool isCrouching;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool isHoldingJump;
+		bool isHoldingJump;
 
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -189,6 +193,9 @@ public:
 #pragma endregion
 
 
+#pragma endregion
+#pragma region Testing
+	void PrintMessage();
 #pragma endregion
 
 

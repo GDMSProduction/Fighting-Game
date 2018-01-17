@@ -60,6 +60,11 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
 
+void ASuper80sFighterCharacter::PrintMessage()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("%s is The Key"), this->InputComponent->GetAxisKeyValue())
+}
+
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
@@ -112,11 +117,15 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (/*They are touching the ground only*/ true) {
+	if (/*They are touching the ground only*/ EnemyPlayer->GetTransform().GetLocation().Z == GetTransform().GetLocation().Z) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
 		else
 			FlipCharacter(true);
+	}
+	else
+	{
+		FlipCharacter(IsFacingRight);
 	}
 
 
@@ -155,7 +164,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
-
+	PlayerInputComponent->BindKey(EKeys::AnyKey, IE_Pressed, this, )
 
 
 

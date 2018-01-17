@@ -2,6 +2,8 @@ Super80sFighter/Binaries
 Super80sFighter/DerivedDataCache
 Super80sFighter/Intermediate
 Super80sFighter/Saved
+*.suo
+Super80sFighter/Saved
 
 # Visual Studio 2015 user specific files
 .vs/
@@ -77,3 +79,4 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 *.db
 *.ipch
+   
