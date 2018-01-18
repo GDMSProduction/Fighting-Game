@@ -97,19 +97,10 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 
 void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
+	UE_LOG(LogTemp, Warning, TEXT("What is going on?"));
 	if (OtherActor == EnemyPlayer)
 	{
-		if (NormalImpulse.Y > 0)
-		{
-			GetCapsuleComponent()->AddImpulse(FVector(-NormalImpulse.X, 0, 0));
-			UE_LOG(LogTemp, Warning, TEXT("X greater"));
-		}
-		else if (NormalImpulse.Y < 0)
-		{
-			GetCapsuleComponent()->AddImpulse(FVector(NormalImpulse.X, 0, 0));
-			UE_LOG(LogTemp, Warning, TEXT("X lesser"));
-
-		}
+		UE_LOG(LogTemp, Warning, TEXT("&f &f &f"), NormalImpulse.X, NormalImpulse.Y, NormalImpulse.Z);
 	}
 }
 
@@ -182,7 +173,6 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
-	PlayerInputComponent->BindKey(EKeys::AnyKey, IE_Pressed, this, )
 
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
