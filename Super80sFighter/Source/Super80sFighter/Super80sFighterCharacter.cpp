@@ -59,60 +59,49 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
-
 void ASuper80sFighterCharacter::PrintMessage()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("%s is The Key"), this->InputComponent->GetAxisKeyValue())
 }
-
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
 }
-
 float ASuper80sFighterCharacter::GetTotalStamina()
 {
 	return TotalStamina;
 }
-
 float ASuper80sFighterCharacter::GetCurrentStamina()
 {
 	return CurrentStamina;
 }
-
 void ASuper80sFighterCharacter::UpdateCurrentStamina(float Stamina)
 {
 	CurrentStamina = CurrentStamina + Stamina;
 }
-
 float ASuper80sFighterCharacter::GetTotalHealth()
 {
 	return TotalHealth;
 }
-
 float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
-
 void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 {
 	CurrentHealth = CurrentHealth + Health;
 }
-
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UE_LOG(LogTemp, Warning, TEXT("YOU TAKING DAMAGE THIS MUCH DAMAGE %f OH NO"), damage);
 	UpdateCurrentHealth(-damage);
 }
-
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
 
 }
-
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
