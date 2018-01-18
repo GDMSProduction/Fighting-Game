@@ -164,7 +164,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
-	PlayerInputComponent->BindKey(EKeys::AnyKey, IE_Pressed, this, )
+
 
 
 
@@ -267,24 +267,24 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
-	if (HasJumpReachedThreshold) {
+
+	if (HasJumpReachedThreshold)
+	{
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-
-
 	}
-	else {
+	else
+	{
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-
-
 	}
 	PressJump();
+
+
 }
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
 
-
-	ReleaseJump();
+	ReleaseNormalJump();
 }
 
 void ASuper80sFighterCharacter::PressJump()
