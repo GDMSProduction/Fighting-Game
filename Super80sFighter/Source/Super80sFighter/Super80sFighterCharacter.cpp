@@ -90,6 +90,24 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 	return CurrentHealth;
 }
 
+void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
+{
+	if (OtherActor == EnemyPlayer)
+	{
+		if (NormalImpulse.Y > 0)
+		{
+			GetCapsuleComponent()->AddImpulse(FVector(-NormalImpulse.X, 0, 0));
+			UE_LOG(LogTemp, Warning, TEXT("X greater"));
+		}
+		else if (NormalImpulse.Y < 0)
+		{
+			GetCapsuleComponent()->AddImpulse(FVector(NormalImpulse.X, 0, 0));
+			UE_LOG(LogTemp, Warning, TEXT("X lesser"));
+
+		}
+	}
+}
+
 void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 {
 	CurrentHealth = CurrentHealth + Health;
@@ -156,12 +174,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
-
-
-
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
+
+	//set up alternate collision on capsule component
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
 }
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {

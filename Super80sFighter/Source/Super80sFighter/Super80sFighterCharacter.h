@@ -219,7 +219,8 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Stats")
 	float GetCurrentHealth();
 
-	
+	UFUNCTION(BlueprintCallable, Category = "Collision")
+	void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
