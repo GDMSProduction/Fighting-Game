@@ -120,8 +120,8 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Input
+
+
 
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -220,7 +220,6 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
 }
-
 void ASuper80sFighterCharacter::StartCrouch()
 {
 	isCrouching = true;
@@ -280,6 +279,7 @@ void ASuper80sFighterCharacter::PressJump()
 {
 	ACharacter::Jump();
 	isHoldingJump = true;
+	AddInput(INPUT_TYPE::UP);
 }
 void ASuper80sFighterCharacter::ReleaseJump()
 {
@@ -287,13 +287,27 @@ void ASuper80sFighterCharacter::ReleaseJump()
 	isHoldingJump = false;
 }
 #pragma endregion
-
-
 #pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
 	if (last5Attacks.Num() == 0)
 		return;
+
+	INPUT_TYPE forward;
+	INPUT_TYPE backward;
+
+#pragma region Set "Forward" and "Backward"
+	if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y) {
+		forward = INPUT_TYPE::LEFT;
+		backward = INPUT_TYPE::RIGHT;
+	}
+	else
+	{
+		forward = INPUT_TYPE::RIGHT;
+		backward = INPUT_TYPE::LEFT;
+	}
+#pragma endregion
+
 
 	if (last5Attacks.Num() == 1)
 	{
@@ -311,6 +325,34 @@ void ASuper80sFighterCharacter::CheckCommand()
 		case ASuper80sFighterCharacter::SPECIAL:
 			Attack3();
 			break;
+		//These arent moves that, by themselves, do anything
+		//case ASuper80sFighterCharacter::LEFT:
+		//	break;
+		//case ASuper80sFighterCharacter::RIGHT:
+		//	break;
+		//case ASuper80sFighterCharacter::UP:
+		//	break;
+		//case ASuper80sFighterCharacter::DOWN:
+		//	break;
+
+		default:
+			break;
+		}
+	}
+
+	if (last5Attacks.Num() == 2)
+	{
+		switch (last5Attacks[1])
+		{
+		case ASuper80sFighterCharacter::PUNCH:
+
+			break;
+		case ASuper80sFighterCharacter::KICK:
+			break;
+		case ASuper80sFighterCharacter::HEAVY:
+			break;
+		case ASuper80sFighterCharacter::SPECIAL:
+			break;
 		case ASuper80sFighterCharacter::LEFT:
 			break;
 		case ASuper80sFighterCharacter::RIGHT:
@@ -319,16 +361,9 @@ void ASuper80sFighterCharacter::CheckCommand()
 			break;
 		case ASuper80sFighterCharacter::DOWN:
 			break;
-		case ASuper80sFighterCharacter::NUM_ATTACKS:
-			break;
 		default:
 			break;
 		}
-	}
-
-	if (last5Attacks.Num() == 2)
-	{
-
 	}
 
 	if (last5Attacks.Num() == 3)
