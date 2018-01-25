@@ -7,5 +7,15 @@
 UCLASS()
 class SUPER80SFIGHTER_API AMySuper80sFighterAIBehavior : public ASuper80sFighterCharacter
 {	
-	GENERATED_BODY();
+	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Do")
+
+	void Do();
+	UFUNCTION(BlueprintCallable, Category = "Do")
+	void Dont(int blarb);
+
+	//Increment the timer, called every frame.
+	virtual void Tick(float DeltaTime) override;
 };
