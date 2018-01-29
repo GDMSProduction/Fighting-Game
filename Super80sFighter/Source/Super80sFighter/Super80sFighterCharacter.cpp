@@ -87,6 +87,19 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
+{
+	lock_grounded = false;
+	if (OtherActor == EnemyPlayer)
+	{
+		//fix issue with jumping on top of other players
+		if (GetTransform().GetLocation().Z > EnemyPlayer->GetTransform().GetLocation().Z)
+		{
+			non_grounded_forces += FVector(0, 100 * GetTransform().GetScale3D().X, 0);
+			lock_grounded = true;
+		}
+	}
+}
 void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 {
 	CurrentHealth = CurrentHealth + Health;
@@ -105,6 +118,31 @@ void ASuper80sFighterCharacter::SuperAbility()
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//implementing my physics
+	if(!lock_grounded)
+		grounded = GetCharacterMovement()->IsMovingOnGround();
+	if (grounded)
+		non_grounded_forces = FVector(0, 0, 0);
+	else
+		grounded_forces = FVector(0, 0, 0);
+	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
+	if (FVector::DistSquared(FVector::ZeroVector, non_grounded_forces) > .05f)
+	{
+		ControlInputVector += non_grounded_forces * DeltaTime;
+		non_grounded_forces -= non_grounded_forces * DeltaTime;
+	}
+	if (FVector::DistSquared(FVector::ZeroVector, grounded_forces) > .05f)
+	{
+		ControlInputVector += grounded_forces * DeltaTime;
+		grounded_forces -= grounded_forces * DeltaTime;
+	}
+	if (FVector::DistSquared(FVector::ZeroVector, absolute_forces) > .05f)
+	{
+		ControlInputVector += absolute_forces * DeltaTime;
+		grounded_forces -= absolute_forces * DeltaTime;
+	}
+
 
 	if (/*They are touching the ground only*/ EnemyPlayer->GetTransform().GetLocation().Z == GetTransform().GetLocation().Z) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
@@ -160,12 +198,14 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
+
+	//add onHit to capsule component
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
 }
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
-
-	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
+	ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
 	if (Value > 0)//Moving right
 	{

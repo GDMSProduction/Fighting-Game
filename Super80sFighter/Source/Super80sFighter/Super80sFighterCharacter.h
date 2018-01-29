@@ -143,6 +143,15 @@ private:
 
 	ASuper80sFighterCharacter* EnemyPlayer;
 
+	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
+	UPROPERTY(VisibleAnywhere, Category = "Physics")
+	bool grounded;
+	bool lock_grounded;
+
+	FVector grounded_forces;
+	FVector non_grounded_forces;
+	FVector absolute_forces;
+
 public:
 	ASuper80sFighterCharacter();
 
