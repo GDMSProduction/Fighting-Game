@@ -59,69 +59,49 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
-
 void ASuper80sFighterCharacter::PrintMessage()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("%s is The Key"), this->InputComponent->GetAxisKeyValue())
 }
-
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
 }
-
 float ASuper80sFighterCharacter::GetTotalStamina()
 {
 	return TotalStamina;
 }
-
 float ASuper80sFighterCharacter::GetCurrentStamina()
 {
 	return CurrentStamina;
 }
-
 void ASuper80sFighterCharacter::UpdateCurrentStamina(float Stamina)
 {
 	CurrentStamina = CurrentStamina + Stamina;
 }
-
 float ASuper80sFighterCharacter::GetTotalHealth()
 {
 	return TotalHealth;
 }
-
 float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
-
-void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
-{
-	UE_LOG(LogTemp, Warning, TEXT("What is going on?"));
-	if (OtherActor == EnemyPlayer)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("&f &f &f"), NormalImpulse.X, NormalImpulse.Y, NormalImpulse.Z);
-	}
-}
-
 void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 {
 	CurrentHealth = CurrentHealth + Health;
 }
-
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UE_LOG(LogTemp, Warning, TEXT("YOU TAKING DAMAGE THIS MUCH DAMAGE %f OH NO"), damage);
 	UpdateCurrentHealth(-damage);
 }
-
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
 
 }
-
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -140,8 +120,8 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Input
+
+
 
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -174,12 +154,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
+
+
+
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
-
-	//set up alternate collision on capsule component
-	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
 }
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
@@ -240,7 +220,6 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
 }
-
 void ASuper80sFighterCharacter::StartCrouch()
 {
 	isCrouching = true;
@@ -276,30 +255,31 @@ void ASuper80sFighterCharacter::PressNormalJump() {
 
 }
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
-	if (HasJumpReachedThreshold) {
+
+	if (HasJumpReachedThreshold)
+	{
 		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-
-
 	}
-	else {
+	else
+	{
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-
-
 	}
 	PressJump();
+
+
 }
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
 
-
-	ReleaseJump();
+	ReleaseNormalJump();
 }
 
 void ASuper80sFighterCharacter::PressJump()
 {
 	ACharacter::Jump();
 	isHoldingJump = true;
+	AddInput(INPUT_TYPE::UP);
 }
 void ASuper80sFighterCharacter::ReleaseJump()
 {
@@ -307,13 +287,27 @@ void ASuper80sFighterCharacter::ReleaseJump()
 	isHoldingJump = false;
 }
 #pragma endregion
-
-
 #pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
 	if (last5Attacks.Num() == 0)
 		return;
+
+	INPUT_TYPE forward;
+	INPUT_TYPE backward;
+
+#pragma region Set "Forward" and "Backward"
+	if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y) {
+		forward = INPUT_TYPE::LEFT;
+		backward = INPUT_TYPE::RIGHT;
+	}
+	else
+	{
+		forward = INPUT_TYPE::RIGHT;
+		backward = INPUT_TYPE::LEFT;
+	}
+#pragma endregion
+
 
 	if (last5Attacks.Num() == 1)
 	{
@@ -331,6 +325,34 @@ void ASuper80sFighterCharacter::CheckCommand()
 		case ASuper80sFighterCharacter::SPECIAL:
 			Attack3();
 			break;
+		//These arent moves that, by themselves, do anything
+		//case ASuper80sFighterCharacter::LEFT:
+		//	break;
+		//case ASuper80sFighterCharacter::RIGHT:
+		//	break;
+		//case ASuper80sFighterCharacter::UP:
+		//	break;
+		//case ASuper80sFighterCharacter::DOWN:
+		//	break;
+
+		default:
+			break;
+		}
+	}
+
+	if (last5Attacks.Num() == 2)
+	{
+		switch (last5Attacks[1])
+		{
+		case ASuper80sFighterCharacter::PUNCH:
+
+			break;
+		case ASuper80sFighterCharacter::KICK:
+			break;
+		case ASuper80sFighterCharacter::HEAVY:
+			break;
+		case ASuper80sFighterCharacter::SPECIAL:
+			break;
 		case ASuper80sFighterCharacter::LEFT:
 			break;
 		case ASuper80sFighterCharacter::RIGHT:
@@ -339,16 +361,9 @@ void ASuper80sFighterCharacter::CheckCommand()
 			break;
 		case ASuper80sFighterCharacter::DOWN:
 			break;
-		case ASuper80sFighterCharacter::NUM_ATTACKS:
-			break;
 		default:
 			break;
 		}
-	}
-
-	if (last5Attacks.Num() == 2)
-	{
-
 	}
 
 	if (last5Attacks.Num() == 3)
