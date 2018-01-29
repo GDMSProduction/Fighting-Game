@@ -301,14 +301,14 @@ void ASuper80sFighterCharacter::ReleaseJump()
 #pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
-	if (last5Attacks.Num() == 0)
+	if (inputBuffer.Num() == 0)
 		return;
 
 	INPUT_TYPE forward;
 	INPUT_TYPE backward;
 
 #pragma region Set "Forward" and "Backward"
-	if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y) {
+	if (EnemyPlayer->GetTransform().GetLocation().X > GetTransform().GetLocation().X) {
 		forward = INPUT_TYPE::LEFT;
 		backward = INPUT_TYPE::RIGHT;
 	}
@@ -319,84 +319,25 @@ void ASuper80sFighterCharacter::CheckCommand()
 	}
 #pragma endregion
 
-
-	if (last5Attacks.Num() == 1)
+	for (int i = 0; i < CommandList.Num(); i++)
 	{
-		switch (last5Attacks[0])
-		{
-		case ASuper80sFighterCharacter::PUNCH:
-			Attack0();
-			break;
-		case ASuper80sFighterCharacter::KICK:
-			Attack1();
-			break;
-		case ASuper80sFighterCharacter::HEAVY:
-			Attack2();
-			break;
-		case ASuper80sFighterCharacter::SPECIAL:
-			Attack3();
-			break;
-		//These arent moves that, by themselves, do anything
-		//case ASuper80sFighterCharacter::LEFT:
-		//	break;
-		//case ASuper80sFighterCharacter::RIGHT:
-		//	break;
-		//case ASuper80sFighterCharacter::UP:
-		//	break;
-		//case ASuper80sFighterCharacter::DOWN:
-		//	break;
-
-		default:
-			break;
+		if (CommandList[i].InputsForCommand.Num() == inputBuffer.Num()) {//Only if the command size matches the inputBuffer
+			bool isSame = true;
+			for (int j = 0; j < inputBuffer.Num(); j++)
+			{
+				if (inputBuffer[j] != CommandList[i].InputsForCommand[j])
+					isSame = false;
+			}
 		}
+		
 	}
 
-	if (last5Attacks.Num() == 2)
-	{
-		switch (last5Attacks[1])
-		{
-		case ASuper80sFighterCharacter::PUNCH:
-
-			break;
-		case ASuper80sFighterCharacter::KICK:
-			break;
-		case ASuper80sFighterCharacter::HEAVY:
-			break;
-		case ASuper80sFighterCharacter::SPECIAL:
-			break;
-		case ASuper80sFighterCharacter::LEFT:
-			break;
-		case ASuper80sFighterCharacter::RIGHT:
-			break;
-		case ASuper80sFighterCharacter::UP:
-			break;
-		case ASuper80sFighterCharacter::DOWN:
-			break;
-		default:
-			break;
-		}
-	}
-
-	if (last5Attacks.Num() == 3)
-	{
-
-	}
-
-	if (last5Attacks.Num() == 4)
-	{
-
-	}
-
-	if (last5Attacks.Num() == 5)
-	{
-
-	}
 
 }
 void ASuper80sFighterCharacter::ClearCommands()
 {
-	while (last5Attacks.Num() != 0)
-		last5Attacks.RemoveAt(0);
+	while (inputBuffer.Num() != 0)
+		inputBuffer.RemoveAt(0);
 
 }
 void ASuper80sFighterCharacter::Attack0()
@@ -461,11 +402,14 @@ void ASuper80sFighterCharacter::AddCommand(TArray<INPUT> InputsForCommand, void(
 	tempCommand.InputsForCommand = InputsForCommand;
 	CommandList.Add(tempCommand);
 }
-void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
+void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasHeld)
 {
-	last5Attacks.Add(incomingAttack);
-	if (last5Attacks.Num() > 5)
-		last5Attacks.RemoveAt(0);
+	INPUT tempInput;
+	tempInput.inputType = incomingAttack;
+	tempInput.wasHeld = wasHeld;
+	inputBuffer.Add(tempInput);
+	if (inputBuffer.Num() > 5)
+		inputBuffer.RemoveAt(0);
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);

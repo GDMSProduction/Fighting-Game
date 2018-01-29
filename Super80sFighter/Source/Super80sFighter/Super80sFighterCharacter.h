@@ -91,16 +91,29 @@ protected:
 	struct INPUT {
 		INPUT_TYPE inputType;
 		bool wasHeld;
+		 bool operator==(const INPUT& test, const INPUT& test2) {
+			if (test.inputType != this->inputType)
+				return false;
+			if (test.wasHeld != this->wasHeld)
+				return false;
+
+			return true;
+		}
+		bool operator !=(const INPUT& test) {
+			return !(test == *this);
+		}
 	};
 
 	struct Command
 	{
 		TArray<INPUT> InputsForCommand;
 		void(ASuper80sFighterCharacter::*functionToCall)();
+
+		
 	};
 	TArray<Command> CommandList;
 	void AddCommand(TArray<INPUT> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
-	void AddInput(INPUT_TYPE incomingAttack);
+	void AddInput(INPUT_TYPE incomingAttack, bool wasHeld);
 #pragma endregion
 #pragma endregion
 #pragma region Attacks
@@ -198,7 +211,7 @@ public:
 #pragma endregion
 
 #pragma region Combo variables
-	TArray<INPUT_TYPE> last5Attacks;
+	TArray<INPUT> inputBuffer;
 	FTimerHandle AttackTimer;
 
 	float AttackThreshold;
