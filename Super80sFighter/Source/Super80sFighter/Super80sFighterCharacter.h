@@ -168,6 +168,15 @@ private:
 
 	ASuper80sFighterCharacter* EnemyPlayer;
 
+	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
+	UPROPERTY(VisibleAnywhere, Category = "Physics")
+	bool grounded;
+	bool lock_grounded;
+
+	FVector grounded_forces;
+	FVector non_grounded_forces;
+	FVector absolute_forces;
+
 public:
 	ASuper80sFighterCharacter();
 
@@ -248,7 +257,8 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Stats")
 	float GetCurrentHealth();
 
-	
+	UFUNCTION(BlueprintCallable, Category = "Collision")
+	void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
