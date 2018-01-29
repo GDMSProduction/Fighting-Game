@@ -88,6 +88,17 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
+	struct INPUT {
+		INPUT_TYPE inputType;
+		bool wasHeld;
+	};
+
+	struct Command
+	{
+		TArray<INPUT> InputsForCommand;
+		void(*functionToCall)();
+	};
+	TArray<Command> CommandList;
 	void AddInput(INPUT_TYPE incomingAttack);
 #pragma endregion
 #pragma endregion
