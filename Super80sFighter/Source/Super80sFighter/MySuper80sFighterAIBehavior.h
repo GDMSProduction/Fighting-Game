@@ -7,6 +7,7 @@
 UCLASS()
 class SUPER80SFIGHTER_API AMySuper80sFighterAIBehavior : public ASuper80sFighterCharacter
 {	
+	
 	GENERATED_BODY()
 
 
