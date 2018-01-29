@@ -88,6 +88,18 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
+	struct INPUT {
+		INPUT_TYPE inputType;
+		bool wasHeld;
+	};
+
+	struct Command
+	{
+		TArray<INPUT> InputsForCommand;
+		void(ASuper80sFighterCharacter::*functionToCall)();
+	};
+	TArray<Command> CommandList;
+	void AddCommand(TArray<INPUT> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack);
 #pragma endregion
 #pragma endregion

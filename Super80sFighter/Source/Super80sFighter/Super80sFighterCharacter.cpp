@@ -47,8 +47,17 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
 
+	TArray<INPUT> deleteThis;
+	INPUT tapPunch;
+	tapPunch.inputType = PUNCH;
+	tapPunch.wasHeld = false;
+	deleteThis.Add(tapPunch);
+	Command DeleteCommand;
+	DeleteCommand.InputsForCommand = deleteThis;
+	DeleteCommand.functionToCall = &ASuper80sFighterCharacter::PrintMessage;
+	CommandList.Add(DeleteCommand);
 
-#pragma region Brennans Variables Init
+#pragma region Physics Variables Init
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
@@ -210,11 +219,13 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 	if (Value > 0)//Moving right
 	{
 		FlipCharacter(true);
+		AddInput(RIGHT);
 
 	}
 
 	else if (Value < 0) {
 		FlipCharacter(false);
+		AddInput(LEFT);
 	}
 
 
@@ -482,6 +493,13 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
+}
+void ASuper80sFighterCharacter::AddCommand(TArray<INPUT> InputsForCommand, void(ASuper80sFighterCharacter::* functionToCall)())
+{
+	Command tempCommand;
+	tempCommand.functionToCall = functionToCall;
+	tempCommand.InputsForCommand = InputsForCommand;
+	CommandList.Add(tempCommand);
 }
 void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
 {
