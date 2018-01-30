@@ -30,21 +30,31 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _stage)
 		break;
 
 	case 2:
+		_inputsToUse.Add(SPECIAL1);
 		break;
 
 	case 3:
 		break;
 
 	case 4:
+		_inputsToUse.Add(SPECIAL1);
+		_inputsToUse.Add(SPECIAL2);
 		break;
 
 	case 5:
 		break;
 
 	case 6:
+		_inputsToUse.Add(SPECIAL1);
+		_inputsToUse.Add(SPECIAL2);
+		_inputsToUse.Add(SPECIAL3);
 		break;
 
 	case 7:
+		_inputsToUse.Add(SPECIAL1);
+		_inputsToUse.Add(SPECIAL2);
+		_inputsToUse.Add(SPECIAL3);
+		_inputsToUse.Add(SPECIAL4);
 		break;
 	}
 }
@@ -54,6 +64,9 @@ void AThugClass::Tick(float _deltaTime)
 {
 	//Use the parent's timer to perform the tick.
 	Super::Tick(_deltaTime);
+
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
 }
 
 
