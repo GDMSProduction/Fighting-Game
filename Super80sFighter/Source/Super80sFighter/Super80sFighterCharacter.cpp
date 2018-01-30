@@ -475,7 +475,6 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 		trans.X = 1.0f;
 		SetActorScale3D(trans);
 
-
 	}
 	else//If we're forcing them to face left, face them left
 	{

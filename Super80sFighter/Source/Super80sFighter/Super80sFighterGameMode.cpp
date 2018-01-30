@@ -1,15 +1,14 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterGameMode.h"
-#include "Super80sFighterCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 void ASuper80sFighterGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ASuper80sFighterCharacter* Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
-	ASuper80sFighterCharacter* Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::CreatePlayer(this, 1));
+	Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::CreatePlayer(this, 1));
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	Player1->SetOtherPlayer(Player2);
@@ -30,7 +29,16 @@ void ASuper80sFighterGameMode::BeginPlay()
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (Player1->GetCurrentHealth() <= 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
+		endRound(false);
+	}
+	else if (Player2->GetCurrentHealth() <= 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
+		endRound(true);
+	}
 }
 
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
@@ -42,4 +50,24 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	rounds_remaining = num_rounds;
+}
+
+void ASuper80sFighterGameMode::endRound(bool p1_win)
+{
+	rounds_remaining--;
+	if (p1_win)
+		Player1_round_wins++;
+	else
+		Player2_round_wins++;
+	if (rounds_remaining == 0)
+		endGame();
+	ResetLevel();
+}
+
+void ASuper80sFighterGameMode::endGame()
+{
+	//add buttons to screen for replay, return to character select, back to main menu
+
 }
