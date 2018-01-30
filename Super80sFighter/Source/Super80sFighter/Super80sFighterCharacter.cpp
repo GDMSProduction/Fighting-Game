@@ -102,9 +102,14 @@ void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor
 	if (OtherActor == EnemyPlayer)
 	{
 		//fix issue with jumping on top of other players
-		if (GetTransform().GetLocation().Z > EnemyPlayer->GetTransform().GetLocation().Z)
+		FVector my_location = GetTransform().GetLocation();
+		FVector enemy_location = EnemyPlayer->GetTransform().GetLocation();
+		if (my_location.Z > enemy_location.Z)
 		{
-			non_grounded_forces += FVector(0, 100 * GetTransform().GetScale3D().X, 0);
+			if (my_location.Y >= enemy_location.Y)
+				non_grounded_forces += FVector(0, 100, 0);
+			else
+				non_grounded_forces += FVector(0, -100, 0);
 			lock_grounded = true;
 		}
 	}
