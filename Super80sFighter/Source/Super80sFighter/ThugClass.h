@@ -9,6 +9,16 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 {
 	GENERATED_BODY()
 
+private:
+	enum Moves
+	{
+		MOVE,
+		JUMP,
+		CROUCH,
+		PUNCH,
+		KICK
+	};
+
 protected:
 	//The array of inputs for the thug to use.
 	TArray<short> inputsToUse;
