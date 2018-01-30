@@ -53,6 +53,12 @@ protected:
 	void PressKick();
 	void PressHeavy();
 	void PressSpecial();
+
+	void ReleasePunch();
+	void ReleaseKick();
+	void ReleaseHeavy();
+	void ReleaseSpecial();
+
 	void StartCrouch();
 	void StopCrouch();
 
@@ -113,12 +119,12 @@ protected:
 	struct Command
 	{
 		TArray<CommandInput> InputsForCommand;
-		void(*functionToCall)();
+		void(ASuper80sFighterCharacter::*functionToCall)();
 
 
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<CommandInput> InputsForCommand, void(*functionToCall)());
+	void AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
