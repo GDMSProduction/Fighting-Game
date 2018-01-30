@@ -56,6 +56,20 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	AttackThreshold = 0.2f;
 
 	holdThreshold = 0.13;
+#pragma region Adding in commands for attacks
+	TArray<CommandInput> commands;
+	CommandInput command1;
+	command1.inputType = PUNCH;
+	command1.wasHeld = false;
+	commands.Push(command1);
+	AddCommand(commands, &ASuper80sFighterCharacter::Attack0);
+	
+	
+	command1.inputType = KICK;
+	command1.wasHeld = false;
+	commands.Push(command1);
+	AddCommand(commands, &ASuper80sFighterCharacter::Attack2);
+#pragma endregion
 
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
@@ -79,12 +93,16 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
 	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
+
+	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunch);
+	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKick);
+	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHeavy);
+	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
+
+
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 
-	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
+
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
@@ -168,7 +186,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//implementing my physics
-	if(!lock_grounded)
+	if (!lock_grounded)
 		grounded = GetCharacterMovement()->IsMovingOnGround();
 	if (grounded)
 		non_grounded_forces = FVector(0, 0, 0);
@@ -192,7 +210,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	}
 
 
-	if (grounded) {
+	if (grounded && EnemyPlayer->grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
 		else
@@ -217,13 +235,13 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 
 	if (Value > 0)//Moving right
 	{
-		
+
 		AddInput(RIGHT, true, FApp::GetCurrentTime());
 
 	}
 
 	else if (Value < 0) {
-		
+
 		AddInput(LEFT, true, FApp::GetCurrentTime());
 	}
 
@@ -248,6 +266,28 @@ void ASuper80sFighterCharacter::PressSpecial()
 
 	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
 }
+
+void ASuper80sFighterCharacter::ReleasePunch()
+{
+	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseKick()
+{
+
+	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseHeavy()
+{
+
+	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseSpecial()
+{
+
+	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+
+
 
 
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
@@ -347,9 +387,9 @@ void ASuper80sFighterCharacter::CheckCommand()
 #pragma region Create the temporary CommandBuffer
 	TArray<BufferInput> bufferCopy;
 	for (int cur = 0; cur < inputBuffer.Num(); cur++) bufferCopy.Add(inputBuffer[cur]);//Inline explicit copy
-	
 
-	
+
+
 	while (bufferCopy.Num() > 0) {
 		BufferInput test = bufferCopy.Last();
 		if (!test.isPress) {
@@ -359,7 +399,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 				if (bufferCopy[i].isPress && bufferCopy[i].inputType == test.inputType) {
 					found = true;
 					bool held = (bufferCopy[i].timeOfInput - test.timeOfInput >= holdThreshold);
-					
+
 					CommandInput tempCI;
 					tempCI.inputType = test.inputType;
 					tempCI.wasHeld = held;
@@ -413,9 +453,10 @@ void ASuper80sFighterCharacter::CheckCommand()
 	}
 #pragma endregion
 
+
 	for (int currentCommand = 0; currentCommand < CommandList.Num(); currentCommand++)
 	{
-		for (int i = 0; i < tempCommandBuffer.Num() && tempCommandBuffer.Num() - i <= CommandList[currentCommand].InputsForCommand.Num(); i++)
+		for (int i = 0; i < tempCommandBuffer.Num() && i + CommandList[currentCommand].InputsForCommand.Num() <= tempCommandBuffer.Num(); i++)
 		{
 			if (tempCommandBuffer[i] == CommandList[currentCommand].InputsForCommand[0]) {
 				bool same = true;
@@ -427,7 +468,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 					}
 				}
 				if (same)
-					CommandList[currentCommand].functionToCall();
+					(this->*CommandList[currentCommand].functionToCall)();
 			}
 		}
 	}
@@ -438,6 +479,8 @@ void ASuper80sFighterCharacter::ClearCommands()
 {
 	while (inputBuffer.Num() != 0)
 		inputBuffer.RemoveAt(0);
+
+	QueStopAttacking();
 
 }
 void ASuper80sFighterCharacter::Attack0()
@@ -494,7 +537,7 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddCommand(TArray<CommandInput> InputsForCommand, void(*functionToCall)())
+void ASuper80sFighterCharacter::AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
