@@ -10,18 +10,30 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 	GENERATED_BODY()
 
 private:
+	//The current stage number.
+	short stageNumber = 0;
+
+	//The array of inputs for the thug to use.
+	TArray<short> inputsToUse;
+
+protected:
 	enum Moves
 	{
-		MOVE,
+		MOVEFORWARD,
+		MOVEBACKWARD,
+		HOP,
 		JUMP,
 		CROUCH,
 		PUNCH,
-		KICK
+		KICK,
+		SPECIAL1,
+		SPECIAL2,
+		SPECIAL3,
+		SPECIAL4
 	};
 
-protected:
-	//The array of inputs for the thug to use.
-	TArray<short> inputsToUse;
+	//Set up the thug's functionality.
+	void SetUpThug();
 
 	//Determine the moves the thug will have available to them.
 	void DetermineMoveSet(TArray<short>& _inputsToUse, short _stage);
