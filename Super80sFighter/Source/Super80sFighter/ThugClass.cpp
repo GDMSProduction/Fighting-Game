@@ -5,13 +5,13 @@
 void AThugClass::SetUpThug()
 {
 	//Add the default inputs for every thug.
-	inputsToUse.Add(0);
-	inputsToUse.Add(1);
-	inputsToUse.Add(2);
-	inputsToUse.Add(3);
-	inputsToUse.Add(4);
-	inputsToUse.Add(5);
-	inputsToUse.Add(6);
+	inputsToUse.Add(MOVEFORWARD);
+	inputsToUse.Add(MOVEBACKWARD);
+	inputsToUse.Add(HOP);
+	inputsToUse.Add(JUMP);
+	inputsToUse.Add(CROUCH);
+	inputsToUse.Add(PUNCH);
+	inputsToUse.Add(KICK);
 
 	//Determine the moves the thug will have available to them.
 	DetermineMoveSet(inputsToUse, stageNumber);
