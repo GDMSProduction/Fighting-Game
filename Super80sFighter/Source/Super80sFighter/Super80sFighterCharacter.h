@@ -36,9 +36,9 @@ class ASuper80sFighterCharacter : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
-	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
 	UPROPERTY()
-	class AHitbox* tempHitbox;
+		class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
@@ -88,19 +88,38 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
-	struct INPUT {
+	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
+	struct CommandInput {
 		INPUT_TYPE inputType;
 		bool wasHeld;
-	};
+		bool operator==(const CommandInput& test) {
+			if (test.inputType != this->inputType)
+				return false;
+			if (test.wasHeld != this->wasHeld)
+				return false;
 
+			return true;
+		}
+		bool operator !=(CommandInput& test) {
+			return !(test == *this);
+		}
+	};
+	//This is for input buffer, which is used to determine if inputs are held or tapped
+	struct BufferInput {
+		INPUT_TYPE inputType;
+		bool isPress;
+		double timeOfInput;
+	};
 	struct Command
 	{
-		TArray<INPUT> InputsForCommand;
-		void(ASuper80sFighterCharacter::*functionToCall)();
+		TArray<CommandInput> InputsForCommand;
+		void(*functionToCall)();
+
+
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<INPUT> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
-	void AddInput(INPUT_TYPE incomingAttack);
+	void AddCommand(TArray<CommandInput> InputsForCommand, void(*functionToCall)());
+	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
 #pragma region Attacks
@@ -133,37 +152,44 @@ protected:
 private:
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float TotalStamina;
+		float TotalStamina;
 
 	/**Player Current Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float CurrentStamina;
+		float CurrentStamina;
 
 	/**Player Total Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float TotalHealth;
+		float TotalHealth;
 
 	/**Player Current Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float CurrentHealth;
+		float CurrentHealth;
 
-	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
-	TArray<AHitbox*> hitboxes;
+	UPROPERTY(VisibleAnywhere, Category = "Hitboxes")
+		TArray<AHitbox*> hitboxes;
 
 	UPROPERTY(VisibleAnywhere, Category = "Orientation")
-	bool IsFacingRight;
+		bool IsFacingRight;
 
 	ASuper80sFighterCharacter* EnemyPlayer;
 
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-	bool grounded;
+		bool grounded;
 	bool lock_grounded;
 
 	FVector grounded_forces;
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
+
+#pragma region Combo variables
+	TArray<BufferInput> inputBuffer;
+	FTimerHandle AttackTimer;
+
+	float AttackThreshold;
+#pragma endregion
 public:
 	ASuper80sFighterCharacter();
 
@@ -197,21 +223,18 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		float CustomShortJumpVelocity;
 
-	
+	double holdThreshold;//Time you have to hold for before a button is considered a hold-down instead of a tap
+
+
 #pragma region Jumping Variables
 	FTimerHandle JumpTimer;
 	bool HasJumpReachedThreshold;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float JumpThreshold;
+		float JumpThreshold;
 #pragma endregion
 
-#pragma region Combo variables
-	TArray<INPUT_TYPE> last5Attacks;
-	FTimerHandle AttackTimer;
 
-	float AttackThreshold;
-#pragma endregion
 
 
 #pragma endregion
@@ -224,40 +247,40 @@ public:
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetTotalStamina();
+		float GetTotalStamina();
 
 	/**Accessor function for Current Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetCurrentStamina();
+		float GetCurrentStamina();
 
 	/**Updates the Players Current Stamina
 	* @param Stamina Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void UpdateCurrentStamina(float Stamina);
+		void UpdateCurrentStamina(float Stamina);
 
 	/**Accessor function for Total Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetTotalHealth();
+		float GetTotalHealth();
 
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetCurrentHealth();
+		float GetCurrentHealth();
 
 	UFUNCTION(BlueprintCallable, Category = "Collision")
-	void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+		void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void UpdateCurrentHealth(float Health);
+		void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void TakeDamage(float damage);
+		void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void SuperAbility();
+		void SuperAbility();
 
 	virtual void Tick(float DeltaTime) override;
 };
