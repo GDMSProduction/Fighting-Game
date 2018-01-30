@@ -24,12 +24,20 @@ void ASuper80sFighterGameMode::BeginPlay()
 	//		PlayerWidget->AddToViewport();
 	//	}
 	//}
+	
+}
+
+void ASuper80sFighterGameMode::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
 }
 
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/SideScrollerCharacter"));
+	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;

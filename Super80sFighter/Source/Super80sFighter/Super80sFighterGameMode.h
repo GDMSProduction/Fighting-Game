@@ -14,6 +14,7 @@ class ASuper80sFighterGameMode : public AGameModeBase
 	GENERATED_BODY()
 
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 public:
 	ASuper80sFighterGameMode();
