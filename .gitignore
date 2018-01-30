@@ -80,3 +80,4 @@ DerivedDataCache/*
 *.db
 *.ipch
    
+*.TMP
