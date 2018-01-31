@@ -293,6 +293,11 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Stats")
 		float GetCurrentHealth();
 
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void ResetHealth();
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void ResetStamina();
+
 	UFUNCTION(BlueprintCallable, Category = "Collision")
 		void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 

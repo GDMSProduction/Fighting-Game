@@ -50,7 +50,7 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
-
+	num_rounds = 1;
 	rounds_remaining = num_rounds;
 }
 
@@ -58,20 +58,29 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 {
 	rounds_remaining--;
 	if (p1_win)
+	{
 		Player1_round_wins++;
+	}
 	else
+	{
 		Player2_round_wins++;
+		
+	}
 	if (rounds_remaining == 0)
 		endGame();
 
 	Player1->SetActorLocation(Player1->startLocation);
-	Player1->TakeDamage(-(Player1->GetTotalHealth() - Player1->GetCurrentHealth()));
+	Player1->ResetHealth();
+	Player1->ResetStamina();
 	Player2->SetActorLocation(Player2->startLocation);
-	Player2->TakeDamage(-(Player2->GetTotalHealth() - Player2->GetCurrentHealth()));
+	Player2->ResetHealth();
+	Player2->ResetStamina();
+
+	UE_LOG(LogTemp, Warning, TEXT("%d"), rounds_remaining);
 }
 
 void ASuper80sFighterGameMode::endGame()
 {
 	//add buttons to screen for replay, return to character select, back to main menu
-
+	UE_LOG(LogTemp, Error, TEXT("ERRROR: ENDGAME FUNCTION NOT YET IMPLEMENTED YOU IDIOT (not you gracious player but the idiot that developed this)"));
 }

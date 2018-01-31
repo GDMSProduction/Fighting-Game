@@ -20,9 +20,10 @@ class ASuper80sFighterGameMode : public AGameModeBase
 public:
 	ASuper80sFighterGameMode();
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Settings")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
+	bool paused;
+
 	unsigned int num_rounds;
-	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Game Settings")
 	unsigned int rounds_remaining;
 
 protected:

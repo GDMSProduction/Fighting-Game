@@ -153,6 +153,14 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::ResetHealth()
+{
+	CurrentHealth = TotalHealth;
+}
+void ASuper80sFighterCharacter::ResetStamina()
+{
+	CurrentStamina = TotalStamina;
+}
 void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
 	lock_grounded = false;
