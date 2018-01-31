@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -14,9 +15,16 @@ class ASuper80sFighterGameMode : public AGameModeBase
 	GENERATED_BODY()
 
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 public:
 	ASuper80sFighterGameMode();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
+	bool paused;
+
+	unsigned int num_rounds;
+	unsigned int rounds_remaining;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
@@ -24,6 +32,14 @@ protected:
 
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
+
+private:
+	class ASuper80sFighterCharacter *Player1, *Player2;
+	unsigned int Player1_round_wins;
+	unsigned int Player2_round_wins;
+
+	void endRound(bool p1_win);
+	void endGame();
 };
 
 

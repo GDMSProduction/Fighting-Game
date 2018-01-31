@@ -118,14 +118,15 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
 
-
-
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
 
 	//add onHit to capsule component
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
+
+	//set startLocation
+	startLocation = GetTransform().GetLocation();
 }
 
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
@@ -152,15 +153,28 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::ResetHealth()
+{
+	CurrentHealth = TotalHealth;
+}
+void ASuper80sFighterCharacter::ResetStamina()
+{
+	CurrentStamina = TotalStamina;
+}
 void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
 	lock_grounded = false;
 	if (OtherActor == EnemyPlayer)
 	{
 		//fix issue with jumping on top of other players
-		if (GetTransform().GetLocation().Z > EnemyPlayer->GetTransform().GetLocation().Z)
+		FVector my_location = GetTransform().GetLocation();
+		FVector enemy_location = EnemyPlayer->GetTransform().GetLocation();
+		if (my_location.Z > enemy_location.Z)
 		{
-			non_grounded_forces += FVector(0, 100 * GetTransform().GetScale3D().X, 0);
+			if (my_location.Y >= enemy_location.Y)
+				non_grounded_forces += FVector(0, 100, 0);
+			else
+				non_grounded_forces += FVector(0, -100, 0);
 			lock_grounded = true;
 		}
 	}
@@ -537,7 +551,6 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 		FVector trans = GetTransform().GetScale3D();
 		trans.X = 1.0f;
 		SetActorScale3D(trans);
-
 
 	}
 	else//If we're forcing them to face left, face them left
