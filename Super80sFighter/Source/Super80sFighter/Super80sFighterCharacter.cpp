@@ -73,15 +73,15 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	while (commands.Num() > 0)
 		commands.RemoveAt(0);
 
-	command1.inputType = PUNCH;
-	command1.wasHeld = false;
-	commands.Push(command1);
-
-	command1.inputType = RIGHT;
-	commands.Push(command1);
-
 	command1.inputType = DOWN;
 	commands.Push(command1);
+
+	command1.inputType = HEAVY;
+	command1.wasHeld = true;
+	commands.Push(command1);
+
+
+
 
 	AddCommand(commands, &ASuper80sFighterCharacter::Attack3);
 #pragma endregion
