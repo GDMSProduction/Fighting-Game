@@ -17,6 +17,7 @@
 #include <vector.h>
 #include "EngineUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
+#include "EngineGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -35,9 +36,9 @@ class ASuper80sFighterCharacter : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
-	AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
 	UPROPERTY()
-	class AHitbox* tempHitbox;
+		class AHitbox* tempHitbox;
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
@@ -46,12 +47,21 @@ protected:
 
 #pragma region Input Functions
 
-
+	void PressRight();
+	void PressLeft();
+	void ReleaseRight();
+	void ReleaseLeft();
 
 	void PressPunch();
 	void PressKick();
 	void PressHeavy();
 	void PressSpecial();
+
+	void ReleasePunch();
+	void ReleaseKick();
+	void ReleaseHeavy();
+	void ReleaseSpecial();
+
 	void StartCrouch();
 	void StopCrouch();
 
@@ -64,7 +74,7 @@ protected:
 
 	void PressJump();
 	void ReleaseJump();
-#pragma region Variable Manipulation in relation to inputs
+#pragma region Command System
 	void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
@@ -87,7 +97,54 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
-	void AddInput(INPUT_TYPE incomingAttack);
+	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
+	struct CommandInput {
+		INPUT_TYPE inputType;
+		bool wasHeld;
+		bool operator==(const CommandInput& test) {
+			if (test.inputType != this->inputType)
+				return false;
+			if (test.wasHeld != this->wasHeld)
+				return false;
+
+			return true;
+		}
+		bool operator !=(const CommandInput& test) {
+			if (test.inputType != this->inputType)
+				return true;
+			if (test.wasHeld != this->wasHeld)
+				return true;
+
+			return false;
+		}
+	};
+	//This is for input buffer, which is used to determine if inputs are held or tapped
+	struct BufferInput {
+		INPUT_TYPE inputType;
+		bool isPress;
+		double timeOfInput;
+	};
+	struct Command
+	{
+		TArray<CommandInput> InputsForCommand;
+		void(ASuper80sFighterCharacter::*functionToCall)();
+
+		bool operator==(const Command &test) {
+			if (InputsForCommand.Num() != test.InputsForCommand.Num())
+				return false;
+			for (int i = 0; i < InputsForCommand.Num(); i++)
+				if (InputsForCommand[i] != test.InputsForCommand[i])
+					return false;
+			if (functionToCall != test.functionToCall)
+				return false;
+
+			return true;
+			
+		}
+	};
+	TArray<Command> CommandList;
+	void AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
+	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
 #pragma region Attacks
@@ -120,28 +177,45 @@ protected:
 private:
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float TotalStamina;
+		float TotalStamina;
 
 	/**Player Current Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float CurrentStamina;
+		float CurrentStamina;
 
 	/**Player Total Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float TotalHealth;
+		float TotalHealth;
 
 	/**Player Current Health*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
-	float CurrentHealth;
+		float CurrentHealth;
 
-	UPROPERTY(VisibleAnywhere, Category= "Hitboxes")
-	TArray<AHitbox*> hitboxes;
+	UPROPERTY(VisibleAnywhere, Category = "Hitboxes")
+		TArray<AHitbox*> hitboxes;
 
 	UPROPERTY(VisibleAnywhere, Category = "Orientation")
-	bool IsFacingRight;
+		bool IsFacingRight;
 
 	ASuper80sFighterCharacter* EnemyPlayer;
 
+	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
+	UPROPERTY(VisibleAnywhere, Category = "Physics")
+		bool grounded;
+	bool lock_grounded;
+
+	FVector grounded_forces;
+	FVector non_grounded_forces;
+	FVector absolute_forces;
+
+
+#pragma region Combo variables
+	TArray<BufferInput> inputBuffer;
+	TArray<Command> AlreadyCalledCommands;
+	FTimerHandle AttackTimer;
+
+	float AttackThreshold;
+#pragma endregion
 public:
 	ASuper80sFighterCharacter();
 
@@ -175,63 +249,62 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		float CustomShortJumpVelocity;
 
-	
+	double holdThreshold;//Time you have to hold for before a button is considered a hold-down instead of a tap
+
+
 #pragma region Jumping Variables
 	FTimerHandle JumpTimer;
 	bool HasJumpReachedThreshold;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float JumpThreshold;
-#pragma endregion
-
-#pragma region Combo variables
-	TArray<INPUT_TYPE> last5Attacks;
-	FTimerHandle AttackTimer;
-
-	float AttackThreshold;
+		float JumpThreshold;
 #pragma endregion
 
 
+
+
 #pragma endregion
+
 
 
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetTotalStamina();
+		float GetTotalStamina();
 
 	/**Accessor function for Current Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetCurrentStamina();
+		float GetCurrentStamina();
 
 	/**Updates the Players Current Stamina
 	* @param Stamina Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void UpdateCurrentStamina(float Stamina);
+		void UpdateCurrentStamina(float Stamina);
 
 	/**Accessor function for Total Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetTotalHealth();
+		float GetTotalHealth();
 
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
-	float GetCurrentHealth();
+		float GetCurrentHealth();
 
-	
+	UFUNCTION(BlueprintCallable, Category = "Collision")
+		void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void UpdateCurrentHealth(float Health);
+		void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void TakeDamage(float damage);
+		void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-	void SuperAbility();
+		void SuperAbility();
 
 	virtual void Tick(float DeltaTime) override;
 };
