@@ -219,6 +219,8 @@ private:
 public:
 	ASuper80sFighterCharacter();
 
+	FVector startLocation;
+
 	/** Returns SideViewCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -290,6 +292,11 @@ public:
 	/**Accessor function for Current Health*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
 		float GetCurrentHealth();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void ResetHealth();
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void ResetStamina();
 
 	UFUNCTION(BlueprintCallable, Category = "Collision")
 		void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
