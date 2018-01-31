@@ -83,4 +83,5 @@ void ASuper80sFighterGameMode::endGame()
 {
 	//add buttons to screen for replay, return to character select, back to main menu
 	UE_LOG(LogTemp, Error, TEXT("ERRROR: ENDGAME FUNCTION NOT YET IMPLEMENTED YOU IDIOT (not you gracious player but the idiot that developed this)"));
+	paused = true;
 }
