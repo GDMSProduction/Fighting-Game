@@ -63,7 +63,11 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 		Player2_round_wins++;
 	if (rounds_remaining == 0)
 		endGame();
-	ResetLevel();
+
+	Player1->SetActorLocation(Player1->startLocation);
+	Player1->TakeDamage(-(Player1->GetTotalHealth() - Player1->GetCurrentHealth()));
+	Player2->SetActorLocation(Player2->startLocation);
+	Player2->TakeDamage(-(Player2->GetTotalHealth() - Player2->GetCurrentHealth()));
 }
 
 void ASuper80sFighterGameMode::endGame()

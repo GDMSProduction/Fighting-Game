@@ -111,14 +111,15 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
 
-
-
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
 
 	//add onHit to capsule component
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
+
+	//set startLocation
+	startLocation = GetTransform().GetLocation();
 }
 void ASuper80sFighterCharacter::PrintMessage()
 {

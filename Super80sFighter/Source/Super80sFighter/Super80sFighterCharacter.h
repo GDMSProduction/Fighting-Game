@@ -199,6 +199,8 @@ private:
 public:
 	ASuper80sFighterCharacter();
 
+	FVector startLocation;
+
 	/** Returns SideViewCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
