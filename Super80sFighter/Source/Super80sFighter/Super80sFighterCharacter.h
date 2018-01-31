@@ -47,7 +47,10 @@ protected:
 
 #pragma region Input Functions
 
-
+	void PressRight();
+	void PressLeft();
+	void ReleaseRight();
+	void ReleaseLeft();
 
 	void PressPunch();
 	void PressKick();
@@ -71,7 +74,7 @@ protected:
 
 	void PressJump();
 	void ReleaseJump();
-#pragma region Variable Manipulation in relation to inputs
+#pragma region Command System
 	void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
