@@ -69,6 +69,21 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	command1.wasHeld = false;
 	commands.Push(command1);
 	AddCommand(commands, &ASuper80sFighterCharacter::Attack2);
+
+	while (commands.Num() > 0)
+		commands.RemoveAt(0);
+
+	command1.inputType = PUNCH;
+	command1.wasHeld = false;
+	commands.Push(command1);
+
+	command1.inputType = RIGHT;
+	commands.Push(command1);
+
+	command1.inputType = DOWN;
+	commands.Push(command1);
+
+	AddCommand(commands, &ASuper80sFighterCharacter::Attack3);
 #pragma endregion
 
 
@@ -86,11 +101,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
 
-	//PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
-	//PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
+	PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
+	PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
 
-	//PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
-	//PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
+	PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
+	PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 
 
@@ -322,10 +337,12 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 void ASuper80sFighterCharacter::StartCrouch()
 {
 	isCrouching = true;
+	AddInput(DOWN, true, FApp::GetCurrentTime());
 }
 void ASuper80sFighterCharacter::StopCrouch()
 {
 	isCrouching = false;
+	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
 #pragma region Jump functions
 void ASuper80sFighterCharacter::PressShortHop()
@@ -395,13 +412,13 @@ void ASuper80sFighterCharacter::CheckCommand()
 	TArray<BufferInput> bufferCopy;
 	for (int cur = 0; cur < inputBuffer.Num(); cur++) bufferCopy.Add(inputBuffer[cur]);//Inline explicit copy
 
-
+	int a = bufferCopy.Num();
 
 	while (bufferCopy.Num() > 0) {
 		BufferInput test = bufferCopy.Last();
 		if (!test.isPress) {
 			bool found = false;
-			for (int i = bufferCopy.Num() - 2; i > 0; i--)
+			for (int i = bufferCopy.Num() - 2; i >= 0; i--)
 			{
 				if (bufferCopy[i].isPress && bufferCopy[i].inputType == test.inputType) {
 					found = true;
@@ -413,6 +430,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 					tempCommandBuffer.Push(tempCI);
 
 					bufferCopy.RemoveAt(i);
+					break;
 				}
 
 			}
@@ -468,7 +486,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 		CommandCopy.Remove(AlreadyCalledCommands[cur]);
 	};
 
-	int x = AlreadyCalledCommands.Num();
+	int x = tempCommandBuffer.Num();
 
 	for (int currentCommand = 0; currentCommand < CommandCopy.Num(); currentCommand++)
 	{
