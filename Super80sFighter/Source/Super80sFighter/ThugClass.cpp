@@ -23,16 +23,19 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
 	{
+	//Easy difficulty.
 	case 0:
 		_inputsToUse.Add(SPECIAL1);
 		break;
 
+	//Medium difficulty.
 	case 1:
 		_inputsToUse.Add(SPECIAL1);
 		_inputsToUse.Add(SPECIAL2);
 		_inputsToUse.Add(SPECIAL3);
 		break;
 
+	//Hard difficulty.
 	case 2:
 		_inputsToUse.Add(SPECIAL1);
 		_inputsToUse.Add(SPECIAL2);
@@ -40,8 +43,9 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 		_inputsToUse.Add(SPECIAL4);
 		break;
 
+	//No difficulty.
 	default:
-			break;
+		break;
 	}
 }
 
