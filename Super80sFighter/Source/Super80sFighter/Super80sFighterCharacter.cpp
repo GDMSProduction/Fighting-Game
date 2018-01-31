@@ -127,10 +127,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	//add onHit to capsule component
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
 }
-void ASuper80sFighterCharacter::PrintMessage()
-{
-	//UE_LOG(LogTemp, Warning, TEXT("%s is The Key"), this->InputComponent->GetAxisKeyValue())
-}
+
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
@@ -462,23 +459,34 @@ void ASuper80sFighterCharacter::CheckCommand()
 		backward = INPUT_TYPE::LEFT;
 	}
 #pragma endregion
+	TArray<Command> CommandCopy;
+	for (int cur = 0; cur < CommandList.Num(); cur++) CommandCopy.Add(CommandList[cur]);//Create a copy of the commandlist
+	//For each item in the AlreadyCalledCommands:
+	//Remove it from the copy of commandList
+	for (int cur = 0; cur < AlreadyCalledCommands.Num(); ++cur) {
+		QueStopAttacking();
+		CommandCopy.Remove(AlreadyCalledCommands[cur]);
+	};
 
+	int x = AlreadyCalledCommands.Num();
 
-	for (int currentCommand = 0; currentCommand < CommandList.Num(); currentCommand++)
+	for (int currentCommand = 0; currentCommand < CommandCopy.Num(); currentCommand++)
 	{
-		for (int i = 0; i < tempCommandBuffer.Num() && i + CommandList[currentCommand].InputsForCommand.Num() <= tempCommandBuffer.Num(); i++)
+		for (int i = 0; i < tempCommandBuffer.Num() && i + CommandCopy[currentCommand].InputsForCommand.Num() <= tempCommandBuffer.Num(); i++)
 		{
-			if (tempCommandBuffer[i] == CommandList[currentCommand].InputsForCommand[0]) {
+			if (tempCommandBuffer[i] == CommandCopy[currentCommand].InputsForCommand[0]) {
 				bool same = true;
-				for (int j = i; j < CommandList[currentCommand].InputsForCommand.Num() + i; j++)
+				for (int j = i; j < CommandCopy[currentCommand].InputsForCommand.Num() + i; j++)
 				{
-					if (tempCommandBuffer[j] != CommandList[currentCommand].InputsForCommand[j - i]) {
+					if (tempCommandBuffer[j] != CommandCopy[currentCommand].InputsForCommand[j - i]) {
 						same = false;
 						break;
 					}
 				}
-				if (same)
-					(this->*CommandList[currentCommand].functionToCall)();
+				if (same) {
+					(this->*CommandCopy[currentCommand].functionToCall)();
+					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
+				}
 			}
 		}
 	}
@@ -489,6 +497,8 @@ void ASuper80sFighterCharacter::ClearCommands()
 {
 	while (inputBuffer.Num() != 0)
 		inputBuffer.RemoveAt(0);
+	while (AlreadyCalledCommands.Num() != 0)
+		AlreadyCalledCommands.RemoveAt(0);
 
 	QueStopAttacking();
 
@@ -562,8 +572,8 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPres
 	tempInput.isPress = wasPressed;
 	tempInput.timeOfInput = timeOfPress;
 	inputBuffer.Add(tempInput);
-	if (inputBuffer.Num() > 20)
-		inputBuffer.RemoveAt(0);
+	if (inputBuffer.Num() > 10)
+		inputBuffer.RemoveAt(inputBuffer.Num() - 1);
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
