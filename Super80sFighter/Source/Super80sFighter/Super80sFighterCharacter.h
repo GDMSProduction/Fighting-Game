@@ -109,8 +109,13 @@ protected:
 
 			return true;
 		}
-		bool operator !=(CommandInput& test) {
-			return !(test == *this);
+		bool operator !=(const CommandInput& test) {
+			if (test.inputType != this->inputType)
+				return true;
+			if (test.wasHeld != this->wasHeld)
+				return true;
+
+			return false;
 		}
 	};
 	//This is for input buffer, which is used to determine if inputs are held or tapped
@@ -124,7 +129,18 @@ protected:
 		TArray<CommandInput> InputsForCommand;
 		void(ASuper80sFighterCharacter::*functionToCall)();
 
+		bool operator==(const Command &test) {
+			if (InputsForCommand.Num() != test.InputsForCommand.Num())
+				return false;
+			for (int i = 0; i < InputsForCommand.Num(); i++)
+				if (InputsForCommand[i] != test.InputsForCommand[i])
+					return false;
+			if (functionToCall != test.functionToCall)
+				return false;
 
+			return true;
+			
+		}
 	};
 	TArray<Command> CommandList;
 	void AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
@@ -195,6 +211,7 @@ private:
 
 #pragma region Combo variables
 	TArray<BufferInput> inputBuffer;
+	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
 	float AttackThreshold;
@@ -249,9 +266,7 @@ public:
 
 
 #pragma endregion
-#pragma region Testing
-	void PrintMessage();
-#pragma endregion
+
 
 
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
