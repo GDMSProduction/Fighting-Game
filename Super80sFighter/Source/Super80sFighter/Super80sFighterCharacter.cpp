@@ -85,7 +85,14 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
+
+	//PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
+	//PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
+
+	//PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
+	//PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
+
 
 
 
@@ -231,23 +238,31 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
+
 	// add movement in that direction
 	ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
-	if (Value > 0)//Moving right
-	{
-
-		AddInput(RIGHT, true, FApp::GetCurrentTime());
-
-	}
-
-	else if (Value < 0) {
-
-		AddInput(LEFT, true, FApp::GetCurrentTime());
-	}
 
 
 }
+
+void ASuper80sFighterCharacter::PressRight()
+{
+	AddInput(RIGHT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressLeft()
+{
+	AddInput(LEFT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseRight()
+{
+	AddInput(RIGHT, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseLeft()
+{
+	AddInput(LEFT, false, FApp::GetCurrentTime());
+}
+
 void ASuper80sFighterCharacter::PressPunch()
 {
 	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
