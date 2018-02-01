@@ -14,6 +14,9 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
 
+
+	//GetWorld()->GetGameInstance()->GetEngine()->LocalPlayerClass
+
 	//if (PlayerHUDClass != nullptr)
 	//{
 	//	PlayerWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
