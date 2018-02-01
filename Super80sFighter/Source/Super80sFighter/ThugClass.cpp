@@ -1,6 +1,12 @@
 //Fill out your copyright notice in the Description page of Project Settings.
 #include "ThugClass.h"
 
+//The default constructor.
+AThugClass::AThugClass()
+{
+	
+}
+
 //Set up the thug's functionality.
 void AThugClass::SetUpThug()
 {
@@ -55,7 +61,7 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-}
+	PressHighJump();}
 
 //Increment the timer, called every frame.
 void AThugClass::Tick(float _deltaTime)
