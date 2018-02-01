@@ -55,11 +55,6 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-	PressPunch();
-	PressKick();
-	PressSpecial();
-	PressShortHop();
-	PressHighJump();
 }
 
 //Increment the timer, called every frame.
@@ -67,8 +62,6 @@ void AThugClass::Tick(float _deltaTime)
 {
 	//Use the parent's timer to perform the tick.
 	Super::Tick(_deltaTime);
-
-	ChooseNextMove();
 }
 
 

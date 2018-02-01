@@ -9,7 +9,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
-	control = UGameplayStatics::CreatePlayer(this, 1);
+	p2_controller = UGameplayStatics::CreatePlayer(this, 1);
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	Player1->SetOtherPlayer(Player2);
@@ -38,8 +38,6 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
-		if (Cast<AThugClass>(control->AcknowledgedPawn->GetClass()))
-			UE_LOG(LogTemp, Warning, TEXT("Fucking kill me already"));
 		endRound(true);
 	}
 }
