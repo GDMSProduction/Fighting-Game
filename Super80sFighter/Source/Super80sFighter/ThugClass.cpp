@@ -27,33 +27,7 @@ void AThugClass::SetUpThug()
 void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel)
 {
 	//Get the random moveset for the thug to use.
-	movesetNumber = rand() % TOTALMOVESETS;
-
-	//Set the attacks for the current moveset.
-	switch (movesetNumber)
-	{
-	case 0:
-		isAttacking[0] = true;
-		isAttacking[1] = true;
-		isAttacking[2] = true;
-		isAttacking[3] = true;
-		isAttacking[4] = false;
-		isAttacking[5] = false;
-		isAttacking[6] = false;
-		isAttacking[7] = false;
-		break;
-
-	case 1:
-		isAttacking[0] = false;
-		isAttacking[1] = false;
-		isAttacking[2] = false;
-		isAttacking[3] = false;
-		isAttacking[4] = true;
-		isAttacking[5] = true;
-		isAttacking[6] = true;
-		isAttacking[7] = true;
-		break;
-	}
+	movesetNumber = rand() % 9;
 
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
@@ -87,8 +61,7 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-
-}
+	PressHighJump();}
 
 //Increment the timer, called every frame.
 void AThugClass::Tick(float _deltaTime)
