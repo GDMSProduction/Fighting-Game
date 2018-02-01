@@ -56,34 +56,64 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	AttackThreshold = 0.2f;
 
 	holdThreshold = 0.13;
+	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
 #pragma region Adding in commands for attacks
-	TArray<CommandInput> commands;
-	CommandInput command1;
-	command1.inputType = PUNCH;
-	command1.wasHeld = false;
-	commands.Push(command1);
-	AddCommand(commands, &ASuper80sFighterCharacter::Attack0);
+	TArray<ButtonSet> tempCommand;
+	ButtonSet buttonSet;
+	ButtonInput button1;
+
+	button1.button = PUNCH;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack0);
 	
 	
-	command1.inputType = KICK;
-	command1.wasHeld = false;
-	commands.Push(command1);
-	AddCommand(commands, &ASuper80sFighterCharacter::Attack2);
+	button1.button = KICK;
+	button1.wasHeld = false;
+	buttonSet.Clear();
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack2);
 
-	while (commands.Num() > 0)
-		commands.RemoveAt(0);
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
 
-	command1.inputType = DOWN;
-	commands.Push(command1);
-
-	command1.inputType = HEAVY;
-	command1.wasHeld = true;
-	commands.Push(command1);
-
+	
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
 
 
 
-	AddCommand(commands, &ASuper80sFighterCharacter::Attack3);
+	buttonSet.Clear();
+	button1.button = RIGHT;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	buttonSet.Clear();
+	button1.button = DOWN;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
+
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = PUNCH;
+	button1.wasHeld = true;
+	buttonSet.inputs.Add(button1);
+	button1.button = KICK;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
+
 #pragma endregion
 
 
@@ -421,27 +451,39 @@ void ASuper80sFighterCharacter::ReleaseJump()
 void ASuper80sFighterCharacter::CheckCommand()
 {
 
-	TArray<CommandInput> tempCommandBuffer;
+	TArray<ButtonSet> tempCommandBuffer;
+
 #pragma region Create the temporary CommandBuffer
-	TArray<BufferInput> bufferCopy;
-	for (int cur = 0; cur < inputBuffer.Num(); cur++) bufferCopy.Add(inputBuffer[cur]);//Inline explicit copy
+	TArray<ButtonBufferInput> bufferCopy;
+	for (int cur = 0; cur < buttonBuffer.Num(); cur++) bufferCopy.Add(buttonBuffer[cur]);//Inline explicit copy
+
+
+	ButtonSet currentButtonSet;
+
+	ButtonBufferInput previousTest = bufferCopy.Last();
 
 	int a = bufferCopy.Num();
 
 	while (bufferCopy.Num() > 0) {
-		BufferInput test = bufferCopy.Last();
-		if (!test.isPress) {
+		ButtonBufferInput test = bufferCopy.Last();
+		double testint = test.timeOfInput - previousTest.timeOfInput;
+		if (previousTest.timeOfInput - test.timeOfInput  > samePressThreshold) {//If the next button was pressed at a different time than the others
+			tempCommandBuffer.Add(currentButtonSet);
+			currentButtonSet.Clear();
+		}
+
+		if (!test.isPress) {//If its a release
 			bool found = false;
-			for (int i = bufferCopy.Num() - 2; i >= 0; i--)
+			for (int i = bufferCopy.Num() - 2; i >= 0; i--)//starting from the next button press, going down
 			{
-				if (bufferCopy[i].isPress && bufferCopy[i].inputType == test.inputType) {
+				if (bufferCopy[i].isPress && bufferCopy[i].Buttons == test.Buttons) {//If its a press and its the same input type
 					found = true;
 					bool held = (bufferCopy[i].timeOfInput - test.timeOfInput >= holdThreshold);
 
-					CommandInput tempCI;
-					tempCI.inputType = test.inputType;
-					tempCI.wasHeld = held;
-					tempCommandBuffer.Push(tempCI);
+					ButtonInput tempButton;
+					tempButton.button = test.Buttons;
+					tempButton.wasHeld = held;
+					currentButtonSet.inputs.Push(tempButton);
 
 					bufferCopy.RemoveAt(i);
 					break;
@@ -449,24 +491,26 @@ void ASuper80sFighterCharacter::CheckCommand()
 
 			}
 			if (!found) {
-				CommandInput tempCI;
-				tempCI.inputType = test.inputType;
-				tempCI.wasHeld = true;
-				tempCommandBuffer.Push(tempCI);
+				ButtonInput tempButton;
+				tempButton.button = test.Buttons;
+				tempButton.wasHeld = true;
+				currentButtonSet.inputs.Push(tempButton);
 			}
 			bufferCopy.RemoveAt(bufferCopy.Num() - 1);
 		}
-		else
+		else //If its a press
 		{
-			CommandInput tempCI;
-			tempCI.inputType = test.inputType;
-			tempCI.wasHeld = false;
-			tempCommandBuffer.Push(tempCI);
+			ButtonInput tempButton;
+			tempButton.button = test.Buttons;
+			tempButton.wasHeld = false;
+			currentButtonSet.inputs.Push(tempButton);
 
 			bufferCopy.RemoveAt(bufferCopy.Num() - 1);
 		}
 
+		previousTest = test;
 	}
+	tempCommandBuffer.Push(currentButtonSet);
 #pragma endregion
 
 
@@ -527,8 +571,8 @@ void ASuper80sFighterCharacter::CheckCommand()
 }
 void ASuper80sFighterCharacter::ClearCommands()
 {
-	while (inputBuffer.Num() != 0)
-		inputBuffer.RemoveAt(0);
+	while (buttonBuffer.Num() != 0)
+		buttonBuffer.RemoveAt(0);
 	while (AlreadyCalledCommands.Num() != 0)
 		AlreadyCalledCommands.RemoveAt(0);
 
@@ -589,7 +633,7 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
+void ASuper80sFighterCharacter::AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
@@ -598,13 +642,13 @@ void ASuper80sFighterCharacter::AddCommand(TArray<CommandInput> InputsForCommand
 }
 void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
 {
-	BufferInput tempInput;
-	tempInput.inputType = incomingAttack;
+	ButtonBufferInput tempInput;
+	tempInput.Buttons = incomingAttack;
 	tempInput.isPress = wasPressed;
 	tempInput.timeOfInput = timeOfPress;
-	inputBuffer.Add(tempInput);
-	if (inputBuffer.Num() > 10)
-		inputBuffer.RemoveAt(inputBuffer.Num() - 1);
+	buttonBuffer.Add(tempInput);
+	if (buttonBuffer.Num() > 10)
+		buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
