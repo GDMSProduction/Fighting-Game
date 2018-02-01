@@ -1,6 +1,12 @@
 //Fill out your copyright notice in the Description page of Project Settings.
 #include "ThugClass.h"
 
+//The default constructor.
+AThugClass::AThugClass()
+{
+	
+}
+
 //Set up the thug's functionality.
 void AThugClass::SetUpThug()
 {
@@ -20,6 +26,34 @@ void AThugClass::SetUpThug()
 //Determine the moves the thug will have available to them.
 void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel)
 {
+	//Get the random moveset for the thug to use.
+	movesetNumber = rand() % TOTALMOVESETS;
+
+	switch (movesetNumber)
+	{
+	case 0:
+		isAttacking[0] = true;
+		isAttacking[1] = true;
+		isAttacking[2] = true;
+		isAttacking[3] = true;
+		isAttacking[4] = false;
+		isAttacking[5] = false;
+		isAttacking[6] = false;
+		isAttacking[7] = false;
+		break;
+
+	case 1:
+		isAttacking[0] = false;
+		isAttacking[1] = false;
+		isAttacking[2] = false;
+		isAttacking[3] = false;
+		isAttacking[4] = true;
+		isAttacking[5] = true;
+		isAttacking[6] = true;
+		isAttacking[7] = true;
+		break;
+	}
+
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
 	{
@@ -52,12 +86,7 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-	Crouch();
-	PressPunch();
-	PressKick();
-	PressSpecial();
-	PressShortHop();
-	PressHighJump();
+
 }
 
 //Increment the timer, called every frame.
@@ -65,8 +94,6 @@ void AThugClass::Tick(float _deltaTime)
 {
 	//Use the parent's timer to perform the tick.
 	Super::Tick(_deltaTime);
-
-	ChooseNextMove();
 }
 
 
