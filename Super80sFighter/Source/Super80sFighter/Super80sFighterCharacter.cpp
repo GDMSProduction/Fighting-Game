@@ -47,31 +47,88 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
 
-	TArray<INPUT> deleteThis;
-	INPUT tapPunch;
-	tapPunch.inputType = PUNCH;
-	tapPunch.wasHeld = false;
-	deleteThis.Add(tapPunch);
-	Command DeleteCommand;
-	DeleteCommand.InputsForCommand = deleteThis;
-	DeleteCommand.functionToCall = &ASuper80sFighterCharacter::PrintMessage;
-	CommandList.Add(DeleteCommand);
 
-#pragma region Physics Variables Init
+
+
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
 	AttackThreshold = 0.2f;
+
+	holdThreshold = 0.13;
+#pragma region Adding in commands for attacks
+	TArray<CommandInput> commands;
+	CommandInput command1;
+	command1.inputType = PUNCH;
+	command1.wasHeld = false;
+	commands.Push(command1);
+	AddCommand(commands, &ASuper80sFighterCharacter::Attack0);
+	
+	
+	command1.inputType = KICK;
+	command1.wasHeld = false;
+	commands.Push(command1);
+	AddCommand(commands, &ASuper80sFighterCharacter::Attack2);
 #pragma endregion
 
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
-void ASuper80sFighterCharacter::PrintMessage()
+void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("%s is The Key"), this->InputComponent->GetAxisKeyValue())
+	// set up gameplay key bindings
+	PlayerInputComponent->BindAction("HighJump", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
+	PlayerInputComponent->BindAction("HighJump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
+	PlayerInputComponent->BindAction("ShortHop", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
+	PlayerInputComponent->BindAction("ShortHop", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
+
+
+	//PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
+	//PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
+
+	//PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
+	//PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
+
+
+
+
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
+
+	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunch);
+	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKick);
+	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHeavy);
+	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
+
+
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
+
+
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
+
+	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
+	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
+
+	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
+
+
+	//spawn a hitbox on the player that can be hit and attacked
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
+
+	//add onHit to capsule component
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
+
+	//set startLocation
+	startLocation = GetTransform().GetLocation();
 }
+
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
@@ -96,15 +153,28 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::ResetHealth()
+{
+	CurrentHealth = TotalHealth;
+}
+void ASuper80sFighterCharacter::ResetStamina()
+{
+	CurrentStamina = TotalStamina;
+}
 void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
 	lock_grounded = false;
 	if (OtherActor == EnemyPlayer)
 	{
 		//fix issue with jumping on top of other players
-		if (GetTransform().GetLocation().Z > EnemyPlayer->GetTransform().GetLocation().Z)
+		FVector my_location = GetTransform().GetLocation();
+		FVector enemy_location = EnemyPlayer->GetTransform().GetLocation();
+		if (my_location.Z > enemy_location.Z)
 		{
-			non_grounded_forces += FVector(0, 100 * GetTransform().GetScale3D().X, 0);
+			if (my_location.Y >= enemy_location.Y)
+				non_grounded_forces += FVector(0, 100, 0);
+			else
+				non_grounded_forces += FVector(0, -100, 0);
 			lock_grounded = true;
 		}
 	}
@@ -129,7 +199,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//implementing my physics
-	if(!lock_grounded)
+	if (!lock_grounded)
 		grounded = GetCharacterMovement()->IsMovingOnGround();
 	if (grounded)
 		non_grounded_forces = FVector(0, 0, 0);
@@ -153,7 +223,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	}
 
 
-	if (/*They are touching the ground only*/ EnemyPlayer->GetTransform().GetLocation().Z == GetTransform().GetLocation().Z) {
+	if (grounded && EnemyPlayer->grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
 		else
@@ -170,85 +240,77 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 
 
-void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
-{
-	// set up gameplay key bindings
-	PlayerInputComponent->BindAction("HighJump", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
-	PlayerInputComponent->BindAction("HighJump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
-	PlayerInputComponent->BindAction("ShortHop", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
-	PlayerInputComponent->BindAction("ShortHop", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
-	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
-
-
-
-	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
-	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
-	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
-	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
-	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
-
-	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::QueStopAttacking);
-	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
-
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
-
-	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
-
-
-
-
-	//spawn a hitbox on the player that can be hit and attacked
-	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0);
-	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0);
-
-	//add onHit to capsule component
-	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
-}
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
+
 	// add movement in that direction
 	ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
-	if (Value > 0)//Moving right
-	{
-		FlipCharacter(true);
-		AddInput(RIGHT);
-
-	}
-
-	else if (Value < 0) {
-		FlipCharacter(false);
-		AddInput(LEFT);
-	}
 
 
 }
+
+void ASuper80sFighterCharacter::PressRight()
+{
+	AddInput(RIGHT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressLeft()
+{
+	AddInput(LEFT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseRight()
+{
+	AddInput(RIGHT, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseLeft()
+{
+	AddInput(LEFT, false, FApp::GetCurrentTime());
+}
+
 void ASuper80sFighterCharacter::PressPunch()
 {
-	AddInput(INPUT_TYPE::PUNCH);
+	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
 }
 void ASuper80sFighterCharacter::PressKick()
 {
 
-	AddInput(INPUT_TYPE::KICK);
+	AddInput(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
 }
 void ASuper80sFighterCharacter::PressHeavy()
 {
 
-	AddInput(INPUT_TYPE::HEAVY);
+	AddInput(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
 }
 void ASuper80sFighterCharacter::PressSpecial()
 {
 
-	AddInput(INPUT_TYPE::SPECIAL);
+	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
 }
+
+void ASuper80sFighterCharacter::ReleasePunch()
+{
+	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseKick()
+{
+
+	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseHeavy()
+{
+
+	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseSpecial()
+{
+
+	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+
+
+
+
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
 	FVector tempVec;
@@ -330,7 +392,7 @@ void ASuper80sFighterCharacter::PressJump()
 {
 	ACharacter::Jump();
 	isHoldingJump = true;
-	AddInput(INPUT_TYPE::UP);
+	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
 }
 void ASuper80sFighterCharacter::ReleaseJump()
 {
@@ -341,14 +403,67 @@ void ASuper80sFighterCharacter::ReleaseJump()
 #pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
-	if (last5Attacks.Num() == 0)
+
+	TArray<CommandInput> tempCommandBuffer;
+#pragma region Create the temporary CommandBuffer
+	TArray<BufferInput> bufferCopy;
+	for (int cur = 0; cur < inputBuffer.Num(); cur++) bufferCopy.Add(inputBuffer[cur]);//Inline explicit copy
+
+
+
+	while (bufferCopy.Num() > 0) {
+		BufferInput test = bufferCopy.Last();
+		if (!test.isPress) {
+			bool found = false;
+			for (int i = bufferCopy.Num() - 2; i > 0; i--)
+			{
+				if (bufferCopy[i].isPress && bufferCopy[i].inputType == test.inputType) {
+					found = true;
+					bool held = (bufferCopy[i].timeOfInput - test.timeOfInput >= holdThreshold);
+
+					CommandInput tempCI;
+					tempCI.inputType = test.inputType;
+					tempCI.wasHeld = held;
+					tempCommandBuffer.Push(tempCI);
+
+					bufferCopy.RemoveAt(i);
+				}
+
+			}
+			if (!found) {
+				CommandInput tempCI;
+				tempCI.inputType = test.inputType;
+				tempCI.wasHeld = true;
+				tempCommandBuffer.Push(tempCI);
+			}
+			bufferCopy.RemoveAt(bufferCopy.Num() - 1);
+		}
+		else
+		{
+			CommandInput tempCI;
+			tempCI.inputType = test.inputType;
+			tempCI.wasHeld = false;
+			tempCommandBuffer.Push(tempCI);
+
+			bufferCopy.RemoveAt(bufferCopy.Num() - 1);
+		}
+
+	}
+#pragma endregion
+
+
+
+
+
+
+	if (tempCommandBuffer.Num() == 0)
 		return;
 
 	INPUT_TYPE forward;
 	INPUT_TYPE backward;
 
 #pragma region Set "Forward" and "Backward"
-	if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y) {
+	if (EnemyPlayer->GetTransform().GetLocation().X > GetTransform().GetLocation().X) {
 		forward = INPUT_TYPE::LEFT;
 		backward = INPUT_TYPE::RIGHT;
 	}
@@ -358,85 +473,48 @@ void ASuper80sFighterCharacter::CheckCommand()
 		backward = INPUT_TYPE::LEFT;
 	}
 #pragma endregion
+	TArray<Command> CommandCopy;
+	for (int cur = 0; cur < CommandList.Num(); cur++) CommandCopy.Add(CommandList[cur]);//Create a copy of the commandlist
+	//For each item in the AlreadyCalledCommands:
+	//Remove it from the copy of commandList
+	for (int cur = 0; cur < AlreadyCalledCommands.Num(); ++cur) {
+		QueStopAttacking();
+		CommandCopy.Remove(AlreadyCalledCommands[cur]);
+	};
 
+	int x = AlreadyCalledCommands.Num();
 
-	if (last5Attacks.Num() == 1)
+	for (int currentCommand = 0; currentCommand < CommandCopy.Num(); currentCommand++)
 	{
-		switch (last5Attacks[0])
+		for (int i = 0; i < tempCommandBuffer.Num() && i + CommandCopy[currentCommand].InputsForCommand.Num() <= tempCommandBuffer.Num(); i++)
 		{
-		case ASuper80sFighterCharacter::PUNCH:
-			Attack0();
-			break;
-		case ASuper80sFighterCharacter::KICK:
-			Attack1();
-			break;
-		case ASuper80sFighterCharacter::HEAVY:
-			Attack2();
-			break;
-		case ASuper80sFighterCharacter::SPECIAL:
-			Attack3();
-			break;
-		//These arent moves that, by themselves, do anything
-		//case ASuper80sFighterCharacter::LEFT:
-		//	break;
-		//case ASuper80sFighterCharacter::RIGHT:
-		//	break;
-		//case ASuper80sFighterCharacter::UP:
-		//	break;
-		//case ASuper80sFighterCharacter::DOWN:
-		//	break;
-
-		default:
-			break;
+			if (tempCommandBuffer[i] == CommandCopy[currentCommand].InputsForCommand[0]) {
+				bool same = true;
+				for (int j = i; j < CommandCopy[currentCommand].InputsForCommand.Num() + i; j++)
+				{
+					if (tempCommandBuffer[j] != CommandCopy[currentCommand].InputsForCommand[j - i]) {
+						same = false;
+						break;
+					}
+				}
+				if (same) {
+					(this->*CommandCopy[currentCommand].functionToCall)();
+					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
+				}
+			}
 		}
 	}
 
-	if (last5Attacks.Num() == 2)
-	{
-		switch (last5Attacks[1])
-		{
-		case ASuper80sFighterCharacter::PUNCH:
-
-			break;
-		case ASuper80sFighterCharacter::KICK:
-			break;
-		case ASuper80sFighterCharacter::HEAVY:
-			break;
-		case ASuper80sFighterCharacter::SPECIAL:
-			break;
-		case ASuper80sFighterCharacter::LEFT:
-			break;
-		case ASuper80sFighterCharacter::RIGHT:
-			break;
-		case ASuper80sFighterCharacter::UP:
-			break;
-		case ASuper80sFighterCharacter::DOWN:
-			break;
-		default:
-			break;
-		}
-	}
-
-	if (last5Attacks.Num() == 3)
-	{
-
-	}
-
-	if (last5Attacks.Num() == 4)
-	{
-
-	}
-
-	if (last5Attacks.Num() == 5)
-	{
-
-	}
 
 }
 void ASuper80sFighterCharacter::ClearCommands()
 {
-	while (last5Attacks.Num() != 0)
-		last5Attacks.RemoveAt(0);
+	while (inputBuffer.Num() != 0)
+		inputBuffer.RemoveAt(0);
+	while (AlreadyCalledCommands.Num() != 0)
+		AlreadyCalledCommands.RemoveAt(0);
+
+	QueStopAttacking();
 
 }
 void ASuper80sFighterCharacter::Attack0()
@@ -474,7 +552,6 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 		trans.X = 1.0f;
 		SetActorScale3D(trans);
 
-
 	}
 	else//If we're forcing them to face left, face them left
 	{
@@ -494,18 +571,22 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddCommand(TArray<INPUT> InputsForCommand, void(ASuper80sFighterCharacter::* functionToCall)())
+void ASuper80sFighterCharacter::AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
 	tempCommand.InputsForCommand = InputsForCommand;
 	CommandList.Add(tempCommand);
 }
-void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack)
+void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
 {
-	last5Attacks.Add(incomingAttack);
-	if (last5Attacks.Num() > 5)
-		last5Attacks.RemoveAt(0);
+	BufferInput tempInput;
+	tempInput.inputType = incomingAttack;
+	tempInput.isPress = wasPressed;
+	tempInput.timeOfInput = timeOfPress;
+	inputBuffer.Add(tempInput);
+	if (inputBuffer.Num() > 10)
+		inputBuffer.RemoveAt(inputBuffer.Num() - 1);
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);

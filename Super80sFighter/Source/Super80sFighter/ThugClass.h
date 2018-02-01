@@ -10,8 +10,8 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 	GENERATED_BODY()
 
 private:
-	//The current stage number.
-	short stageNumber = 0;
+	//The current difficulty level.
+	short difficultyLevel = 0;
 
 	//The array of inputs for the thug to use.
 	TArray<short> inputsToUse;
@@ -36,7 +36,10 @@ protected:
 	void SetUpThug();
 
 	//Determine the moves the thug will have available to them.
-	void DetermineMoveSet(TArray<short>& _inputsToUse, short _stage);
+	void DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel);
+
+	//Choose the next move for the thug to perform.
+	void ChooseNextMove();
 
 public:
 	//Increment the timer, called every frame.
