@@ -20,6 +20,9 @@ void AThugClass::SetUpThug()
 //Determine the moves the thug will have available to them.
 void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel)
 {
+	//Get the random moveset for the thug to use.
+	movesetNumber = rand() % 9;
+
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
 	{
@@ -52,7 +55,6 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-	Crouch();
 	PressPunch();
 	PressKick();
 	PressSpecial();
