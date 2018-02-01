@@ -13,6 +13,9 @@ private:
 	//The current difficulty level.
 	short difficultyLevel = 0;
 
+	//The randomly chosen moveset.
+	short movesetNumber = 0;
+
 	//The array of inputs for the thug to use.
 	TArray<short> inputsToUse;
 
