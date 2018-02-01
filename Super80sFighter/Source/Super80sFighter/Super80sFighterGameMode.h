@@ -35,6 +35,7 @@ protected:
 
 private:
 	class ASuper80sFighterCharacter *Player1, *Player2;
+	APlayerController* control;
 	unsigned int Player1_round_wins;
 	unsigned int Player2_round_wins;
 

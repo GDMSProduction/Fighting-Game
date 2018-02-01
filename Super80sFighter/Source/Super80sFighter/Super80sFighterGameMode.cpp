@@ -1,6 +1,7 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterGameMode.h"
+#include "ThugClass.h"
 #include "UObject/ConstructorHelpers.h"
 
 void ASuper80sFighterGameMode::BeginPlay()
@@ -8,14 +9,11 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
-	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::CreatePlayer(this, 1));
+	control = UGameplayStatics::CreatePlayer(this, 1);
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
-
-
-	//GetWorld()->GetGameInstance()->GetEngine()->LocalPlayerClass
 
 	//if (PlayerHUDClass != nullptr)
 	//{
@@ -40,6 +38,8 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
+		if (Cast<AThugClass>(control->AcknowledgedPawn->GetClass()))
+			UE_LOG(LogTemp, Warning, TEXT("Fucking kill me already"));
 		endRound(true);
 	}
 }
@@ -53,7 +53,6 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
-
 	num_rounds = 1;
 	rounds_remaining = num_rounds;
 }

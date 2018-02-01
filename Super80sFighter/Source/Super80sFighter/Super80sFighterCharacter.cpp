@@ -201,7 +201,6 @@ void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
-	UE_LOG(LogTemp, Warning, TEXT("YOU TAKING DAMAGE THIS MUCH DAMAGE %f OH NO"), damage);
 	UpdateCurrentHealth(-damage);
 }
 void ASuper80sFighterCharacter::SuperAbility()
