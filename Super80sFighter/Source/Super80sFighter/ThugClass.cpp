@@ -7,10 +7,10 @@ AThugClass::AThugClass()
 	
 }
 
-//Set up the thug's functionality.
+//Set up the Thug's functionality.
 void AThugClass::SetUpThug()
 {
-	//Add the default inputs for every thug.
+	//Add the default inputs for every Thug.
 	inputsToUse.Add(MOVEFORWARD);
 	inputsToUse.Add(MOVEBACKWARD);
 	inputsToUse.Add(HOP);
@@ -19,16 +19,17 @@ void AThugClass::SetUpThug()
 	inputsToUse.Add(PUNCH);
 	inputsToUse.Add(KICK);
 
-	//Determine the moves the thug will have available to them.
+	//Determine the moves the Thug will have available to them.
 	DetermineMoveSet(inputsToUse, difficultyLevel);
 }
 
-//Determine the moves the thug will have available to them.
+//Determine the moves the Thug will have available to them.
 void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel)
 {
-	//Get the random moveset for the thug to use.
+	//Get the random moveset for the Thug to use.
 	movesetNumber = rand() % TOTALMOVESETS;
 
+	//Set the available moves to the Thug.
 	switch (movesetNumber)
 	{
 	case 0:
@@ -83,10 +84,10 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 	}
 }
 
-//Choose the next move for the thug to perform.
+//Choose the next move for the Thug to perform.
 void AThugClass::ChooseNextMove()
 {
-	Attack0();
+	//PressShortHop();
 }
 
 //Increment the timer, called every frame.
