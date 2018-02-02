@@ -98,35 +98,58 @@ protected:
 		NUM_ATTACKS
 	};
 	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
-	struct CommandInput {
-		INPUT_TYPE inputType;
+	struct ButtonInput {
+		INPUT_TYPE button;
 		bool wasHeld;
-		bool operator==(const CommandInput& test) {
-			if (test.inputType != this->inputType)
+
+		bool operator ==(const ButtonInput& test) {
+			if (test.button != button)
 				return false;
-			if (test.wasHeld != this->wasHeld)
+			if (test.wasHeld != wasHeld)
 				return false;
 
 			return true;
 		}
-		bool operator !=(const CommandInput& test) {
-			if (test.inputType != this->inputType)
-				return true;
-			if (test.wasHeld != this->wasHeld)
-				return true;
+	};
+	struct ButtonSet {
+		TArray<ButtonInput> inputs;
+		bool operator==(const ButtonSet& test) {
+			if (test.inputs.Num() != inputs.Num())
+				return false;
 
-			return false;
+			for (int i = 0; i < inputs.Num(); i++)
+			{
+				bool found = false;
+				for (int j = 0; j < test.inputs.Num(); j++)
+				{
+					if (inputs[i] == test.inputs[j])
+						found = true;
+				}
+				if (!found)
+					return false;
+			}
+
+
+
+			return true;
+		}
+		bool operator !=(const ButtonSet& test) {
+			return !(*this == test);
+		}
+		void Clear() {
+			while (inputs.Num() > 0)
+				inputs.RemoveAt(0);
 		}
 	};
 	//This is for input buffer, which is used to determine if inputs are held or tapped
-	struct BufferInput {
-		INPUT_TYPE inputType;
+	struct ButtonBufferInput {
+		INPUT_TYPE Buttons;
 		bool isPress;
 		double timeOfInput;
 	};
 	struct Command
 	{
-		TArray<CommandInput> InputsForCommand;
+		TArray<ButtonSet> InputsForCommand;
 		void(ASuper80sFighterCharacter::*functionToCall)();
 
 		bool operator==(const Command &test) {
@@ -143,7 +166,7 @@ protected:
 		}
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<CommandInput> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
+	void AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
@@ -210,11 +233,12 @@ private:
 
 
 #pragma region Combo variables
-	TArray<BufferInput> inputBuffer;
+	TArray<ButtonBufferInput> buttonBuffer;
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
 	float AttackThreshold;
+	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
 public:
 	ASuper80sFighterCharacter();
