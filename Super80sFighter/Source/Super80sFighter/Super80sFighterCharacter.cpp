@@ -109,6 +109,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	button1.wasHeld = true;
 	buttonSet.inputs.Add(button1);
 	button1.button = KICK;
+	button1.wasHeld = false;
 	buttonSet.inputs.Add(button1);
 
 	tempCommand.Add(buttonSet);
@@ -289,6 +290,7 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 
 	// add movement in that direction
+	if(grounded)
 	ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
 
