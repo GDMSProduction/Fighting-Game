@@ -18,7 +18,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	p2_controller->UnPossess();
 
 	//try to replace p2 with a thug
-	Player2 = Cast<ASuper80sFighterCharacter>(GetWorld()->SpawnActor<AThugClass>(Player2->GetTransform().GetLocation(), Player2->GetTransform().GetRotation().Euler().Rotation()));
+	//Player2 = Cast<ASuper80sFighterCharacter>(GetWorld()->SpawnActor<AThugClass>(Player2->GetTransform().GetLocation(), Player2->GetTransform().GetRotation().Euler().Rotation()));
 	//Player2->FinishSpawning(Player2->GetTransform());
 	//THIS IS GONNA CRASH - THIS IS JUST A REMINDER FOR NEXT TIME
 
