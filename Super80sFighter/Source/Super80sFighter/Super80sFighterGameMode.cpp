@@ -13,17 +13,23 @@ void ASuper80sFighterGameMode::BeginPlay()
 	p2_controller = UGameplayStatics::CreatePlayer(this, 1);
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
-
-	p1_controller->UnPossess();
-	p2_controller->UnPossess();
-
 	//try to replace p2 with a thug
-	//Player2 = Cast<ASuper80sFighterCharacter>(GetWorld()->SpawnActor<AThugClass>(Player2->GetTransform().GetLocation(), Player2->GetTransform().GetRotation().Euler().Rotation()));
-	//Player2->FinishSpawning(Player2->GetTransform());
-	//THIS IS GONNA CRASH - THIS IS JUST A REMINDER FOR NEXT TIME
 
-	p1_controller->Possess(Player1);
-	p2_controller->Possess(Player2);
+	//UWorld* const world = GetWorld();
+	//if (world)
+	//{
+	//	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
+	//	FVector pos = Player2->GetTransform().GetLocation();
+	//	FRotator rot = Player2->GetTransform().GetRotation().Euler().Rotation();
+	//	spawn_parameters.bDeferConstruction = true;
+	//	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+	//	if (temp)
+	//	{
+
+	//		Player2 = temp;
+
+	//	}
+	//}
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
@@ -52,6 +58,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	if (Player1->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
+		Player1->SetDead(true);
 		if (first_time)
 		{
 			on_death_pause = true;
@@ -63,6 +70,8 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	}
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
+		Player1->SetDead(false);
+		Player2->SetDead(true);
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
 		if (first_time)
 		{
@@ -73,16 +82,21 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 		if (!on_death_pause)
 			endRound(true);
 	}
+	else
+	{
+		Player2->SetDead(false);
+		Player1->SetDead(false);
+	}
 }
 
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint"));
 	PrimaryActorTick.bCanEverTick = true;
-	if (PlayerPawnBPClass.Class != NULL)
+	if (PlayerPawnBPClass.Object != NULL)
 	{
-		DefaultPawnClass = PlayerPawnBPClass.Class;
+		ThugClass = (UClass*)PlayerPawnBPClass.Object->GeneratedClass;
 	}
 	num_rounds = 1;
 	rounds_remaining = num_rounds;

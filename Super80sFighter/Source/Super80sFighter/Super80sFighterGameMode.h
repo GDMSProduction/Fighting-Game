@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
 		TSubclassOf<class UUserWidget> PlayerHUDClass;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Players", Meta = (BlueprintProtected = "true", DisplayName = "Players"))
+		TSubclassOf<class ASuper80sFighterCharacter> ThugClass;
+
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
 
