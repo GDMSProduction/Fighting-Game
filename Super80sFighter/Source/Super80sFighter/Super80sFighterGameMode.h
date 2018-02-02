@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
 		TSubclassOf<class UUserWidget> PlayerHUDClass;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Players", Meta = (BlueprintProtected = "true", DisplayName = "Players"))
+		TSubclassOf<class ASuper80sFighterCharacter> ThugClass;
+
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
 
@@ -38,6 +41,9 @@ private:
 	APlayerController *p1_controller, *p2_controller;
 	unsigned int Player1_round_wins;
 	unsigned int Player2_round_wins;
+	bool on_death_pause;
+	bool first_time;
+	float death_timer;
 
 	void endRound(bool p1_win);
 	void endGame();

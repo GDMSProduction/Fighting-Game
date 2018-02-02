@@ -226,7 +226,7 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
 		bool grounded;
 	bool lock_grounded;
-
+	bool isDead;
 	FVector grounded_forces;
 	FVector non_grounded_forces;
 	FVector absolute_forces;
@@ -291,7 +291,8 @@ public:
 
 #pragma endregion
 
-
+	bool GetDead();
+	void SetDead(bool willBeDead);
 
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
