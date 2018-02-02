@@ -38,6 +38,9 @@ private:
 	APlayerController *p1_controller, *p2_controller;
 	unsigned int Player1_round_wins;
 	unsigned int Player2_round_wins;
+	bool on_death_pause;
+	bool first_time;
+	float death_timer;
 
 	void endRound(bool p1_win);
 	void endGame();

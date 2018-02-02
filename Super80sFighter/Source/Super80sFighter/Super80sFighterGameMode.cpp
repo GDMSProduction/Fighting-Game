@@ -8,9 +8,22 @@ void ASuper80sFighterGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	p1_controller = UGameplayStatics::GetPlayerController(this, 0);
 	Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
 	p2_controller = UGameplayStatics::CreatePlayer(this, 1);
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
+
+
+	p1_controller->UnPossess();
+	p2_controller->UnPossess();
+
+	//try to replace p2 with a thug
+	Player2 = Cast<ASuper80sFighterCharacter>(GetWorld()->SpawnActor<AThugClass>(Player2->GetTransform().GetLocation(), Player2->GetTransform().GetRotation().Euler().Rotation()));
+	//Player2->FinishSpawning(Player2->GetTransform());
+	//THIS IS GONNA CRASH - THIS IS JUST A REMINDER FOR NEXT TIME
+
+	p1_controller->Possess(Player1);
+	p2_controller->Possess(Player2);
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
@@ -24,21 +37,41 @@ void ASuper80sFighterGameMode::BeginPlay()
 	//		PlayerWidget->AddToViewport();
 	//	}
 	//}
-	
+	first_time = true;
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (on_death_pause)
+	{
+		death_timer -= DeltaTime;
+		if (death_timer <= 0)
+			on_death_pause = false;
+	}
 	if (Player1->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
-		endRound(false);
+		if (first_time)
+		{
+			on_death_pause = true;
+			death_timer = 3.0f;
+			first_time = false;
+		}
+		if(!on_death_pause)
+			endRound(false);
 	}
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
-		endRound(true);
+		if (first_time)
+		{
+			on_death_pause = true;
+			death_timer = 3.0f;
+			first_time = false;
+		}
+		if (!on_death_pause)
+			endRound(true);
 	}
 }
 
@@ -76,6 +109,8 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	Player2->SetActorLocation(Player2->startLocation);
 	Player2->ResetHealth();
 	Player2->ResetStamina();
+	first_time = true;
+	on_death_pause = false;
 
 	UE_LOG(LogTemp, Warning, TEXT("%d"), rounds_remaining);
 }
