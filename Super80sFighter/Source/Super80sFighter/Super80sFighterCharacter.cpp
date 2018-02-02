@@ -67,8 +67,8 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Push(buttonSet);
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack0);
-	
-	
+
+
 	button1.button = KICK;
 	button1.wasHeld = false;
 	buttonSet.Clear();
@@ -79,7 +79,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	while (tempCommand.Num() > 0)
 		tempCommand.RemoveAt(0);
 
-	
+
 	buttonSet.Clear();
 	button1.button = HEAVY;
 	buttonSet.inputs.Add(button1);
@@ -290,8 +290,8 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 
 	// add movement in that direction
-	if(grounded)
-	ControlInputVector += (FVector(0, -1.f, 0) * Value);
+	if (grounded)
+		ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
 
 
@@ -468,7 +468,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 	while (bufferCopy.Num() > 0) {
 		ButtonBufferInput test = bufferCopy.Last();
 		double testint = test.timeOfInput - previousTest.timeOfInput;
-		if (previousTest.timeOfInput - test.timeOfInput  > samePressThreshold) {//If the next button was pressed at a different time than the others
+		if (previousTest.timeOfInput - test.timeOfInput > samePressThreshold) {//If the next button was pressed at a different time than the others
 			tempCommandBuffer.Add(currentButtonSet);
 			currentButtonSet.Clear();
 		}
@@ -522,20 +522,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 	if (tempCommandBuffer.Num() == 0)
 		return;
 
-	INPUT_TYPE forward;
-	INPUT_TYPE backward;
 
-#pragma region Set "Forward" and "Backward"
-	if (EnemyPlayer->GetTransform().GetLocation().X > GetTransform().GetLocation().X) {
-		forward = INPUT_TYPE::LEFT;
-		backward = INPUT_TYPE::RIGHT;
-	}
-	else
-	{
-		forward = INPUT_TYPE::RIGHT;
-		backward = INPUT_TYPE::LEFT;
-	}
-#pragma endregion
 	TArray<Command> CommandCopy;
 	for (int cur = 0; cur < CommandList.Num(); cur++) CommandCopy.Add(CommandList[cur]);//Create a copy of the commandlist
 	//For each item in the AlreadyCalledCommands:
@@ -545,6 +532,33 @@ void ASuper80sFighterCharacter::CheckCommand()
 		CommandCopy.Remove(AlreadyCalledCommands[cur]);
 	};
 
+
+#pragma region Set "Forward" and "Backward"
+	INPUT_TYPE forward;
+	INPUT_TYPE backward;
+	if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y) {
+		forward = INPUT_TYPE::LEFT;
+		backward = INPUT_TYPE::RIGHT;
+	}
+	else
+	{
+		forward = INPUT_TYPE::RIGHT;
+		backward = INPUT_TYPE::LEFT;
+	}
+	for (int i = 0; i < CommandCopy.Num(); i++)
+	{
+		for (int j = 0; j < CommandCopy[i].InputsForCommand.Num(); j++)
+		{
+			for (int k = 0; k < CommandCopy[i].InputsForCommand[j].inputs.Num(); k++)
+			{
+				if (CommandCopy[i].InputsForCommand[j].inputs[k].button == RIGHT)
+					CommandCopy[i].InputsForCommand[j].inputs[k].button = forward;
+				else if (CommandCopy[i].InputsForCommand[j].inputs[k].button == LEFT)
+					CommandCopy[i].InputsForCommand[j].inputs[k].button = backward;
+			}
+		}
+	}
+#pragma endregion
 	int x = tempCommandBuffer.Num();
 
 	for (int currentCommand = 0; currentCommand < CommandCopy.Num(); currentCommand++)
