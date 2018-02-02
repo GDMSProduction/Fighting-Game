@@ -27,6 +27,12 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 	GENERATED_BODY()
 
 private:
+	//The array of attack statuses.
+	bool isAttacking[8];
+
+	//The total number of movesets.
+	const short TOTALMOVESETS = 2;
+
 	//The current difficulty level.
 	short difficultyLevel = 0;
 
