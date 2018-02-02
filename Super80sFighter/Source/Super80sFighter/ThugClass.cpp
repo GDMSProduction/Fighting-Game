@@ -1,10 +1,16 @@
 //Fill out your copyright notice in the Description page of Project Settings.
 #include "ThugClass.h"
 
-//Set up the thug's functionality.
+//The default constructor.
+AThugClass::AThugClass()
+{
+	
+}
+
+//Set up the Thug's functionality.
 void AThugClass::SetUpThug()
 {
-	//Add the default inputs for every thug.
+	//Add the default inputs for every Thug.
 	inputsToUse.Add(MOVEFORWARD);
 	inputsToUse.Add(MOVEBACKWARD);
 	inputsToUse.Add(HOP);
@@ -13,15 +19,41 @@ void AThugClass::SetUpThug()
 	inputsToUse.Add(PUNCH);
 	inputsToUse.Add(KICK);
 
-	//Determine the moves the thug will have available to them.
+	//Determine the moves the Thug will have available to them.
 	DetermineMoveSet(inputsToUse, difficultyLevel);
 }
 
-//Determine the moves the thug will have available to them.
+//Determine the moves the Thug will have available to them.
 void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficultyLevel)
 {
-	//Get the random moveset for the thug to use.
-	movesetNumber = rand() % 9;
+	//Get the random moveset for the Thug to use.
+	movesetNumber = rand() % TOTALMOVESETS;
+
+	//Set the available moves to the Thug.
+	switch (movesetNumber)
+	{
+	case 0:
+		isMove0 = true;
+		isMove1 = true;
+		isMove2 = true;
+		isMove3 = true;
+		isMove4 = false;
+		isMove5 = false;
+		isMove6 = false;
+		isMove7 = false;
+		break;
+
+	case 1:
+		isMove0 = false;
+		isMove1 = false;
+		isMove2 = false;
+		isMove3 = false;
+		isMove4 = true;
+		isMove5 = true;
+		isMove6 = true;
+		isMove7 = true;
+		break;
+	}
 
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
@@ -52,14 +84,10 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 	}
 }
 
-//Choose the next move for the thug to perform.
+//Choose the next move for the Thug to perform.
 void AThugClass::ChooseNextMove()
 {
-	PressPunch();
-	PressKick();
-	PressSpecial();
-	PressShortHop();
-	PressHighJump();
+	//PressShortHop();
 }
 
 //Increment the timer, called every frame.
