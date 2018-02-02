@@ -175,6 +175,16 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	startLocation = GetTransform().GetLocation();
 }
 
+bool ASuper80sFighterCharacter::GetDead()
+{
+	return isDead;
+}
+
+void ASuper80sFighterCharacter::SetDead(bool willBeDead)
+{
+	this->isDead = willBeDead;
+}
+
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
@@ -268,7 +278,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	}
 
 
-	if (grounded && EnemyPlayer->grounded) {
+	if (grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
 		else
@@ -290,7 +300,7 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 {
 
 	// add movement in that direction
-	if (grounded)
+	if (grounded && !isDead)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
 
 
@@ -438,6 +448,7 @@ void ASuper80sFighterCharacter::JumpReachesThreshold()
 
 void ASuper80sFighterCharacter::PressJump()
 {
+	if(!isDead)
 	ACharacter::Jump();
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
@@ -451,6 +462,8 @@ void ASuper80sFighterCharacter::ReleaseJump()
 #pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
+	if (isDead)
+		return;
 
 	TArray<ButtonSet> tempCommandBuffer;
 

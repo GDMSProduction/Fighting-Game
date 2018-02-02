@@ -14,16 +14,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 
-	p1_controller->UnPossess();
-	p2_controller->UnPossess();
-
-	//try to replace p2 with a thug
-	Player2 = Cast<ASuper80sFighterCharacter>(GetWorld()->SpawnActor<AThugClass>(Player2->GetTransform().GetLocation(), Player2->GetTransform().GetRotation().Euler().Rotation()));
-	//Player2->FinishSpawning(Player2->GetTransform());
-	//THIS IS GONNA CRASH - THIS IS JUST A REMINDER FOR NEXT TIME
-
-	p1_controller->Possess(Player1);
-	p2_controller->Possess(Player2);
+	
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
@@ -52,6 +43,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	if (Player1->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
+		Player1->SetDead(true);
 		if (first_time)
 		{
 			on_death_pause = true;
@@ -63,6 +55,8 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	}
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
+		Player1->SetDead(false);
+		Player2->SetDead(true);
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
 		if (first_time)
 		{
@@ -72,6 +66,11 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 		}
 		if (!on_death_pause)
 			endRound(true);
+	}
+	else
+	{
+		Player2->SetDead(false);
+		Player1->SetDead(false);
 	}
 }
 
