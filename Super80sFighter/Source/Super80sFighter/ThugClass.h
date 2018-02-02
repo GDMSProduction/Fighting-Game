@@ -27,7 +27,7 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 	GENERATED_BODY()
 
 private:
-	//The attack statuses.
+	//The attack/movement statuses.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isMove0;
 
