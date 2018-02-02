@@ -14,6 +14,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	//try to replace p2 with a thug
+
 	//UWorld* const world = GetWorld();
 	//if (world)
 	//{
@@ -24,9 +25,9 @@ void ASuper80sFighterGameMode::BeginPlay()
 	//	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
 	//	if (temp)
 	//	{
-	//		p2_controller->UnPossess();
+
 	//		Player2 = temp;
-	//		p2_controller->Possess(Player2);
+
 	//	}
 	//}
 

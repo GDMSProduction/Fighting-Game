@@ -65,7 +65,8 @@ private:
 	short difficultyLevel = 0;
 
 	//The randomly chosen moveset.
-	short movesetNumber = 0;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	int movesetNumber;
 
 	//The array of inputs for the thug to use.
 	TArray<short> inputsToUse;
