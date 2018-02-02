@@ -32,25 +32,25 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 	switch (movesetNumber)
 	{
 	case 0:
-		isAttacking[0] = true;
-		isAttacking[1] = true;
-		isAttacking[2] = true;
-		isAttacking[3] = true;
-		isAttacking[4] = false;
-		isAttacking[5] = false;
-		isAttacking[6] = false;
-		isAttacking[7] = false;
+		isMove0 = true;
+		isMove1 = true;
+		isMove2 = true;
+		isMove3 = true;
+		isMove4 = false;
+		isMove5 = false;
+		isMove6 = false;
+		isMove7 = false;
 		break;
 
 	case 1:
-		isAttacking[0] = false;
-		isAttacking[1] = false;
-		isAttacking[2] = false;
-		isAttacking[3] = false;
-		isAttacking[4] = true;
-		isAttacking[5] = true;
-		isAttacking[6] = true;
-		isAttacking[7] = true;
+		isMove0 = false;
+		isMove1 = false;
+		isMove2 = false;
+		isMove3 = false;
+		isMove4 = true;
+		isMove5 = true;
+		isMove6 = true;
+		isMove7 = true;
 		break;
 	}
 
@@ -86,7 +86,7 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the thug to perform.
 void AThugClass::ChooseNextMove()
 {
-
+	Attack0();
 }
 
 //Increment the timer, called every frame.
@@ -94,6 +94,8 @@ void AThugClass::Tick(float _deltaTime)
 {
 	//Use the parent's timer to perform the tick.
 	Super::Tick(_deltaTime);
+
+	ChooseNextMove();
 }
 
 
