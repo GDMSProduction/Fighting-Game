@@ -33,19 +33,19 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 	//Determine the stage the player is on.
 	switch (_difficultyLevel)
 	{
-	//Easy difficulty.
+		//Easy difficulty.
 	case 0:
 		_inputsToUse.Add(SPECIAL1);
 		break;
 
-	//Medium difficulty.
+		//Medium difficulty.
 	case 1:
 		_inputsToUse.Add(SPECIAL1);
 		_inputsToUse.Add(SPECIAL2);
 		_inputsToUse.Add(SPECIAL3);
 		break;
 
-	//Hard difficulty.
+		//Hard difficulty.
 	case 2:
 		_inputsToUse.Add(SPECIAL1);
 		_inputsToUse.Add(SPECIAL2);
@@ -53,7 +53,7 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 		_inputsToUse.Add(SPECIAL4);
 		break;
 
-	//No difficulty.
+		//No difficulty.
 	default:
 		break;
 	}
@@ -62,29 +62,117 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 //Choose the next move for the Thug to perform.
 void AThugClass::ChooseNextMove()
 {
+	//Get the random move for the Thug to use.
+	int randomMove = rand() % TOTALMOVES;
+
 	//Set the available moves to the Thug.
-	switch (movesetNumber)
+	switch (randomMove)
 	{
 	case 0:
-		isMove0 = false;
-		isMove1 = false;
-		isMove2 = false;
-		isMove3 = false;
-		isMove4 = false;
-		isMove5 = false;
-		isMove6 = false;
-		isMove7 = false;
+		if (movesetNumber == 0)
+		{
+			isMove0 = true;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+		}
+
+		else if (movesetNumber == 1)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = true;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+		}
 		break;
 
 	case 1:
-		isMove0 = false;
-		isMove1 = false;
-		isMove2 = false;
-		isMove3 = false;
-		isMove4 = false;
-		isMove5 = false;
-		isMove6 = false;
-		isMove7 = false;
+		if (movesetNumber == 0)
+		{
+			isMove0 = false;
+			isMove1 = true;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+		}
+
+		else if (movesetNumber == 1)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = true;
+			isMove6 = false;
+			isMove7 = false;
+		}
+		break;
+
+	case 2:
+		if (movesetNumber == 0)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = true;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+		}
+
+		else if (movesetNumber == 1)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = true;
+			isMove7 = false;
+		}
+		break;
+
+	case 3:
+		if (movesetNumber == 0)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = true;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+		}
+
+		else if (movesetNumber == 1)
+		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = true;
+		}
+		break;
+
+	default:
 		break;
 	}
 }

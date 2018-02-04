@@ -61,6 +61,9 @@ private:
 	//The total number of movesets.
 	const short TOTALMOVESETS = 2;
 
+	//The total number of moves for the current moveset.
+	const short TOTALMOVES = 4;
+
 	//The current difficulty level.
 	short difficultyLevel = 0;
 
