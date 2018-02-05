@@ -59,6 +59,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	if (Player1->GetCurrentHealth() <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
+		Player1->SetDead(true);
 		if (first_time)
 		{
 			on_death_pause = true;
@@ -70,6 +71,8 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	}
 	else if (Player2->GetCurrentHealth() <= 0)
 	{
+		Player1->SetDead(false);
+		Player2->SetDead(true);
 		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
 		if (first_time)
 		{
@@ -79,6 +82,11 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 		}
 		if (!on_death_pause)
 			endRound(true);
+	}
+	else
+	{
+		Player2->SetDead(false);
+		Player1->SetDead(false);
 	}
 }
 
