@@ -66,115 +66,115 @@ void AThugClass::ChooseNextMove()
 	int randomMove = rand() % TOTALMOVES;
 
 	//Set the available moves to the Thug.
-	switch (randomMove)
-	{
-	case 0:
-		if (movesetNumber == 0)
-		{
-			isMove0 = true;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = false;
-		}
+	//switch (randomMove)
+	//{
+	//case 0:
+	//	if (movesetNumber == 0)
+	//	{
+	//		isMove0 = true;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
 
-		else if (movesetNumber == 1)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = true;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = false;
-		}
-		break;
+	//	else if (movesetNumber == 1)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = true;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
+	//	break;
 
-	case 1:
-		if (movesetNumber == 0)
-		{
-			isMove0 = false;
-			isMove1 = true;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = false;
-		}
+	//case 1:
+	//	if (movesetNumber == 0)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = true;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
 
-		else if (movesetNumber == 1)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = true;
-			isMove6 = false;
-			isMove7 = false;
-		}
-		break;
+	//	else if (movesetNumber == 1)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = true;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
+	//	break;
 
-	case 2:
-		if (movesetNumber == 0)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = true;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = false;
-		}
+	//case 2:
+	//	if (movesetNumber == 0)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = true;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
 
-		else if (movesetNumber == 1)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = true;
-			isMove7 = false;
-		}
-		break;
+	//	else if (movesetNumber == 1)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = true;
+	//		isMove7 = false;
+	//	}
+	//	break;
 
-	case 3:
-		if (movesetNumber == 0)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = true;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = false;
-		}
+	//case 3:
+	//	if (movesetNumber == 0)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = true;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = false;
+	//	}
 
-		else if (movesetNumber == 1)
-		{
-			isMove0 = false;
-			isMove1 = false;
-			isMove2 = false;
-			isMove3 = false;
-			isMove4 = false;
-			isMove5 = false;
-			isMove6 = false;
-			isMove7 = true;
-		}
-		break;
+	//	else if (movesetNumber == 1)
+	//	{
+	//		isMove0 = false;
+	//		isMove1 = false;
+	//		isMove2 = false;
+	//		isMove3 = false;
+	//		isMove4 = false;
+	//		isMove5 = false;
+	//		isMove6 = false;
+	//		isMove7 = true;
+	//	}
+	//	break;
 
-	default:
-		break;
-	}
+	//default:
+		//break;
+	//}
 }
 
 //Increment the timer, called every frame.
