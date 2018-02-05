@@ -15,23 +15,17 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	//try to replace p2 with a thug
 	UWorld* const world = GetWorld();
-	if (world)
-	{
-		FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
-		FVector pos = Player2->GetTransform().GetLocation();
-		FRotator rot = FRotator(0, -90, 0);
-		spawn_parameters.bDeferConstruction = true;
-		ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
-		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
-		if (temp)
-		{
-			Player2->Destroy();
-			Player2 = temp;
-		}
-	}
-
-	p1_controller->AcknowledgedPawn = Player1;
-	p2_controller->AcknowledgedPawn = Player2;
+	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
+	FVector pos = Player2->GetTransform().GetLocation();
+	FRotator rot = FRotator(0, -90, 0);
+	spawn_parameters.bDeferConstruction = true;
+	p2_controller->UnPossess();
+	Player2->destroy();
+	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+	UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+	Player2 = temp;
+	p2_controller->Possess(Player2);
+	//end try to replace p2 with a thug
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
@@ -94,7 +88,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugBlueprint"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint"));
 	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Object != NULL)
 	{
