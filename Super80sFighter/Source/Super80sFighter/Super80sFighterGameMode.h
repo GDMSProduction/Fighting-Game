@@ -21,7 +21,7 @@ public:
 	ASuper80sFighterGameMode();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
-	bool victory;
+	bool paused;
 
 	unsigned int num_rounds;
 	unsigned int rounds_remaining;

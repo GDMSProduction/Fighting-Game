@@ -22,6 +22,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 		FRotator rot = FRotator(0, -90, 0);
 		spawn_parameters.bDeferConstruction = true;
 		ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		if (temp)
 		{
 			Player2->Destroy();
@@ -93,7 +94,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugBlueprint"));
 	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Object != NULL)
 	{
@@ -134,5 +135,5 @@ void ASuper80sFighterGameMode::endGame()
 {
 	//add buttons to screen for replay, return to character select, back to main menu
 	UE_LOG(LogTemp, Error, TEXT("ERRROR: ENDGAME FUNCTION NOT YET IMPLEMENTED YOU IDIOT (not you gracious player but the idiot that developed this)"));
-	victory = true;
+	paused = true;
 }
