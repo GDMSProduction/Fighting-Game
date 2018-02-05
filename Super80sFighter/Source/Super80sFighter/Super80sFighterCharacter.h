@@ -335,6 +335,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void TakeDamage(float damage);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
+		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
+
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
 

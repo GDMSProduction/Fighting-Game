@@ -243,6 +243,7 @@ void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
+	TakeDamageBlueprintEvent();
 }
 void ASuper80sFighterCharacter::SuperAbility()
 {

@@ -75,6 +75,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Hitboxes")
 	void OnHit(UPrimitiveComponent* thisHitbox, AActor* otherActor, UPrimitiveComponent* otherComp, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	
+		
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

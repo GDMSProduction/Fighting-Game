@@ -146,6 +146,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
 					//deal damage and stun enemy (maybe)... implement function for damage
 					otherCharacter->TakeDamage(damage);
+					
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
 					break;
@@ -212,6 +213,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 					//throw enemy
 					UE_LOG(LogTemp, Warning, TEXT("Throw box has hit enemy throw area, begin throw"));
 					otherCharacter->TakeDamage(damage);
+				
 					break;
 				default:
 					break;
