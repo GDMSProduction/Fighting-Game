@@ -14,22 +14,18 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	//try to replace p2 with a thug
-
-	//UWorld* const world = GetWorld();
-	//if (world)
-	//{
-	//	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
-	//	FVector pos = Player2->GetTransform().GetLocation();
-	//	FRotator rot = Player2->GetTransform().GetRotation().Euler().Rotation();
-	//	spawn_parameters.bDeferConstruction = true;
-	//	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
-	//	if (temp)
-	//	{
-
-	//		Player2 = temp;
-
-	//	}
-	//}
+	UWorld* const world = GetWorld();
+	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
+	FVector pos = Player2->GetTransform().GetLocation();
+	FRotator rot = FRotator(0, -90, 0);
+	spawn_parameters.bDeferConstruction = true;
+	p2_controller->UnPossess();
+	Player2->destroy();
+	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+	UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+	Player2 = temp;
+	p2_controller->Possess(Player2);
+	//end try to replace p2 with a thug
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
