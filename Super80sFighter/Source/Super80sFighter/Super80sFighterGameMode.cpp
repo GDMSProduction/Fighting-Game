@@ -14,21 +14,23 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	//try to replace p2 with a thug
-	//UWorld* const world = GetWorld();
-	//if (world)
-	//{
-	//	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
-	//	FVector pos = Player2->GetTransform().GetLocation();
-	//	FRotator rot = Player2->GetTransform().GetRotation().Euler().Rotation();
-	//	spawn_parameters.bDeferConstruction = true;
-	//	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
-	//	if (temp)
-	//	{
-	//		p2_controller->UnPossess();
-	//		Player2 = temp;
-	//		p2_controller->Possess(Player2);
-	//	}
-	//}
+	UWorld* const world = GetWorld();
+	if (world)
+	{
+		FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
+		FVector pos = Player2->GetTransform().GetLocation();
+		FRotator rot = FRotator(0, -90, 0);
+		spawn_parameters.bDeferConstruction = true;
+		ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		if (temp)
+		{
+			Player2->Destroy();
+			Player2 = temp;
+		}
+	}
+
+	p1_controller->AcknowledgedPawn = Player1;
+	p2_controller->AcknowledgedPawn = Player2;
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
@@ -124,5 +126,5 @@ void ASuper80sFighterGameMode::endGame()
 {
 	//add buttons to screen for replay, return to character select, back to main menu
 	UE_LOG(LogTemp, Error, TEXT("ERRROR: ENDGAME FUNCTION NOT YET IMPLEMENTED YOU IDIOT (not you gracious player but the idiot that developed this)"));
-	paused = true;
+	victory = true;
 }
