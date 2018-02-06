@@ -1,3 +1,4 @@
+#pragma region Initialize
 //Fill out your copyright notice in the Description page of Project Settings.
 #include "ThugClass.h"
 
@@ -58,7 +59,9 @@ void AThugClass::DetermineMoveSet(TArray<short>& _inputsToUse, short _difficulty
 		break;
 	}
 }
+#pragma endregion
 
+#pragma region AIMoves
 //Choose the next move for the Thug to perform.
 void AThugClass::ChooseNextMove()
 {
@@ -176,7 +179,9 @@ void AThugClass::ChooseNextMove()
 		break;
 	}
 }
+#pragma endregion
 
+#pragma region Update
 //Increment the timer, called every frame.
 void AThugClass::Tick(float _deltaTime)
 {
@@ -186,7 +191,7 @@ void AThugClass::Tick(float _deltaTime)
 	//Choose the next move for the Thug to perform.
 	ChooseNextMove();
 }
-
+#pragma endregion
 
 
 

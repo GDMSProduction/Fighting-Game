@@ -121,6 +121,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
+#pragma region Initialization
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	// set up gameplay key bindings
@@ -174,28 +175,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
 }
-
-void ASuper80sFighterCharacter::destroy()
-{
-	for (int i = 0; i < hitboxes.Num(); ++i)
-		hitboxes[i]->Destroy();
-	Destroy();
-}
-
-bool ASuper80sFighterCharacter::GetDead()
-{
-	return isDead;
-}
-
-void ASuper80sFighterCharacter::SetDead(bool willBeDead)
-{
-	this->isDead = willBeDead;
-}
-
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
 }
+#pragma endregion
+#pragma region Health and Stamina
 float ASuper80sFighterCharacter::GetTotalStamina()
 {
 	return TotalStamina;
@@ -208,6 +193,10 @@ void ASuper80sFighterCharacter::UpdateCurrentStamina(float Stamina)
 {
 	CurrentStamina = CurrentStamina + Stamina;
 }
+void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
+{
+	CurrentHealth = CurrentHealth + Health;
+}
 float ASuper80sFighterCharacter::GetTotalHealth()
 {
 	return TotalHealth;
@@ -216,165 +205,30 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
-void ASuper80sFighterCharacter::ResetHealth()
+#pragma endregion
+#pragma region Death and Destruction
+void ASuper80sFighterCharacter::destroy()
 {
-	CurrentHealth = TotalHealth;
+	for (int i = 0; i < hitboxes.Num(); ++i)
+		hitboxes[i]->Destroy();
+	Destroy();
 }
-void ASuper80sFighterCharacter::ResetStamina()
+bool ASuper80sFighterCharacter::GetDead()
 {
-	CurrentStamina = TotalStamina;
+	return isDead;
 }
-void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
+void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 {
-	lock_grounded = false;
-	if (OtherActor == EnemyPlayer)
-	{
-		//fix issue with jumping on top of other players
-		FVector my_location = GetTransform().GetLocation();
-		FVector enemy_location = EnemyPlayer->GetTransform().GetLocation();
-		if (my_location.Z > enemy_location.Z)
-		{
-			if (my_location.Y >= enemy_location.Y)
-				non_grounded_forces += FVector(0, 100, 0);
-			else
-				non_grounded_forces += FVector(0, -100, 0);
-			lock_grounded = true;
-		}
-	}
+	this->isDead = willBeDead;
 }
-void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
-{
-	CurrentHealth = CurrentHealth + Health;
-}
+#pragma endregion
+#pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
 	TakeDamageBlueprintEvent();
 }
-void ASuper80sFighterCharacter::SuperAbility()
-{
-	UpdateCurrentStamina((-0.25f) * TotalStamina);
-
-}
-void ASuper80sFighterCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	//implementing my physics
-	if (!lock_grounded)
-		grounded = GetCharacterMovement()->IsMovingOnGround();
-	if (grounded)
-		non_grounded_forces = FVector(0, 0, 0);
-	else
-		grounded_forces = FVector(0, 0, 0);
-	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
-	if (FVector::DistSquared(FVector::ZeroVector, non_grounded_forces) > .05f)
-	{
-		ControlInputVector += non_grounded_forces * DeltaTime;
-		non_grounded_forces -= non_grounded_forces * DeltaTime;
-	}
-	if (FVector::DistSquared(FVector::ZeroVector, grounded_forces) > .05f)
-	{
-		ControlInputVector += grounded_forces * DeltaTime;
-		grounded_forces -= grounded_forces * DeltaTime;
-	}
-	if (FVector::DistSquared(FVector::ZeroVector, absolute_forces) > .05f)
-	{
-		ControlInputVector += absolute_forces * DeltaTime;
-		grounded_forces -= absolute_forces * DeltaTime;
-	}
-
-
-	if (grounded) {
-		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
-			FlipCharacter(false);
-		else
-			FlipCharacter(true);
-	}
-	else
-	{
-		FlipCharacter(IsFacingRight);
-	}
-
-
-}
-
-
-
-
-
-void ASuper80sFighterCharacter::MoveRight(float Value)
-{
-
-	// add movement in that direction
-	if (grounded && !isDead)
-		ControlInputVector += (FVector(0, -1.f, 0) * Value);
-
-
-
-}
-
-void ASuper80sFighterCharacter::PressRight()
-{
-	AddInput(RIGHT, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::PressLeft()
-{
-	AddInput(LEFT, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseRight()
-{
-	AddInput(RIGHT, false, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseLeft()
-{
-	AddInput(LEFT, false, FApp::GetCurrentTime());
-}
-
-void ASuper80sFighterCharacter::PressPunch()
-{
-	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::PressKick()
-{
-
-	AddInput(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::PressHeavy()
-{
-
-	AddInput(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::PressSpecial()
-{
-
-	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
-}
-
-void ASuper80sFighterCharacter::ReleasePunch()
-{
-	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseKick()
-{
-
-	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseHeavy()
-{
-
-	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseSpecial()
-{
-
-	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
-}
-
-
-
-
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
 {
 	FVector tempVec;
@@ -397,6 +251,86 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
 }
+#pragma endregion
+#pragma region Character Reset
+void ASuper80sFighterCharacter::ResetHealth()
+{
+	CurrentHealth = TotalHealth;
+}
+void ASuper80sFighterCharacter::ResetStamina()
+{
+	CurrentStamina = TotalStamina;
+}
+#pragma endregion
+#pragma region Character Inputs
+void ASuper80sFighterCharacter::SuperAbility()
+{
+	UpdateCurrentStamina((-0.25f) * TotalStamina);
+}
+void ASuper80sFighterCharacter::MoveRight(float Value)
+{
+
+	// add movement in that direction
+	if (grounded && !isDead)
+		ControlInputVector += (FVector(0, -1.f, 0) * Value);
+
+
+
+}
+void ASuper80sFighterCharacter::PressRight()
+{
+	AddInput(RIGHT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressLeft()
+{
+	AddInput(LEFT, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseRight()
+{
+	AddInput(RIGHT, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseLeft()
+{
+	AddInput(LEFT, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressPunch()
+{
+	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressKick()
+{
+
+	AddInput(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressHeavy()
+{
+
+	AddInput(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::PressSpecial()
+{
+
+	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleasePunch()
+{
+	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseKick()
+{
+
+	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseHeavy()
+{
+
+	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseSpecial()
+{
+
+	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
 void ASuper80sFighterCharacter::StartCrouch()
 {
 	isCrouching = true;
@@ -407,67 +341,27 @@ void ASuper80sFighterCharacter::StopCrouch()
 	isCrouching = false;
 	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
-#pragma region Jump functions
-void ASuper80sFighterCharacter::PressShortHop()
+void ASuper80sFighterCharacter::AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
 {
-	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-	PressJump();
+	Command tempCommand;
+	tempCommand.functionToCall = functionToCall;
+	tempCommand.InputsForCommand = InputsForCommand;
+	CommandList.Add(tempCommand);
 }
-void ASuper80sFighterCharacter::ReleaseShortHop()
+void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
 {
-	ReleaseJump();
-}
-void ASuper80sFighterCharacter::PressHighJump()
-{
-	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-	PressJump();
-}
-void ASuper80sFighterCharacter::ReleaseHighJump()
-{
-	ReleaseJump();
-}
-void ASuper80sFighterCharacter::PressNormalJump() {
-	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
-	HasJumpReachedThreshold = false;
+	ButtonBufferInput tempInput;
+	tempInput.Buttons = incomingAttack;
+	tempInput.isPress = wasPressed;
+	tempInput.timeOfInput = timeOfPress;
+	buttonBuffer.Add(tempInput);
+	if (buttonBuffer.Num() > 10)
+		buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
+	CheckCommand();
 
-
+	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
 
 }
-void ASuper80sFighterCharacter::ReleaseNormalJump() {
-
-	if (HasJumpReachedThreshold)
-	{
-		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
-	}
-	else
-	{
-		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
-	}
-	PressJump();
-
-
-}
-void ASuper80sFighterCharacter::JumpReachesThreshold()
-{
-	HasJumpReachedThreshold = true;
-
-	ReleaseNormalJump();
-}
-
-void ASuper80sFighterCharacter::PressJump()
-{
-	if(!isDead)
-	ACharacter::Jump();
-	isHoldingJump = true;
-	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
-}
-void ASuper80sFighterCharacter::ReleaseJump()
-{
-	ACharacter::StopJumping();
-	isHoldingJump = false;
-}
-#pragma endregion
-#pragma region Attacks
 void ASuper80sFighterCharacter::CheckCommand()
 {
 	if (isDead)
@@ -546,8 +440,8 @@ void ASuper80sFighterCharacter::CheckCommand()
 
 	TArray<Command> CommandCopy;
 	for (int cur = 0; cur < CommandList.Num(); cur++) CommandCopy.Add(CommandList[cur]);//Create a copy of the commandlist
-	//For each item in the AlreadyCalledCommands:
-	//Remove it from the copy of commandList
+																						//For each item in the AlreadyCalledCommands:
+																						//Remove it from the copy of commandList
 	for (int cur = 0; cur < AlreadyCalledCommands.Num(); ++cur) {
 		QueStopAttacking();
 		CommandCopy.Remove(AlreadyCalledCommands[cur]);
@@ -636,6 +530,128 @@ void ASuper80sFighterCharacter::Attack3()
 	isAttacking3 = true;
 }
 #pragma endregion
+#pragma region Overloaded Unreal
+void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
+{
+	lock_grounded = false;
+	if (OtherActor == EnemyPlayer)
+	{
+		//fix issue with jumping on top of other players
+		FVector my_location = GetTransform().GetLocation();
+		FVector enemy_location = EnemyPlayer->GetTransform().GetLocation();
+		if (my_location.Z > enemy_location.Z)
+		{
+			if (my_location.Y >= enemy_location.Y)
+				non_grounded_forces += FVector(0, 50, 0);
+			else
+				non_grounded_forces += FVector(0, -50, 0);
+			lock_grounded = true;
+		}
+	}
+}
+void ASuper80sFighterCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	//implementing my physics
+	if (!lock_grounded)
+		grounded = GetCharacterMovement()->IsMovingOnGround();
+	if (grounded)
+		non_grounded_forces = FVector(0, 0, 0);
+	else
+		grounded_forces = FVector(0, 0, 0);
+	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
+	if (FVector::DistSquared(FVector::ZeroVector, non_grounded_forces) > .05f)
+	{
+		ControlInputVector += non_grounded_forces * DeltaTime;
+		non_grounded_forces -= non_grounded_forces * DeltaTime;
+	}
+	if (FVector::DistSquared(FVector::ZeroVector, grounded_forces) > .05f)
+	{
+		ControlInputVector += grounded_forces * DeltaTime;
+		grounded_forces -= grounded_forces * DeltaTime;
+	}
+	if (FVector::DistSquared(FVector::ZeroVector, absolute_forces) > .05f)
+	{
+		ControlInputVector += absolute_forces * DeltaTime;
+		grounded_forces -= absolute_forces * DeltaTime;
+	}
+
+
+	if (grounded) {
+		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
+			FlipCharacter(false);
+		else
+			FlipCharacter(true);
+	}
+	else
+	{
+		FlipCharacter(IsFacingRight);
+	}
+
+
+}
+#pragma endregion
+#pragma region Jump functions
+void ASuper80sFighterCharacter::PressShortHop()
+{
+	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
+	PressJump();
+}
+void ASuper80sFighterCharacter::ReleaseShortHop()
+{
+	ReleaseJump();
+}
+void ASuper80sFighterCharacter::PressHighJump()
+{
+	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
+	PressJump();
+}
+void ASuper80sFighterCharacter::ReleaseHighJump()
+{
+	ReleaseJump();
+}
+void ASuper80sFighterCharacter::PressNormalJump() {
+	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
+	HasJumpReachedThreshold = false;
+
+
+
+}
+void ASuper80sFighterCharacter::ReleaseNormalJump() {
+
+	if (HasJumpReachedThreshold)
+	{
+		GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
+	}
+	else
+	{
+		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
+	}
+	PressJump();
+
+
+}
+void ASuper80sFighterCharacter::JumpReachesThreshold()
+{
+	HasJumpReachedThreshold = true;
+
+	ReleaseNormalJump();
+}
+void ASuper80sFighterCharacter::PressJump()
+{
+	if(!isDead)
+	ACharacter::Jump();
+	isHoldingJump = true;
+	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleaseJump()
+{
+	ACharacter::StopJumping();
+	isHoldingJump = false;
+}
+#pragma endregion
+#pragma region Miscellaneous Character Functions
 void ASuper80sFighterCharacter::FlipCharacter()
 {
 	FlipCharacter(!IsFacingRight);
@@ -662,42 +678,19 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 
 	IsFacingRight = forceFaceRight;
 }
-
+void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
+{
+	// jump on any touch
+	Jump();
+}
+void ASuper80sFighterCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
+{
+	StopJumping();
+}
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
 }
-void ASuper80sFighterCharacter::AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
-{
-	Command tempCommand;
-	tempCommand.functionToCall = functionToCall;
-	tempCommand.InputsForCommand = InputsForCommand;
-	CommandList.Add(tempCommand);
-}
-void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
-{
-	ButtonBufferInput tempInput;
-	tempInput.Buttons = incomingAttack;
-	tempInput.isPress = wasPressed;
-	tempInput.timeOfInput = timeOfPress;
-	buttonBuffer.Add(tempInput);
-	if (buttonBuffer.Num() > 10)
-		buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
-	CheckCommand();
-
-	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
-
-}
-void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	// jump on any touch
-	Jump();
-}
-
-void ASuper80sFighterCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	StopJumping();
-}
-
+#pragma endregion
