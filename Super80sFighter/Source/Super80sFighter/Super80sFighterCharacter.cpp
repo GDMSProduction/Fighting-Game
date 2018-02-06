@@ -235,9 +235,9 @@ void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor
 		if (my_location.Z > enemy_location.Z)
 		{
 			if (my_location.Y >= enemy_location.Y)
-				non_grounded_forces += FVector(0, 100, 0);
+				non_grounded_forces += FVector(0, 50, 0);
 			else
-				non_grounded_forces += FVector(0, -100, 0);
+				non_grounded_forces += FVector(0, -50, 0);
 			lock_grounded = true;
 		}
 	}

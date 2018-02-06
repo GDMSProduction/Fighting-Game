@@ -23,8 +23,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
 	bool paused;
 
-	unsigned int num_rounds;
-	unsigned int rounds_remaining;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rounds")
+	int num_rounds;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds")
+	int rounds_remaining;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
