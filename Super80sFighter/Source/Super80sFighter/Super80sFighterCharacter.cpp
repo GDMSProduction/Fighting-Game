@@ -175,6 +175,13 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	startLocation = GetTransform().GetLocation();
 }
 
+void ASuper80sFighterCharacter::destroy()
+{
+	for (int i = 0; i < hitboxes.Num(); ++i)
+		hitboxes[i]->Destroy();
+	Destroy();
+}
+
 bool ASuper80sFighterCharacter::GetDead()
 {
 	return isDead;
@@ -243,6 +250,7 @@ void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
+	TakeDamageBlueprintEvent();
 }
 void ASuper80sFighterCharacter::SuperAbility()
 {

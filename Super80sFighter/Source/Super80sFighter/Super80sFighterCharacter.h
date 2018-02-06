@@ -277,7 +277,6 @@ public:
 
 	double holdThreshold;//Time you have to hold for before a button is considered a hold-down instead of a tap
 
-
 #pragma region Jumping Variables
 	FTimerHandle JumpTimer;
 	bool HasJumpReachedThreshold;
@@ -335,8 +334,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void TakeDamage(float damage);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
+		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
+
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
+
+	UFUNCTION(BlueprintCallable, Category = "Destroying")
+		virtual void destroy();
 
 	virtual void Tick(float DeltaTime) override;
 };
