@@ -224,13 +224,14 @@ private:
 
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
+	bool landed;
 
 #pragma region Combo variables
 	TArray<ButtonBufferInput> buttonBuffer;

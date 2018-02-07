@@ -562,6 +562,19 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	//implementing my physics
 	if (!lock_grounded)
 		grounded = GetCharacterMovement()->IsMovingOnGround();
+
+	//The functionality for creating effects on land.
+	if (!grounded)
+	{
+		landed = true;
+	}
+
+	if (grounded && landed)
+	{
+		LandEffectBlueprintEvent();
+		landed = false;
+	}
+
 	if (grounded)
 		non_grounded_forces = FVector(0, 0, 0);
 	else
