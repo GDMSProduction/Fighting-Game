@@ -337,6 +337,33 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
 		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
+		void FirstAttackEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
+		void SecondAttackEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
+		void ThirdAttackEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
+		void FourthAttackEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
+		void JumpEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
+		void HighJumpEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
+		void LandEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
+		void DashEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
+		void BlockEffectBlueprintEvent();
+
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
 
