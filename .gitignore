@@ -81,3 +81,4 @@ DerivedDataCache/*
 *.ipch
    
 *.TMP
+*.sln
