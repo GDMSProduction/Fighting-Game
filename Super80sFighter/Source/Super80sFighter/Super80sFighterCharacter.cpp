@@ -611,13 +611,12 @@ void ASuper80sFighterCharacter::ReleaseHighJump()
 {
 	ReleaseJump();
 }
-void ASuper80sFighterCharacter::PressNormalJump() {
+void ASuper80sFighterCharacter::PressNormalJump() 
+{
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
-
-
-
 }
+
 void ASuper80sFighterCharacter::ReleaseNormalJump() {
 
 	if (HasJumpReachedThreshold)
@@ -628,9 +627,8 @@ void ASuper80sFighterCharacter::ReleaseNormalJump() {
 	{
 		GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	}
+
 	PressJump();
-
-
 }
 void ASuper80sFighterCharacter::JumpReachesThreshold()
 {
@@ -640,8 +638,11 @@ void ASuper80sFighterCharacter::JumpReachesThreshold()
 }
 void ASuper80sFighterCharacter::PressJump()
 {
-	if(!isDead)
-	ACharacter::Jump();
+	if (!isDead)
+	{
+		ACharacter::Jump();
+		HighJumpEffectBlueprintEvent();
+	}
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
 }
