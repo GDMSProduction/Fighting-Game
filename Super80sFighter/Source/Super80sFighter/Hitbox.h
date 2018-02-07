@@ -69,7 +69,7 @@ public:
 	// Sets default values for this actor's properties
 	AHitbox();
 	//sets the values for the hitbox
-	void SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector _dimensions, float _damage);
+	void SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector _dimensions, float _damage, bool visible);
 	
 	//hitbox collision function
 	UFUNCTION(BlueprintCallable, Category="Hitboxes")

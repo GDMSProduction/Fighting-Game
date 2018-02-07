@@ -52,7 +52,7 @@ AHitbox::AHitbox()
 	FinishSpawning(GetTransform());
 }
 
-void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector dimensions, float _damage)
+void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosition, FVector dimensions, float _damage, bool visible)
 {
 	hitboxType = _hitboxType;
 	damage = _damage;
@@ -115,6 +115,7 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	hitboxMaterial->SetVectorParameterValue(FName(TEXT("Base Color")), color);
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
 	//hitbox->SetActive(false);
+	hitbox->SetVisibility(false);
 
 	//finish spawning the hitbox so unreal knows to check it for collision
 	/*FinishSpawning(GetTransform());*/
