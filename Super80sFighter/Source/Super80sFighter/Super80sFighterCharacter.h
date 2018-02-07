@@ -231,6 +231,9 @@ private:
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
+	//internal stamina variables
+	float CurrentMaxStamina;
+
 
 #pragma region Combo variables
 	TArray<ButtonBufferInput> buttonBuffer;
