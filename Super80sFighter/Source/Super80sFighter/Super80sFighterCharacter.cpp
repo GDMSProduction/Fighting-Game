@@ -229,7 +229,7 @@ void ASuper80sFighterCharacter::TakeDamage(float damage)
 	UpdateCurrentHealth(-damage);
 	TakeDamageBlueprintEvent();
 }
-AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage)
+AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
@@ -246,7 +246,7 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
 	tempHitbox->AttachToComponent(RootComponent, rules);
 	//}
-	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage);
+	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage, visible);
 
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;

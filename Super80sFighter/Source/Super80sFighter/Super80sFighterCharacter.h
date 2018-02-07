@@ -36,7 +36,7 @@ class ASuper80sFighterCharacter : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
-		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage);
+		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible = true);
 	UPROPERTY()
 		class AHitbox* tempHitbox;
 
