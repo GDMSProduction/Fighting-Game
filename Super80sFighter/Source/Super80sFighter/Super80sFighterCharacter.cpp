@@ -529,6 +529,12 @@ void ASuper80sFighterCharacter::Attack3()
 	QueStopAttacking();
 	isAttacking3 = true;
 }
+void ASuper80sFighterCharacter::QueStopAttacking() {
+	isAttacking0 = false;
+	isAttacking1 = false;
+	isAttacking2 = false;
+	isAttacking3 = false;
+}
 #pragma endregion
 #pragma region Overloaded Unreal
 void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
@@ -687,11 +693,5 @@ void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex
 void ASuper80sFighterCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	StopJumping();
-}
-void ASuper80sFighterCharacter::QueStopAttacking() {
-	isAttacking0 = false;
-	isAttacking1 = false;
-	isAttacking2 = false;
-	isAttacking3 = false;
 }
 #pragma endregion
