@@ -379,7 +379,7 @@ public:
 		void SuperAbility();
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void TurnStaminaRegenOff();
+		void SetStaminaRegen(bool tf);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void TurnStaminaRegenOn();
