@@ -175,6 +175,7 @@ protected:
 	void Attack1();
 	void Attack2();
 	void Attack3();
+	void AttackTaunt();
 #pragma endregion
 
 
@@ -268,6 +269,8 @@ public:
 		bool isAttacking2;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttacking3;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isAttackingTaunt;
 
 
 

@@ -115,6 +115,18 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	tempCommand.Add(buttonSet);
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
 
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	button1.button = SPECIAL;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::AttackTaunt);
 #pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
@@ -575,11 +587,17 @@ void ASuper80sFighterCharacter::Attack3()
 	QueStopAttacking();
 	isAttacking3 = true;
 }
+void ASuper80sFighterCharacter::AttackTaunt()
+{
+	QueStopAttacking();
+	isAttackingTaunt = true;
+}
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
+	isAttackingTaunt = false;
 }
 #pragma endregion
 #pragma region Overloaded Unreal
