@@ -231,6 +231,8 @@ private:
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
+	bool landed;
+
 	//internal stamina variables
 	float CurrentMaxStamina;
 
