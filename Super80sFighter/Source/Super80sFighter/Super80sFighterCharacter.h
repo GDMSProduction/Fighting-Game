@@ -224,14 +224,21 @@ private:
 
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-	bool grounded;
+		bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
-	bool landed;
+	bool landedEffect;
+	bool jumpEffect;
+
+	//internal stamina variables
+	float CurrentMaxStamina;
+	bool regen_stamina;
+	int health_tier;
+	int stamina_tier;
 
 #pragma region Combo variables
 	TArray<ButtonBufferInput> buttonBuffer;
@@ -367,6 +374,12 @@ public:
 #pragma endregion
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void TurnStaminaRegenOff();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void TurnStaminaRegenOn();
 
 	UFUNCTION(BlueprintCallable, Category = "Destroying")
 		virtual void destroy();

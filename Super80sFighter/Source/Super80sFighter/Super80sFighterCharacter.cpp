@@ -117,7 +117,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 #pragma endregion
 
-
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
@@ -174,6 +173,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
+	//set starting max stam stams
+	stamina_tier = 3;
+	health_tier = 3;
+	regen_stamina = true;
+	CurrentMaxStamina = TotalStamina;
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
@@ -221,12 +225,57 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 {
 	this->isDead = willBeDead;
 }
+void ASuper80sFighterCharacter::TurnStaminaRegenOff()
+{
+	regen_stamina = false;
+}
+void ASuper80sFighterCharacter::TurnStaminaRegenOn()
+{
+	regen_stamina = true;
+}
 #pragma endregion
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
+	//possibly update current stamina to reflect new max stamina
+	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .5f > CurrentHealth && health_tier == 2)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .75f > CurrentHealth && health_tier == 3)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+
+	switch (stamina_tier)
+	{
+	case 0:
+		CurrentMaxStamina = TotalStamina * .25f;
+		break;
+	case 1:
+		CurrentMaxStamina = TotalStamina * .5f;
+		break;
+	case 2:
+		CurrentMaxStamina = TotalStamina * .75f;
+		break;
+	case 3:
+		CurrentMaxStamina = TotalStamina;
+		break;
+	default:
+		break;
+	}
+	if (CurrentStamina > CurrentMaxStamina)
+		CurrentStamina = CurrentMaxStamina;
+
 	TakeDamageBlueprintEvent();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
@@ -566,17 +615,21 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	//The functionality for creating effects on land.
 	if (!grounded)
 	{
-		landed = true;
+		landedEffect = true;
 	}
 
-	if (grounded && landed)
+	if (grounded && landedEffect)
 	{
 		LandEffectBlueprintEvent();
-		landed = false;
+		landedEffect = false;
 	}
 
 	if (grounded)
+	{
 		non_grounded_forces = FVector(0, 0, 0);
+		jumpEffect = true;
+	}
+
 	else
 		grounded_forces = FVector(0, 0, 0);
 	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
@@ -596,7 +649,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		grounded_forces -= absolute_forces * DeltaTime;
 	}
 
-
+	//flipping the character on grounded
 	if (grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
@@ -608,6 +661,9 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		FlipCharacter(IsFacingRight);
 	}
 
+	//stamina stuff
+	if (CurrentStamina < CurrentMaxStamina && regen_stamina)
+		CurrentStamina += (DeltaTime * 5);
 
 }
 #pragma endregion
@@ -616,6 +672,12 @@ void ASuper80sFighterCharacter::PressShortHop()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		JumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseShortHop()
 {
@@ -625,6 +687,12 @@ void ASuper80sFighterCharacter::PressHighJump()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		HighJumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseHighJump()
 {
@@ -660,7 +728,11 @@ void ASuper80sFighterCharacter::PressJump()
 	if (!isDead)
 	{
 		ACharacter::Jump();
-		HighJumpEffectBlueprintEvent();
+		if (jumpEffect)
+		{
+			JumpEffectBlueprintEvent();
+			jumpEffect = false;
+		}
 	}
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
