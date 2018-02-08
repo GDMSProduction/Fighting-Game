@@ -334,7 +334,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void TakeDamage(float damage);
-
+#pragma region Blueprint events
 	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
 		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
 
@@ -364,7 +364,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void BlockEffectBlueprintEvent();
-
+#pragma endregion
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
 
