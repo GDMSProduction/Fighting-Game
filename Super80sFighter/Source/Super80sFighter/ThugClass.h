@@ -1,4 +1,5 @@
 //Fill out your copyright notice in the Description page of Project Settings.
+#pragma region Includes
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -20,6 +21,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "ThugClass.generated.h"
+#pragma endregion
 
 UCLASS()
 class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
@@ -27,6 +29,7 @@ class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
 	GENERATED_BODY()
 
 private:
+#pragma region Ability Variables
 	//The attack/movement statuses.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isMove0;
@@ -57,7 +60,9 @@ private:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	bool isCrouched;
+#pragma endregion
 
+#pragma region Random
 	//The total number of movesets.
 	const short TOTALMOVESETS = 2;
 
@@ -73,8 +78,10 @@ private:
 
 	//The array of inputs for the thug to use.
 	TArray<short> inputsToUse;
+#pragma endregion
 
 protected:
+#pragma region AI Set-Up
 	enum Moves
 	{
 		MOVEFORWARD,
@@ -98,11 +105,16 @@ protected:
 
 	//Choose the next move for the thug to perform.
 	void ChooseNextMove();
+#pragma endregion
 
 public:
+#pragma region Construction
 	//The default constructor for the thug.
 	AThugClass();
+#pragma endregion
 
+#pragma region Update
 	//Increment the timer, called every frame.
 	virtual void Tick(float _deltaTime) override;
+#pragma endregion
 };
