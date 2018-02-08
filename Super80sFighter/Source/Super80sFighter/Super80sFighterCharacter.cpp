@@ -117,7 +117,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 #pragma endregion
 
-
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
@@ -174,6 +173,8 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
+	//set starting max stam stams
+	CurrentMaxStamina = TotalStamina;
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
@@ -227,6 +228,25 @@ void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
+	//possibly update current stamina to reflect new max stamina
+	if (TotalHealth * .25f > CurrentHealth)
+	{
+		CurrentMaxStamina = TotalStamina * .25f;
+		if (CurrentStamina > CurrentMaxStamina)
+			CurrentStamina = CurrentMaxStamina;
+	}
+	else if (TotalHealth * .5f > CurrentHealth)
+	{
+		CurrentMaxStamina = TotalStamina * .5f;
+		if (CurrentStamina > CurrentMaxStamina)
+			CurrentStamina = CurrentMaxStamina;
+	}
+	else if (TotalHealth * .75f > CurrentHealth)
+	{
+		CurrentMaxStamina = TotalStamina * .75f;
+		if (CurrentStamina > CurrentMaxStamina)
+			CurrentStamina = CurrentMaxStamina;
+	}
 	TakeDamageBlueprintEvent();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
@@ -600,7 +620,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		grounded_forces -= absolute_forces * DeltaTime;
 	}
 
-
+	//flipping the character on grounded
 	if (grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
@@ -612,6 +632,9 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		FlipCharacter(IsFacingRight);
 	}
 
+	//stamina stuff
+	if (CurrentStamina < CurrentMaxStamina)
+		CurrentStamina += (DeltaTime * 2);
 
 }
 #pragma endregion
