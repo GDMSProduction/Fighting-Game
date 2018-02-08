@@ -378,8 +378,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SetStaminaRegen(bool tf);
 
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void TurnStaminaRegenOn();
+	UFUNCTION(BlueprintCallable, Category = "Yo Mamma")
+		void TauntStaminaRegen();
 
 	UFUNCTION(BlueprintCallable, Category = "Destroying")
 		virtual void destroy();
