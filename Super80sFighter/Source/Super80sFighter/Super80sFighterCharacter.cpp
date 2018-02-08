@@ -209,6 +209,10 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::SetStaminaRegen(bool tf)
+{
+	regen_stamina = tf;
+}
 #pragma endregion
 #pragma region Death and Destruction
 void ASuper80sFighterCharacter::destroy()
@@ -224,14 +228,6 @@ bool ASuper80sFighterCharacter::GetDead()
 void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 {
 	this->isDead = willBeDead;
-}
-void ASuper80sFighterCharacter::TurnStaminaRegenOff()
-{
-	regen_stamina = false;
-}
-void ASuper80sFighterCharacter::TurnStaminaRegenOn()
-{
-	regen_stamina = true;
 }
 #pragma endregion
 #pragma region Hitboxes
@@ -318,13 +314,9 @@ void ASuper80sFighterCharacter::SuperAbility()
 }
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
-
 	// add movement in that direction
 	if (grounded && !isDead)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
-
-
-
 }
 void ASuper80sFighterCharacter::PressRight()
 {
@@ -379,6 +371,11 @@ void ASuper80sFighterCharacter::ReleaseSpecial()
 {
 
 	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::TauntStaminaRegen()
+{
+	if (stamina_tier < 3)
+		stamina_tier += 1;
 }
 void ASuper80sFighterCharacter::StartCrouch()
 {
