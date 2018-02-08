@@ -225,7 +225,7 @@ private:
 
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -374,6 +374,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void BlockEffectBlueprintEvent();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
+		void DeathEffectBlueprintEvent();
+
 #pragma endregion
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
