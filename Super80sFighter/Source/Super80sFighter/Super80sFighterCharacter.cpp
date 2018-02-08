@@ -313,10 +313,12 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 void ASuper80sFighterCharacter::ResetHealth()
 {
 	CurrentHealth = TotalHealth;
+	health_tier = 3;
 }
 void ASuper80sFighterCharacter::ResetStamina()
 {
 	CurrentStamina = TotalStamina;
+	stamina_tier = 3;
 }
 #pragma endregion
 #pragma region Character Inputs
