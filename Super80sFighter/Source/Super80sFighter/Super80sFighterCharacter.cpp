@@ -389,7 +389,26 @@ void ASuper80sFighterCharacter::ReleaseSpecial()
 void ASuper80sFighterCharacter::TauntStaminaRegen()
 {
 	if (stamina_tier < 3)
-		stamina_tier += 1;
+	{
+		stamina_tier++;
+		switch (stamina_tier)
+		{
+		case 0:
+			CurrentMaxStamina = TotalStamina * .25f;
+			break;
+		case 1:
+			CurrentMaxStamina = TotalStamina * .5f;
+			break;
+		case 2:
+			CurrentMaxStamina = TotalStamina * .75f;
+			break;
+		case 3:
+			CurrentMaxStamina = TotalStamina;
+			break;
+		default:
+			break;
+		}
+	}
 }
 void ASuper80sFighterCharacter::StartCrouch()
 {
