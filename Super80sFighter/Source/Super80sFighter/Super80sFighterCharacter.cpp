@@ -615,17 +615,21 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	//The functionality for creating effects on land.
 	if (!grounded)
 	{
-		landed = true;
+		landedEffect = true;
 	}
 
-	if (grounded && landed)
+	if (grounded && landedEffect)
 	{
 		LandEffectBlueprintEvent();
-		landed = false;
+		landedEffect = false;
 	}
 
 	if (grounded)
+	{
 		non_grounded_forces = FVector(0, 0, 0);
+		jumpEffect = true;
+	}
+
 	else
 		grounded_forces = FVector(0, 0, 0);
 	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
@@ -668,6 +672,12 @@ void ASuper80sFighterCharacter::PressShortHop()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		JumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseShortHop()
 {
@@ -677,6 +687,12 @@ void ASuper80sFighterCharacter::PressHighJump()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		HighJumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseHighJump()
 {
@@ -712,7 +728,11 @@ void ASuper80sFighterCharacter::PressJump()
 	if (!isDead)
 	{
 		ACharacter::Jump();
-		HighJumpEffectBlueprintEvent();
+		if (jumpEffect)
+		{
+			JumpEffectBlueprintEvent();
+			jumpEffect = false;
+		}
 	}
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
