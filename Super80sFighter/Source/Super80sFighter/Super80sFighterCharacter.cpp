@@ -245,7 +245,7 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
-	UpdateCurrentStamina(damage * -.5f);
+	
 	UpdateCurrentHealth(-damage);
 	//possibly update current stamina to reflect new max stamina
 	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
@@ -313,10 +313,12 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 void ASuper80sFighterCharacter::ResetHealth()
 {
 	CurrentHealth = TotalHealth;
+	health_tier = 3;
 }
 void ASuper80sFighterCharacter::ResetStamina()
 {
 	CurrentStamina = TotalStamina;
+	stamina_tier = 3;
 }
 #pragma endregion
 #pragma region Character Inputs
@@ -387,7 +389,26 @@ void ASuper80sFighterCharacter::ReleaseSpecial()
 void ASuper80sFighterCharacter::TauntStaminaRegen()
 {
 	if (stamina_tier < 3)
-		stamina_tier += 1;
+	{
+		stamina_tier++;
+		switch (stamina_tier)
+		{
+		case 0:
+			CurrentMaxStamina = TotalStamina * .25f;
+			break;
+		case 1:
+			CurrentMaxStamina = TotalStamina * .5f;
+			break;
+		case 2:
+			CurrentMaxStamina = TotalStamina * .75f;
+			break;
+		case 3:
+			CurrentMaxStamina = TotalStamina;
+			break;
+		default:
+			break;
+		}
+	}
 }
 void ASuper80sFighterCharacter::StartCrouch()
 {
