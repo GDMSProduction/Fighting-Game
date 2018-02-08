@@ -38,6 +38,9 @@ protected:
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
 
+	UFUNCTION(BlueprintCallable, Category = "Rounds")
+		void draw();
+
 private:
 	class ASuper80sFighterCharacter *Player1, *Player2;
 	APlayerController *p1_controller, *p2_controller;
@@ -50,9 +53,11 @@ private:
 	bool on_death_pause;
 
 	bool first_time;
+	bool round_draw;
 	float death_timer;
 
 	void endRound(bool p1_win);
+	void internal_draw();
 	void endGame();
 };
 
