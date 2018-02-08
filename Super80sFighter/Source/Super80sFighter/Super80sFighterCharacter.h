@@ -1,7 +1,6 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
+//Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
+#pragma region Includes
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "../Source/Super80sFighter/Hitbox.h"
@@ -19,10 +18,12 @@
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "EngineGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
+#pragma endregion
 
 UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
 {
+#pragma region Blueprint Defaults
 	GENERATED_BODY()
 
 		/** Side view camera */
@@ -39,12 +40,7 @@ protected:
 		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible = true);
 	UPROPERTY()
 		class AHitbox* tempHitbox;
-
-	/** Called for side to side input */
-	void MoveRight(float Val);
-
-
-
+#pragma endregion
 #pragma region Input Functions
 
 	void PressRight();
@@ -74,6 +70,9 @@ protected:
 
 	void PressJump();
 	void ReleaseJump();
+
+	/** Called for side to side input */
+	void MoveRight(float Val);
 #pragma region Command System
 	void QueStopAttacking();
 	void JumpReachesThreshold();
@@ -177,16 +176,13 @@ protected:
 	void Attack3();
 	void AttackTaunt();
 #pragma endregion
-
-
+#pragma region Initialization and Defaults
 	//Mirrors the character to face the other direction, keeping their front facing the players
 	void FlipCharacter();
 	//Sets their direction, regardless of their previous orientation. 
 	//Args:
 	//forceFaceRight - Set this to true if they should face right, or false to face left
 	void FlipCharacter(bool forceFaceRight);
-
-
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -197,8 +193,10 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
+#pragma endregion
 
 private:
+#pragma region Fighter Main Health and Stamina Variables
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float TotalStamina;
@@ -222,7 +220,8 @@ private:
 		bool IsFacingRight;
 
 	ASuper80sFighterCharacter* EnemyPlayer;
-
+#pragma endregion
+#pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
 	bool grounded;
@@ -240,8 +239,8 @@ private:
 	bool regen_stamina;
 	int health_tier;
 	int stamina_tier;
-
-#pragma region Combo variables
+#pragma endregion
+#pragma region Combo Variables
 	TArray<ButtonBufferInput> buttonBuffer;
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
@@ -249,7 +248,9 @@ private:
 	float AttackThreshold;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
+
 public:
+#pragma region Camera Set-Up
 	ASuper80sFighterCharacter();
 
 	FVector startLocation;
@@ -258,7 +259,7 @@ public:
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-
+#pragma endregion
 #pragma region Controlling Variables
 	//Attacking variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -300,7 +301,7 @@ public:
 
 
 #pragma endregion
-
+#pragma region Fighter Main Health and Stamina Functions
 	bool GetDead();
 	void SetDead(bool willBeDead);
 
@@ -339,12 +340,14 @@ public:
 	/**Updates the Players Current Stamina
 	* @param Health Amount to change Stamina by(Posivive or Negative).
 	*/
+
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void TakeDamage(float damage);
-#pragma region Blueprint events
+#pragma endregion
+#pragma region Blueprint Events
 	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
 		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
 
@@ -379,6 +382,7 @@ public:
 		void DeathEffectBlueprintEvent();
 
 #pragma endregion
+#pragma region Fighter Regeneration and Abilities
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
 
@@ -390,6 +394,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Destroying")
 		virtual void destroy();
-
+#pragma endregion
+#pragma region Update
 	virtual void Tick(float DeltaTime) override;
+#pragma endregion
 };

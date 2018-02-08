@@ -1,8 +1,6 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
+//Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterCharacter.h"
-
-
 
 ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 {
