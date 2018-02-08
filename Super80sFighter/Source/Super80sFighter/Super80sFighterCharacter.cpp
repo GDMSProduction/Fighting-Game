@@ -245,7 +245,7 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
-	UpdateCurrentStamina(damage * -.5f);
+	
 	UpdateCurrentHealth(-damage);
 	//possibly update current stamina to reflect new max stamina
 	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
