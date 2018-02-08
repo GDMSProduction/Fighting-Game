@@ -235,7 +235,9 @@ private:
 
 	//internal stamina variables
 	float CurrentMaxStamina;
-
+	bool regen_stamina;
+	int health_tier;
+	int stamina_tier;
 
 #pragma region Combo variables
 	TArray<ButtonBufferInput> buttonBuffer;
@@ -371,6 +373,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void TurnStaminaRegenOff();
+
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void TurnStaminaRegenOn();
 
 	UFUNCTION(BlueprintCallable, Category = "Destroying")
 		virtual void destroy();

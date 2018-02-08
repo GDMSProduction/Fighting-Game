@@ -174,6 +174,9 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
 	//set starting max stam stams
+	stamina_tier = 3;
+	health_tier = 3;
+	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
@@ -222,6 +225,14 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 {
 	this->isDead = willBeDead;
 }
+void ASuper80sFighterCharacter::TurnStaminaRegenOff()
+{
+	regen_stamina = false;
+}
+void ASuper80sFighterCharacter::TurnStaminaRegenOn()
+{
+	regen_stamina = true;
+}
 #pragma endregion
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
@@ -229,24 +240,42 @@ void ASuper80sFighterCharacter::TakeDamage(float damage)
 	UpdateCurrentStamina(damage * -.5f);
 	UpdateCurrentHealth(-damage);
 	//possibly update current stamina to reflect new max stamina
-	if (TotalHealth * .25f > CurrentHealth)
+	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
 	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .5f > CurrentHealth && health_tier == 2)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .75f > CurrentHealth && health_tier == 3)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+
+	switch (stamina_tier)
+	{
+	case 0:
 		CurrentMaxStamina = TotalStamina * .25f;
-		if (CurrentStamina > CurrentMaxStamina)
-			CurrentStamina = CurrentMaxStamina;
-	}
-	else if (TotalHealth * .5f > CurrentHealth)
-	{
+		break;
+	case 1:
 		CurrentMaxStamina = TotalStamina * .5f;
-		if (CurrentStamina > CurrentMaxStamina)
-			CurrentStamina = CurrentMaxStamina;
-	}
-	else if (TotalHealth * .75f > CurrentHealth)
-	{
+		break;
+	case 2:
 		CurrentMaxStamina = TotalStamina * .75f;
-		if (CurrentStamina > CurrentMaxStamina)
-			CurrentStamina = CurrentMaxStamina;
+		break;
+	case 3:
+		CurrentMaxStamina = TotalStamina;
+		break;
+	default:
+		break;
 	}
+	if (CurrentStamina > CurrentMaxStamina)
+		CurrentStamina = CurrentMaxStamina;
+
 	TakeDamageBlueprintEvent();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
@@ -629,8 +658,8 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	}
 
 	//stamina stuff
-	if (CurrentStamina < CurrentMaxStamina)
-		CurrentStamina += (DeltaTime * 2);
+	if (CurrentStamina < CurrentMaxStamina && regen_stamina)
+		CurrentStamina += (DeltaTime * 5);
 
 }
 #pragma endregion
