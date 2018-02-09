@@ -53,8 +53,8 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	}
 	if (Player1->GetCurrentHealth() <= 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("P1 Dead"));
 		Player1->SetDead(true);
+		Player2->SetDead(false);
 		if (first_time)
 		{
 			on_death_pause = true;
@@ -68,7 +68,6 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 	{
 		Player1->SetDead(false);
 		Player2->SetDead(true);
-		UE_LOG(LogTemp, Warning, TEXT("P2 Dead"));
 		if (first_time)
 		{
 			on_death_pause = true;
@@ -77,6 +76,19 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 		}
 		if (!on_death_pause)
 			endRound(true);
+	}
+	else if (round_draw)
+	{
+		Player2->SetDead(true);
+		Player1->SetDead(true);
+		if (first_time)
+		{
+			on_death_pause = true;
+			death_timer = 3;
+			first_time = false;
+		}
+		if (!on_death_pause)
+			internal_draw();
 	}
 	else
 	{
@@ -96,6 +108,12 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 	}
 	num_rounds = 1;
 	rounds_remaining = num_rounds;
+}
+
+void ASuper80sFighterGameMode::draw()
+{
+	round_draw = true;
+
 }
 
 void ASuper80sFighterGameMode::endRound(bool p1_win)
@@ -123,6 +141,19 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	on_death_pause = false;
 
 	UE_LOG(LogTemp, Warning, TEXT("%d"), rounds_remaining);
+}
+
+void ASuper80sFighterGameMode::internal_draw()
+{
+	Player1->SetActorLocation(Player1->startLocation);
+	Player1->ResetHealth();
+	Player1->ResetStamina();
+	Player2->SetActorLocation(Player2->startLocation);
+	Player2->ResetHealth();
+	Player2->ResetStamina();
+	first_time = true;
+	on_death_pause = false;
+	round_draw = false;
 }
 
 void ASuper80sFighterGameMode::endGame()
