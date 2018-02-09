@@ -1,8 +1,6 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
+//Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterCharacter.h"
-
-
 
 ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 {
@@ -115,8 +113,19 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	tempCommand.Add(buttonSet);
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
 
-#pragma endregion
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
 
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	button1.button = SPECIAL;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand(tempCommand, &ASuper80sFighterCharacter::AttackTaunt);
+#pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
@@ -174,6 +183,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
+	//set starting max stam stams
+	stamina_tier = 3;
+	health_tier = 3;
+	regen_stamina = true;
+	CurrentMaxStamina = TotalStamina;
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
@@ -205,6 +219,10 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
+void ASuper80sFighterCharacter::SetStaminaRegen(bool tf)
+{
+	regen_stamina = tf;
+}
 #pragma endregion
 #pragma region Death and Destruction
 void ASuper80sFighterCharacter::destroy()
@@ -225,8 +243,45 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::TakeDamage(float damage)
 {
-	UpdateCurrentStamina(damage * -.5f);
+	
 	UpdateCurrentHealth(-damage);
+	//possibly update current stamina to reflect new max stamina
+	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .5f > CurrentHealth && health_tier == 2)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+	else if (TotalHealth * .75f > CurrentHealth && health_tier == 3)
+	{
+		health_tier--;
+		stamina_tier--;
+	}
+
+	switch (stamina_tier)
+	{
+	case 0:
+		CurrentMaxStamina = TotalStamina * .25f;
+		break;
+	case 1:
+		CurrentMaxStamina = TotalStamina * .5f;
+		break;
+	case 2:
+		CurrentMaxStamina = TotalStamina * .75f;
+		break;
+	case 3:
+		CurrentMaxStamina = TotalStamina;
+		break;
+	default:
+		break;
+	}
+	if (CurrentStamina > CurrentMaxStamina)
+		CurrentStamina = CurrentMaxStamina;
+
 	TakeDamageBlueprintEvent();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
@@ -256,10 +311,12 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 void ASuper80sFighterCharacter::ResetHealth()
 {
 	CurrentHealth = TotalHealth;
+	health_tier = 3;
 }
 void ASuper80sFighterCharacter::ResetStamina()
 {
 	CurrentStamina = TotalStamina;
+	stamina_tier = 3;
 }
 #pragma endregion
 #pragma region Character Inputs
@@ -269,13 +326,9 @@ void ASuper80sFighterCharacter::SuperAbility()
 }
 void ASuper80sFighterCharacter::MoveRight(float Value)
 {
-
 	// add movement in that direction
 	if (grounded && !isDead)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
-
-
-
 }
 void ASuper80sFighterCharacter::PressRight()
 {
@@ -330,6 +383,30 @@ void ASuper80sFighterCharacter::ReleaseSpecial()
 {
 
 	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::TauntStaminaRegen()
+{
+	if (stamina_tier < 3)
+	{
+		stamina_tier++;
+		switch (stamina_tier)
+		{
+		case 0:
+			CurrentMaxStamina = TotalStamina * .25f;
+			break;
+		case 1:
+			CurrentMaxStamina = TotalStamina * .5f;
+			break;
+		case 2:
+			CurrentMaxStamina = TotalStamina * .75f;
+			break;
+		case 3:
+			CurrentMaxStamina = TotalStamina;
+			break;
+		default:
+			break;
+		}
+	}
 }
 void ASuper80sFighterCharacter::StartCrouch()
 {
@@ -529,11 +606,17 @@ void ASuper80sFighterCharacter::Attack3()
 	QueStopAttacking();
 	isAttacking3 = true;
 }
+void ASuper80sFighterCharacter::AttackTaunt()
+{
+	QueStopAttacking();
+	isAttackingTaunt = true;
+}
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
 	isAttacking3 = false;
+	isAttackingTaunt = false;
 }
 #pragma endregion
 #pragma region Overloaded Unreal
@@ -566,17 +649,21 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 	//The functionality for creating effects on land.
 	if (!grounded)
 	{
-		landed = true;
+		landedEffect = true;
 	}
 
-	if (grounded && landed)
+	if (grounded && landedEffect)
 	{
 		LandEffectBlueprintEvent();
-		landed = false;
+		landedEffect = false;
 	}
 
 	if (grounded)
+	{
 		non_grounded_forces = FVector(0, 0, 0);
+		jumpEffect = true;
+	}
+
 	else
 		grounded_forces = FVector(0, 0, 0);
 	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
@@ -596,7 +683,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		grounded_forces -= absolute_forces * DeltaTime;
 	}
 
-
+	//flipping the character on grounded
 	if (grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 			FlipCharacter(false);
@@ -608,6 +695,9 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 		FlipCharacter(IsFacingRight);
 	}
 
+	//stamina stuff
+	if (CurrentStamina < CurrentMaxStamina && regen_stamina)
+		CurrentStamina += (DeltaTime * 5);
 
 }
 #pragma endregion
@@ -616,6 +706,12 @@ void ASuper80sFighterCharacter::PressShortHop()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		JumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseShortHop()
 {
@@ -625,6 +721,12 @@ void ASuper80sFighterCharacter::PressHighJump()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
 	PressJump();
+
+	if (jumpEffect)
+	{
+		HighJumpEffectBlueprintEvent();
+		jumpEffect = false;
+	}
 }
 void ASuper80sFighterCharacter::ReleaseHighJump()
 {
@@ -660,7 +762,11 @@ void ASuper80sFighterCharacter::PressJump()
 	if (!isDead)
 	{
 		ACharacter::Jump();
-		HighJumpEffectBlueprintEvent();
+		if (jumpEffect)
+		{
+			JumpEffectBlueprintEvent();
+			jumpEffect = false;
+		}
 	}
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
