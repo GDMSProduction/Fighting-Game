@@ -141,7 +141,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
-
+	
 	PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
 	PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
 
@@ -188,6 +188,18 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	health_tier = 3;
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
+
+	
+
+
+	
+	//const FInputActionKeyMapping actionmapping(FName(*LookUpRow->Action), FKey(FName(*LookUpRow->Input)), false, false, false, false);
+
+	FInputActionKeyMapping testMap;
+	testMap.ActionName = FName("Test");
+	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+	((UInputSettings*)InputSettings)->AddActionMapping(testMap);
+	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
@@ -241,7 +253,7 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 }
 #pragma endregion
 #pragma region Hitboxes
-void ASuper80sFighterCharacter::TakeDamage(float damage)
+void ASuper80sFighterCharacter::takeDamage(float damage)
 {
 	
 	UpdateCurrentHealth(-damage);
