@@ -201,6 +201,10 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	((UInputSettings*)InputSettings)->AddActionMapping(testMap);
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
+void ASuper80sFighterCharacter::OverrideControl(EKeys inputKey, FString InputName)
+{
+	//Help
+}
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
