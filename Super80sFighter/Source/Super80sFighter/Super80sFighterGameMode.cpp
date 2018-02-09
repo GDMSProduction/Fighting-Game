@@ -13,19 +13,49 @@ void ASuper80sFighterGameMode::BeginPlay()
 	p2_controller = UGameplayStatics::CreatePlayer(this, 1);
 	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
 
-	//try to replace p2 with a thug
+	//variables required for spawning a character as a different type
 	UWorld* const world = GetWorld();
 	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
-	FVector pos = Player2->GetTransform().GetLocation();
+	FVector pos;
 	FRotator rot = FRotator(0, -90, 0);
-	spawn_parameters.bDeferConstruction = true;
-	p2_controller->UnPossess();
-	Player2->destroy();
-	ASuper80sFighterCharacter* temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
-	UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
-	Player2 = temp;
-	p2_controller->Possess(Player2);
-	//end try to replace p2 with a thug
+	ASuper80sFighterCharacter* temp;
+	//change player 1
+	switch (p1_type)
+	{
+	case ECharacterEnum::CLASS_DEFAULT:
+		//do nothing, characters already spawn as base classes
+		break;
+	case ECharacterEnum::CLASS_THUG:
+		pos = Player1->GetTransform().GetLocation();
+		spawn_parameters.bDeferConstruction = true;
+		p1_controller->UnPossess();
+		Player1->destroy();
+		temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+		Player1 = temp;
+		p1_controller->Possess(Player1);
+		break;
+	default:
+		break;
+	}
+	switch (p2_type)
+	{
+	case ECharacterEnum::CLASS_DEFAULT:
+		//do nothing, this is default pawn
+		break;
+	case ECharacterEnum::CLASS_THUG:
+		pos = Player2->GetTransform().GetLocation();
+		spawn_parameters.bDeferConstruction = true;
+		p2_controller->UnPossess();
+		Player2->destroy();
+		temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+		Player2 = temp;
+		p2_controller->Possess(Player2);
+		break;
+	default:
+		break;
+	}
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);

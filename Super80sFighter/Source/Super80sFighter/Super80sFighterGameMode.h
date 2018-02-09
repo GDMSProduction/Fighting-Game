@@ -9,6 +9,13 @@
 #include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
 
+UENUM(BlueprintType)
+enum class ECharacterEnum : uint8
+{
+	CLASS_DEFAULT		UMETA(DisplayName="Base"),
+	CLASS_THUG			UMETA(DisplayName="Thug")
+};
+
 UCLASS(minimalapi)
 class ASuper80sFighterGameMode : public AGameModeBase
 {
@@ -22,11 +29,15 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
 	bool paused;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rounds")
 	int num_rounds;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds")
 	int rounds_remaining;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
+	ECharacterEnum p1_type = ECharacterEnum::CLASS_DEFAULT;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
+	ECharacterEnum p2_type = ECharacterEnum::CLASS_DEFAULT;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
