@@ -1,5 +1,5 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-#pragma region Includes
+
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -13,12 +13,14 @@
 #include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "Runtime/Engine/Public/TimerManager.h"
-#include <vector.h>
 #include "EngineUtils.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "EngineGlobals.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
+#include "Runtime/Engine/Classes/GameFramework/InputSettings.h"
+#include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
-#pragma endregion
+
 
 UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
@@ -345,7 +347,7 @@ public:
 		void UpdateCurrentHealth(float Health);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void TakeDamage(float damage);
+		void takeDamage(float damage);
 #pragma endregion
 #pragma region Blueprint Events
 	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
