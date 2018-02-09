@@ -195,6 +195,8 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
+
+	void OverrideControl(EKeys inputKey, FString InputName);
 #pragma endregion
 
 private:
