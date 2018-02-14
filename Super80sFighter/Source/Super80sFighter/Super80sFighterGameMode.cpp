@@ -52,7 +52,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 		spawn_parameters.bDeferConstruction = true;
 		p2_controller->UnPossess();
 		Player2->destroy();
-		temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		temp = world->SpawnActor<AThugClass>(pos, rot, spawn_parameters);
 		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		Player2 = temp;
 		p2_controller->Possess(Player2);
@@ -128,12 +128,12 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("Blueprint'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint'"));
+	//static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("Blueprint'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint'"));
 	PrimaryActorTick.bCanEverTick = true;
-	if (PlayerPawnBPClass.Object != NULL)
+	/*if (PlayerPawnBPClass.Object != NULL)
 	{
 		ThugClass = (UClass*)PlayerPawnBPClass.Object->GeneratedClass;
-	}
+	}*/
 	num_rounds = 1;
 	rounds_remaining = num_rounds;
 }
