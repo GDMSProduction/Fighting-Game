@@ -13,7 +13,8 @@ UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
 	CLASS_DEFAULT		UMETA(DisplayName="Base"),
-	CLASS_THUG			UMETA(DisplayName="Thug")
+	CLASS_THUG			UMETA(DisplayName="Thug"),
+	CLASS_TOBY			UMETA(DisplayName="Toby")
 };
 
 UCLASS(minimalapi)
@@ -30,7 +31,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
 	bool paused;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rounds")
-	int num_rounds;
+	int num_rounds = 3;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds")
 	int rounds_remaining;
 

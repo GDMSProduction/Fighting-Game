@@ -19,7 +19,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	FVector pos;
 	FRotator rot = FRotator(0, -90, 0);
 	ASuper80sFighterCharacter* temp;
-	//change player 1
+	//change player 1 (or possibly not if hes default class)
 	switch (p1_type)
 	{
 	case ECharacterEnum::CLASS_DEFAULT:
@@ -35,9 +35,13 @@ void ASuper80sFighterGameMode::BeginPlay()
 		Player1 = temp;
 		p1_controller->Possess(Player1);
 		break;
+	case ECharacterEnum::CLASS_TOBY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
+		break;
 	default:
 		break;
 	}
+	//change player 2 (once again, possibly not if your match is boring and you have the default fighter)
 	switch (p2_type)
 	{
 	case ECharacterEnum::CLASS_DEFAULT:
@@ -53,6 +57,9 @@ void ASuper80sFighterGameMode::BeginPlay()
 		Player2 = temp;
 		p2_controller->Possess(Player2);
 		break;
+	case ECharacterEnum::CLASS_TOBY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
+		break;
 	default:
 		break;
 	}
@@ -60,15 +67,6 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
 
-	//if (PlayerHUDClass != nullptr)
-	//{
-	//	PlayerWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
-	//
-	//	if (PlayerWidget != nullptr)
-	//	{
-	//		PlayerWidget->AddToViewport();
-	//	}
-	//}
 	first_time = true;
 }
 
@@ -188,7 +186,5 @@ void ASuper80sFighterGameMode::internal_draw()
 
 void ASuper80sFighterGameMode::endGame()
 {
-	//add buttons to screen for replay, return to character select, back to main menu
-	UE_LOG(LogTemp, Error, TEXT("ERRROR: ENDGAME FUNCTION NOT YET IMPLEMENTED YOU IDIOT (not you gracious player but the idiot that developed this)"));
 	paused = true;
 }
