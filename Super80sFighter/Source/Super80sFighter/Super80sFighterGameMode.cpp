@@ -128,7 +128,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("Blueprint'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint'"));
 	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Object != NULL)
 	{
