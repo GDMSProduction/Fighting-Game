@@ -1,5 +1,4 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #include "Super80sFighterCharacter.h"
 
 ASuper80sFighterCharacter::ASuper80sFighterCharacter()
@@ -259,19 +258,21 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::takeDamage(float damage)
 {
-	
 	UpdateCurrentHealth(-damage);
-	//possibly update current stamina to reflect new max stamina
+
+	//Possibly update current stamina to reflect new max stamina.
 	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
 	{
 		health_tier--;
 		stamina_tier--;
 	}
+
 	else if (TotalHealth * .5f > CurrentHealth && health_tier == 2)
 	{
 		health_tier--;
 		stamina_tier--;
 	}
+
 	else if (TotalHealth * .75f > CurrentHealth && health_tier == 3)
 	{
 		health_tier--;
@@ -481,7 +482,9 @@ void ASuper80sFighterCharacter::CheckCommand()
 			currentButtonSet.Clear();
 		}
 
-		if (!test.isPress) {//If its a release
+		if (!test.isPress) 
+		{
+			//If its a release
 			bool found = false;
 			for (int i = bufferCopy.Num() - 2; i >= 0; i--)//starting from the next button press, going down
 			{
@@ -499,12 +502,15 @@ void ASuper80sFighterCharacter::CheckCommand()
 				}
 
 			}
-			if (!found) {
+
+			if (!found) 
+			{
 				ButtonInput tempButton;
 				tempButton.button = test.Buttons;
 				tempButton.wasHeld = true;
 				currentButtonSet.inputs.Push(tempButton);
 			}
+
 			bufferCopy.RemoveAt(bufferCopy.Num() - 1);
 		}
 		else //If its a press
@@ -521,10 +527,6 @@ void ASuper80sFighterCharacter::CheckCommand()
 	}
 	tempCommandBuffer.Push(currentButtonSet);
 #pragma endregion
-
-
-
-
 
 
 	if (tempCommandBuffer.Num() == 0)
@@ -589,9 +591,8 @@ void ASuper80sFighterCharacter::CheckCommand()
 			}
 		}
 	}
-
-
 }
+
 void ASuper80sFighterCharacter::ClearCommands()
 {
 	while (buttonBuffer.Num() != 0)
@@ -600,8 +601,8 @@ void ASuper80sFighterCharacter::ClearCommands()
 		AlreadyCalledCommands.RemoveAt(0);
 
 	QueStopAttacking();
-
 }
+
 void ASuper80sFighterCharacter::Attack0()
 {
 	QueStopAttacking();
@@ -633,6 +634,11 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking2 = false;
 	isAttacking3 = false;
 	isAttackingTaunt = false;
+}
+
+void ASuper80sFighterCharacter::ComboCounter()
+{
+
 }
 #pragma endregion
 #pragma region Overloaded Unreal

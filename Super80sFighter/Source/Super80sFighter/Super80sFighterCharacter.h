@@ -73,6 +73,8 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 
+	//void ComboCounter();
+
 	/** Called for side to side input */
 	void MoveRight(float Val);
 #pragma region Command System
