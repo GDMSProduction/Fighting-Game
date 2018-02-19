@@ -22,7 +22,7 @@ AHitbox::AHitbox()
 
 	//create the hitbox mesh component
 	hitbox = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("hitboxMeshComponent"));
-	auto meshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
+	auto meshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Game/SideScrollerCPP/Meshes/Shape_Cube.Shape_Cube'"));
 	if (meshAsset.Object != nullptr)
 	{
 		hitbox->SetStaticMesh(meshAsset.Object);
