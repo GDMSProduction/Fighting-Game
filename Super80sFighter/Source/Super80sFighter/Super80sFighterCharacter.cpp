@@ -44,9 +44,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
 
-
-
-
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
@@ -82,8 +79,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
 
-
-
 	buttonSet.Clear();
 	button1.button = RIGHT;
 	buttonSet.inputs.Add(button1);
@@ -93,8 +88,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	button1.button = DOWN;
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
-
-
+	
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
 
 
@@ -187,9 +181,6 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	health_tier = 3;
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
-
-
-
 
 
 	//const FInputActionKeyMapping actionmapping(FName(*LookUpRow->Action), FKey(FName(*LookUpRow->Input)), false, false, false, false);
@@ -397,7 +388,6 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::takeDamage(float damage)
 {
-
 	UpdateCurrentHealth(-damage);
 
 	//Possibly update current stamina to reflect new max stamina.
@@ -595,7 +585,6 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPres
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
-
 }
 void ASuper80sFighterCharacter::CheckCommand()
 {
@@ -779,7 +768,19 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 
 void ASuper80sFighterCharacter::ComboCounter()
 {
-	//GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
+	bool proMode = false;
+
+	//If "pro-mode" is on (each attack must be within four frames for an input-combo).
+	if (proMode)
+	{
+		//GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
+	}
+
+	//If "pro-mode" is off (each attack must be within eight frames for an input-combo).
+	else
+	{
+		
+	}
 }
 #pragma endregion
 #pragma region Overloaded Unreal
