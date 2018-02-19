@@ -73,7 +73,7 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 
-	//void ComboCounter();
+	void ComboCounter();
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
