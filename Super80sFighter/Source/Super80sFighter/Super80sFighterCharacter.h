@@ -387,6 +387,12 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void DeathEffectBlueprintEvent();
 
+
+
+#pragma endregion
+#pragma region Console Commands
+	UFUNCTION(Exec, Category = "Console Commands")
+		void ResetInputs();
 #pragma endregion
 #pragma region Fighter Regeneration and Abilities
 	UFUNCTION(BlueprintCallable, Category = "Stats")
