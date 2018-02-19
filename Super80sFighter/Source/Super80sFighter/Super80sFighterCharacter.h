@@ -73,6 +73,7 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 
+	//Count the current combo for the fighter.
 	void ComboCounter();
 
 	/** Called for side to side input */
@@ -251,7 +252,9 @@ private:
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
+	short comboCounter;
 	float AttackThreshold;
+	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
 

@@ -28,7 +28,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	SideViewCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
-	// Configure character movement
+															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
@@ -43,9 +43,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
-
-
-
 
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
@@ -82,8 +79,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
 
-
-
 	buttonSet.Clear();
 	button1.button = RIGHT;
 	buttonSet.inputs.Add(button1);
@@ -93,7 +88,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	button1.button = DOWN;
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
-
 
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
 
@@ -187,9 +181,6 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	health_tier = 3;
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
-
-
-
 
 
 	//const FInputActionKeyMapping actionmapping(FName(*LookUpRow->Action), FKey(FName(*LookUpRow->Input)), false, false, false, false);
@@ -485,7 +476,6 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::takeDamage(float damage)
 {
-
 	UpdateCurrentHealth(-damage);
 
 	//Possibly update current stamina to reflect new max stamina.
@@ -528,6 +518,8 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 		CurrentStamina = CurrentMaxStamina;
 
 	TakeDamageBlueprintEvent();
+
+	EnemyPlayer->ComboCounter();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {
@@ -565,7 +557,6 @@ void ASuper80sFighterCharacter::ResetStamina()
 }
 #pragma endregion
 #pragma region Character Inputs
-
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
@@ -683,7 +674,6 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPres
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
-
 }
 void ASuper80sFighterCharacter::CheckCommand()
 {
@@ -867,7 +857,37 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 
 void ASuper80sFighterCharacter::ComboCounter()
 {
+	bool proMode = false;
 
+	//If "Pro-Mode" is on (each attack must be within four frames for an input-combo).
+	if (proMode)
+	{
+		if (lastHit + 4.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		{
+			++comboCounter;
+		}
+
+		else
+		{
+			comboCounter = 0;
+		}
+	}
+
+	//If "Pro-Mode" is off (each attack must be within eight frames for an input-combo).
+	else
+	{
+		if (lastHit + 8.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		{
+			++comboCounter;
+		}
+
+		else
+		{
+			comboCounter = 0;
+		}
+	}
+
+	lastHit = GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer);
 }
 #pragma endregion
 #pragma region Overloaded Unreal
