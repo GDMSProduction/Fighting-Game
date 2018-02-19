@@ -73,6 +73,7 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 
+	//Count the current combo for the fighter.
 	void ComboCounter();
 
 	/** Called for side to side input */

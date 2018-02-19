@@ -638,7 +638,7 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 
 void ASuper80sFighterCharacter::ComboCounter()
 {
-
+	//GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 }
 #pragma endregion
 #pragma region Overloaded Unreal
@@ -659,6 +659,8 @@ void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor
 			lock_grounded = true;
 		}
 	}
+
+	EnemyPlayer->ComboCounter();
 }
 void ASuper80sFighterCharacter::Tick(float DeltaTime)
 {
