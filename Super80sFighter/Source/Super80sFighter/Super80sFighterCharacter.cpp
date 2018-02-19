@@ -301,11 +301,34 @@ void ASuper80sFighterCharacter::ResetInputs()
 
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
 
+	for (int i = 0; i < InputComponent->GetNumActionBindings(); i++)
+	{
+		InputComponent->RemoveActionBinding(i);
+	}
+	for (int i = InputComponent->AxisBindings.Num() - 1; i >= 0; i++)
+	{
+		InputComponent->AxisBindings.RemoveAt(i);
+	}
+#pragma region Jumping
 	FInputActionKeyMapping actionmapping(FName("HighJump"), FKey(EKeys::Up), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 	actionmapping = FInputActionKeyMapping(FName("HighJump"), FKey(EKeys::X), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("ShortHop"), FKey(EKeys::SpaceBar), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey(EKeys::W), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_LeftStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+
 
 	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey(EKeys::I), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
@@ -313,7 +336,62 @@ void ASuper80sFighterCharacter::ResetInputs()
 	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey("Gamepad_Special_Right"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey(EKeys::One), false, false, false, false);
+#pragma region Attacks
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey(EKeys::J), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey("Gamepad_FaceButton_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey(EKeys::K), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey("Gamepad_FaceButton_Bottom"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey(EKeys::L), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey("Gamepad_FaceButton_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey(EKeys::Semicolon), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey("Gamepad_FaceButton_Top"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey(EKeys::S), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_RightStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_LeftStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey(EKeys::D), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_RightStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_LeftStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey(EKeys::A), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_RightStick_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 
@@ -327,8 +405,18 @@ void ASuper80sFighterCharacter::ResetInputs()
 
 
 
+	FInputAxisKeyMapping axismapping(FName("MoveRight"), FKey(EKeys::D), 1.0f);
 
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey(EKeys::A), -1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_LeftX"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_RightX"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
 
 
