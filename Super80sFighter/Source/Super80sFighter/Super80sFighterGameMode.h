@@ -16,6 +16,13 @@ enum class ECharacterEnum : uint8
 	CLASS_THUG			UMETA(DisplayName="Thug"),
 	CLASS_TOBY			UMETA(DisplayName="Toby")
 };
+UENUM(BlueprintType)
+enum class EMenuState : uint8
+{
+	STATE_SPLASH		UMETA(DisplayName="Splash"),
+	STATE_MENU			UMETA(DisplayName="Menu"),
+	STATE_CHAR_SELECT	UMETA(DisplayName="Character Select")
+};
 
 UCLASS(minimalapi)
 class ASuper80sFighterGameMode : public AGameModeBase
@@ -39,6 +46,9 @@ public:
 	ECharacterEnum p1_type = ECharacterEnum::CLASS_DEFAULT;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
 	ECharacterEnum p2_type = ECharacterEnum::CLASS_DEFAULT;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
+	EMenuState current_menu_state;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
