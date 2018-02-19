@@ -209,6 +209,35 @@ void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * Other
 {
 	EnemyPlayer = OtherPlayer;
 }
+void ASuper80sFighterCharacter::ResetInputs()
+{
+	
+
+	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+
+	FInputActionKeyMapping actionmapping(FName("HighJump"), FKey(EKeys::Up), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	((UInputSettings*)InputSettings)->SaveKeyMappings();
+}
 #pragma endregion
 #pragma region Health and Stamina
 float ASuper80sFighterCharacter::GetTotalStamina()
@@ -336,6 +365,7 @@ void ASuper80sFighterCharacter::ResetStamina()
 }
 #pragma endregion
 #pragma region Character Inputs
+
 void ASuper80sFighterCharacter::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
