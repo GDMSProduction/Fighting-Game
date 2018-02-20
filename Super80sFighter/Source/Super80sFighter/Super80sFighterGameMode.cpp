@@ -68,6 +68,8 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player2->SetOtherPlayer(Player1);
 
 	first_time = true;
+	rounds_remaining = num_rounds;
+
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)

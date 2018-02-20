@@ -28,7 +28,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	SideViewCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
-	// Configure character movement
+															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
@@ -43,9 +43,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 
 	TotalHealth = 100.0f;
 	CurrentHealth = TotalHealth;
-
-
-
 
 	CustomHighJumpVelocity = 1000.0f;
 	CustomShortJumpVelocity = 700.0f;
@@ -82,8 +79,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
 
-
-
 	buttonSet.Clear();
 	button1.button = RIGHT;
 	buttonSet.inputs.Add(button1);
@@ -93,7 +88,6 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	button1.button = DOWN;
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
-
 
 	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
 
@@ -140,7 +134,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
 
-	
+
 	PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
 	PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
 
@@ -188,10 +182,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
 
-	
 
-
-	
 	//const FInputActionKeyMapping actionmapping(FName(*LookUpRow->Action), FKey(FName(*LookUpRow->Input)), false, false, false, false);
 
 	FInputActionKeyMapping testMap;
@@ -207,6 +198,233 @@ void ASuper80sFighterCharacter::OverrideControl(EKeys inputKey, FString InputNam
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
+}
+void ASuper80sFighterCharacter::ResetInputs()
+{
+
+#pragma region Comments for having gamepad names
+	//	// Ensure that the GamepadKeyNames match those in InputCoreTypes.cpp
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftAnalogX("Gamepad_LeftX");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftAnalogY("Gamepad_LeftY");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightAnalogX("Gamepad_RightX");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightAnalogY("Gamepad_RightY");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftTriggerAnalog("Gamepad_LeftTriggerAxis");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightTriggerAnalog("Gamepad_RightTriggerAxis");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftThumb("Gamepad_LeftThumbstick");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightThumb("Gamepad_RightThumbstick");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::SpecialLeft("Gamepad_Special_Left");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::SpecialLeft_X("Gamepad_Special_Left_X");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::SpecialLeft_Y("Gamepad_Special_Left_Y");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::SpecialRight("Gamepad_Special_Right");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::FaceButtonBottom("Gamepad_FaceButton_Bottom");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::FaceButtonRight("Gamepad_FaceButton_Right");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::FaceButtonLeft("Gamepad_FaceButton_Left");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::FaceButtonTop("Gamepad_FaceButton_Top");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftShoulder("Gamepad_LeftShoulder");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightShoulder("Gamepad_RightShoulder");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftTriggerThreshold("Gamepad_LeftTrigger");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightTriggerThreshold("Gamepad_RightTrigger");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::DPadUp("Gamepad_DPad_Up");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::DPadDown("Gamepad_DPad_Down");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::DPadRight("Gamepad_DPad_Right");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::DPadLeft("Gamepad_DPad_Left");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftStickUp("Gamepad_LeftStick_Up");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftStickDown("Gamepad_LeftStick_Down");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftStickRight("Gamepad_LeftStick_Right");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::LeftStickLeft("Gamepad_LeftStick_Left");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightStickUp("Gamepad_RightStick_Up");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightStickDown("Gamepad_RightStick_Down");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightStickRight("Gamepad_RightStick_Right");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::RightStickLeft("Gamepad_RightStick_Left");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton1("MotionController_Left_FaceButton1");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton2("MotionController_Left_FaceButton2");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton3("MotionController_Left_FaceButton3");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton4("MotionController_Left_FaceButton4");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton5("MotionController_Left_FaceButton5");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton6("MotionController_Left_FaceButton6");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton7("MotionController_Left_FaceButton7");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_FaceButton8("MotionController_Left_FaceButton8");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Shoulder("MotionController_Left_Shoulder");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Trigger("MotionController_Left_Trigger");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Grip1("MotionController_Left_Grip1");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Grip2("MotionController_Left_Grip2");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick("MotionController_Left_Thumbstick");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_Up("MotionController_Left_Thumbstick_Up");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_Down("MotionController_Left_Thumbstick_Down");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_Left("MotionController_Left_Thumbstick_Left");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_Right("MotionController_Left_Thumbstick_Right");
+	//
+	//	//		Right Controller
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton1("MotionController_Right_FaceButton1");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton2("MotionController_Right_FaceButton2");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton3("MotionController_Right_FaceButton3");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton4("MotionController_Right_FaceButton4");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton5("MotionController_Right_FaceButton5");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton6("MotionController_Right_FaceButton6");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton7("MotionController_Right_FaceButton7");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_FaceButton8("MotionController_Right_FaceButton8");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Shoulder("MotionController_Right_Shoulder");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Trigger("MotionController_Right_Trigger");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Grip1("MotionController_Right_Grip1");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Grip2("MotionController_Right_Grip2");
+	//
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick("MotionController_Right_Thumbstick");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_Up("MotionController_Right_Thumbstick_Up");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_Down("MotionController_Right_Thumbstick_Down");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_Left("MotionController_Right_Thumbstick_Left");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_Right("MotionController_Right_Thumbstick_Right");
+	//
+	//	//   Motion Controller Axes
+	//	//		Left Controller
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_X("MotionController_Left_Thumbstick_X");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Thumbstick_Y("MotionController_Left_Thumbstick_Y");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_TriggerAxis("MotionController_Left_TriggerAxis");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Grip1Axis("MotionController_Left_Grip1Axis");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Left_Grip2Axis("MotionController_Left_Grip2Axis");
+	//
+	//	//		Right Controller
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_X("MotionController_Right_Thumbstick_X");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Thumbstick_Y("MotionController_Right_Thumbstick_Y");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_TriggerAxis("MotionController_Right_TriggerAxis");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Grip1Axis("MotionController_Right_Grip1Axis");
+	//	const FGamepadKeyNames::Type FGamepadKeyNames::MotionController_Right_Grip2Axis("MotionController_Right_Grip2Axis");
+#pragma endregion
+
+	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+
+	for (int i = 0; i < InputComponent->GetNumActionBindings(); i++)
+	{
+		InputComponent->RemoveActionBinding(i);
+	}
+	for (int i = InputComponent->AxisBindings.Num() - 1; i >= 0; i++)
+	{
+		InputComponent->AxisBindings.RemoveAt(i);
+	}
+#pragma region Jumping
+	FInputActionKeyMapping actionmapping(FName("HighJump"), FKey(EKeys::Up), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("HighJump"), FKey(EKeys::X), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("ShortHop"), FKey(EKeys::SpaceBar), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey(EKeys::W), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_LeftStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+
+
+	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey(EKeys::I), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey("Gamepad_Special_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+#pragma region Attacks
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey(EKeys::J), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey("Gamepad_FaceButton_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey(EKeys::K), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey("Gamepad_FaceButton_Bottom"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey(EKeys::L), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey("Gamepad_FaceButton_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey(EKeys::Semicolon), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey("Gamepad_FaceButton_Top"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey(EKeys::S), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_RightStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_LeftStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey(EKeys::D), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_RightStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_LeftStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey(EKeys::A), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_RightStick_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+
+
+
+
+
+
+
+
+
+
+	FInputAxisKeyMapping axismapping(FName("MoveRight"), FKey(EKeys::D), 1.0f);
+
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey(EKeys::A), -1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_LeftX"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_RightX"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+
+
+
+
+
+
+	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
 #pragma endregion
 #pragma region Health and Stamina
@@ -300,6 +518,8 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 		CurrentStamina = CurrentMaxStamina;
 
 	TakeDamageBlueprintEvent();
+
+	EnemyPlayer->ComboCounter();
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {
@@ -454,7 +674,6 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPres
 	CheckCommand();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
-
 }
 void ASuper80sFighterCharacter::CheckCommand()
 {
@@ -482,7 +701,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 			currentButtonSet.Clear();
 		}
 
-		if (!test.isPress) 
+		if (!test.isPress)
 		{
 			//If its a release
 			bool found = false;
@@ -503,7 +722,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 
 			}
 
-			if (!found) 
+			if (!found)
 			{
 				ButtonInput tempButton;
 				tempButton.button = test.Buttons;
@@ -638,7 +857,37 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 
 void ASuper80sFighterCharacter::ComboCounter()
 {
+	bool proMode = false;
 
+	//If "Pro-Mode" is on (each attack must be within four frames for an input-combo).
+	if (proMode)
+	{
+		if (lastHit + 2.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		{
+			++comboCounter;
+		}
+
+		else
+		{
+			comboCounter = 0;
+		}
+	}
+
+	//If "Pro-Mode" is off (each attack must be within eight frames for an input-combo).
+	else
+	{
+		if (lastHit + 0.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		{
+			++comboCounter;
+		}
+
+		else
+		{
+			comboCounter = 0;
+		}
+	}
+
+	lastHit = GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer);
 }
 #pragma endregion
 #pragma region Overloaded Unreal
@@ -754,7 +1003,7 @@ void ASuper80sFighterCharacter::ReleaseHighJump()
 {
 	ReleaseJump();
 }
-void ASuper80sFighterCharacter::PressNormalJump() 
+void ASuper80sFighterCharacter::PressNormalJump()
 {
 	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;

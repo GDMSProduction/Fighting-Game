@@ -73,6 +73,7 @@ protected:
 	void PressJump();
 	void ReleaseJump();
 
+	//Count the current combo for the fighter.
 	void ComboCounter();
 
 	/** Called for side to side input */
@@ -251,7 +252,10 @@ private:
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	int comboCounter;
 	float AttackThreshold;
+	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
 
@@ -387,6 +391,12 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void DeathEffectBlueprintEvent();
 
+
+
+#pragma endregion
+#pragma region Console Commands
+	UFUNCTION(Exec, Category = "Console Commands")
+		void ResetInputs();
 #pragma endregion
 #pragma region Fighter Regeneration and Abilities
 	UFUNCTION(BlueprintCallable, Category = "Stats")
