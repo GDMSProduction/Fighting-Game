@@ -50,6 +50,22 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
 	EMenuState current_menu_state = EMenuState::STATE_SPLASH;
 
+
+
+#pragma region Controls 
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		void OverrideKeyInput(FKey inputKey, FString InputName);
+
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		void OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler);
+
+#pragma region Console Commands
+	UFUNCTION(Exec, Category = "Stats")
+		void ResetInputs();
+#pragma endregion  
+#pragma endregion
+
+
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
 		TSubclassOf<class UUserWidget> PlayerHUDClass;

@@ -166,7 +166,7 @@ protected:
 				return false;
 
 			return true;
-			
+
 		}
 	};
 	TArray<Command> CommandList;
@@ -199,7 +199,6 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-	void OverrideControl(EKeys inputKey, FString InputName);
 #pragma endregion
 
 private:
@@ -231,7 +230,7 @@ private:
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-	bool grounded;
+		bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -394,10 +393,7 @@ public:
 
 
 #pragma endregion
-#pragma region Console Commands
-	UFUNCTION(Exec, Category = "Console Commands")
-		void ResetInputs();
-#pragma endregion
+
 #pragma region Fighter Regeneration and Abilities
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void SuperAbility();
