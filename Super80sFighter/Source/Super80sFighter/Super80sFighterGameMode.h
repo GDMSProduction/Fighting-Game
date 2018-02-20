@@ -48,7 +48,7 @@ public:
 	ECharacterEnum p2_type = ECharacterEnum::CLASS_DEFAULT;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
-	EMenuState current_menu_state;
+	EMenuState current_menu_state = EMenuState::STATE_SPLASH;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats", Meta = (BlueprintProtected = "true", DisplayName = "Stats"))
