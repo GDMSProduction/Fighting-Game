@@ -69,6 +69,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	first_time = true;
 	rounds_remaining = num_rounds;
+
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
