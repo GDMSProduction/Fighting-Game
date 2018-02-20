@@ -862,7 +862,7 @@ void ASuper80sFighterCharacter::ComboCounter()
 	//If "Pro-Mode" is on (each attack must be within four frames for an input-combo).
 	if (proMode)
 	{
-		if (lastHit + 4.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		if (lastHit + 2.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
 		{
 			++comboCounter;
 		}
@@ -876,7 +876,7 @@ void ASuper80sFighterCharacter::ComboCounter()
 	//If "Pro-Mode" is off (each attack must be within eight frames for an input-combo).
 	else
 	{
-		if (lastHit + 8.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		if (lastHit + 0.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
 		{
 			++comboCounter;
 		}

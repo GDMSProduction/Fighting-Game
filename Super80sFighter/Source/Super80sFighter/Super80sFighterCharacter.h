@@ -252,7 +252,8 @@ private:
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
-	short comboCounter;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	int comboCounter;
 	float AttackThreshold;
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
