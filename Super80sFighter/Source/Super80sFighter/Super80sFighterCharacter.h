@@ -43,7 +43,7 @@ protected:
 	UPROPERTY()
 		class AHitbox* tempHitbox;
 #pragma endregion
-#pragma region Input Functions
+#pragma region Input
 
 	void PressRight();
 	void PressLeft();
@@ -78,6 +78,14 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+
+
+	FKey LastPressedKey;
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		void SetLastPressedKey(FKey inKey);
+
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		FKey GetLastPressedKey();
 #pragma region Command System
 	void QueStopAttacking();
 	void JumpReachesThreshold();
@@ -252,7 +260,7 @@ private:
 	FTimerHandle AttackTimer;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	int comboCounter;
+		int comboCounter;
 	float AttackThreshold;
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous

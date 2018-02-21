@@ -172,6 +172,11 @@ void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputNam
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
 
+FString ASuper80sFighterGameMode::ConvertKeyToString(FKey inKey)
+{
+	return inKey.ToString();
+}
+
 void ASuper80sFighterGameMode::ResetInputs()
 
 {
