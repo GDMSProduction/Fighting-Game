@@ -58,6 +58,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		void OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler);
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		FString ConvertKeyToString(FKey inKey);
 
 #pragma region Console Commands
 	UFUNCTION(Exec, Category = "Stats")

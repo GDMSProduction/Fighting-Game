@@ -617,6 +617,14 @@ void ASuper80sFighterCharacter::AttackTaunt()
 	QueStopAttacking();
 	isAttackingTaunt = true;
 }
+void ASuper80sFighterCharacter::SetLastPressedKey(FKey inKey)
+{
+	LastPressedKey = inKey;
+}
+FKey ASuper80sFighterCharacter::GetLastPressedKey()
+{
+	return LastPressedKey;
+}
 void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
