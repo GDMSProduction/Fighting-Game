@@ -10,7 +10,7 @@ AIThug::~AIThug()
 {
 }
 
-//void AIThug::decide() 
-//{
-//
-//}
+void AIThug::decide() 
+{
+
+}
