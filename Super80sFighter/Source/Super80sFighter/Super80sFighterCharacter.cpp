@@ -141,6 +141,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
 	PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("MoveLeft", this, &ASuper80sFighterCharacter::MoveLeft);
 
 
 
@@ -336,6 +337,10 @@ void ASuper80sFighterCharacter::MoveRight(float Value)
 	// add movement in that direction
 	if (grounded && !isDead)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
+}
+void ASuper80sFighterCharacter::MoveLeft(float Val)
+{
+	MoveRight(-Val);
 }
 void ASuper80sFighterCharacter::PressRight()
 {
@@ -654,7 +659,7 @@ void ASuper80sFighterCharacter::ComboCounter()
 	//If "Pro-Mode" is off (each attack must be within eight frames for an input-combo).
 	else
 	{
-		if (lastHit + 0.00f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
+		if (lastHit + 0.000000000001f <= GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer))
 		{
 			++comboCounter;
 		}

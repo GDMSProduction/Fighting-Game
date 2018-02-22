@@ -78,6 +78,7 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+	void MoveLeft(float Val);
 
 
 	FKey LastPressedKey;
@@ -259,8 +260,11 @@ private:
 	TArray<Command> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
+	public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		int comboCounter;
+	int comboCounter;
+
+	private:
 	float AttackThreshold;
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
