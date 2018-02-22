@@ -130,11 +130,11 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FObjectFinder<UBlueprint> PlayerPawnBPClass(TEXT("Blueprint'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint'"));
+	static ConstructorHelpers::FObjectFinder<UClass> PlayerPawnBPClass(TEXT("Class'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint_C'"));
 	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Object != NULL)
 	{
-		ThugClass = (UClass*)PlayerPawnBPClass.Object->GeneratedClass;
+		ThugClass = PlayerPawnBPClass.Object;
 	}
 	num_rounds = 1;
 	rounds_remaining = num_rounds;
