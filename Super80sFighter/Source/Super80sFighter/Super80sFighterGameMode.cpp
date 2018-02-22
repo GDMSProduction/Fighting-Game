@@ -4,6 +4,8 @@
 #include "ThugClass.h"
 #include "UObject/ConstructorHelpers.h"
 
+#define GAMEPAD_BUILD
+
 void ASuper80sFighterGameMode::BeginPlay()
 {
 	Super::BeginPlay();
@@ -155,15 +157,28 @@ void ASuper80sFighterGameMode::OverrideKeyInput(FKey inputKey, FString InputName
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
-
 void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler, bool shouldWeErase)
 {
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+
+#ifdef GAMEPAD_BUILD
 	if (shouldWeErase)
 		for (int i = InputSettings->AxisMappings.Num() - 1; i >= 0; i--)
 		{
-			((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
+			if (((UInputSettings*)InputSettings)->AxisMappings[i].AxisName.ToString() == InputName && !((UInputSettings*)InputSettings)->AxisMappings[i].Key.ToString().Contains("Gamepad"))
+				((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
 		}
+#else
+	if (shouldWeErase)
+		for (int i = InputSettings->AxisMappings.Num() - 1; i >= 0; i--)
+		{
+			if (((UInputSettings*)InputSettings)->AxisMappings[i].AxisName.ToString() == InputName)
+				((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
+		}
+
+#endif // GAMEPAD_BUILD
+
+
 
 
 	FInputAxisKeyMapping axismapping = FInputAxisKeyMapping(FName(*InputName), inputKey, axisScaler);
@@ -171,14 +186,11 @@ void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputNam
 
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
-
 FString ASuper80sFighterGameMode::ConvertKeyToString(FKey inKey)
 {
 	return inKey.ToString();
 }
-
 void ASuper80sFighterGameMode::ResetInputs()
-
 {
 
 #pragma region Comments for having gamepad names
@@ -386,16 +398,19 @@ void ASuper80sFighterGameMode::ResetInputs()
 
 
 	FInputAxisKeyMapping axismapping(FName("MoveRight"), FKey(EKeys::D), 1.0f);
-
 	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
-	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey(EKeys::A), -1.0f);
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey(EKeys::A), 1.0f);
 	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
-	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_LeftX"), 1.0f);
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_LeftStick_Right"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_RightStick_Right"), 1.0f);
 	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
-	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_RightX"), 1.0f);
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey("Gamepad_LeftStick_Left"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey("Gamepad_RightStick_Left"), 1.0f);
 	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
 
