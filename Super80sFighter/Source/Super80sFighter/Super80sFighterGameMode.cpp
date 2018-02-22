@@ -445,6 +445,9 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	if (rounds_remaining == 0)
 		endGame();
 
+	Player1->comboCounter = 0;
+	Player2->comboCounter = 0;
+
 	Player1->SetActorLocation(Player1->startLocation);
 	Player1->ResetHealth();
 	Player1->ResetStamina();
