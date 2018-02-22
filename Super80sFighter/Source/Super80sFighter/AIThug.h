@@ -11,6 +11,7 @@
 class SUPER80SFIGHTER_API AIThug : public AIBase
 {
 public:
+
 	AIThug();
 	~AIThug();
 
