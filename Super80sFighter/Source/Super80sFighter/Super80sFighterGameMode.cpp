@@ -91,7 +91,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 			death_timer = 3.0f;
 			first_time = false;
 		}
-		if(!on_death_pause)
+		if (!on_death_pause)
 			endRound(false);
 	}
 	else if (Player2->GetCurrentHealth() <= 0)
@@ -156,14 +156,14 @@ void ASuper80sFighterGameMode::OverrideKeyInput(FKey inputKey, FString InputName
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
 
-void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler)
+void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler, bool shouldWeErase)
 {
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
-
-	for (int i = InputSettings->AxisMappings.Num() - 1; i >= 0; i--)
-	{
-		((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
-	}
+	if (shouldWeErase)
+		for (int i = InputSettings->AxisMappings.Num() - 1; i >= 0; i--)
+		{
+			((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
+		}
 
 
 	FInputAxisKeyMapping axismapping = FInputAxisKeyMapping(FName(*InputName), inputKey, axisScaler);
@@ -425,7 +425,7 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	else
 	{
 		Player2_round_wins++;
-		
+
 	}
 	if (rounds_remaining == 0)
 		endGame();
