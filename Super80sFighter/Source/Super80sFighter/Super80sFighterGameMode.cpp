@@ -147,11 +147,19 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 void ASuper80sFighterGameMode::OverrideKeyInput(FKey inputKey, FString InputName)
 {
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+#ifdef GAMEPAD_BUILD
+	for (int i = InputSettings->ActionMappings.Num() - 1; i >= 0; i--)
+	{
+		if (((UInputSettings*)InputSettings)->ActionMappings[i].ActionName.ToString() == InputName && !((UInputSettings*)InputSettings)->ActionMappings[i].Key.ToString().Contains("Gamepad"))
+			((UInputSettings*)InputSettings)->ActionMappings.RemoveAt(i);
+	}
+#else
 	for (int i = InputSettings->ActionMappings.Num() - 1; i >= 0; i--)
 	{
 		if (((UInputSettings*)InputSettings)->ActionMappings[i].ActionName.ToString() == InputName)
 			((UInputSettings*)InputSettings)->ActionMappings.RemoveAt(i);
 	}
+#endif
 
 	FInputActionKeyMapping actionmapping(FName(*InputName), inputKey, false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);

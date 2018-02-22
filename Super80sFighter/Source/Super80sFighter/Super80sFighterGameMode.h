@@ -62,7 +62,7 @@ public:
 		FString ConvertKeyToString(FKey inKey);
 
 #pragma region Console Commands
-	UFUNCTION(Exec, Category = "Stats")
+	UFUNCTION(Exec, BlueprintCallable, Category = "Stats")
 		void ResetInputs();
 #pragma endregion  
 #pragma endregion
