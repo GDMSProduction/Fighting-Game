@@ -78,6 +78,7 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Val);
+	void MoveLeft(float Val);
 
 
 	FKey LastPressedKey;
