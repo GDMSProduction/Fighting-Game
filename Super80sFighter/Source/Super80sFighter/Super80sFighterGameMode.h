@@ -1,13 +1,31 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #pragma once
-
 #include "Core.h"
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
 #include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
+
+//The scoring system for end-match results.
+struct ScoreSystem
+{
+	//The average number of landed attacks throughout the match.
+	int numHitsAverage;
+
+	//The average amount of damage performed per attack.
+	float damageAverage;
+
+	//The average amount of time remaining after each round.
+	float timeRemainingAverage;
+
+	//The average amount of damage received after each round.
+	float damageTakenAverage;
+
+	//The average amount of blocked damage after each round.
+	float damageBlockedAverage;
+};
 
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
@@ -16,6 +34,7 @@ enum class ECharacterEnum : uint8
 	CLASS_THUG			UMETA(DisplayName = "Thug"),
 	CLASS_TOBY			UMETA(DisplayName = "Toby")
 };
+
 UENUM(BlueprintType)
 enum class EMenuState : uint8
 {
@@ -29,7 +48,7 @@ class ASuper80sFighterGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-		virtual void BeginPlay() override;
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 public:
