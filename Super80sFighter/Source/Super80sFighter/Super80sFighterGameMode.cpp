@@ -209,7 +209,7 @@ FString ASuper80sFighterGameMode::ConvertKeyToString(FKey inKey)
 {
 	return inKey.ToString();
 }
-FKey ASuper80sFighterGameMode::GetBinding(EInputTypes m_Type, bool isPlayer1)
+FKey ASuper80sFighterGameMode::GetBindingKey(EInputTypes m_Type, bool isPlayer1)
 {
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
 	FString inputString;
