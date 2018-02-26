@@ -41,7 +41,7 @@ class ASuper80sFighterGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-	virtual void BeginPlay() override;
+		virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 public:
@@ -77,6 +77,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		FKey GetBindingKey(EInputTypes m_Type, bool isPlayer1);
+
+	bool isKeyboardMode = false;
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		bool GetIsKeyboardMode();
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		void SetIsKeyboardMode(bool m_SetKeyboardMode);
 
 #pragma region Console Commands
 	UFUNCTION(Exec, Category = "Controls")

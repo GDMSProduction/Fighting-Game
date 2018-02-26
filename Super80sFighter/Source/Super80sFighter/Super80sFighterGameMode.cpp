@@ -258,6 +258,14 @@ FKey ASuper80sFighterGameMode::GetBindingKey(EInputTypes m_Type, bool isPlayer1)
 
 	return FKey();
 }
+bool ASuper80sFighterGameMode::GetIsKeyboardMode()
+{
+	return isKeyboardMode;
+}
+void ASuper80sFighterGameMode::SetIsKeyboardMode(bool m_SetKeyboardMode)
+{
+	isKeyboardMode = m_SetKeyboardMode;
+}
 void ASuper80sFighterGameMode::ResetInputs()
 {
 
