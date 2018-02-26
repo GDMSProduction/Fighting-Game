@@ -127,9 +127,11 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	int id = -1;
+
+#pragma region Get Id
 	if (GetPlayerController() != nullptr)
 		id = GetPlayerController()->GetLocalPlayer()->GetControllerId();//My intellisense says its bad but it compiles and works. Fuck you VS
-
+#pragma endregion
 
 	if (id == 0)
 	{
