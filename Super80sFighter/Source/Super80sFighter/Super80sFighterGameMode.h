@@ -62,8 +62,10 @@ public:
 		FString ConvertKeyToString(FKey inKey);
 
 #pragma region Console Commands
-	UFUNCTION(Exec, BlueprintCallable, Category = "Stats")
+	UFUNCTION(Exec, Category = "Controls")
 		void ResetInputs();
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		void ResetInputsWrapper();
 #pragma endregion  
 #pragma endregion
 

@@ -329,13 +329,16 @@ void ASuper80sFighterGameMode::ResetInputs()
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 #pragma endregion
 
+#pragma region Pause
+
+
 
 	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey(EKeys::I), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey("Gamepad_Special_Right"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
+#pragma endregion
 #pragma region Attacks
 
 	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey(EKeys::J), false, false, false, false);
@@ -367,6 +370,7 @@ void ASuper80sFighterGameMode::ResetInputs()
 #pragma endregion
 
 
+#pragma region Movement
 	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey(EKeys::S), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
@@ -393,6 +397,8 @@ void ASuper80sFighterGameMode::ResetInputs()
 
 	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+
 
 
 
@@ -428,6 +434,10 @@ void ASuper80sFighterGameMode::ResetInputs()
 
 
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
+}
+void ASuper80sFighterGameMode::ResetInputsWrapper()
+{
+	ResetInputs();
 }
 #pragma endregion
 
