@@ -128,7 +128,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 {
 	int id = -1;
 	if (GetPlayerController() != nullptr)
-		id = GetPlayerController()->GetLocalPlayer()->GetControllerId();
+		id = GetPlayerController()->GetLocalPlayer()->GetControllerId();//My intellisense says its bad but it compiles and works. Fuck you VS
 
 
 	if (id == 0)
