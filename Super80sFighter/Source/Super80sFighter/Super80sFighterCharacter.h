@@ -22,7 +22,6 @@
 #include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
 
-
 UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
 {
@@ -111,8 +110,10 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
+
 	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
-	struct ButtonInput {
+	struct ButtonInput 
+	{
 		INPUT_TYPE button;
 		bool wasHeld;
 
