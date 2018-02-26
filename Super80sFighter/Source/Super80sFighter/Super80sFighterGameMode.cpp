@@ -213,10 +213,12 @@ FKey ASuper80sFighterGameMode::GetBindingKey(EInputTypes m_Type, bool isPlayer1)
 {
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
 	FString inputString;
+	FString badString = FString("THISWILLNEVERCOMEUP");
 	switch (m_Type)
 	{
 	case EInputTypes::JUMP:
 		inputString = FString("Jump");
+		badString = FString("High");
 		break;
 	case EInputTypes::CROUCH:
 		inputString = FString("Crouch");
@@ -248,10 +250,12 @@ FKey ASuper80sFighterGameMode::GetBindingKey(EInputTypes m_Type, bool isPlayer1)
 
 	for (int i = 0; i < InputSettings->ActionMappings.Num(); i++)
 	{
-		if (InputSettings->ActionMappings[i].ActionName.ToString().Contains(inputString) && InputSettings->ActionMappings[i].ActionName.ToString().Contains(PlayerString))
+		if (InputSettings->ActionMappings[i].ActionName.ToString().Contains(inputString) &&
+			InputSettings->ActionMappings[i].ActionName.ToString().Contains(PlayerString) &&
+			!InputSettings->ActionMappings[i].ActionName.ToString().Contains(badString))
 			return InputSettings->ActionMappings[i].Key;
 	}
-	
+
 	return FKey();
 }
 void ASuper80sFighterGameMode::ResetInputs()
