@@ -246,6 +246,13 @@ void ASuper80sFighterCharacter::SetStaminaRegen(bool tf)
 {
 	regen_stamina = tf;
 }
+float ASuper80sFighterCharacter::Block(float _damage)
+{
+	_damage *= 0.50f;
+
+	//Return the modified (lower) damage amount.
+	return _damage;
+}
 #pragma endregion
 #pragma region Death and Destruction
 void ASuper80sFighterCharacter::destroy()
@@ -266,7 +273,16 @@ void ASuper80sFighterCharacter::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void ASuper80sFighterCharacter::takeDamage(float damage)
 {
+	//If the player is ready to block.
+	//if (true)
+	//{
+		//damage = Block(damage);
+		//playerScore.damageBlockedAverage += damage;
+	//}
+
 	UpdateCurrentHealth(-damage);
+
+	TakeDamageBlueprintEvent();
 
 	//Possibly update current stamina to reflect new max stamina.
 	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
@@ -306,9 +322,9 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 	}
 
 	if (CurrentStamina > CurrentMaxStamina)
+	{
 		CurrentStamina = CurrentMaxStamina;
-
-	TakeDamageBlueprintEvent();
+	}
 
 	EnemyPlayer->ComboCounter();
 
