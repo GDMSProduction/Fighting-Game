@@ -17,6 +17,7 @@
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "EngineGlobals.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Runtime/Engine/Classes/GameFramework/InputSettings.h"
 #include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
 #include "Super80sFighterCharacter.generated.h"
@@ -207,6 +208,8 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
+
+	APlayerController* GetPlayerController();
 
 #pragma endregion
 

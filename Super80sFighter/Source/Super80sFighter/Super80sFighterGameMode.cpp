@@ -309,123 +309,220 @@ void ASuper80sFighterGameMode::ResetInputs()
 	{
 		((UInputSettings*)InputSettings)->AxisMappings.RemoveAt(i);
 	}
+#pragma region Player 1
 #pragma region Jumping
-	FInputActionKeyMapping actionmapping(FName("HighJump"), FKey(EKeys::Up), false, false, false, false);
+	FInputActionKeyMapping actionmapping(FName("HighJump_P1"), FKey(EKeys::Up), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("HighJump"), FKey(EKeys::X), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("HighJump_P1"), FKey(EKeys::X), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("ShortHop"), FKey(EKeys::SpaceBar), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("ShortHop_P1"), FKey(EKeys::SpaceBar), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey(EKeys::W), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Jump_P1"), FKey(EKeys::W), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Jump_P1"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Jump"), FKey("Gamepad_LeftStick_Up"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Jump_P1"), FKey("Gamepad_LeftStick_Up"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 #pragma endregion
-
 #pragma region Pause
 
 
 
-	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey(EKeys::I), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Pause_P1"), FKey(EKeys::I), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Pause"), FKey("Gamepad_Special_Right"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Pause_P1"), FKey("Gamepad_Special_Right"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 #pragma endregion
 #pragma region Attacks
 
-	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey(EKeys::J), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack1_P1"), FKey(EKeys::J), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Attack1"), FKey("Gamepad_FaceButton_Left"), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
-
-	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey(EKeys::K), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
-	actionmapping = FInputActionKeyMapping(FName("Attack2"), FKey("Gamepad_FaceButton_Bottom"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack1_P1"), FKey("Gamepad_FaceButton_Left"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 
-	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey(EKeys::L), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack2_P1"), FKey(EKeys::K), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Attack3"), FKey("Gamepad_FaceButton_Right"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack2_P1"), FKey("Gamepad_FaceButton_Bottom"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 
-	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey(EKeys::Semicolon), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack3_P1"), FKey(EKeys::L), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Attack4"), FKey("Gamepad_FaceButton_Top"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Attack3_P1"), FKey("Gamepad_FaceButton_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4_P1"), FKey(EKeys::Semicolon), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4_P1"), FKey("Gamepad_FaceButton_Top"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 #pragma endregion
-
-
 #pragma region Movement
-	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey(EKeys::S), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P1"), FKey(EKeys::S), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_RightStick_Down"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P1"), FKey("Gamepad_RightStick_Down"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("Crouch"), FKey("Gamepad_LeftStick_Down"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P1"), FKey("Gamepad_LeftStick_Down"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey(EKeys::D), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P1"), FKey(EKeys::D), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_RightStick_Right"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P1"), FKey("Gamepad_RightStick_Right"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressRight"), FKey("Gamepad_LeftStick_Right"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P1"), FKey("Gamepad_LeftStick_Right"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey(EKeys::A), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P1"), FKey(EKeys::A), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_RightStick_Left"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P1"), FKey("Gamepad_RightStick_Left"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
-	actionmapping = FInputActionKeyMapping(FName("PressLeft"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P1"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+#pragma region Axis movement
+
+	FInputAxisKeyMapping axismapping(FName("MoveRight_P1"), FKey(EKeys::D), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P1"), FKey(EKeys::A), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight_P1"), FKey("Gamepad_LeftStick_Right"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveRight_P1"), FKey("Gamepad_RightStick_Right"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P1"), FKey("Gamepad_LeftStick_Left"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P1"), FKey("Gamepad_RightStick_Left"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+#pragma endregion  
+#pragma endregion
+#pragma region Player 2
+#pragma region Jumping
+	actionmapping = FInputActionKeyMapping(FName("HighJump_P2"), FKey(EKeys::Up), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("HighJump_P2"), FKey(EKeys::X), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("ShortHop_P2"), FKey(EKeys::SpaceBar), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump_P2"), FKey(EKeys::W), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump_P2"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Jump_P2"), FKey("Gamepad_LeftStick_Up"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+#pragma region Pause
+
+
+
+	actionmapping = FInputActionKeyMapping(FName("Pause_P2"), FKey(EKeys::I), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Pause_P2"), FKey("Gamepad_Special_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+#pragma region Attacks
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1_P2"), FKey(EKeys::J), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack1_P2"), FKey("Gamepad_FaceButton_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2_P2"), FKey(EKeys::K), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack2_P2"), FKey("Gamepad_FaceButton_Bottom"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3_P2"), FKey(EKeys::L), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack3_P2"), FKey("Gamepad_FaceButton_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4_P2"), FKey(EKeys::Semicolon), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Attack4_P2"), FKey("Gamepad_FaceButton_Top"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+#pragma region Movement
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P2"), FKey(EKeys::S), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P2"), FKey("Gamepad_RightStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("Crouch_P2"), FKey("Gamepad_LeftStick_Down"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P2"), FKey(EKeys::D), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P2"), FKey("Gamepad_RightStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressRight_P2"), FKey("Gamepad_LeftStick_Right"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P2"), FKey(EKeys::A), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P2"), FKey("Gamepad_RightStick_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+
+	actionmapping = FInputActionKeyMapping(FName("PressLeft_P2"), FKey("Gamepad_LeftStick_Left"), false, false, false, false);
+	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+#pragma endregion
+#pragma region Axis movement
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight_P2"), FKey(EKeys::D), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P2"), FKey(EKeys::A), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveRight_P2"), FKey("Gamepad_LeftStick_Right"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveRight_P2"), FKey("Gamepad_RightStick_Right"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P2"), FKey("Gamepad_LeftStick_Left"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+	axismapping = FInputAxisKeyMapping(FName("MoveLeft_P2"), FKey("Gamepad_RightStick_Left"), 1.0f);
+	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
+#pragma endregion  
 #pragma endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-	FInputAxisKeyMapping axismapping(FName("MoveRight"), FKey(EKeys::D), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
-
-	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey(EKeys::A), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
-
-	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_LeftStick_Right"), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
-	axismapping = FInputAxisKeyMapping(FName("MoveRight"), FKey("Gamepad_RightStick_Right"), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
-
-	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey("Gamepad_LeftStick_Left"), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
-	axismapping = FInputAxisKeyMapping(FName("MoveLeft"), FKey("Gamepad_RightStick_Left"), 1.0f);
-	((UInputSettings*)InputSettings)->AddAxisMapping(axismapping);
 
 
 

@@ -126,6 +126,9 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 #pragma region Initialization
 void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
+	
+	int32 id = GetPlayerController()->GetLocalPlayer()->GetControllerId();
+	
 	// set up gameplay key bindings
 	PlayerInputComponent->BindAction("HighJump", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
 	PlayerInputComponent->BindAction("HighJump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
@@ -133,39 +136,24 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	PlayerInputComponent->BindAction("ShortHop", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
-
-
 	PlayerInputComponent->BindAction("PressRight", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
 	PlayerInputComponent->BindAction("PressRight", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
-
 	PlayerInputComponent->BindAction("PressLeft", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
 	PlayerInputComponent->BindAction("PressLeft", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASuper80sFighterCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &ASuper80sFighterCharacter::MoveLeft);
-
-
-
-
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
 	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
 	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
-
 	PlayerInputComponent->BindAction("Attack1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunch);
 	PlayerInputComponent->BindAction("Attack2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKick);
 	PlayerInputComponent->BindAction("Attack3", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHeavy);
 	PlayerInputComponent->BindAction("Attack4", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
-
-
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
-
-
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
 
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASuper80sFighterCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &ASuper80sFighterCharacter::TouchStopped);
 
-	PlayerInputComponent->BindKey(EKeys::O, IE_Pressed, this, &ASuper80sFighterCharacter::SuperAbility);
 
 
 	//spawn a hitbox on the player that can be hit and attacked
@@ -191,6 +179,11 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
 	((UInputSettings*)InputSettings)->AddActionMapping(testMap);
 	((UInputSettings*)InputSettings)->SaveKeyMappings();
+}
+APlayerController * ASuper80sFighterCharacter::GetPlayerController()
+{
+	APlayerController* ret = Cast<APlayerController>(Controller);
+	return ret;
 }
 void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
 {
