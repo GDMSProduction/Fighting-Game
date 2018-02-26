@@ -108,7 +108,6 @@ protected:
 	void MoveRight(float Val);
 	void MoveLeft(float Val);
 
-
 	FKey LastPressedKey;
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		void SetLastPressedKey(FKey inKey);
@@ -246,7 +245,7 @@ protected:
 #pragma endregion
 
 private:
-#pragma region Fighter Main Health and Stamina Variables
+#pragma region Main Health and Stamina Variables
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float TotalStamina;
@@ -357,11 +356,13 @@ public:
 
 
 #pragma endregion
-#pragma region Fighter Main Health and Stamina Functions
+#pragma region Main Health and Stamina Functions
 	bool GetDead();
 	void SetDead(bool willBeDead);
 
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
+
+	float Block(float _damage);
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
