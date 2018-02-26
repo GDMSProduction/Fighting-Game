@@ -4,7 +4,7 @@
 #include "ThugClass.h"
 #include "UObject/ConstructorHelpers.h"
 
-#define GAMEPAD_BUILD
+#define notGAMEPAD_BUILD
 
 void ASuper80sFighterGameMode::BeginPlay()
 {
@@ -71,7 +71,6 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	first_time = true;
 	rounds_remaining = num_rounds;
-
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
@@ -197,6 +196,64 @@ void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputNam
 FString ASuper80sFighterGameMode::ConvertKeyToString(FKey inKey)
 {
 	return inKey.ToString();
+}
+FKey ASuper80sFighterGameMode::GetBindingKey(EInputTypes m_Type, bool isPlayer1)
+{
+	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+	FString inputString;
+	FString badString = FString("THISWILLNEVERCOMEUP");
+	switch (m_Type)
+	{
+	case EInputTypes::JUMP:
+		inputString = FString("Jump");
+		badString = FString("High");
+		break;
+	case EInputTypes::CROUCH:
+		inputString = FString("Crouch");
+		break;
+	case EInputTypes::LEFT:
+		inputString = FString("Left");
+		break;
+	case EInputTypes::RIGHT:
+		inputString = FString("Right");
+		break;
+	case EInputTypes::ATT1:
+		inputString = FString("Attack1");
+		break;
+	case EInputTypes::ATT2:
+		inputString = FString("Attack2");
+		break;
+	case EInputTypes::ATT3:
+		inputString = FString("Attack3");
+		break;
+	case EInputTypes::ATT4:
+		inputString = FString("Attack4");
+		break;
+	default:
+		inputString = FString("What the fuck");
+		break;
+	}
+
+	FString PlayerString = isPlayer1 ? FString("P1") : FString("P2");
+
+	for (int i = 0; i < InputSettings->ActionMappings.Num(); i++)
+	{
+		if (InputSettings->ActionMappings[i].ActionName.ToString().Contains(inputString) &&
+			InputSettings->ActionMappings[i].ActionName.ToString().Contains(PlayerString) &&
+			!InputSettings->ActionMappings[i].ActionName.ToString().Contains(badString))
+			return InputSettings->ActionMappings[i].Key;
+	}
+
+	return FKey();
+}
+bool ASuper80sFighterGameMode::GetIsKeyboardMode()
+{
+	return isKeyboardMode;
+}
+void ASuper80sFighterGameMode::SetIsKeyboardMode(bool m_SetKeyboardMode)
+{
+	int x = 0;
+	isKeyboardMode = m_SetKeyboardMode;
 }
 void ASuper80sFighterGameMode::ResetInputs()
 {
@@ -547,16 +604,42 @@ void ASuper80sFighterGameMode::draw()
 
 void ASuper80sFighterGameMode::endRound(bool p1_win)
 {
-	rounds_remaining--;
+	--rounds_remaining;
+
 	if (p1_win)
 	{
 		Player1_round_wins++;
+
+		Player1->playerScore.timeRemaining *= 50;
+		Player1->playerScore.healthRemaining *= 50;
+		Player1->playerScore.numHits *= 5;
+		Player1->playerScore.numHeavyHits *= 10;
+		Player1->playerScore.numSpecialHits *= 15;
+		Player1->playerScore.numTaunts *= 500;
+		Player1->playerScore.numAttacksBlocked *= 2;
+
+		if (Player1->GetCurrentHealth() == Player1->GetTotalHealth())
+		{
+			Player1->playerScore.perfectRound = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		if (Player1_round_wins == num_rounds)
+		{
+			Player1->playerScore.winPerfectGame = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		Player1->playerScore.specialFinish = true;
+		Player1->playerScore.totalScore += 500;
 	}
+
 	else
 	{
 		Player2_round_wins++;
 
 	}
+
 	if (rounds_remaining == 0)
 		endGame();
 
@@ -566,9 +649,11 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	Player1->SetActorLocation(Player1->startLocation);
 	Player1->ResetHealth();
 	Player1->ResetStamina();
+
 	Player2->SetActorLocation(Player2->startLocation);
 	Player2->ResetHealth();
 	Player2->ResetStamina();
+
 	first_time = true;
 	on_death_pause = false;
 

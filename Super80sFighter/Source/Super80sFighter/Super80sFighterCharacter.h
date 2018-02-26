@@ -1,26 +1,78 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
-#include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "../Source/Super80sFighter/Hitbox.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "Components/InputComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 #include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
-#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
-#include "Runtime/Engine/Public/TimerManager.h"
-#include "EngineUtils.h"
-#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
-#include "EngineGlobals.h"
-#include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Runtime/Engine/Classes/GameFramework/InputSettings.h"
 #include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Public/TimerManager.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "../Source/Super80sFighter/Hitbox.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "EngineGlobals.h"
+#include "EngineUtils.h"
+#include "CoreMinimal.h"
 #include "Super80sFighterCharacter.generated.h"
+
+#pragma region Score
+//The scoring system for end-match results.
+USTRUCT(BlueprintType)
+struct FScoreSystem
+{
+	GENERATED_USTRUCT_BODY()
+
+	//The total score of the match for the player.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float totalScore;
+
+	//The amount of time remaining after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float timeRemaining;
+
+	//The amount of health remaining after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float healthRemaining;
+
+	//The number of landed punches and kicks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numHits;
+
+	//The number of landed heavy attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numHeavyHits;
+
+	//The number of landed special attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numSpecialHits;
+
+	//The number of landed special attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numTaunts;
+
+	//The amount of blocked attacks after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numAttacksBlocked;
+
+	//Was the round a perfect round for the player?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool perfectRound;
+
+	//Was the game a win-perfect game for the player?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool winPerfectGame;
+
+	//Was the round won with a special finish?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool specialFinish;
+};
+#pragma endregion
 
 UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
@@ -79,7 +131,6 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Val);
 	void MoveLeft(float Val);
-
 
 	FKey LastPressedKey;
 	UFUNCTION(BlueprintCallable, Category = "Controls")
@@ -212,10 +263,13 @@ protected:
 
 	APlayerController* GetPlayerController();
 
+	public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	FScoreSystem playerScore;
 #pragma endregion
 
 private:
-#pragma region Fighter Main Health and Stamina Variables
+#pragma region Main Health and Stamina Variables
 	/**Player Total Stamina*/
 	UPROPERTY(EditAnywhere, Category = "Stats")
 		float TotalStamina;
@@ -239,11 +293,13 @@ private:
 		bool IsFacingRight;
 
 	ASuper80sFighterCharacter* EnemyPlayer;
+
+	FTimerHandle BlockTimer;
 #pragma endregion
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -270,6 +326,7 @@ private:
 
 	private:
 	float AttackThreshold;
+	float BlockThreshold;
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
@@ -298,7 +355,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttackingTaunt;
 
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isBlocking = false;
 
 	//Movement Variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -326,11 +384,15 @@ public:
 
 
 #pragma endregion
-#pragma region Fighter Main Health and Stamina Functions
+#pragma region Main Health and Stamina Functions
 	bool GetDead();
 	void SetDead(bool willBeDead);
 
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
+
+	float Block(float _damage);
+
+	void StopBlocking();
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
