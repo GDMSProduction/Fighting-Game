@@ -6,7 +6,7 @@ bool UOverriddenGameViewportClient::InputKey(FViewport* Viewport, int32 Controll
 {
 	ASuper80sFighterGameMode* gameMode = (ASuper80sFighterGameMode*)GetWorld()->GetAuthGameMode();
 
-	if (gameMode->GetIsKeyboardMode()) {
+	if (!gameMode->GetIsKeyboardMode()) {
 		return Super::InputKey(Viewport, ControllerId, Key, EventType, AmountDepressed, bGamepad);
 	} else {
 		if (IgnoreInput() || bGamepad || Key.IsMouseButton())

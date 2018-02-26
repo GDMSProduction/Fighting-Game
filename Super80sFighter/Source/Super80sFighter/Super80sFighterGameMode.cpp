@@ -252,6 +252,7 @@ bool ASuper80sFighterGameMode::GetIsKeyboardMode()
 }
 void ASuper80sFighterGameMode::SetIsKeyboardMode(bool m_SetKeyboardMode)
 {
+	int x = 0;
 	isKeyboardMode = m_SetKeyboardMode;
 }
 void ASuper80sFighterGameMode::ResetInputs()
