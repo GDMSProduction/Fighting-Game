@@ -5,29 +5,29 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 {
 	//I love asian qt3.14s
 	// Set size for collision capsule
-	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-	//disable overlap events on the characters capsule component
+	GetCapsuleComponent()->InitCapsuleSize(42.00f, 96.00f);
+
+	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	// Don't rotate when the controller rotates.
+	//Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
-	// Create a camera boom attached to the root (capsule)
+	//Create a camera boom attached to the root (capsule).
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bAbsoluteRotation = true; // Rotation of the character should not affect rotation of boom
 	CameraBoom->bDoCollisionTest = false;
-	CameraBoom->TargetArmLength = 500.f;
-	CameraBoom->SocketOffset = FVector(0.f, 0.f, 75.f);
-	CameraBoom->RelativeRotation = FRotator(0.f, 180.f, 0.f);
+	CameraBoom->TargetArmLength = 500.00f;
+	CameraBoom->SocketOffset = FVector(0.00f, 0.00f, 75.00f);
+	CameraBoom->RelativeRotation = FRotator(0.00f, 180.00f, 0.00f);
 
-	// Create a camera and attach to boom
+	//Create a camera and attach to boom.
 	SideViewCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("SideViewCamera"));
 	SideViewCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
-
 															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
@@ -48,6 +48,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	CustomShortJumpVelocity = 700.0f;
 	JumpThreshold = 0.1f;
 	AttackThreshold = 0.2f;
+	BlockThreshold = 0.05f;
 
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
@@ -215,7 +216,6 @@ void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * Other
 {
 	EnemyPlayer = OtherPlayer;
 }
-
 #pragma endregion
 #pragma region Health and Stamina
 float ASuper80sFighterCharacter::GetTotalStamina()
@@ -245,13 +245,6 @@ float ASuper80sFighterCharacter::GetCurrentHealth()
 void ASuper80sFighterCharacter::SetStaminaRegen(bool tf)
 {
 	regen_stamina = tf;
-}
-float ASuper80sFighterCharacter::Block(float _damage)
-{
-	_damage *= 0.50f;
-
-	//Return the modified (lower) damage amount.
-	return _damage;
 }
 #pragma endregion
 #pragma region Death and Destruction
@@ -285,19 +278,19 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 	TakeDamageBlueprintEvent();
 
 	//Possibly update current stamina to reflect new max stamina.
-	if (TotalHealth * .25f > CurrentHealth && health_tier == 1)
+	if (TotalHealth * 0.25f > CurrentHealth && health_tier == 1)
 	{
 		health_tier--;
 		stamina_tier--;
 	}
 
-	else if (TotalHealth * .5f > CurrentHealth && health_tier == 2)
+	else if (TotalHealth * 0.5f > CurrentHealth && health_tier == 2)
 	{
 		health_tier--;
 		stamina_tier--;
 	}
 
-	else if (TotalHealth * .75f > CurrentHealth && health_tier == 3)
+	else if (TotalHealth * 0.75f > CurrentHealth && health_tier == 3)
 	{
 		health_tier--;
 		stamina_tier--;
@@ -306,13 +299,13 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 	switch (stamina_tier)
 	{
 	case 0:
-		CurrentMaxStamina = TotalStamina * .25f;
+		CurrentMaxStamina = TotalStamina * 0.25f;
 		break;
 	case 1:
-		CurrentMaxStamina = TotalStamina * .5f;
+		CurrentMaxStamina = TotalStamina * 0.5f;
 		break;
 	case 2:
-		CurrentMaxStamina = TotalStamina * .75f;
+		CurrentMaxStamina = TotalStamina * 0.75f;
 		break;
 	case 3:
 		CurrentMaxStamina = TotalStamina;
@@ -355,6 +348,17 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
+}
+float ASuper80sFighterCharacter::Block(float _damage)
+{
+	//Decrease the amount of damage the player will take.
+	_damage *= 0.50f;
+
+	//Set (and reset upon finishing) the blocking timer.
+	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &ASuper80sFighterCharacter::ClearCommands, BlockThreshold);
+
+	//Return the modified (lower) damage amount.
+	return _damage;
 }
 #pragma endregion
 #pragma region Character Reset
@@ -740,7 +744,9 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 	//implementing my physics
 	if (!lock_grounded)
+	{
 		grounded = GetCharacterMovement()->IsMovingOnGround();
+	}
 
 	//The functionality for creating effects on land.
 	if (!grounded)
@@ -762,30 +768,38 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 	else
 		grounded_forces = FVector(0, 0, 0);
-	//currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces
+	//Currently using .05f so really small forces are ignored, change to 0 if you want to include very small forces.
 	if (FVector::DistSquared(FVector::ZeroVector, non_grounded_forces) > .05f)
 	{
 		ControlInputVector += non_grounded_forces * DeltaTime;
 		non_grounded_forces -= non_grounded_forces * DeltaTime;
 	}
+
 	if (FVector::DistSquared(FVector::ZeroVector, grounded_forces) > .05f)
 	{
 		ControlInputVector += grounded_forces * DeltaTime;
 		grounded_forces -= grounded_forces * DeltaTime;
 	}
+
 	if (FVector::DistSquared(FVector::ZeroVector, absolute_forces) > .05f)
 	{
 		ControlInputVector += absolute_forces * DeltaTime;
 		grounded_forces -= absolute_forces * DeltaTime;
 	}
 
-	//flipping the character on grounded
+	//Flipping the character on grounded.
 	if (grounded) {
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
+		{
 			FlipCharacter(false);
+		}
+
 		else
+		{
 			FlipCharacter(true);
+		}
 	}
+
 	else
 	{
 		FlipCharacter(IsFacingRight);
@@ -793,8 +807,9 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 
 	//stamina stuff
 	if (CurrentStamina < CurrentMaxStamina && regen_stamina)
+	{
 		CurrentStamina += (DeltaTime * 5);
-
+	}
 }
 #pragma endregion
 #pragma region Jump functions
