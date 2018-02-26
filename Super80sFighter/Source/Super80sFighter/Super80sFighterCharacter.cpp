@@ -204,13 +204,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	CurrentMaxStamina = TotalStamina;
 
 
-	//const FInputActionKeyMapping actionmapping(FName(*LookUpRow->Action), FKey(FName(*LookUpRow->Input)), false, false, false, false);
 
-	FInputActionKeyMapping testMap;
-	testMap.ActionName = FName("Test");
-	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
-	((UInputSettings*)InputSettings)->AddActionMapping(testMap);
-	((UInputSettings*)InputSettings)->SaveKeyMappings();
 }
 APlayerController * ASuper80sFighterCharacter::GetPlayerController()
 {

@@ -4,7 +4,7 @@
 #include "ThugClass.h"
 #include "UObject/ConstructorHelpers.h"
 
-#define GAMEPAD_BUILD
+#define notGAMEPAD_BUILD
 
 void ASuper80sFighterGameMode::BeginPlay()
 {
@@ -197,6 +197,51 @@ void ASuper80sFighterGameMode::OverrideAxisInput(FKey inputKey, FString InputNam
 FString ASuper80sFighterGameMode::ConvertKeyToString(FKey inKey)
 {
 	return inKey.ToString();
+}
+FKey ASuper80sFighterGameMode::GetBinding(EInputTypes m_Type, bool isPlayer1)
+{
+	const UInputSettings* InputSettings = GetDefault<UInputSettings>();
+	FString inputString;
+	switch (m_Type)
+	{
+	case EInputTypes::JUMP:
+		inputString = FString("Jump");
+		break;
+	case EInputTypes::CROUCH:
+		inputString = FString("Crouch");
+		break;
+	case EInputTypes::LEFT:
+		inputString = FString("Left");
+		break;
+	case EInputTypes::RIGHT:
+		inputString = FString("Right");
+		break;
+	case EInputTypes::ATT1:
+		inputString = FString("Attack1");
+		break;
+	case EInputTypes::ATT2:
+		inputString = FString("Attack2");
+		break;
+	case EInputTypes::ATT3:
+		inputString = FString("Attack3");
+		break;
+	case EInputTypes::ATT4:
+		inputString = FString("Attack4");
+		break;
+	default:
+		inputString = FString("What the fuck");
+		break;
+	}
+
+	FString PlayerString = isPlayer1 ? FString("P1") : FString("P2");
+
+	for (int i = 0; i < InputSettings->ActionMappings.Num(); i++)
+	{
+		if (InputSettings->ActionMappings[i].ActionName.ToString().Contains(inputString) && InputSettings->ActionMappings[i].ActionName.ToString().Contains(PlayerString))
+			return InputSettings->ActionMappings[i].Key;
+	}
+	
+	return FKey();
 }
 void ASuper80sFighterGameMode::ResetInputs()
 {

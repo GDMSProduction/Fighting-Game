@@ -23,6 +23,19 @@ enum class EMenuState : uint8
 	STATE_MENU			UMETA(DisplayName = "Menu"),
 	STATE_CHAR_SELECT	UMETA(DisplayName = "Character Select")
 };
+UENUM(BlueprintType)
+enum class EInputTypes : uint8
+{
+	JUMP,
+	CROUCH,
+	LEFT,
+	RIGHT,
+	ATT1,
+	ATT2,
+	ATT3,
+	ATT4,
+	NUMOFINPUTTYPES
+};
 
 UCLASS(minimalapi)
 class ASuper80sFighterGameMode : public AGameModeBase
@@ -60,6 +73,11 @@ public:
 		void OverrideAxisInput(FKey inputKey, FString InputName, float axisScaler, bool shouldWeErase);
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		FString ConvertKeyToString(FKey inKey);
+
+
+
+	UFUNCTION(BlueprintCallable, Category = "Controls")
+		FKey GetBindingKey(EInputTypes m_Type, bool isPlayer1);
 
 #pragma region Console Commands
 	UFUNCTION(Exec, Category = "Controls")
