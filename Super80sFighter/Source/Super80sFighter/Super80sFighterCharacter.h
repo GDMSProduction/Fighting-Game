@@ -275,7 +275,7 @@ private:
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -331,7 +331,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttackingTaunt;
 
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isBlocking = false;
 
 	//Movement Variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -366,6 +367,8 @@ public:
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
 	float Block(float _damage);
+
+	void StopBlocking();
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")
