@@ -320,12 +320,6 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 	}
 
 	EnemyPlayer->ComboCounter();
-
-	EnemyPlayer->playerScore.damageDealtAverage += damage * 1.00f;
-
-	EnemyPlayer->playerScore.numHitsAverage += 1.00f;
-
-	playerScore.damageTakenAverage += damage * 1.00f;
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {

@@ -71,18 +71,6 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	first_time = true;
 	rounds_remaining = num_rounds;
-
-	Player1->playerScore.damageBlockedAverage = 0.00f;
-	Player1->playerScore.damageDealtAverage = 0.00f;
-	Player1->playerScore.damageTakenAverage = 0.00f;
-	Player1->playerScore.numHitsAverage = 0.00f;
-	Player1->playerScore.timeRemainingAverage = 0.00f;
-
-	Player2->playerScore.damageBlockedAverage = 0.00f;
-	Player2->playerScore.damageDealtAverage = 0.00f;
-	Player2->playerScore.damageTakenAverage = 0.00f;
-	Player2->playerScore.numHitsAverage = 0.00f;
-	Player2->playerScore.timeRemainingAverage = 0.00f;
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
@@ -620,6 +608,29 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	if (p1_win)
 	{
 		Player1_round_wins++;
+
+		Player1->playerScore.timeRemaining *= 50;
+		Player1->playerScore.healthRemaining *= 50;
+		Player1->playerScore.numHits *= 5;
+		Player1->playerScore.numHeavyHits *= 10;
+		Player1->playerScore.numSpecialHits *= 15;
+		Player1->playerScore.numTaunts *= 500;
+		Player1->playerScore.numAttacksBlocked *= 2;
+
+		if (Player1->GetCurrentHealth() == Player1->GetTotalHealth())
+		{
+			Player1->playerScore.perfectRound = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		if (Player1_round_wins == num_rounds)
+		{
+			Player1->playerScore.winPerfectGame = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		Player1->playerScore.specialFinish = true;
+		Player1->playerScore.totalScore += 500;
 	}
 
 	else
@@ -637,12 +648,10 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	Player1->SetActorLocation(Player1->startLocation);
 	Player1->ResetHealth();
 	Player1->ResetStamina();
-	Player1->playerScore.timeRemainingAverage;
 
 	Player2->SetActorLocation(Player2->startLocation);
 	Player2->ResetHealth();
 	Player2->ResetStamina();
-	Player2->playerScore.timeRemainingAverage;
 
 	first_time = true;
 	on_death_pause = false;
@@ -666,16 +675,4 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
-
-	Player1->playerScore.damageBlockedAverage /= num_rounds;
-	Player1->playerScore.damageDealtAverage /= num_rounds;
-	Player1->playerScore.damageTakenAverage /= num_rounds;
-	Player1->playerScore.numHitsAverage /= num_rounds;
-	Player1->playerScore.timeRemainingAverage /= num_rounds;
-
-	Player2->playerScore.damageBlockedAverage /= num_rounds;
-	Player2->playerScore.damageDealtAverage /= num_rounds;
-	Player2->playerScore.damageTakenAverage /= num_rounds;
-	Player2->playerScore.numHitsAverage /= num_rounds;
-	Player2->playerScore.timeRemainingAverage /= num_rounds;
 }
