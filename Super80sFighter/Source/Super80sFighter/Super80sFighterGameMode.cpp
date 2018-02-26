@@ -21,7 +21,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	FVector pos;
 	FRotator rot = FRotator(0, -90, 0);
 	ASuper80sFighterCharacter* temp;
-	//change player 1 (or possibly not if hes default class)
+	//change player 1 (or possibly not if he's the default class)
 	switch (p1_type)
 	{
 	case ECharacterEnum::CLASS_DEFAULT:
