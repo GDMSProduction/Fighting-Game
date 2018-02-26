@@ -269,6 +269,8 @@ private:
 		bool IsFacingRight;
 
 	ASuper80sFighterCharacter* EnemyPlayer;
+
+	FTimerHandle BlockTimer;
 #pragma endregion
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
@@ -300,6 +302,7 @@ private:
 
 	private:
 	float AttackThreshold;
+	float BlockThreshold;
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
