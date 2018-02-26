@@ -72,6 +72,17 @@ void ASuper80sFighterGameMode::BeginPlay()
 	first_time = true;
 	rounds_remaining = num_rounds;
 
+	Player1->playerScore.damageBlockedAverage = 0.00f;
+	Player1->playerScore.damageDealtAverage = 0.00f;
+	Player1->playerScore.damageTakenAverage = 0.00f;
+	Player1->playerScore.numHitsAverage = 0.00f;
+	Player1->playerScore.timeRemainingAverage = 0.00f;
+
+	Player2->playerScore.damageBlockedAverage = 0.00f;
+	Player2->playerScore.damageDealtAverage = 0.00f;
+	Player2->playerScore.damageTakenAverage = 0.00f;
+	Player2->playerScore.numHitsAverage = 0.00f;
+	Player2->playerScore.timeRemainingAverage = 0.00f;
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
@@ -592,16 +603,19 @@ void ASuper80sFighterGameMode::draw()
 
 void ASuper80sFighterGameMode::endRound(bool p1_win)
 {
-	rounds_remaining--;
+	--rounds_remaining;
+
 	if (p1_win)
 	{
 		Player1_round_wins++;
 	}
+
 	else
 	{
 		Player2_round_wins++;
 
 	}
+
 	if (rounds_remaining == 0)
 		endGame();
 
@@ -611,9 +625,13 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	Player1->SetActorLocation(Player1->startLocation);
 	Player1->ResetHealth();
 	Player1->ResetStamina();
+	Player1->playerScore.timeRemainingAverage;
+
 	Player2->SetActorLocation(Player2->startLocation);
 	Player2->ResetHealth();
 	Player2->ResetStamina();
+	Player2->playerScore.timeRemainingAverage;
+
 	first_time = true;
 	on_death_pause = false;
 
@@ -636,4 +654,16 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
+
+	Player1->playerScore.damageBlockedAverage /= num_rounds;
+	Player1->playerScore.damageDealtAverage /= num_rounds;
+	Player1->playerScore.damageTakenAverage /= num_rounds;
+	Player1->playerScore.numHitsAverage /= num_rounds;
+	Player1->playerScore.timeRemainingAverage /= num_rounds;
+
+	Player2->playerScore.damageBlockedAverage /= num_rounds;
+	Player2->playerScore.damageDealtAverage /= num_rounds;
+	Player2->playerScore.damageTakenAverage /= num_rounds;
+	Player2->playerScore.numHitsAverage /= num_rounds;
+	Player2->playerScore.timeRemainingAverage /= num_rounds;
 }

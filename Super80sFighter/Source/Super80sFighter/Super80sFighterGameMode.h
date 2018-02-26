@@ -1,7 +1,5 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
+//Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #pragma once
-
 #include "Core.h"
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -16,6 +14,7 @@ enum class ECharacterEnum : uint8
 	CLASS_THUG			UMETA(DisplayName = "Thug"),
 	CLASS_TOBY			UMETA(DisplayName = "Toby")
 };
+
 UENUM(BlueprintType)
 enum class EMenuState : uint8
 {
@@ -42,7 +41,7 @@ class ASuper80sFighterGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-		virtual void BeginPlay() override;
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 public:

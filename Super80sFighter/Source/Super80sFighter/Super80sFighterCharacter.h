@@ -1,27 +1,54 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
-#include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "../Source/Super80sFighter/Hitbox.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "Components/InputComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 #include "Runtime/Engine/Classes/Animation/AnimNode_StateMachine.h"
-#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
-#include "Runtime/Engine/Public/TimerManager.h"
-#include "EngineUtils.h"
-#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
-#include "EngineGlobals.h"
-#include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "Runtime/Engine/Classes/GameFramework/InputSettings.h"
 #include "Runtime/CoreUObject/Public/UObject/UObjectGlobals.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
+#include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include "Runtime/Engine/Classes/Engine/EngineTypes.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Public/TimerManager.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "../Source/Super80sFighter/Hitbox.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+#include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "EngineGlobals.h"
+#include "EngineUtils.h"
+#include "CoreMinimal.h"
 #include "Super80sFighterCharacter.generated.h"
 
+#pragma region Score
+//The scoring system for end-match results.
+USTRUCT(BlueprintType)
+struct FScoreSystem
+{
+	GENERATED_USTRUCT_BODY()
+
+	//The average number of landed attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numHitsAverage;
+
+	//The average amount of time remaining after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float timeRemainingAverage;
+
+	//The average amount of damage performed per attack.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float damageDealtAverage;
+
+	//The average amount of damage received after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float damageTakenAverage;
+
+	//The average amount of blocked damage after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float damageBlockedAverage;
+};
+#pragma endregion
 
 UCLASS(config = Game)
 class ASuper80sFighterCharacter : public ACharacter
@@ -111,8 +138,10 @@ protected:
 		DOWN,
 		NUM_ATTACKS
 	};
+
 	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
-	struct ButtonInput {
+	struct ButtonInput 
+	{
 		INPUT_TYPE button;
 		bool wasHeld;
 
@@ -211,6 +240,9 @@ protected:
 
 	APlayerController* GetPlayerController();
 
+	public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	FScoreSystem playerScore;
 #pragma endregion
 
 private:
