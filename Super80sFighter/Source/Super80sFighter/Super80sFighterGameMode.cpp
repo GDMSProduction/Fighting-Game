@@ -736,5 +736,12 @@ void ASuper80sFighterGameMode::DetermineRank(int& _player1Score)
 
 void ASuper80sFighterGameMode::DetermineScoreboardPlacement(FHighScore& _currentPlayerEntry)
 {
-	
+	for (unsigned short curEntry = 0; curEntry < lastHighScoreEntryIndex; ++curEntry)
+	{
+		if (_currentPlayerEntry.score > highScores[curEntry].score)
+		{
+			highScores[curEntry].score = _currentPlayerEntry.score;
+			return;
+		}
+	}
 }
