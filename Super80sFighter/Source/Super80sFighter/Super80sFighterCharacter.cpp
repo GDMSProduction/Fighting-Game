@@ -355,6 +355,9 @@ float ASuper80sFighterCharacter::Block(float _damage)
 	//Decrease the amount of damage the player will take.
 	_damage *= 0.50f;
 
+	//Increment the total number of attacks blocked.
+	++playerScore.numAttacksBlocked;
+
 	//Set (and reset upon finishing) the blocking timer.
 	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &ASuper80sFighterCharacter::StopBlocking, BlockThreshold);
 
@@ -722,6 +725,16 @@ void ASuper80sFighterCharacter::ComboCounter()
 		{
 			comboCounter = 0;
 		}
+	}
+
+	if (comboCounter >= 2 && comboCounter < 4)
+	{
+		
+	}
+
+	else if (comboCounter >= 4)
+	{
+
 	}
 
 	lastHit = GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer);

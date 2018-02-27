@@ -30,7 +30,7 @@ struct FScoreSystem
 
 	//The total score of the match for the player.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float totalScore;
+	int totalScore;
 
 	//The amount of time remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
