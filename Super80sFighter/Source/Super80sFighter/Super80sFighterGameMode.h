@@ -44,14 +44,24 @@ enum class EInputTypes : uint8
 	NUMOFINPUTTYPES
 };
 
-UENUM(BlueprintType)
-enum class ERank : uint8
+USTRUCT(BlueprintType)
+struct FHighScore
 {
-	SRank			UMETA(DisplayName = "S-Rank"),
-	ARank			UMETA(DisplayName = "A-Rank"),
-	BRank			UMETA(DisplayName = "B-Rank"),
-	CRank			UMETA(DisplayName = "C-Rank"),
-	DRank			UMETA(DisplayName = "D-Rank"),
+	GENERATED_USTRUCT_BODY()
+
+	FString playerName;
+
+	int score;
+
+	UENUM(BlueprintType)
+	enum class ERank : uint8
+	{
+		SRank			UMETA(DisplayName = "S-Rank"),
+		ARank			UMETA(DisplayName = "A-Rank"),
+		BRank			UMETA(DisplayName = "B-Rank"),
+		CRank			UMETA(DisplayName = "C-Rank"),
+		DRank			UMETA(DisplayName = "D-Rank"),
+	} playerRank;
 };
 
 UCLASS(minimalapi)
@@ -127,9 +137,11 @@ protected:
 private:
 	class ASuper80sFighterCharacter *Player1, *Player2;
 	APlayerController *p1_controller, *p2_controller;
-	ERank playerRank = ERank::DRank;
 
-	int highScores[100];
+	FHighScore currentEntry;
+	FHighScore highScores[10];
+
+	int lastHighScoreEntryIndex = sizeof(highScores) / sizeof(highScores[0]);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds", Meta = (AllowPrivateAccess = "true"))
 		int Player1_round_wins;
@@ -145,7 +157,8 @@ private:
 	void endRound(bool p1_win);
 	void internal_draw();
 	void endGame();
-	void HighScoreTable(float& _player1Score);
+	void DetermineRank(int& _player1Score);
+	void DetermineScoreboardPlacement(FHighScore& _currentPlayerEntry);
 };
 
 

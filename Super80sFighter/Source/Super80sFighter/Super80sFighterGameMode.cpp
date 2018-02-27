@@ -691,33 +691,50 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
-	HighScoreTable(Player1->playerScore.totalScore);
+	DetermineRank(Player1->playerScore.totalScore);
 }
 
-void ASuper80sFighterGameMode::HighScoreTable(float& _player1Score)
+void ASuper80sFighterGameMode::DetermineRank(int& _player1Score)
 {
-	if (_player1Score >= SRANK)
+	currentEntry.score = _player1Score;
+
+	if (currentEntry.score >= SRANK)
 	{
-		playerRank = ERank::SRank;
+		currentEntry.playerRank = FHighScore::ERank::SRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
 	}
 
-	else if (_player1Score < SRANK && _player1Score >= ARANK)
+	else if (currentEntry.score < SRANK && currentEntry.score >= ARANK)
 	{
-		playerRank = ERank::ARank;
+		currentEntry.playerRank = FHighScore::ERank::ARank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
 	}
 
-	else if (_player1Score < ARANK && _player1Score >= BRANK)
+	else if (currentEntry.score < ARANK && currentEntry.score >= BRANK)
 	{
-		playerRank = ERank::BRank;
+		currentEntry.playerRank = FHighScore::ERank::BRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
 	}
 
-	else if (_player1Score < BRANK && _player1Score >= CRANK)
+	else if (currentEntry.score < BRANK && currentEntry.score >= CRANK)
 	{
-		playerRank = ERank::CRank;
+		currentEntry.playerRank = FHighScore::ERank::CRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
 	}
 
 	else
 	{
-		playerRank = ERank::DRank;
+		currentEntry.playerRank = FHighScore::ERank::DRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
 	}
+}
+
+void ASuper80sFighterGameMode::DetermineScoreboardPlacement(FHighScore& _currentPlayerEntry)
+{
+	
 }
