@@ -28,25 +28,49 @@ struct FScoreSystem
 {
 	GENERATED_USTRUCT_BODY()
 
-	//The average number of landed attacks throughout the match.
+	//The total score of the match for the player.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numHitsAverage;
+	int totalScore;
 
-	//The average amount of time remaining after each round.
+	//The amount of time remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float timeRemainingAverage;
+	float timeRemaining;
 
-	//The average amount of damage performed per attack.
+	//The amount of health remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float damageDealtAverage;
+	float healthRemaining;
 
-	//The average amount of damage received after each round.
+	//The number of landed punches and kicks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float damageTakenAverage;
+	float numHits;
 
-	//The average amount of blocked damage after each round.
+	//The number of landed heavy attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float damageBlockedAverage;
+	float numHeavyHits;
+
+	//The number of landed special attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numSpecialHits;
+
+	//The number of landed special attacks throughout the match.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numTaunts;
+
+	//The amount of blocked attacks after each round.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	float numAttacksBlocked;
+
+	//Was the round a perfect round for the player?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool perfectRound;
+
+	//Was the game a win-perfect game for the player?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool winPerfectGame;
+
+	//Was the round won with a special finish?
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	bool specialFinish;
 };
 #pragma endregion
 
@@ -281,7 +305,7 @@ private:
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -337,7 +361,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool isAttackingTaunt;
 
-
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		bool isBlocking = false;
 
 	//Movement Variables
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
@@ -372,6 +397,8 @@ public:
 	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
 
 	float Block(float _damage);
+
+	void StopBlocking();
 
 	/**Accessor function for Total Stamina*/
 	UFUNCTION(BlueprintPure, Category = "Stats")

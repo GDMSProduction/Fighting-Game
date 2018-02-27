@@ -71,18 +71,6 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	first_time = true;
 	rounds_remaining = num_rounds;
-
-	Player1->playerScore.damageBlockedAverage = 0.00f;
-	Player1->playerScore.damageDealtAverage = 0.00f;
-	Player1->playerScore.damageTakenAverage = 0.00f;
-	Player1->playerScore.numHitsAverage = 0.00f;
-	Player1->playerScore.timeRemainingAverage = 0.00f;
-
-	Player2->playerScore.damageBlockedAverage = 0.00f;
-	Player2->playerScore.damageDealtAverage = 0.00f;
-	Player2->playerScore.damageTakenAverage = 0.00f;
-	Player2->playerScore.numHitsAverage = 0.00f;
-	Player2->playerScore.timeRemainingAverage = 0.00f;
 }
 
 void ASuper80sFighterGameMode::Tick(float DeltaTime)
@@ -622,6 +610,42 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	if (p1_win)
 	{
 		Player1_round_wins++;
+
+		Player1->playerScore.timeRemaining *= 50;
+		Player1->playerScore.totalScore += Player1->playerScore.timeRemaining;
+
+		Player1->playerScore.healthRemaining = Player1->GetCurrentHealth() * 50;
+		Player1->playerScore.totalScore += Player1->playerScore.healthRemaining;
+
+		Player1->playerScore.numHits *= 5;
+		Player1->playerScore.totalScore += Player1->playerScore.numHits;
+
+		Player1->playerScore.numHeavyHits *= 10;
+		Player1->playerScore.totalScore += Player1->playerScore.numHeavyHits;
+
+		Player1->playerScore.numSpecialHits *= 15;
+		Player1->playerScore.totalScore += Player1->playerScore.numSpecialHits;
+
+		Player1->playerScore.numTaunts *= 500;
+		Player1->playerScore.totalScore += Player1->playerScore.numTaunts;
+
+		Player1->playerScore.numAttacksBlocked *= 2;
+		Player1->playerScore.totalScore += Player1->playerScore.numAttacksBlocked;
+
+		if (Player1->GetCurrentHealth() == Player1->GetTotalHealth())
+		{
+			Player1->playerScore.perfectRound = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		if (Player1_round_wins == num_rounds)
+		{
+			Player1->playerScore.winPerfectGame = true;
+			Player1->playerScore.totalScore += 1000;
+		}
+
+		Player1->playerScore.specialFinish = true;
+		Player1->playerScore.totalScore += 500;
 	}
 
 	else
@@ -631,7 +655,9 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	}
 
 	if (rounds_remaining == 0)
+	{
 		endGame();
+	}
 
 	Player1->comboCounter = 0;
 	Player2->comboCounter = 0;
@@ -639,12 +665,10 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	Player1->SetActorLocation(Player1->startLocation);
 	Player1->ResetHealth();
 	Player1->ResetStamina();
-	Player1->playerScore.timeRemainingAverage;
 
 	Player2->SetActorLocation(Player2->startLocation);
 	Player2->ResetHealth();
 	Player2->ResetStamina();
-	Player2->playerScore.timeRemainingAverage;
 
 	first_time = true;
 	on_death_pause = false;
@@ -668,16 +692,57 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
+	DetermineRank(Player1->playerScore.totalScore);
+}
 
-	Player1->playerScore.damageBlockedAverage /= num_rounds;
-	Player1->playerScore.damageDealtAverage /= num_rounds;
-	Player1->playerScore.damageTakenAverage /= num_rounds;
-	Player1->playerScore.numHitsAverage /= num_rounds;
-	Player1->playerScore.timeRemainingAverage /= num_rounds;
+void ASuper80sFighterGameMode::DetermineRank(int& _player1Score)
+{
+	currentEntry.score = _player1Score;
 
-	Player2->playerScore.damageBlockedAverage /= num_rounds;
-	Player2->playerScore.damageDealtAverage /= num_rounds;
-	Player2->playerScore.damageTakenAverage /= num_rounds;
-	Player2->playerScore.numHitsAverage /= num_rounds;
-	Player2->playerScore.timeRemainingAverage /= num_rounds;
+	if (currentEntry.score >= SRANK)
+	{
+		currentEntry.playerRank = FHighScore::ERank::SRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
+	}
+
+	else if (currentEntry.score < SRANK && currentEntry.score >= ARANK)
+	{
+		currentEntry.playerRank = FHighScore::ERank::ARank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
+	}
+
+	else if (currentEntry.score < ARANK && currentEntry.score >= BRANK)
+	{
+		currentEntry.playerRank = FHighScore::ERank::BRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
+	}
+
+	else if (currentEntry.score < BRANK && currentEntry.score >= CRANK)
+	{
+		currentEntry.playerRank = FHighScore::ERank::CRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
+	}
+
+	else
+	{
+		currentEntry.playerRank = FHighScore::ERank::DRank;
+		DetermineScoreboardPlacement(currentEntry);
+		return;
+	}
+}
+
+void ASuper80sFighterGameMode::DetermineScoreboardPlacement(FHighScore& _currentPlayerEntry)
+{
+	for (unsigned short curEntry = 0; curEntry < lastHighScoreEntryIndex; ++curEntry)
+	{
+		if (_currentPlayerEntry.score > highScores[curEntry].score)
+		{
+			highScores[curEntry].score = _currentPlayerEntry.score;
+			return;
+		}
+	}
 }

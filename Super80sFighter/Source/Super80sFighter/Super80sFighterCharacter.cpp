@@ -332,12 +332,6 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 	}
 
 	EnemyPlayer->ComboCounter();
-
-	EnemyPlayer->playerScore.damageDealtAverage += damage * 1.00f;
-
-	EnemyPlayer->playerScore.numHitsAverage += 1.00f;
-
-	playerScore.damageTakenAverage += damage * 1.00f;
 }
 AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {
@@ -361,16 +355,26 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
 }
+void ASuper80sFighterCharacter::StopBlocking()
+{
+	isBlocking = false;
+}
 float ASuper80sFighterCharacter::Block(float _damage)
 {
+	//Begin blocking.
+	isBlocking = true;
+
 	//Decrease the amount of damage the player will take.
 	_damage *= 0.50f;
 
+	//Increment the total number of attacks blocked.
+	++playerScore.numAttacksBlocked;
+
 	//Set (and reset upon finishing) the blocking timer.
-	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &ASuper80sFighterCharacter::ClearCommands, BlockThreshold);
+	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &ASuper80sFighterCharacter::StopBlocking, BlockThreshold);
 
 	//Return the modified (lower) damage amount.
-	return _damage;
+	return (_damage);
 }
 #pragma endregion
 #pragma region Character Reset
@@ -746,6 +750,16 @@ void ASuper80sFighterCharacter::ComboCounter()
 		{
 			comboCounter = 0;
 		}
+	}
+
+	if (comboCounter >= 2 && comboCounter < 4)
+	{
+		
+	}
+
+	else if (comboCounter >= 4)
+	{
+
 	}
 
 	lastHit = GetWorld()->GetTimerManager().GetTimerElapsed(AttackTimer);
