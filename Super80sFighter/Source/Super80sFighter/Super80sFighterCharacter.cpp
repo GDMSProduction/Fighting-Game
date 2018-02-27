@@ -362,6 +362,13 @@ float ASuper80sFighterCharacter::Block(float _damage)
 	return (_damage);
 }
 #pragma endregion
+
+#pragma region AI
+void ASuper80sFighterCharacter::decide()
+{
+}
+#pragma endregion
+
 #pragma region Character Reset
 void ASuper80sFighterCharacter::ResetHealth()
 {

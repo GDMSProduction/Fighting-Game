@@ -331,6 +331,43 @@ private:
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
 
+#pragma region AI
+public:
+	bool what_is_my_purpose;
+private:
+	enum PlayerState : uint32
+	{
+		NEUTRAL   = (1 << 0),
+		JUMPING   = (1 << 1),
+		CROUCHING = (1 << 2),
+		BLOCKING  = (1 << 3),
+		ATTACKING = (1 << 4),
+		STUNNED   = (1 << 5)
+	};
+	struct Move_Data
+	{
+		void(ASuper80sFighterCharacter::*attack_function)();
+		int combo_potential;
+		int damage;
+		int past_success;
+		int past_attempt;
+		int stamina_cost;
+		int timeframe_cost;
+	};
+	struct GameState
+	{
+		FVector M_Loc;
+		PlayerState M_PlayerState;
+		TArray<Move_Data> M_Move_Data;
+		FVector E_Loc;
+		PlayerState E_PlayerState;
+		TArray<Move_Data> E_Move_Data;
+	};
+
+	void decide();
+
+#pragma endregion
+
 public:
 #pragma region Camera Set-Up
 	ASuper80sFighterCharacter();
