@@ -6,7 +6,7 @@ bool UOverriddenGameViewportClient::InputKey(FViewport* Viewport, int32 Controll
 {
 	ASuper80sFighterGameMode* gameMode = (ASuper80sFighterGameMode*)GetWorld()->GetAuthGameMode();
 
-	if (!gameMode->GetIsKeyboardMode()) {
+	if (gameMode && !gameMode->GetIsKeyboardMode()) {
 		return Super::InputKey(Viewport, ControllerId, Key, EventType, AmountDepressed, bGamepad);
 	} else {
 		if (IgnoreInput() || bGamepad || Key.IsMouseButton())
@@ -15,7 +15,7 @@ bool UOverriddenGameViewportClient::InputKey(FViewport* Viewport, int32 Controll
 		}
 		else
 		{
-			// Propagate keyboard events to all players
+			// AY YO LEARN YO CODE
 			UEngine* const Engine = GetOuterUEngine();
 			int32 const NumPlayers = Engine ? Engine->GetNumGamePlayers(this) : 0;//Another one of those Error but not really errors
 			bool bRetVal = false;
