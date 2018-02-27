@@ -83,10 +83,16 @@ protected:
 	void PressHeavy();
 	void PressSpecial();
 
+	void PressPunchAndKick();
+	void PressKickAndSpecial();
+
 	void ReleasePunch();
 	void ReleaseKick();
 	void ReleaseHeavy();
 	void ReleaseSpecial();
+
+	void ReleasePunchAndKick();
+	void ReleaseKickAndSpecial();
 
 	void StartCrouch();
 	void StopCrouch();

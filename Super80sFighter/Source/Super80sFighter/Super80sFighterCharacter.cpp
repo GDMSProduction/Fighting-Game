@@ -159,6 +159,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 		PlayerInputComponent->BindAction("Crouch_P1", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 		PlayerInputComponent->BindAction("Crouch_P1", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
 
+		PlayerInputComponent->BindAction("PunchKick_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunchAndKick);
+
+		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKickAndSpecial);
+
 	}
 	else if (id == 1)
 	{
@@ -184,6 +190,12 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 		PlayerInputComponent->BindAction("Attack4_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
 		PlayerInputComponent->BindAction("Crouch_P2", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
 		PlayerInputComponent->BindAction("Crouch_P2", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
+
+		PlayerInputComponent->BindAction("PunchKick_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunchAndKick);
+
+		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKickAndSpecial);
 
 	}
 
@@ -423,6 +435,16 @@ void ASuper80sFighterCharacter::PressSpecial()
 
 	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
 }
+void ASuper80sFighterCharacter::PressPunchAndKick()
+{
+	PressPunch();
+	PressKick();
+}
+void ASuper80sFighterCharacter::PressKickAndSpecial()
+{
+	PressKick();
+	PressSpecial();
+}
 void ASuper80sFighterCharacter::ReleasePunch()
 {
 	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
@@ -441,6 +463,16 @@ void ASuper80sFighterCharacter::ReleaseSpecial()
 {
 
 	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+void ASuper80sFighterCharacter::ReleasePunchAndKick()
+{
+	ReleasePunch();
+	ReleaseKick();
+}
+void ASuper80sFighterCharacter::ReleaseKickAndSpecial()
+{
+	ReleaseKick();
+	ReleaseSpecial();
 }
 void ASuper80sFighterCharacter::TauntStaminaRegen()
 {
