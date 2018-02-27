@@ -611,12 +611,25 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 		Player1_round_wins++;
 
 		Player1->playerScore.timeRemaining *= 50;
-		Player1->playerScore.healthRemaining *= 50;
+		Player1->playerScore.totalScore += Player1->playerScore.timeRemaining;
+
+		Player1->playerScore.healthRemaining = Player1->GetCurrentHealth() * 50;
+		Player1->playerScore.totalScore += Player1->playerScore.healthRemaining;
+
 		Player1->playerScore.numHits *= 5;
+		Player1->playerScore.totalScore += Player1->playerScore.numHits;
+
 		Player1->playerScore.numHeavyHits *= 10;
+		Player1->playerScore.totalScore += Player1->playerScore.numHeavyHits;
+
 		Player1->playerScore.numSpecialHits *= 15;
+		Player1->playerScore.totalScore += Player1->playerScore.numSpecialHits;
+
 		Player1->playerScore.numTaunts *= 500;
+		Player1->playerScore.totalScore += Player1->playerScore.numTaunts;
+
 		Player1->playerScore.numAttacksBlocked *= 2;
+		Player1->playerScore.totalScore += Player1->playerScore.numAttacksBlocked;
 
 		if (Player1->GetCurrentHealth() == Player1->GetTotalHealth())
 		{
@@ -641,7 +654,9 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 	}
 
 	if (rounds_remaining == 0)
+	{
 		endGame();
+	}
 
 	Player1->comboCounter = 0;
 	Player2->comboCounter = 0;
@@ -676,4 +691,33 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
+	HighScoreTable(Player1->playerScore.totalScore);
+}
+
+void ASuper80sFighterGameMode::HighScoreTable(float& _player1Score)
+{
+	if (_player1Score >= SRANK)
+	{
+		playerRank = ERank::SRank;
+	}
+
+	else if (_player1Score < SRANK && _player1Score >= ARANK)
+	{
+		playerRank = ERank::ARank;
+	}
+
+	else if (_player1Score < ARANK && _player1Score >= BRANK)
+	{
+		playerRank = ERank::BRank;
+	}
+
+	else if (_player1Score < BRANK && _player1Score >= CRANK)
+	{
+		playerRank = ERank::CRank;
+	}
+
+	else
+	{
+		playerRank = ERank::DRank;
+	}
 }

@@ -7,6 +7,13 @@
 #include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
 
+#pragma region Defines
+#define SRANK 12000
+#define ARANK 10000
+#define BRANK 8000
+#define CRANK 5000
+#pragma endregion
+
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
@@ -22,6 +29,7 @@ enum class EMenuState : uint8
 	STATE_MENU			UMETA(DisplayName = "Menu"),
 	STATE_CHAR_SELECT	UMETA(DisplayName = "Character Select")
 };
+
 UENUM(BlueprintType)
 enum class EInputTypes : uint8
 {
@@ -36,12 +44,22 @@ enum class EInputTypes : uint8
 	NUMOFINPUTTYPES
 };
 
+UENUM(BlueprintType)
+enum class ERank : uint8
+{
+	SRank			UMETA(DisplayName = "S-Rank"),
+	ARank			UMETA(DisplayName = "A-Rank"),
+	BRank			UMETA(DisplayName = "B-Rank"),
+	CRank			UMETA(DisplayName = "C-Rank"),
+	DRank			UMETA(DisplayName = "D-Rank"),
+};
+
 UCLASS(minimalapi)
 class ASuper80sFighterGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-		virtual void BeginPlay() override;
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 public:
@@ -109,6 +127,9 @@ protected:
 private:
 	class ASuper80sFighterCharacter *Player1, *Player2;
 	APlayerController *p1_controller, *p2_controller;
+	ERank playerRank = ERank::DRank;
+
+	int highScores[100];
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds", Meta = (AllowPrivateAccess = "true"))
 		int Player1_round_wins;
@@ -124,6 +145,7 @@ private:
 	void endRound(bool p1_win);
 	void internal_draw();
 	void endGame();
+	void HighScoreTable(float& _player1Score);
 };
 
 
