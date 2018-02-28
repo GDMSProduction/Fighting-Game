@@ -40,6 +40,30 @@ void ASuper80sFighterGameMode::BeginPlay()
 	case ECharacterEnum::CLASS_TOBY:
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
 		break;
+	case ECharacterEnum::CLASS_TREY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TREY NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_AUDREY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: AUDREY NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_ORION:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: ORION NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_BRRIDER:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: BRRIDER NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_GEORGE:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: GEOGRE NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_TYPHOON:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TYPHOON NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_DON:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: DON NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_KARMA:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: KARMA NOT YET IMPLEMENTED"));
+		break;
 	default:
 		break;
 	}
@@ -61,6 +85,30 @@ void ASuper80sFighterGameMode::BeginPlay()
 		break;
 	case ECharacterEnum::CLASS_TOBY:
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_TREY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TREY NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_AUDREY:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: AUDREY NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_ORION:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: ORION NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_BRRIDER:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: BRRIDER NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_GEORGE:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: GEOGRE NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_TYPHOON:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TYPHOON NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_DON:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: DON NOT YET IMPLEMENTED"));
+		break;
+	case ECharacterEnum::CLASS_KARMA:
+		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: KARMA NOT YET IMPLEMENTED"));
 		break;
 	default:
 		break;
