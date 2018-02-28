@@ -7,6 +7,7 @@
 #include "Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerInput.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
+#include <typeinfo>
 #include "Runtime/Engine/Classes/Engine/EngineTypes.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Runtime/Engine/Public/TimerManager.h"
@@ -28,49 +29,49 @@ struct FScoreSystem
 {
 	GENERATED_USTRUCT_BODY()
 
-	//The total score of the match for the player.
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	int totalScore;
+		//The total score of the match for the player.
+		UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int totalScore;
 
 	//The amount of time remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float timeRemaining;
+		float timeRemaining;
 
 	//The amount of health remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float healthRemaining;
+		float healthRemaining;
 
 	//The number of landed punches and kicks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numHits;
+		float numHits;
 
 	//The number of landed heavy attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numHeavyHits;
+		float numHeavyHits;
 
 	//The number of landed special attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numSpecialHits;
+		float numSpecialHits;
 
 	//The number of landed special attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numTaunts;
+		float numTaunts;
 
 	//The amount of blocked attacks after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	float numAttacksBlocked;
+		float numAttacksBlocked;
 
 	//Was the round a perfect round for the player?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool perfectRound;
+		bool perfectRound;
 
 	//Was the game a win-perfect game for the player?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool winPerfectGame;
+		bool winPerfectGame;
 
 	//Was the round won with a special finish?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	bool specialFinish;
+		bool specialFinish;
 };
 #pragma endregion
 
@@ -97,39 +98,43 @@ protected:
 #pragma endregion
 #pragma region Input
 
-	void PressRight();
-	void PressLeft();
-	void ReleaseRight();
-	void ReleaseLeft();
+	virtual void PressRight();
+	virtual void PressLeft();
+	virtual void ReleaseRight();
+	virtual void ReleaseLeft();
 
-	void PressPunch();
-	void PressKick();
-	void PressHeavy();
-	void PressSpecial();
+	virtual void PressPunch();
+	virtual void PressKick();
+	virtual void PressHeavy();
+	virtual void PressSpecial();
 
-	void PressPunchAndKick();
-	void PressKickAndSpecial();
+	virtual void PressPunchAndKick();
+	virtual void PressKickAndSpecial();
 
-	void ReleasePunch();
-	void ReleaseKick();
-	void ReleaseHeavy();
-	void ReleaseSpecial();
+	virtual void ReleasePunch();
+	virtual void ReleaseKick();
+	virtual void ReleaseHeavy();
+	virtual void ReleaseSpecial();
 
-	void ReleasePunchAndKick();
-	void ReleaseKickAndSpecial();
+	virtual void ReleasePunchAndKick();
+	virtual void ReleaseKickAndSpecial();
 
-	void StartCrouch();
-	void StopCrouch();
+	virtual void StartCrouch();
+	virtual void StopCrouch();
 
-	void PressShortHop();
-	void ReleaseShortHop();
-	void PressHighJump();
-	void ReleaseHighJump();
-	void PressNormalJump();
-	void ReleaseNormalJump();
+	virtual void PressShortHop();
+	virtual void ReleaseShortHop();
+	virtual void PressHighJump();
+	virtual void ReleaseHighJump();
+	virtual void PressNormalJump();
+	virtual void ReleaseNormalJump();
 
-	void PressJump();
-	void ReleaseJump();
+	virtual void PressJump();
+	virtual	void ReleaseJump();
+	template <class C>
+	void PressUp();
+	template <class C>
+	void ReleaseUp();
 
 	//Count the current combo for the fighter.
 	void ComboCounter();
@@ -152,6 +157,7 @@ protected:
 	//This will go through the command list (the inputs list) and check to see if there is a matching command. 
 	//If there is, it calls the appropriate function to indicate that the player controller wishes to use the set command. 
 	//The animation and event graphs will manage these commands to know how to deal with those commands
+	template <class C>
 	void CheckCommand();
 	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
 	void ClearCommands();
@@ -170,7 +176,7 @@ protected:
 	};
 
 	//These are the wrapper for various inputs used to makeup a command. They are a input type, and if it should be held or not
-	struct ButtonInput 
+	struct ButtonInput
 	{
 		INPUT_TYPE button;
 		bool wasHeld;
@@ -220,10 +226,12 @@ protected:
 		bool isPress;
 		double timeOfInput;
 	};
+	template <class C>
 	struct Command
 	{
 		TArray<ButtonSet> InputsForCommand;
-		void (*functionToCall)();
+
+		void (C::*functionToCall)();
 
 		bool operator==(const Command &test) {
 			if (InputsForCommand.Num() != test.InputsForCommand.Num())
@@ -238,8 +246,15 @@ protected:
 
 		}
 	};
-	TArray<Command> CommandList;
-	void AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)());
+	TArray<Command<AFighterParent>> CommandList;
+	template <class C>
+	void AddCommand(TArray<Command<C>> &CommandListToModify,TArray<ButtonSet> InputsForCommand, void(C::*functionToCall)()) {
+		Command<C> tempCommand;
+		tempCommand.functionToCall = functionToCall;
+		tempCommand.InputsForCommand = InputsForCommand;
+		CommandListToModify.Add(tempCommand);
+	};
+	template <class C>
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
@@ -270,9 +285,9 @@ protected:
 
 	APlayerController* GetPlayerController();
 
-	public:
+public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	FScoreSystem playerScore;
+		FScoreSystem playerScore;
 #pragma endregion
 
 private:
@@ -306,7 +321,7 @@ private:
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-	bool grounded;
+		bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
@@ -324,14 +339,14 @@ private:
 #pragma endregion
 #pragma region Combo Variables
 	TArray<ButtonBufferInput> buttonBuffer;
-	TArray<Command> AlreadyCalledCommands;
+	TArray<Command<AFighterParent>> AlreadyCalledCommands;
 	FTimerHandle AttackTimer;
 
-	public:
+public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-	int comboCounter;
+		int comboCounter;
 
-	private:
+private:
 	float AttackThreshold;
 	float BlockThreshold;
 	double lastHit;
@@ -498,3 +513,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 #pragma endregion
 };
+
+
+
+

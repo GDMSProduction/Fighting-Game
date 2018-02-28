@@ -54,6 +54,76 @@ AFighterParent::AFighterParent()
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
 
 
+#pragma region Adding in commands for attacks
+//
+//	TArray<ButtonSet> tempCommand;
+//	ButtonSet buttonSet;
+//	ButtonInput button1;
+//
+//	button1.button = PUNCH;
+//	button1.wasHeld = false;
+//	buttonSet.inputs.Add(button1);
+//	tempCommand.Push(buttonSet);
+//	AddCommand<AFighterParent>(CommandList,tempCommand, &AFighterParent::Attack0);
+//
+//
+//	button1.button = KICK;
+//	button1.wasHeld = false;
+//	buttonSet.Clear();
+//	buttonSet.inputs.Add(button1);
+//	tempCommand.Push(buttonSet);
+//	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack1);
+//
+//	while (tempCommand.Num() > 0)
+//		tempCommand.RemoveAt(0);
+//
+//
+//	buttonSet.Clear();
+//	button1.button = HEAVY;
+//	buttonSet.inputs.Add(button1);
+//	tempCommand.Add(buttonSet);
+//
+//	buttonSet.Clear();
+//	button1.button = RIGHT;
+//	buttonSet.inputs.Add(button1);
+//	tempCommand.Add(buttonSet);
+//
+//	buttonSet.Clear();
+//	button1.button = DOWN;
+//	buttonSet.inputs.Add(button1);
+//	tempCommand.Add(buttonSet);
+//
+//	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack3);
+//
+//
+//	while (tempCommand.Num() > 0)
+//		tempCommand.RemoveAt(0);
+//
+//	buttonSet.Clear();
+//	button1.button = PUNCH;
+//	button1.wasHeld = true;
+//	buttonSet.inputs.Add(button1);
+//	button1.button = KICK;
+//	button1.wasHeld = false;
+//	buttonSet.inputs.Add(button1);
+//
+//	tempCommand.Add(buttonSet);
+//	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack2);
+//
+//	while (tempCommand.Num() > 0)
+//		tempCommand.RemoveAt(0);
+//
+//	buttonSet.Clear();
+//	button1.button = HEAVY;
+//	button1.wasHeld = false;
+//	buttonSet.inputs.Add(button1);
+//	button1.button = SPECIAL;
+//	buttonSet.inputs.Add(button1);
+//
+//	tempCommand.Add(buttonSet);
+//	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::AttackTaunt);
+#pragma endregion
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
@@ -69,6 +139,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 
 	if (id == 0)
 	{
+
 		PlayerInputComponent->BindAction("HighJump_P1", IE_Pressed, this, &AFighterParent::PressHighJump);
 		PlayerInputComponent->BindAction("HighJump_P1", IE_Released, this, &AFighterParent::ReleaseHighJump);
 		PlayerInputComponent->BindAction("ShortHop_P1", IE_Pressed, this, &AFighterParent::PressShortHop);
@@ -339,38 +410,39 @@ void AFighterParent::MoveLeft(float Val)
 }
 void AFighterParent::PressRight()
 {
-	AddInput(RIGHT, true, FApp::GetCurrentTime());
+	
+	AddInput<AFighterParent>(RIGHT, true, FApp::GetCurrentTime());
 }
 void AFighterParent::PressLeft()
 {
-	AddInput(LEFT, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(LEFT, true, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleaseRight()
 {
-	AddInput(RIGHT, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(RIGHT, false, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleaseLeft()
 {
-	AddInput(LEFT, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(LEFT, false, FApp::GetCurrentTime());
 }
 void AFighterParent::PressPunch()
 {
-	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
 }
 void AFighterParent::PressKick()
 {
 
-	AddInput(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
 }
 void AFighterParent::PressHeavy()
 {
 
-	AddInput(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
 }
 void AFighterParent::PressSpecial()
 {
 
-	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
 }
 void AFighterParent::PressPunchAndKick()
 {
@@ -384,22 +456,22 @@ void AFighterParent::PressKickAndSpecial()
 }
 void AFighterParent::ReleasePunch()
 {
-	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleaseKick()
 {
 
-	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleaseHeavy()
 {
 
-	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleaseSpecial()
 {
 
-	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
 }
 void AFighterParent::ReleasePunchAndKick()
 {
@@ -438,20 +510,22 @@ void AFighterParent::TauntStaminaRegen()
 void AFighterParent::StartCrouch()
 {
 	isCrouching = true;
-	AddInput(DOWN, true, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(DOWN, true, FApp::GetCurrentTime());
 }
 void AFighterParent::StopCrouch()
 {
 	isCrouching = false;
-	AddInput(DOWN, false, FApp::GetCurrentTime());
+	AddInput<AFighterParent>(DOWN, false, FApp::GetCurrentTime());
 }
-void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)())
-{
-	Command tempCommand;
-	tempCommand.functionToCall = functionToCall;
-	tempCommand.InputsForCommand = InputsForCommand;
-	CommandList.Add(tempCommand);
-}
+//template <class C>
+//void AFighterParent::AddCommand(TArray<Command<C>> &CommandListToModify, TArray<ButtonSet> InputsForCommand, void(C::*functionToCall)())
+//{
+//	Command<C> tempCommand;
+//	tempCommand.functionToCall = functionToCall;
+//	tempCommand.InputsForCommand = InputsForCommand;
+//	CommandListToModify.Add(tempCommand);
+//}
+template <class C>
 void AFighterParent::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
 {
 	ButtonBufferInput tempInput;
@@ -461,10 +535,21 @@ void AFighterParent::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double
 	buttonBuffer.Add(tempInput);
 	if (buttonBuffer.Num() > 10)
 		buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
-	CheckCommand();
+	CheckCommand<C>();
 
 	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &AFighterParent::ClearCommands, AttackThreshold);
 }
+template<class C>
+void AFighterParent::PressUp()
+{
+	AddInput<C>(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
+}
+template<class C>
+void AFighterParent::ReleaseUp()
+{
+	AddInput<C>(INPUT_TYPE::UP, false, FApp::GetCurrentTime());
+}
+template <class C>
 void AFighterParent::CheckCommand()
 {
 	if (isDead)
@@ -542,7 +627,7 @@ void AFighterParent::CheckCommand()
 		return;
 
 
-	TArray<Command> CommandCopy;
+	TArray<Command<C>> CommandCopy;
 	for (int cur = 0; cur < CommandList.Num(); cur++) CommandCopy.Add(CommandList[cur]);//Create a copy of the commandlist
 																						//For each item in the AlreadyCalledCommands:
 																						//Remove it from the copy of commandList
@@ -594,7 +679,7 @@ void AFighterParent::CheckCommand()
 					}
 				}
 				if (same) {
-					(*CommandCopy[currentCommand].functionToCall)();
+					(this->*CommandCopy[currentCommand].functionToCall)();
 					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
 				}
 			}
@@ -688,7 +773,7 @@ void AFighterParent::ComboCounter()
 
 	if (comboCounter >= 2 && comboCounter < 4)
 	{
-		
+
 	}
 
 	else if (comboCounter >= 4)
@@ -861,13 +946,14 @@ void AFighterParent::PressJump()
 	}
 
 	isHoldingJump = true;
-	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
+	PressUp<AFighterParent>();
 
 	InitialsBlueprintEvent();
 }
 void AFighterParent::ReleaseJump()
 {
 	ACharacter::StopJumping();
+	ReleaseUp<AFighterParent>();
 	isHoldingJump = false;
 }
 #pragma endregion
