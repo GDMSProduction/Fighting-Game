@@ -4,13 +4,13 @@
 AFighterParent::AFighterParent()
 {
 	//I love asian qt3.14s
-	// Set size for collision capsule
+	//Set size for collision capsule.
 	GetCapsuleComponent()->InitCapsuleSize(42.00f, 96.00f);
 
 	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	//Don't rotate when the controller rotates.+
+	//Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -31,95 +31,28 @@ AFighterParent::AFighterParent()
 															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
-	GetCharacterMovement()->GravityScale = 2.f;
+	GetCharacterMovement()->GravityScale = 2.00f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 1000.f;
-	GetCharacterMovement()->GroundFriction = 3.f;
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
-	GetCharacterMovement()->MaxFlySpeed = 600.f;
+	GetCharacterMovement()->JumpZVelocity = 1000.00f;
+	GetCharacterMovement()->GroundFriction = 3.00f;
+	GetCharacterMovement()->MaxWalkSpeed = 600.00f;
+	GetCharacterMovement()->MaxFlySpeed = 600.00f;
 
-	TotalStamina = 100.0f;
+	TotalStamina = 100.00f;
 	CurrentStamina = TotalStamina;
 
-	TotalHealth = 100.0f;
+	TotalHealth = 100.00f;
 	CurrentHealth = TotalHealth;
 
-	CustomHighJumpVelocity = 1000.0f;
-	CustomShortJumpVelocity = 700.0f;
-	JumpThreshold = 0.1f;
-	AttackThreshold = 0.2f;
+	CustomHighJumpVelocity = 1000.00f;
+	CustomShortJumpVelocity = 700.00f;
+	JumpThreshold = 0.10f;
+	AttackThreshold = 0.20f;
 	BlockThreshold = 0.05f;
 
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
-#pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
 
-	button1.button = PUNCH;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack0);
-
-
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.Clear();
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack2);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = RIGHT;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = DOWN;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	AddCommand(tempCommand, &AFighterParent::Attack3);
-
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = PUNCH;
-	button1.wasHeld = true;
-	buttonSet.inputs.Add(button1);
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack3);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	button1.button = SPECIAL;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::AttackTaunt);
-#pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
@@ -296,7 +229,7 @@ void AFighterParent::takeDamage(float damage)
 		stamina_tier--;
 	}
 
-	else if (TotalHealth * 0.5f > CurrentHealth && health_tier == 2)
+	else if (TotalHealth * 0.50f > CurrentHealth && health_tier == 2)
 	{
 		health_tier--;
 		stamina_tier--;
@@ -512,7 +445,7 @@ void AFighterParent::StopCrouch()
 	isCrouching = false;
 	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
-void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)())
+void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
@@ -661,7 +594,7 @@ void AFighterParent::CheckCommand()
 					}
 				}
 				if (same) {
-					(this->*CommandCopy[currentCommand].functionToCall)();
+					(*CommandCopy[currentCommand].functionToCall)();
 					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
 				}
 			}
