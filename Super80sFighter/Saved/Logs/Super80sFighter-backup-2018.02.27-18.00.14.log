@@ -1,0 +1,1082 @@
+﻿Log file open, 02/27/18 17:56:43
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogInit: Display: Running engine for game: Super80sFighter
+LogPlatformFile: Not using cached read wrapper
+LogInit: Display: RandInit(2138537967) SRandInit(2138537967).
+LogInit: Read version file with build ID '3709383'
+LogInit: Overriding engine version to CL 3832480, compatible CL 3709383
+LogInit: Registered custom module enumerator with build ID '3709383'
+LogTaskGraph: Started task graph with 5 named threads and 14 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.220349
+LogD3D11RHI: Aftermath initialized
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin NullSourceCodeAccess
+LogPluginManager: Mounting plugin PerforceSourceControl
+LogPluginManager: Mounting plugin SubversionSourceControl
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin SpeedTreeImporter
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin HTML5Networking
+LogPluginManager: Mounting plugin Substance
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleARKit
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin ImmediatePhysics
+LogPluginManager: Mounting plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Plugin shader directory ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Shaders found
+LogPluginManager: Mapping shader source directory ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Shaders to virtual directory /Plugin/OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogModuleManager: Display: Found up-to-date module file C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Binaries/Win64/UE4Editor-Super80sFighter-1957.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2D.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2DEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperSpriteSheetImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperTiledImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-SmartSnapping.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeRuntime.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/GitSourceControl/Binaries/Win64/UE4Editor-GitSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/PerforceSourceControl/Binaries/Win64/UE4Editor-PerforceSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/SubversionSourceControl/Binaries/Win64/UE4Editor-SubversionSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/UObjectPlugin/Binaries/Win64/UE4Editor-UObjectPlugin.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/VisualStudioCodeSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioCodeSourceCodeAccess.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/VisualStudioSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioSourceCodeAccess.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/AssetManagerEditor/Binaries/Win64/UE4Editor-AssetManagerEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/AudioCapture/Binaries/Win64/UE4Editor-AudioCapture.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4Editor-FacialAnimation.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4Editor-FacialAnimationEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/GameplayTagsEditor/Binaries/Win64/UE4Editor-GameplayTagsEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/MobileLauncherProfileWizard/Binaries/Win64/UE4Editor-MobileLauncherProfileWizard.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/PluginBrowser/Binaries/Win64/UE4Editor-PluginBrowser.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/SpeedTreeImporter/Binaries/Win64/UE4Editor-SpeedTreeImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/AlembicImporter/Binaries/Win64/UE4Editor-AlembicImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/AlembicImporter/Binaries/Win64/UE4Editor-AlembicLibrary.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4Editor-CharacterAI.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4Editor-HTML5Networking.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceCore.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceSource.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceLiveLink.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AndroidMedia/Binaries/Win64/UE4Editor-AndroidMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AndroidMedia/Binaries/Win64/UE4Editor-AndroidMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMedia.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-OpenExrWrapper.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaCompositing/Binaries/Win64/UE4Editor-MediaCompositing.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaCompositing/Binaries/Win64/UE4Editor-MediaCompositingEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaPlayerEditor/Binaries/Win64/UE4Editor-MediaPlayerEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMedia.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Messaging/TcpMessaging/Binaries/Win64/UE4Editor-TcpMessaging.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4Editor-UdpMessaging.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/ActorSequence/Binaries/Win64/UE4Editor-ActorSequence.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/LevelSequenceEditor/Binaries/Win64/UE4Editor-LevelSequenceEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/MatineeToLevelSequence/Binaries/Win64/UE4Editor-MatineeToLevelSequence.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystem/Binaries/Win64/UE4Editor-OnlineSubsystem.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemNull/Binaries/Win64/UE4Editor-OnlineSubsystemNull.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4Editor-OnlineSubsystemUtils.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4Editor-OnlineBlueprintSupport.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AndroidDeviceProfileSelector/Binaries/Win64/UE4Editor-AndroidDeviceProfileSelector.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AndroidPermission/Binaries/Win64/UE4Editor-AndroidPermission.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4Editor-ArchVisCharacter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/CableComponent/Binaries/Win64/UE4Editor-CableComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4Editor-CustomMeshComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4Editor-ExampleDeviceProfileSelector.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4Editor-ImmediatePhysics.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4Editor-ImmediatePhysicsEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/LocationServicesBPLibrary/Binaries/Win64/UE4Editor-LocationServicesBPLibrary.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/MobilePatchingUtils/Binaries/Win64/UE4Editor-MobilePatchingUtils.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusHMD.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusInput.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4Editor-PhysXVehicles.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4Editor-PhysXVehiclesEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponentEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/RuntimePhysXCooking/Binaries/Win64/UE4Editor-RuntimePhysXCooking.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4Editor-WindowsMoviePlayer.dll (API version 3709383).
+LogInit: Using libcurl 7.47.1
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.0.2g
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = false  - Libcurl will NOT verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - CertBundlePath = nullptr  - Libcurl will use whatever was configured at build time.
+LogInit: Build: ++UE4+Release-4.18-CL-3832480
+LogInit: Engine Version: 4.18.3-3832480+++UE4+Release-4.18
+LogInit: Compatible Engine Version: 4.18.0-3709383+++UE4+Release-4.18
+LogInit: Net CL: 3709383
+LogDevObjectVersion: Number of dev versions registered: 16
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 2
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 20
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 30
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 0
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 0
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 20
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 4
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 0
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 1
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 12
+LogInit: Compiled (64-bit): Jan 12 2018 02:04:55
+LogInit: Compiled with Visual C++: 19.00.24215.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.18
+LogInit: Command line:  
+LogInit: Base directory: G:/Epic Games/UE_4.18/Engine/Binaries/Win64/
+LogInit: Installed Engine Build: 1
+LogInit: Presizing for max 8388607 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogInit: Object subsystem initialized
+[2018.02.27-22.56.46:510][  0]LogInit: Selected Device Profile: [Windows]
+[2018.02.27-22.56.46:510][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2018.02.27-22.56.46:540][  0]LogInit: Computer: DESKTOP-GC522K1
+[2018.02.27-22.56.46:540][  0]LogInit: User: Brennan
+[2018.02.27-22.56.46:541][  0]LogInit: CPU Page size=4096, Cores=4
+[2018.02.27-22.56.46:541][  0]LogInit: High frequency timer resolution =2.531253 MHz
+[2018.02.27-22.56.46:541][  0]LogMemory: Memory total: Physical=15.9GB (16GB approx)
+[2018.02.27-22.56.46:541][  0]LogMemory: Platform Memory Stats for Windows
+[2018.02.27-22.56.46:541][  0]LogMemory: Process Physical Memory: 270.89 MB used, 270.89 MB peak
+[2018.02.27-22.56.46:541][  0]LogMemory: Process Virtual Memory: 269.43 MB used, 269.43 MB peak
+[2018.02.27-22.56.46:541][  0]LogMemory: Physical Memory: 6904.96 MB used,  9359.62 MB free, 16264.59 MB total
+[2018.02.27-22.56.46:541][  0]LogMemory: Virtual Memory: 679.96 MB used,  9359.62 MB free, 134217728.00 MB total
+[2018.02.27-22.56.47:531][  0]LogInit: Using OS detected language (en-US).
+[2018.02.27-22.56.47:531][  0]LogInit: Using OS detected locale (en-US).
+[2018.02.27-22.56.47:597][  0]LogTextLocalizationManager: No specific localization for 'en-US' exists, so the 'en' localization will be used.
+[2018.02.27-22.56.48:096][  0]LogInit: Setting process to per monitor DPI aware
+[2018.02.27-22.56.50:476][  0]LogD3D11RHI: D3D11 adapters:
+[2018.02.27-22.56.51:214][  0]LogD3D11RHI:    0. 'NVIDIA Quadro M2000M' (Feature Level 11_0)
+[2018.02.27-22.56.51:214][  0]LogD3D11RHI:       4053/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x10de
+[2018.02.27-22.56.51:222][  0]LogD3D11RHI:    1. 'Intel(R) HD Graphics 530' (Feature Level 11_0)
+[2018.02.27-22.56.51:222][  0]LogD3D11RHI:       128/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x8086
+[2018.02.27-22.56.51:224][  0]LogD3D11RHI:    2. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2018.02.27-22.56.51:224][  0]LogD3D11RHI:       0/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2018.02.27-22.56.51:224][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2018.02.27-22.56.51:233][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2018.02.27-22.56.51:233][  0]LogD3D11RHI:     GPU DeviceId: 0x13b0 (for the marketing name, search the web for "GPU Device Id")
+[2018.02.27-22.56.51:233][  0]LogWindows: EnumDisplayDevices:
+[2018.02.27-22.56.51:233][  0]LogWindows:    0. 'Intel(R) HD Graphics 530' (P:1 D:1)
+[2018.02.27-22.56.51:233][  0]LogWindows:    1. 'Intel(R) HD Graphics 530' (P:0 D:0)
+[2018.02.27-22.56.51:233][  0]LogWindows:    2. 'Intel(R) HD Graphics 530' (P:0 D:0)
+[2018.02.27-22.56.51:233][  0]LogWindows:    3. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.02.27-22.56.51:234][  0]LogWindows:    4. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.02.27-22.56.51:234][  0]LogWindows:    5. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.02.27-22.56.51:234][  0]LogWindows:    6. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.02.27-22.56.51:234][  0]LogWindows: DebugString: GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter FoundDriverCount:0 
+[2018.02.27-22.56.51:234][  0]LogD3D11RHI:     Adapter Name: NVIDIA Quadro M2000M
+[2018.02.27-22.56.51:234][  0]LogD3D11RHI:   Driver Version: Unknown (internal:Unknown, unified:Unknown)
+[2018.02.27-22.56.51:234][  0]LogD3D11RHI:      Driver Date: Unknown
+[2018.02.27-22.56.51:234][  0]LogRHI: Texture pool is 2837 MB (70% of 4053 MB)
+[2018.02.27-22.56.51:263][  0]LogD3D11RHI: Async texture creation enabled
+[2018.02.27-22.56.51:285][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 2)
+[2018.02.27-22.56.51:285][  0]LogShaderCompilers: Guid format shader working directory is -37 characters bigger than the processId version (C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Intermediate/Shaders/WorkingDirectory/9972/).
+[2018.02.27-22.56.51:286][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/Brennan/AppData/Local/Temp/UnrealShaderWorkingDir/70943B3A434941B0526D6FB39261F082/'.
+[2018.02.27-22.56.51:286][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2018.02.27-22.56.53:571][  0]LogTemp: Display: Loaded TP AllDesktopTargetPlatform
+[2018.02.27-22.56.53:622][  0]LogTemp: Display: Loaded TP MacClientTargetPlatform
+[2018.02.27-22.56.53:668][  0]LogTemp: Display: Loaded TP MacNoEditorTargetPlatform
+[2018.02.27-22.56.53:725][  0]LogTemp: Display: Loaded TP MacServerTargetPlatform
+[2018.02.27-22.56.53:777][  0]LogTemp: Display: Loaded TP MacTargetPlatform
+[2018.02.27-22.56.53:827][  0]LogTemp: Display: Loaded TP WindowsClientTargetPlatform
+[2018.02.27-22.56.53:875][  0]LogTemp: Display: Loaded TP WindowsNoEditorTargetPlatform
+[2018.02.27-22.56.53:924][  0]LogTemp: Display: Loaded TP WindowsServerTargetPlatform
+[2018.02.27-22.56.53:967][  0]LogTemp: Display: Loaded TP WindowsTargetPlatform
+[2018.02.27-22.56.54:014][  0]LogTemp: Display: Loaded TP Android_ASTCTargetPlatform
+[2018.02.27-22.56.54:059][  0]LogTemp: Display: Loaded TP Android_ATCTargetPlatform
+[2018.02.27-22.56.54:111][  0]LogTemp: Display: Loaded TP Android_DXTTargetPlatform
+[2018.02.27-22.56.54:156][  0]LogTemp: Display: Loaded TP Android_ETC1TargetPlatform
+[2018.02.27-22.56.54:204][  0]LogTemp: Display: Loaded TP Android_ETC2TargetPlatform
+[2018.02.27-22.56.54:307][  0]LogTemp: Display: Loaded TP Android_MultiTargetPlatform
+[2018.02.27-22.56.54:307][  0]LogTemp: Display: Loaded TP Android_PVRTCTargetPlatform
+[2018.02.27-22.56.54:353][  0]LogTemp: Display: Loaded TP AndroidTargetPlatform
+[2018.02.27-22.56.54:391][  0]LogTemp: Display: Loaded TP HTML5TargetPlatform
+[2018.02.27-22.56.54:497][  0]LogTemp: Display: Loaded TP IOSTargetPlatform
+[2018.02.27-22.56.54:523][  0]LogTemp: Display: Loaded TP TVOSTargetPlatform
+[2018.02.27-22.56.54:566][  0]LogTemp: Display: Loaded TP LinuxClientTargetPlatform
+[2018.02.27-22.56.54:612][  0]LogTemp: Display: Loaded TP LinuxNoEditorTargetPlatform
+[2018.02.27-22.56.54:662][  0]LogTemp: Display: Loaded TP LinuxServerTargetPlatform
+[2018.02.27-22.56.54:708][  0]LogTemp: Display: Loaded TP LinuxTargetPlatform
+[2018.02.27-22.56.54:708][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2018.02.27-22.56.55:411][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2018.02.27-22.56.55:490][  0]LogDerivedDataCache: Loaded boot cache 0.08s 88MB C:/Users/Brennan/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc.
+[2018.02.27-22.56.55:490][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/Brennan/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc
+[2018.02.27-22.56.55:490][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2018.02.27-22.56.55:490][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2018.02.27-22.56.55:491][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2018.02.27-22.56.55:491][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2018.02.27-22.56.55:512][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2018.02.27-22.56.55:524][  0]LogDerivedDataCache: Using Local data cache path C:/Users/Brennan/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2018.02.27-22.56.55:534][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2018.02.27-22.56.55:535][  0]LogSlate: Using Freetype 2.6.0
+[2018.02.27-22.56.55:552][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.02.27-22.56.55:552][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.02.27-22.56.57:969][  0]LogInit: Selected Device Profile: [Windows]
+[2018.02.27-22.56.58:424][  0]LogSimplygon: Simplygon DLL not present - disabling.
+[2018.02.27-22.56.58:463][  0]LogMeshReduction: Using SimplygonSwarm for distributed automatic mesh merging
+[2018.02.27-22.56.58:463][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2018.02.27-22.56.58:463][  0]LogMeshReduction: No automatic skeletal mesh reduction module available
+[2018.02.27-22.56.58:463][  0]LogMeshReduction: No automatic mesh merging module available
+[2018.02.27-22.56.58:463][  0]LogMeshMerging: No automatic mesh merging module available
+[2018.02.27-22.56.58:513][  0]LogNetVersion: Super80sFighter , NetCL: 3709383, EngineNetVer: 2, GameNetVer: 0 (Checksum: 2015644251)
+[2018.02.27-22.56.58:882][  0]LogAssetRegistry: FAssetRegistry took 0.0275 seconds to start up
+[2018.02.27-22.56.59:839][  0]LogPackageLocalizationCache: Processed 6 localized package path(s) for 2 prioritized culture(s) in 0.086921 seconds
+[2018.02.27-22.56.59:845][  0]LogUObjectArray: 35673 objects as part of root set at end of initial load.
+[2018.02.27-22.56.59:845][  0]LogUObjectAllocator: 7329696 out of 0 bytes used by permanent object pool.
+[2018.02.27-22.56.59:845][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2018.02.27-22.56.59:892][  0]LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+[2018.02.27-22.57.04:795][  0]LogSubstanceCoreModule: Substance [CPU] Engine Loaded, Max Texture Size = 2048
+[2018.02.27-22.57.04:828][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2018.02.27-22.57.04:880][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2018.02.27-22.57.05:409][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.02.27-22.57.05:409][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Meshes/Shape_Cube.uasset.
+[2018.02.27-22.57.05:409][  0]LoadErrors: Error: /Game/SideScrollerCPP/Meshes/Shape_Cube : Can't find file for asset. /Game/StarterContent/Materials/M_Basic_Wall
+[2018.02.27-22.57.05:409][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.02.27-22.57.05:409][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Meshes/Shape_Cube.uasset.
+[2018.02.27-22.57.05:409][  0]LoadErrors: Error: /Game/SideScrollerCPP/Meshes/Shape_Cube : Can't find file for asset. /Game/StarterContent/Materials/M_Basic_Wall
+[2018.02.27-22.57.05:409][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.02.27-22.57.05:410][  0]LoadErrors: Failed to load /Game/StarterContent/Materials/M_Basic_Wall.M_Basic_Wall Referenced by Shape_Cube
+[2018.02.27-22.57.05:410][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading NULL.
+[2018.02.27-22.57.05:410][  0]LoadErrors: Failed to load /Game/StarterContent/Materials/M_Basic_Wall.M_Basic_Wall Referenced by Shape_Cube
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:590][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_Burst
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:590][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_explosion_subUV
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:590][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/m_flare_01
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.02.27-22.57.05:590][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:590][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_radial_ramp
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:591][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_smoke_subUV
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:591][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_Burst
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:591][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_explosion_subUV
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:591][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/m_flare_01
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.02.27-22.57.05:591][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:591][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_radial_ramp
+[2018.02.27-22.57.05:592][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.02.27-22.57.05:592][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.02.27-22.57.05:592][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_smoke_subUV
+[2018.02.27-22.57.05:855][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.02.27-22.57.05:855][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_smoke_subUV.M_smoke_subUV Referenced by ParticleModuleRequired_0
+[2018.02.27-22.57.05:855][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading NULL.
+[2018.02.27-22.57.05:855][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_smoke_subUV.M_smoke_subUV Referenced by ParticleModuleRequired_0
+[2018.02.27-22.57.05:855][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.02.27-22.57.05:855][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_explosion_subUV.M_explosion_subUV Referenced by ParticleModuleRequired_2
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading NULL.
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_explosion_subUV.M_explosion_subUV Referenced by ParticleModuleRequired_2
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_radial_ramp.M_radial_ramp Referenced by ParticleModuleRequired_3
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading NULL.
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_radial_ramp.M_radial_ramp Referenced by ParticleModuleRequired_3
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/m_flare_01.m_flare_01 Referenced by ParticleModuleRequired_4
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading NULL.
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/m_flare_01.m_flare_01 Referenced by ParticleModuleRequired_4
+[2018.02.27-22.57.05:856][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.02.27-22.57.05:856][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_Burst.M_Burst Referenced by ParticleModuleRequired_8
+[2018.02.27-22.57.05:857][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading NULL.
+[2018.02.27-22.57.05:857][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_Burst.M_Burst Referenced by ParticleModuleRequired_8
+[2018.02.27-22.57.06:258][  0]LogMaterial: Uniform references updated for custom material expression Custom.
+[2018.02.27-22.57.06:790][  0]SourceControl: Source control is disabled
+[2018.02.27-22.57.06:790][  0]SourceControl: Source control is disabled
+[2018.02.27-22.57.06:840][  0]SourceControl: Source control is disabled
+[2018.02.27-22.57.06:893][  0]SourceControl: Source control is disabled
+[2018.02.27-22.57.07:699][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2018.02.27-22.57.07:951][  0]LogOcInput: OculusInput pre-init called
+[2018.02.27-22.57.08:426][  0]LogEngine: Initializing Engine...
+[2018.02.27-22.57.08:813][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
+[2018.02.27-22.57.08:813][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
+[2018.02.27-22.57.08:929][  0]LogAIModule: Creating AISystem for world Untitled
+[2018.02.27-22.57.08:939][  0]LogInit: XAudio2 using 'Speakers (Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.02.27-22.57.09:080][  0]LogInit: FAudioDevice initialized.
+[2018.02.27-22.57.09:158][  0]LogDerivedDataCache: Saved boot cache 0.08s 88MB C:/Users/Brennan/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc.
+[2018.02.27-22.57.09:168][  0]LogInit: Texture streaming: Enabled
+[2018.02.27-22.57.09:259][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2018.02.27-22.57.09:259][  0]LogEngineSessionManager: EngineSessionManager sent abnormal shutdown report. Type=Debugger, SessionId={53773C3B-4034-B508-AA28-C2A16926AA6F}
+[2018.02.27-22.57.09:415][  0]LogInit: Transaction tracking system initialized
+[2018.02.27-22.57.09:734][  0]BlueprintLog: New page: Editor Load
+[2018.02.27-22.57.10:851][  0]LocalizationService: Localization service is disabled
+[2018.02.27-22.57.11:639][  0]LogConsoleResponse: Display: 
+[2018.02.27-22.57.12:143][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2018.02.27-22.57.12:143][  0]LogCook: Display: Mobile HDR setting 1
+[2018.02.27-22.57.12:143][  0]LogGameplayTags: Display: UGameplayTagsManager::DoneAddingNativeTags. DelegateIsBound: 0
+[2018.02.27-22.57.12:977][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/' took 0.02s
+[2018.02.27-22.57.13:460][  0]SourceControl: Source control is disabled
+[2018.02.27-22.57.13:464][  0]LogFactory: FactoryCreateFile: PackFactory with PackFactory (0 0 G:/Epic Games/UE_4.18/FeaturePacks/StarterContent.upack)
+[2018.02.27-22.57.15:165][  0]LogPackFactory: Finished extracting 8 files (including 0 errors).
+[2018.02.27-22.57.15:193][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Floor_400x400.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Floor_400x400.uasset"
+[2018.02.27-22.57.15:245][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Pillar_50x500.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Pillar_50x500.uasset"
+[2018.02.27-22.57.15:310][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/SM_AssetPlatform.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/SM_AssetPlatform.uasset"
+[2018.02.27-22.57.15:345][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_400x200.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_400x200.uasset"
+[2018.02.27-22.57.15:368][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_400x300.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_400x300.uasset"
+[2018.02.27-22.57.15:386][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_400x400.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_400x400.uasset"
+[2018.02.27-22.57.15:407][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_500x500.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_500x500.uasset"
+[2018.02.27-22.57.15:451][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_Door_400x300.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_Door_400x300.uasset"
+[2018.02.27-22.57.15:465][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_Door_400x400.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_Door_400x400.uasset"
+[2018.02.27-22.57.15:513][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_Window_400x300.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_Window_400x300.uasset"
+[2018.02.27-22.57.15:526][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Architecture/Wall_Window_400x400.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Wall_Window_400x400.uasset"
+[2018.02.27-22.57.15:545][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Collapse01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Collapse01.uasset"
+[2018.02.27-22.57.15:567][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Collapse02.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Collapse02.uasset"
+[2018.02.27-22.57.15:588][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Collapse_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Collapse_Cue.uasset"
+[2018.02.27-22.57.15:607][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Explosion01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Explosion01.uasset"
+[2018.02.27-22.57.15:631][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Explosion02.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Explosion02.uasset"
+[2018.02.27-22.57.15:648][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Explosion_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Explosion_Cue.uasset"
+[2018.02.27-22.57.15:674][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Fire01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Fire01.uasset"
+[2018.02.27-22.57.15:700][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Fire01_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Fire01_Cue.uasset"
+[2018.02.27-22.57.15:729][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Fire_Sparks01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Fire_Sparks01.uasset"
+[2018.02.27-22.57.15:738][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Fire_Sparks01_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Fire_Sparks01_Cue.uasset"
+[2018.02.27-22.57.15:767][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Light01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Light01.uasset"
+[2018.02.27-22.57.15:782][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Light01_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Light01_Cue.uasset"
+[2018.02.27-22.57.15:801][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Light02.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Light02.uasset"
+[2018.02.27-22.57.15:820][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Light02_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Light02_Cue.uasset"
+[2018.02.27-22.57.15:846][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Smoke01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Smoke01.uasset"
+[2018.02.27-22.57.15:866][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Smoke01_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Smoke01_Cue.uasset"
+[2018.02.27-22.57.15:888][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Background_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Background_Cue.uasset"
+[2018.02.27-22.57.15:929][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Birds01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Birds01.uasset"
+[2018.02.27-22.57.16:020][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Music01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Music01.uasset"
+[2018.02.27-22.57.16:056][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Music_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Music_Cue.uasset"
+[2018.02.27-22.57.16:092][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Wind05.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Wind05.uasset"
+[2018.02.27-22.57.16:131][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Starter_Wind06.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Starter_Wind06.uasset"
+[2018.02.27-22.57.16:155][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Steam01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Steam01.uasset"
+[2018.02.27-22.57.16:167][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Audio/Steam01_Cue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Audio/Steam01_Cue.uasset"
+[2018.02.27-22.57.16:191][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset"
+[2018.02.27-22.57.16:206][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_Effect_Explosion.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_Effect_Explosion.uasset"
+[2018.02.27-22.57.16:222][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_Effect_Fire.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_Effect_Fire.uasset"
+[2018.02.27-22.57.16:236][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_Effect_Smoke.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_Effect_Smoke.uasset"
+[2018.02.27-22.57.16:251][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_Effect_Sparks.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_Effect_Sparks.uasset"
+[2018.02.27-22.57.16:274][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_Effect_Steam.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_Effect_Steam.uasset"
+[2018.02.27-22.57.16:298][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Blueprint_WallSconce.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Blueprint_WallSconce.uasset"
+[2018.02.27-22.57.16:321][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/BP_LightStudio.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/BP_LightStudio.uasset"
+[2018.02.27-22.57.16:328][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/FogBrightnessLUT.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/FogBrightnessLUT.uasset"
+[2018.02.27-22.57.16:348][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/M_LightStage_Arrows.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/M_LightStage_Arrows.uasset"
+[2018.02.27-22.57.16:367][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_Black.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_Black.uasset"
+[2018.02.27-22.57.16:395][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_HDRI.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_HDRI.uasset"
+[2018.02.27-22.57.16:423][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_Master.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/M_LightStage_Skybox_Master.uasset"
+[2018.02.27-22.57.16:451][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/Skybox.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/Skybox.uasset"
+[2018.02.27-22.57.16:494][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/SM_Arrows.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/SM_Arrows.uasset"
+[2018.02.27-22.57.16:507][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Blueprints/Assets/SunlightColorLUT.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Blueprints/Assets/SunlightColorLUT.uasset"
+[2018.02.27-22.57.17:167][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset"
+[2018.02.27-22.57.17:206][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/Advanced_Lighting.umap" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/Advanced_Lighting.umap"
+[2018.02.27-22.57.17:231][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/Advanced_Lighting_BuiltData.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/Advanced_Lighting_BuiltData.uasset"
+[2018.02.27-22.57.17:271][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/Minimal_Default.umap" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/Minimal_Default.umap"
+[2018.02.27-22.57.17:298][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/Minimal_Default_BuiltData.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/Minimal_Default_BuiltData.uasset"
+[2018.02.27-22.57.17:372][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/StarterMap.umap" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/StarterMap.umap"
+[2018.02.27-22.57.17:514][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Maps/StarterMap_BuiltData.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Maps/StarterMap_BuiltData.uasset"
+[2018.02.27-22.57.17:545][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_AssetPlatform.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_AssetPlatform.uasset"
+[2018.02.27-22.57.17:564][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Basic_Floor.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Basic_Floor.uasset"
+[2018.02.27-22.57.17:582][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Basic_Wall.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Basic_Wall.uasset"
+[2018.02.27-22.57.17:598][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Brick_Clay_Beveled.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Brick_Clay_Beveled.uasset"
+[2018.02.27-22.57.17:626][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Brick_Clay_New.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Brick_Clay_New.uasset"
+[2018.02.27-22.57.17:643][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Brick_Clay_Old.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Brick_Clay_Old.uasset"
+[2018.02.27-22.57.17:662][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Brick_Cut_Stone.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Brick_Cut_Stone.uasset"
+[2018.02.27-22.57.17:678][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Brick_Hewn_Stone.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Brick_Hewn_Stone.uasset"
+[2018.02.27-22.57.17:696][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Ceramic_Tile_Checker.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Ceramic_Tile_Checker.uasset"
+[2018.02.27-22.57.17:711][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_CobbleStone_Pebble.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_CobbleStone_Pebble.uasset"
+[2018.02.27-22.57.17:734][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_CobbleStone_Rough.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_CobbleStone_Rough.uasset"
+[2018.02.27-22.57.17:755][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_CobbleStone_Smooth.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_CobbleStone_Smooth.uasset"
+[2018.02.27-22.57.17:776][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_ColorGrid_LowSpec.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_ColorGrid_LowSpec.uasset"
+[2018.02.27-22.57.17:793][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Concrete_Grime.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Concrete_Grime.uasset"
+[2018.02.27-22.57.17:810][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Concrete_Panels.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Concrete_Panels.uasset"
+[2018.02.27-22.57.17:827][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Concrete_Poured.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Concrete_Poured.uasset"
+[2018.02.27-22.57.17:848][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Concrete_Tiles.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Concrete_Tiles.uasset"
+[2018.02.27-22.57.17:871][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Glass.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Glass.uasset"
+[2018.02.27-22.57.17:888][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Ground_Grass.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Ground_Grass.uasset"
+[2018.02.27-22.57.17:907][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Ground_Gravel.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Ground_Gravel.uasset"
+[2018.02.27-22.57.17:925][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Ground_Moss.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Ground_Moss.uasset"
+[2018.02.27-22.57.17:943][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Brushed_Nickel.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Brushed_Nickel.uasset"
+[2018.02.27-22.57.17:965][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Burnished_Steel.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Burnished_Steel.uasset"
+[2018.02.27-22.57.17:987][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Chrome.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Chrome.uasset"
+[2018.02.27-22.57.18:006][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Copper.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Copper.uasset"
+[2018.02.27-22.57.18:026][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Gold.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Gold.uasset"
+[2018.02.27-22.57.18:047][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Rust.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Rust.uasset"
+[2018.02.27-22.57.18:063][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Metal_Steel.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Metal_Steel.uasset"
+[2018.02.27-22.57.18:076][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Rock_Basalt.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Rock_Basalt.uasset"
+[2018.02.27-22.57.18:090][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Rock_Marble_Polished.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Rock_Marble_Polished.uasset"
+[2018.02.27-22.57.18:108][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Rock_Sandstone.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Rock_Sandstone.uasset"
+[2018.02.27-22.57.18:125][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Rock_Slate.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Rock_Slate.uasset"
+[2018.02.27-22.57.18:142][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Tech_Checker_Dot.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Tech_Checker_Dot.uasset"
+[2018.02.27-22.57.18:161][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Tech_Hex_Tile.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Tech_Hex_Tile.uasset"
+[2018.02.27-22.57.18:177][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.uasset"
+[2018.02.27-22.57.18:203][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Tech_Panel.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Tech_Panel.uasset"
+[2018.02.27-22.57.18:221][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Water_Lake.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Water_Lake.uasset"
+[2018.02.27-22.57.18:232][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Water_Ocean.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Water_Ocean.uasset"
+[2018.02.27-22.57.18:251][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Wood_Floor_Walnut_Polished.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Wood_Floor_Walnut_Polished.uasset"
+[2018.02.27-22.57.18:272][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Wood_Floor_Walnut_Worn.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Wood_Floor_Walnut_Worn.uasset"
+[2018.02.27-22.57.18:292][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Wood_Oak.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Wood_Oak.uasset"
+[2018.02.27-22.57.18:311][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Wood_Pine.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Wood_Pine.uasset"
+[2018.02.27-22.57.18:325][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Materials/M_Wood_Walnut.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Materials/M_Wood_Walnut.uasset"
+[2018.02.27-22.57.18:346][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Ambient_Dust.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Ambient_Dust.uasset"
+[2018.02.27-22.57.18:374][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Explosion.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Explosion.uasset"
+[2018.02.27-22.57.18:399][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Fire.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Fire.uasset"
+[2018.02.27-22.57.18:419][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Smoke.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Smoke.uasset"
+[2018.02.27-22.57.18:438][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Sparks.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Sparks.uasset"
+[2018.02.27-22.57.18:458][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/P_Steam_Lit.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/P_Steam_Lit.uasset"
+[2018.02.27-22.57.18:474][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Burst.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Burst.uasset"
+[2018.02.27-22.57.18:491][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Dust_Particle.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Dust_Particle.uasset"
+[2018.02.27-22.57.18:516][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_explosion_subUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_explosion_subUV.uasset"
+[2018.02.27-22.57.18:535][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Fire_SubUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Fire_SubUV.uasset"
+[2018.02.27-22.57.18:557][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/m_flare_01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/m_flare_01.uasset"
+[2018.02.27-22.57.18:578][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Heat_Distortion.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Heat_Distortion.uasset"
+[2018.02.27-22.57.18:603][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Radial_Gradient.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Radial_Gradient.uasset"
+[2018.02.27-22.57.18:634][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_radial_ramp.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_radial_ramp.uasset"
+[2018.02.27-22.57.18:647][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_smoke_subUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_smoke_subUV.uasset"
+[2018.02.27-22.57.18:653][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Particles/Materials/M_Spark.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Particles/Materials/M_Spark.uasset"
+[2018.02.27-22.57.18:682][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/MaterialSphere.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/MaterialSphere.uasset"
+[2018.02.27-22.57.18:702][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Bush.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Bush.uasset"
+[2018.02.27-22.57.18:717][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Chair.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Chair.uasset"
+[2018.02.27-22.57.18:734][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_CornerFrame.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_CornerFrame.uasset"
+[2018.02.27-22.57.18:749][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Couch.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Couch.uasset"
+[2018.02.27-22.57.18:774][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Door.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Door.uasset"
+[2018.02.27-22.57.18:798][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_DoorFrame.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_DoorFrame.uasset"
+[2018.02.27-22.57.18:822][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_GlassWindow.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_GlassWindow.uasset"
+[2018.02.27-22.57.18:844][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Lamp_Ceiling.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Lamp_Ceiling.uasset"
+[2018.02.27-22.57.18:865][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Lamp_Wall.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Lamp_Wall.uasset"
+[2018.02.27-22.57.18:904][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_MatPreviewMesh_02.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_MatPreviewMesh_02.uasset"
+[2018.02.27-22.57.18:928][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_PillarFrame.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_PillarFrame.uasset"
+[2018.02.27-22.57.18:943][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_PillarFrame300.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_PillarFrame300.uasset"
+[2018.02.27-22.57.18:961][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Rock.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Rock.uasset"
+[2018.02.27-22.57.18:977][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Shelf.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Shelf.uasset"
+[2018.02.27-22.57.19:005][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Stairs.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Stairs.uasset"
+[2018.02.27-22.57.19:028][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_Statue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_Statue.uasset"
+[2018.02.27-22.57.19:086][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_TableRound.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_TableRound.uasset"
+[2018.02.27-22.57.19:116][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/SM_WindowFrame.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/SM_WindowFrame.uasset"
+[2018.02.27-22.57.19:143][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Bush.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Bush.uasset"
+[2018.02.27-22.57.19:162][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Chair.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Chair.uasset"
+[2018.02.27-22.57.19:182][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Door.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Door.uasset"
+[2018.02.27-22.57.19:207][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Frame.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Frame.uasset"
+[2018.02.27-22.57.19:229][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Lamp.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Lamp.uasset"
+[2018.02.27-22.57.19:249][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_MaterialSphere.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_MaterialSphere.uasset"
+[2018.02.27-22.57.19:264][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_MaterialSphere_Plain.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_MaterialSphere_Plain.uasset"
+[2018.02.27-22.57.19:291][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Rock.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Rock.uasset"
+[2018.02.27-22.57.19:308][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Shelf.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Shelf.uasset"
+[2018.02.27-22.57.19:328][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_Statue.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_Statue.uasset"
+[2018.02.27-22.57.19:353][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_StatueGlass.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_StatueGlass.uasset"
+[2018.02.27-22.57.19:375][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Props/Materials/M_TableRound.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Props/Materials/M_TableRound.uasset"
+[2018.02.27-22.57.19:403][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Cone.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Cone.uasset"
+[2018.02.27-22.57.19:429][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Cube.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Cube.uasset"
+[2018.02.27-22.57.19:457][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Cylinder.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Cylinder.uasset"
+[2018.02.27-22.57.19:478][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_NarrowCapsule.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_NarrowCapsule.uasset"
+[2018.02.27-22.57.19:494][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Pipe.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Pipe.uasset"
+[2018.02.27-22.57.19:519][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Pipe_180.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Pipe_180.uasset"
+[2018.02.27-22.57.19:544][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Pipe_90.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Pipe_90.uasset"
+[2018.02.27-22.57.19:558][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Plane.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Plane.uasset"
+[2018.02.27-22.57.19:579][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_QuadPyramid.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_QuadPyramid.uasset"
+[2018.02.27-22.57.19:590][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Sphere.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Sphere.uasset"
+[2018.02.27-22.57.19:613][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Torus.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Torus.uasset"
+[2018.02.27-22.57.19:639][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Trim.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Trim.uasset"
+[2018.02.27-22.57.19:753][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Trim_90_In.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Trim_90_In.uasset"
+[2018.02.27-22.57.19:772][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Trim_90_Out.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Trim_90_Out.uasset"
+[2018.02.27-22.57.19:809][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_TriPyramid.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_TriPyramid.uasset"
+[2018.02.27-22.57.19:826][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Tube.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Tube.uasset"
+[2018.02.27-22.57.19:845][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Wedge_A.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Wedge_A.uasset"
+[2018.02.27-22.57.19:860][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_Wedge_B.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_Wedge_B.uasset"
+[2018.02.27-22.57.19:880][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Shapes/Shape_WideCapsule.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Shapes/Shape_WideCapsule.uasset"
+[2018.02.27-22.57.19:973][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_Beveled_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_Beveled_D.uasset"
+[2018.02.27-22.57.20:076][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_Beveled_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_Beveled_M.uasset"
+[2018.02.27-22.57.20:178][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_Beveled_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_Beveled_N.uasset"
+[2018.02.27-22.57.20:258][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_New_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_New_D.uasset"
+[2018.02.27-22.57.20:371][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_New_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_New_M.uasset"
+[2018.02.27-22.57.20:467][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_New_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_New_N.uasset"
+[2018.02.27-22.57.20:594][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_Old_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_Old_D.uasset"
+[2018.02.27-22.57.20:690][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Clay_Old_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Clay_Old_N.uasset"
+[2018.02.27-22.57.20:842][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Cut_Stone_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Cut_Stone_D.uasset"
+[2018.02.27-22.57.20:925][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Cut_Stone_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Cut_Stone_N.uasset"
+[2018.02.27-22.57.21:022][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Hewn_Stone_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Hewn_Stone_D.uasset"
+[2018.02.27-22.57.21:109][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Hewn_Stone_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Hewn_Stone_M.uasset"
+[2018.02.27-22.57.21:221][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Brick_Hewn_Stone_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Brick_Hewn_Stone_N.uasset"
+[2018.02.27-22.57.21:255][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Burst_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Burst_M.uasset"
+[2018.02.27-22.57.21:281][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Bush_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Bush_D.uasset"
+[2018.02.27-22.57.21:305][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Bush_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Bush_N.uasset"
+[2018.02.27-22.57.21:323][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ceramic_Tile_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ceramic_Tile_M.uasset"
+[2018.02.27-22.57.21:343][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ceramic_Tile_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ceramic_Tile_N.uasset"
+[2018.02.27-22.57.21:370][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Chair_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Chair_M.uasset"
+[2018.02.27-22.57.21:421][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Chair_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Chair_N.uasset"
+[2018.02.27-22.57.21:448][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Checker_Noise_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Checker_Noise_M.uasset"
+[2018.02.27-22.57.21:571][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Pebble_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Pebble_D.uasset"
+[2018.02.27-22.57.21:613][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Pebble_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Pebble_M.uasset"
+[2018.02.27-22.57.21:741][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Pebble_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Pebble_N.uasset"
+[2018.02.27-22.57.21:807][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Rough_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Rough_D.uasset"
+[2018.02.27-22.57.21:846][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Rough_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Rough_N.uasset"
+[2018.02.27-22.57.21:969][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Smooth_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Smooth_D.uasset"
+[2018.02.27-22.57.22:054][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Smooth_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Smooth_M.uasset"
+[2018.02.27-22.57.22:159][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_CobbleStone_Smooth_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_CobbleStone_Smooth_N.uasset"
+[2018.02.27-22.57.22:279][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Grime_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Grime_D.uasset"
+[2018.02.27-22.57.22:380][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Panels_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Panels_D.uasset"
+[2018.02.27-22.57.22:465][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Panels_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Panels_N.uasset"
+[2018.02.27-22.57.22:595][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Poured_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Poured_D.uasset"
+[2018.02.27-22.57.22:692][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Poured_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Poured_N.uasset"
+[2018.02.27-22.57.22:754][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Tiles_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Tiles_D.uasset"
+[2018.02.27-22.57.22:831][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Tiles_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Tiles_M.uasset"
+[2018.02.27-22.57.22:921][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Tiles_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Tiles_N.uasset"
+[2018.02.27-22.57.22:942][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Concrete_Tiles_Variation_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Concrete_Tiles_Variation_M.uasset"
+[2018.02.27-22.57.22:985][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Detail_Rocky_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Detail_Rocky_N.uasset"
+[2018.02.27-22.57.23:038][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Door_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Door_M.uasset"
+[2018.02.27-22.57.23:064][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Door_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Door_N.uasset"
+[2018.02.27-22.57.23:089][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Dust_Particle_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Dust_Particle_D.uasset"
+[2018.02.27-22.57.23:134][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Explosion_SubUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Explosion_SubUV.uasset"
+[2018.02.27-22.57.23:168][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Fire_SubUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Fire_SubUV.uasset"
+[2018.02.27-22.57.23:194][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Fire_Tiled_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Fire_Tiled_D.uasset"
+[2018.02.27-22.57.23:221][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Frame_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Frame_M.uasset"
+[2018.02.27-22.57.23:257][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Frame_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Frame_N.uasset"
+[2018.02.27-22.57.23:274][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Gradinet_01.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Gradinet_01.uasset"
+[2018.02.27-22.57.23:396][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ground_Grass_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ground_Grass_D.uasset"
+[2018.02.27-22.57.23:527][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ground_Grass_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ground_Grass_N.uasset"
+[2018.02.27-22.57.23:654][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ground_Gravel_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ground_Gravel_D.uasset"
+[2018.02.27-22.57.23:753][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ground_Gravel_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ground_Gravel_N.uasset"
+[2018.02.27-22.57.23:921][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_ground_Moss_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_ground_Moss_D.uasset"
+[2018.02.27-22.57.24:015][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Ground_Moss_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Ground_Moss_N.uasset"
+[2018.02.27-22.57.24:053][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Lamp_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Lamp_M.uasset"
+[2018.02.27-22.57.24:122][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Lamp_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Lamp_N.uasset"
+[2018.02.27-22.57.24:233][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_MacroVariation.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_MacroVariation.uasset"
+[2018.02.27-22.57.24:346][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Aluminum_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Aluminum_D.uasset"
+[2018.02.27-22.57.24:446][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Copper_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Copper_D.uasset"
+[2018.02.27-22.57.24:555][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Gold_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Gold_D.uasset"
+[2018.02.27-22.57.24:620][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Gold_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Gold_N.uasset"
+[2018.02.27-22.57.24:707][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Rust_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Rust_D.uasset"
+[2018.02.27-22.57.24:812][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Rust_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Rust_N.uasset"
+[2018.02.27-22.57.24:903][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Steel_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Steel_D.uasset"
+[2018.02.27-22.57.24:966][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Metal_Steel_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Metal_Steel_N.uasset"
+[2018.02.27-22.57.25:066][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Perlin_Noise_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Perlin_Noise_M.uasset"
+[2018.02.27-22.57.25:126][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_RockMesh_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_RockMesh_M.uasset"
+[2018.02.27-22.57.25:193][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_RockMesh_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_RockMesh_N.uasset"
+[2018.02.27-22.57.25:311][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Basalt_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Basalt_D.uasset"
+[2018.02.27-22.57.25:413][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Basalt_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Basalt_N.uasset"
+[2018.02.27-22.57.25:488][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Marble_Polished_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Marble_Polished_D.uasset"
+[2018.02.27-22.57.25:597][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Sandstone_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Sandstone_D.uasset"
+[2018.02.27-22.57.25:702][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Sandstone_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Sandstone_N.uasset"
+[2018.02.27-22.57.25:840][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Slate_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Slate_D.uasset"
+[2018.02.27-22.57.25:962][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Slate_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Slate_N.uasset"
+[2018.02.27-22.57.26:069][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Rock_Smooth_Granite_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Rock_Smooth_Granite_D.uasset"
+[2018.02.27-22.57.26:107][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Shelf_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Shelf_M.uasset"
+[2018.02.27-22.57.26:143][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Shelf_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Shelf_N.uasset"
+[2018.02.27-22.57.26:158][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Single_Tile_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Single_Tile_N.uasset"
+[2018.02.27-22.57.26:208][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Smoke_SubUV.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Smoke_SubUV.uasset"
+[2018.02.27-22.57.26:234][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Smoke_Tiled_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Smoke_Tiled_D.uasset"
+[2018.02.27-22.57.26:257][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Spark_Core.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Spark_Core.uasset"
+[2018.02.27-22.57.26:283][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Statue_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Statue_M.uasset"
+[2018.02.27-22.57.26:307][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Statue_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Statue_N.uasset"
+[2018.02.27-22.57.26:384][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_TableRound_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_TableRound_M.uasset"
+[2018.02.27-22.57.26:420][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_TableRound_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_TableRound_N.uasset"
+[2018.02.27-22.57.26:439][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Dot_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Dot_M.uasset"
+[2018.02.27-22.57.26:461][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Dot_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Dot_N.uasset"
+[2018.02.27-22.57.26:485][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Hex_Tile_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Hex_Tile_M.uasset"
+[2018.02.27-22.57.26:530][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Hex_Tile_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Hex_Tile_N.uasset"
+[2018.02.27-22.57.26:565][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Panel_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Panel_M.uasset"
+[2018.02.27-22.57.26:613][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Tech_Panel_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Tech_Panel_N.uasset"
+[2018.02.27-22.57.26:655][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Water_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Water_M.uasset"
+[2018.02.27-22.57.26:696][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Water_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Water_N.uasset"
+[2018.02.27-22.57.26:759][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Floor_Walnut_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Floor_Walnut_D.uasset"
+[2018.02.27-22.57.26:831][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Floor_Walnut_M.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Floor_Walnut_M.uasset"
+[2018.02.27-22.57.26:878][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Floor_Walnut_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Floor_Walnut_N.uasset"
+[2018.02.27-22.57.26:959][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Oak_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Oak_D.uasset"
+[2018.02.27-22.57.27:041][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Oak_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Oak_N.uasset"
+[2018.02.27-22.57.27:163][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Pine_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Pine_D.uasset"
+[2018.02.27-22.57.27:229][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Pine_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Pine_N.uasset"
+[2018.02.27-22.57.27:309][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Walnut_D.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Walnut_D.uasset"
+[2018.02.27-22.57.27:381][  0]LogPackFactory: Copied "../../../Samples/StarterContent/Content/StarterContent/Textures/T_Wood_Walnut_N.uasset" to "C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Textures/T_Wood_Walnut_N.uasset"
+[2018.02.27-22.57.27:662][  0]LogRenderer: Reallocating scene render targets to support 256x256 Format 10 NumSamples 1 (Frame:1).
+[2018.02.27-22.57.27:805][  0]LogSavePackage: Save=16.04ms
+[2018.02.27-22.57.27:805][  0]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/Floor_400x400C3C8F52B49DD8FA292F7F7B9C4FDB7DB.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Floor_400x400.uasset'
+[2018.02.27-22.57.27:812][  0]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/StarterContent/Architecture/Floor_400x400.uasset
+[2018.02.27-22.57.27:812][  0]LogFeaturePack: Warning: Inserted 1 feature packs
+[2018.02.27-22.57.27:816][  0]Cmd: MAP LOAD FILE="C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Maps/Main_Menu.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2018.02.27-22.57.27:817][  0]LightingResults: New page: Lighting Build
+[2018.02.27-22.57.27:855][  0]MapCheck: New page: Map Check
+[2018.02.27-22.57.27:855][  0]LightingResults: New page: Lighting Build
+[2018.02.27-22.57.28:919][  0]LogTexture: Display: Building textures: Level_Select_Mockup (AutoDXT, 960X540)
+[2018.02.27-22.57.28:919][  0]LogTexture: Display: Building textures: 15 (AutoDXT, 480X360)
+[2018.02.27-22.57.28:919][  0]LogTexture: Display: Building textures: do_not (BGRA8, 1247X675)
+[2018.02.27-22.57.28:919][  0]LogTexture: Display: Building textures: arcadescreen (AutoDXT, 1916X1016)
+[2018.02.27-22.57.29:522][  0]LogAIModule: Creating AISystem for world Main_Menu
+[2018.02.27-22.57.29:523][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2018.02.27-22.57.29:539][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2018.02.27-22.57.29:582][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 43.569ms to complete.
+[2018.02.27-22.57.29:582][  0]LogFileHelpers: Loading map 'Main_Menu' took 1.766
+[2018.02.27-22.57.29:736][  0]LogCollectionManager: Loaded 0 collections in 0.002581 seconds
+[2018.02.27-22.57.29:810][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/Collections/' took 0.01s
+[2018.02.27-22.57.29:810][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/Developers/Brennan/Collections/' took 0.01s
+[2018.02.27-22.57.29:810][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/Collections/' took 0.01s
+[2018.02.27-22.57.29:810][  0]LogCollectionManager: Rebuilt the GUID cache for 0 collections in 0.000000 seconds
+[2018.02.27-22.57.29:821][  0]LogContentBrowser: Native class hierarchy populated in 0.0107 seconds. Added 2382 classes and 522 folders.
+[2018.02.27-22.57.29:885][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0010 seconds. Added 0 classes and 0 folders.
+[2018.02.27-22.57.30:183][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2018.02.27-22.57.30:226][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0006 seconds. Added 1 classes and 2 folders.
+[2018.02.27-22.57.30:339][  0]LogSlate: Took 0.006372 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2018.02.27-22.57.30:344][  0]LogSlate: Took 0.003404 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2018.02.27-22.57.30:355][  0]LogSlate: Took 0.005261 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2018.02.27-22.57.30:465][  0]LogRenderer: Reallocating scene render targets to support 1208x576 Format 10 NumSamples 1 (Frame:1).
+[2018.02.27-22.57.30:507][  0]LogSlate: Took 0.004450 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.02.27-22.57.30:664][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0007 seconds. Added 1 classes and 2 folders.
+[2018.02.27-22.57.30:664][  0]LogLoad: (Engine Initialization) Total time: 48.77 seconds
+[2018.02.27-22.57.30:664][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2018.02.27-22.57.30:664][  0]LogExternalProfiler: Found external profiler: VSPerf
+[2018.02.27-22.57.30:664][  0]LogExternalProfiler: Using external profiler: VSPerf
+[2018.02.27-22.57.31:493][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2018.02.27-22.57.31:579][  1]LogSubstanceLiveLink: Warning: Unable to send data along socket, closing connection
+[2018.02.27-22.57.31:586][  1]LogFileCache: Retrieving MD5 hashes for directory 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/' took 0.57s
+[2018.02.27-22.57.31:595][  1]LogAssetRegistry: Asset discovery search completed in 32.7355 seconds
+[2018.02.27-22.57.31:597][  1]LogCollectionManager: Rebuilt the object cache for 0 collections in 0.000000 seconds (found 0 objects)
+[2018.02.27-22.57.31:597][  1]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000077 seconds (updated 0 objects)
+[2018.02.27-22.57.34:028][ 71]LogSlate: Took 0.000165 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.02.27-22.57.34:254][ 85]LogTemp: Repeating last play command: Selected Viewport
+[2018.02.27-22.57.34:343][ 85]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.34:343][ 85]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2018.02.27-22.57.34:344][ 85]PIE: New page: PIE session: Main_Menu (Feb 27, 2018, 12:57:34 PM)
+[2018.02.27-22.57.34:344][ 85]LogPlayLevel: Creating play world package: /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu
+[2018.02.27-22.57.34:345][ 85]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001022s)
+[2018.02.27-22.57.34:348][ 85]LogAIModule: Creating AISystem for world Main_Menu
+[2018.02.27-22.57.34:348][ 85]LogPlayLevel: PIE: World Init took: (0.002819s)
+[2018.02.27-22.57.34:348][ 85]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu to /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu (0.004101s)
+[2018.02.27-22.57.34:362][ 85]LogInit: XAudio2 using 'Speakers (Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.02.27-22.57.34:369][ 85]LogInit: FAudioDevice initialized.
+[2018.02.27-22.57.34:415][ 85]LogLoad: Game class is 'MySuper80sFighterGameMode_C'
+[2018.02.27-22.57.34:417][ 85]LogWorld: Bringing World /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu up for play (max tick rate 60) at 2018.02.27-17.57.34
+[2018.02.27-22.57.34:418][ 85]LogWorld: Bringing up level for play took: 0.000804
+[2018.02.27-22.57.34:455][ 85]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0007 seconds. Added 11 classes and 0 folders.
+[2018.02.27-22.57.34:462][ 85]PIE: Play in editor start time for /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu -0.685
+[2018.02.27-22.57.34:463][ 85]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.34:472][ 85]LogAudio: Warning: Detected orphaned looping sound '_80s_Sample_4_Cue'.
+[2018.02.27-22.57.37:265][251]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.37:301][251]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.39:372][374]AssetReimport: New page: Outstanding source content changes 12:57:39 PM
+[2018.02.27-22.57.39:373][374]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg]
+[2018.02.27-22.57.39:374][374]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg)
+[2018.02.27-22.57.39:433][374]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.39:495][374]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg]
+[2018.02.27-22.57.39:495][374]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg)
+[2018.02.27-22.57.39:553][374]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.40:299][375]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Charater Select Mockup.png]
+[2018.02.27-22.57.40:300][375]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Charater Select Mockup.png)
+[2018.02.27-22.57.41:028][375]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.41:046][376]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Level Select Mockup.png]
+[2018.02.27-22.57.41:048][376]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Level Select Mockup.png)
+[2018.02.27-22.57.41:736][376]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.41:748][377]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/arcadescreen.png]
+[2018.02.27-22.57.41:756][377]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/arcadescreen.png)
+[2018.02.27-22.57.43:085][377]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.43:102][378]LogEditorFactories: Performing atomic reimport of [C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/do not.png]
+[2018.02.27-22.57.43:102][378]LogFactory: FactoryCreateFile: Texture2D with ReimportTextureFactory (0 0 C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/do not.png)
+[2018.02.27-22.57.43:222][378]LogEditorFactories: -- imported successfully
+[2018.02.27-22.57.43:253][379]LogSlate: Took 0.000190 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.02.27-22.57.43:310][379]LogSavePackage: Save=27.27ms
+[2018.02.27-22.57.43:311][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/15FB574A534414E5C7701D46993199291A.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/15.uasset'
+[2018.02.27-22.57.43:315][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/15.uasset
+[2018.02.27-22.57.43:329][379]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/SideScrollerCPP/UI/15" FILE="C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.uasset" SILENT=true
+[2018.02.27-22.57.43:358][379]LogSavePackage: Save=26.54ms
+[2018.02.27-22.57.43:358][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/1508AA88E946B3FA575B17C5957C450583.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.uasset'
+[2018.02.27-22.57.43:362][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.uasset
+[2018.02.27-22.57.43:474][379]LogSavePackage: Save=83.46ms
+[2018.02.27-22.57.43:474][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/Charater_Select_MockupFA3898CC49E2BA6E0BA9CE90C7AE67E7.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/Charater_Select_Mockup.uasset'
+[2018.02.27-22.57.43:478][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/Charater_Select_Mockup.uasset
+[2018.02.27-22.57.43:574][379]LogSavePackage: Save=75.22ms
+[2018.02.27-22.57.43:574][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/Level_Select_Mockup9C06C86B4C41AA3AE324288F98D0CD30.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/Level_Select_Mockup.uasset'
+[2018.02.27-22.57.43:578][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/Level_Select_Mockup.uasset
+[2018.02.27-22.57.43:904][379]LogSavePackage: Save=302.53ms
+[2018.02.27-22.57.43:904][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/arcadescreenE88BB6E444AFBD6805593692AE35F6B5.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/arcadescreen.uasset'
+[2018.02.27-22.57.43:908][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/arcadescreen.uasset
+[2018.02.27-22.57.43:981][379]LogSavePackage: Save=50.61ms
+[2018.02.27-22.57.43:981][379]LogSavePackage: Moving 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/do_notC388430A408F365252FD32A7892D271A.tmp' to 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/do_not.uasset'
+[2018.02.27-22.57.43:985][379]LogSavePackage: Display: Finished SavePackage C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/do_not.uasset
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset 15 from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg.
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset 15 from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/15.jpg.
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset Charater_Select_Mockup from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Charater Select Mockup.png.
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset Level_Select_Mockup from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/UI/Level Select Mockup.png.
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset arcadescreen from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/arcadescreen.png.
+[2018.02.27-22.57.47:004][559]AssetReimport: Reimported asset do_not from C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/UI/do not.png.
+[2018.02.27-22.57.48:432][645]LogTemp: Repeating last play command: Selected Viewport
+[2018.02.27-22.57.48:444][645]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.48:444][645]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2018.02.27-22.57.48:444][645]PIE: New page: PIE session: Main_Menu (Feb 27, 2018, 12:57:48 PM)
+[2018.02.27-22.57.48:445][645]LogPlayLevel: Creating play world package: /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu
+[2018.02.27-22.57.48:446][645]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001073s)
+[2018.02.27-22.57.48:446][645]LogAIModule: Creating AISystem for world Main_Menu
+[2018.02.27-22.57.48:447][645]LogPlayLevel: PIE: World Init took: (0.000753s)
+[2018.02.27-22.57.48:447][645]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu to /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu (0.002137s)
+[2018.02.27-22.57.48:460][645]LogInit: XAudio2 using 'Speakers (Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.02.27-22.57.48:467][645]LogInit: FAudioDevice initialized.
+[2018.02.27-22.57.48:503][645]LogLoad: Game class is 'MySuper80sFighterGameMode_C'
+[2018.02.27-22.57.48:504][645]LogWorld: Bringing World /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu up for play (max tick rate 60) at 2018.02.27-17.57.48
+[2018.02.27-22.57.48:504][645]LogWorld: Bringing up level for play took: 0.000516
+[2018.02.27-22.57.48:510][645]PIE: Play in editor start time for /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu -0.638
+[2018.02.27-22.57.48:510][645]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.48:516][645]LogAudio: Warning: Detected orphaned looping sound '_80s_Sample_4_Cue'.
+[2018.02.27-22.57.55:485][ 63]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.57.55:522][ 63]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.02.27-22.58.23:712][268]LogWindowsTextInputMethodSystem: Display: IME system now deactivated.
+[2018.02.27-22.58.23:904][269]Cmd: QUIT_EDITOR
+[2018.02.27-22.58.24:100][269]LogExit: Preparing to exit.
+[2018.02.27-22.58.24:952][269]LogExit: Editor shut down
+[2018.02.27-22.58.24:954][269]LogExit: Transaction tracking system shut down
+[2018.02.27-22.58.25:072][269]LogDirectoryWatcher: A directory notification for '../../../Engine/Content/' was aborted.
+[2018.02.27-22.58.25:073][269]LogDirectoryWatcher: A directory notification for 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/' was aborted.
+[2018.02.27-22.58.25:073][269]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/2D/Paper2D/Content/' was aborted.
+[2018.02.27-22.58.25:073][269]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/Media/MediaCompositing/Content/' was aborted.
+[2018.02.27-22.58.25:073][269]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/Runtime/AppleARKit/Content/' was aborted.
+[2018.02.27-22.58.25:073][269]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/' was aborted.
+[2018.02.27-22.58.25:125][269]LogExit: Object subsystem successfully closed.
+[2018.02.27-22.58.25:514][269]LogD3D11RHI: Shutdown
+[2018.02.27-22.58.25:514][269]LogD3D11RHI: CleanupD3DDevice
+[2018.02.27-22.58.25:516][269]LogD3D11RHI: ~FD3D11DynamicRHI
+[2018.02.27-22.58.25:529][269]LogModuleManager: Shutting down and abandoning module MovieSceneCapture (556)
+[2018.02.27-22.58.25:529][269]LogModuleManager: Shutting down and abandoning module HierarchicalLODOutliner (554)
+[2018.02.27-22.58.25:529][269]LogModuleManager: Shutting down and abandoning module DesktopPlatform (552)
+[2018.02.27-22.58.25:529][269]LogModuleManager: Shutting down and abandoning module SceneOutliner (550)
+[2018.02.27-22.58.25:529][269]LogModuleManager: Shutting down and abandoning module AddContentDialog (548)
+[2018.02.27-22.58.25:529][269]LogDirectoryWatcher: A directory notification for 'G:/Epic Games/UE_4.18/FeaturePacks/' was aborted.
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module WidgetCarousel (547)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module EditorWidgets (544)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module CollectionManager (542)
+[2018.02.27-22.58.25:532][269]LogDirectoryWatcher: A directory notification for 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/Collections/' was aborted.
+[2018.02.27-22.58.25:532][269]LogDirectoryWatcher: A directory notification for 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Content/Developers/Brennan/Collections/' was aborted.
+[2018.02.27-22.58.25:532][269]LogDirectoryWatcher: A directory notification for 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Saved/Collections/' was aborted.
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module StatsViewer (540)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module FoliageEdit (538)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module LandscapeEditor (536)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module MeshPaintMode (534)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module SceneDepthPickerMode (532)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module ActorPickerMode (530)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module GeometryMode (528)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module TextureAlignMode (526)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module BspMode (524)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module PIEPreviewDeviceProfileSelector (522)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module HardwareSurvey (520)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (518)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module AutomationWorker (516)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module MatineeToLevelSequence (514)
+[2018.02.27-22.58.25:532][269]LogModuleManager: Shutting down and abandoning module LevelSequenceEditor (512)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module PlacementMode (511)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (508)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module WmfMediaEditor (506)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module OpenExrWrapper (504)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module ImgMediaFactory (502)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module ImgMediaEditor (500)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (498)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AvfMediaEditor (496)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (494)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AndroidMediaEditor (492)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module CharacterAI (490)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AudioCapture (488)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module SequenceRecorder (487)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module SmartSnapping (484)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module SessionServices (482)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module ViewportSnapping (480)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module ViewportInteraction (478)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module ClothPainter (476)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module SkeletalMeshEditor (475)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module LogVisualizer (472)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module IntroTutorials (470)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module GameProjectGeneration (469)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module IOSPlatformEditor (466)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module HTML5PlatformEditor (464)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AndroidPlatformEditor (462)
+[2018.02.27-22.58.25:533][269]LogModuleManager: Shutting down and abandoning module AndroidDeviceDetection (461)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module WindowsPlatformEditor (458)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module IOSRuntimeSettings (456)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module AndroidRuntimeSettings (454)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module InputBindingEditor (452)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module MergeActors (450)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module SizeMap (448)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module TreeMap (446)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module ReferenceViewer (444)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module LocalizationDashboard (442)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module LocalizationService (441)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module HardwareTargeting (438)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module DeviceProfileEditor (436)
+[2018.02.27-22.58.26:264][269]LogModuleManager: Shutting down and abandoning module UndoHistory (434)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module XmlParser (432)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module Blutility (430)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module ProjectSettingsViewer (428)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module ProjectTargetPlatformEditor (427)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module EditorSettingsViewer (424)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module SettingsEditor (422)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module ProjectLauncher (420)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module SessionFrontend (418)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module ProfilerClient (416)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module DeviceManager (414)
+[2018.02.27-22.58.26:265][269]LogModuleManager: Shutting down and abandoning module TargetDeviceServices (413)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module AutomationController (410)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module AutomationWindow (408)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module Layers (406)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module ComponentVisualizers (404)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module DetailCustomizations (402)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module PackagesDialog (400)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module Persona (398)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module AdvancedPreviewScene (397)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module AnimGraph (395)
+[2018.02.27-22.58.26:330][269]LogModuleManager: Shutting down and abandoning module Kismet (392)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module ClassViewer (390)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module Toolbox (388)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module ModuleUI (386)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module MovieSceneTools (384)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module OutputLog (382)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module GammaUI (380)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module Documentation (378)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module MovieSceneTracks (376)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module MovieScene (374)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (372)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module LauncherPlatform (370)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module AnalyticsET (368)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module PortalServices (366)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module PortalRpc (364)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module MessagingRpc (362)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module AIModule (360)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module GameplayDebugger (359)
+[2018.02.27-22.58.26:332][269]LogModuleManager: Shutting down and abandoning module AITestSuite (357)
+[2018.02.27-22.58.26:333][269]LogModuleManager: Shutting down and abandoning module ProfilerService (354)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module TaskGraph (352)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module SubstanceLiveLink (350)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module SubstanceSource (348)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module SubstanceEditor (346)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponentEditor (344)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (342)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module OculusInput (340)
+[2018.02.27-22.58.26:453][269]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (338)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (336)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module CableComponent (334)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (332)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module AndroidPermission (330)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module ActorSequence (326)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module MediaPlayerEditor (324)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module MediaCompositingEditor (322)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module MediaCompositing (320)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module HTML5Networking (318)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module AlembicImporter (316)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module AlembicLibrary (315)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module GeometryCache (314)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (313)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module SpeedTreeImporter (308)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module PluginBrowser (306)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module MobileLauncherProfileWizard (304)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (302)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module VisualStudioCodeSourceCodeAccess (300)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module UObjectPlugin (298)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (296)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (294)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module GitSourceControl (292)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module SourceControl (291)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeEditor (288)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module PaperTiledImporter (286)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module PaperSpriteSheetImporter (284)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module Paper2DEditor (282)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module MeshPaint (281)
+[2018.02.27-22.58.26:454][269]LogModuleManager: Shutting down and abandoning module LevelEditor (279)
+[2018.02.27-22.58.26:456][269]LogModuleManager: Shutting down and abandoning module PixelInspectorModule (278)
+[2018.02.27-22.58.26:456][269]LogModuleManager: Shutting down and abandoning module MainFrame (276)
+[2018.02.27-22.58.26:457][269]LogModuleManager: Shutting down and abandoning module HotReload (275)
+[2018.02.27-22.58.26:457][269]LogDirectoryWatcher: A directory notification for 'C:/Users/Brennan/Documents/Unreal Projects/Team project/Fighting-Game/Super80sFighter/Binaries/Win64' was aborted.
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module Super80sFighter (270)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module RuntimePhysXCooking (268)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module PhysXVehiclesEditor (266)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module PhysXVehicles (264)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module OculusEditor (262)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module LocationServicesBPLibrary (260)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module ImmediatePhysicsEditor (258)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module ImmediatePhysics (256)
+[2018.02.27-22.58.26:458][269]LogModuleManager: Shutting down and abandoning module UdpMessaging (254)
+[2018.02.27-22.58.26:560][269]LogModuleManager: Shutting down and abandoning module TcpMessaging (252)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module SubstanceCore (250)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (248)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module FacialAnimationEditor (246)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module FacialAnimation (244)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module AssetManagerEditor (242)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module GraphEditor (241)
+[2018.02.27-22.58.26:660][269]LogModuleManager: Shutting down and abandoning module ContentBrowser (239)
+[2018.02.27-22.58.26:661][269]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeRuntime (236)
+[2018.02.27-22.58.26:661][269]LogModuleManager: Shutting down and abandoning module Paper2D (234)
+[2018.02.27-22.58.26:661][269]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (232)
+[2018.02.27-22.58.26:661][269]LogModuleManager: Shutting down and abandoning module WmfMedia (230)
+[2018.02.27-22.58.26:663][269]LogModuleManager: Shutting down and abandoning module ImgMedia (228)
+[2018.02.27-22.58.26:663][269]LogModuleManager: Shutting down and abandoning module PacketHandler (226)
+[2018.02.27-22.58.26:663][269]LogModuleManager: Shutting down and abandoning module ClothingSystemEditor (224)
+[2018.02.27-22.58.26:663][269]LogModuleManager: Shutting down and abandoning module ClothingSystemRuntime (222)
+[2018.02.27-22.58.26:805][269]LogModuleManager: Shutting down and abandoning module MediaAssets (220)
+[2018.02.27-22.58.26:805][269]LogModuleManager: Shutting down and abandoning module Media (219)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module Overlay (216)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module OverlayEditor (215)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module VREditor (212)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module StringTableEditor (210)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (208)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (206)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module FunctionalTesting (204)
+[2018.02.27-22.58.26:811][269]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (202)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (201)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module UMG (198)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module UMGEditor (197)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module Sequencer (196)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module MessageLog (193)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module SlateReflector (188)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module Slate (186)
+[2018.02.27-22.58.26:812][269]LogModuleManager: Shutting down and abandoning module EditorStyle (184)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module MRMesh (182)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (180)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (178)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module XAudio2 (176)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module Networking (174)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module Core (170)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module LevelSequence (166)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (164)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module KismetCompiler (162)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module MeshUtilities (160)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module MeshMergeUtilities (159)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module MeshReductionInterface (158)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module SimplygonSwarm (157)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module SimplygonMeshReduction (155)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (153)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module MaterialBaking (149)
+[2018.02.27-22.58.26:814][269]LogModuleManager: Shutting down and abandoning module DerivedDataCache (146)
+[2018.02.27-22.58.27:083][269]LogDerivedDataCache: Shutdown
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TargetPlatform (144)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (143)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module ShaderFormatVectorVM (141)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (139)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (137)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (135)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (133)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatPVR (131)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (129)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (127)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (125)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module ImageWrapper (124)
+[2018.02.27-22.58.27:083][269]LogModuleManager: Shutting down and abandoning module TextureFormatAndroid (121)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AudioFormatOpus (119)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AudioFormatOgg (117)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (115)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module LinuxTargetPlatform (113)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module LinuxServerTargetPlatform (111)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module LinuxNoEditorTargetPlatform (109)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module LinuxClientTargetPlatform (107)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module TVOSTargetPlatform (105)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Messaging (103)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module IOSTargetPlatform (101)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module HTML5TargetPlatform (99)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AndroidTargetPlatform (97)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_PVRTCTargetPlatform (95)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_MultiTargetPlatform (93)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_ETC2TargetPlatform (91)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_ETC1TargetPlatform (89)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_DXTTargetPlatform (87)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_ATCTargetPlatform (85)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Android_ASTCTargetPlatform (83)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (81)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module WindowsServerTargetPlatform (79)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module WindowsNoEditorTargetPlatform (77)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module WindowsClientTargetPlatform (75)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module MacTargetPlatform (73)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module MacServerTargetPlatform (71)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module MacNoEditorTargetPlatform (69)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module MacClientTargetPlatform (67)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AllDesktopTargetPlatform (65)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module InputCore (62)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module Settings (60)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module PhysXCooking (58)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module OculusHMD (56)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (54)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AppleARKit (52)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module AugmentedReality (51)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (48)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (44)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module XMPP (43)
+[2018.02.27-22.58.27:084][269]LogModuleManager: Shutting down and abandoning module HTTP (41)
+[2018.02.27-22.58.27:084][269]LogHttp: Display: Http module shutting down, but needs to wait on 1 outstanding Http requests:
+[2018.02.27-22.58.27:084][269]LogHttp: Display: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7BD627184F-4635-85C8-2980-E0B0FE47ED4B%7D&AppID=UEEditor.Rocket.Release&AppVersion=4.18.3-3832480%2B%2B%2BUE4%2BRelease-4.18&UserID=b500ff194fe67ab4e08ff79ff1891215%7C65a4c28f953e46888669dc56f3442843%7Cfdf0508f-7138-41aa-b025-059ae44f42f3&AppEnvironment=datacollector-binary&UploadType=eteventstream] status=Processing
+[2018.02.27-22.58.27:093][269]LogModuleManager: Shutting down and abandoning module SSL (40)
+[2018.02.27-22.58.27:094][269]LogModuleManager: Shutting down and abandoning module AnimationModifiers (36)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module PropertyEditor (35)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module AudioEditor (32)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module TextureCompressor (30)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module ShaderCore (28)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module Landscape (26)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (24)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module OpenGLDrv (22)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module D3D11RHI (20)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (18)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module Renderer (16)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module Engine (14)
+[2018.02.27-22.58.27:095][269]LogModuleManager: Shutting down and abandoning module CoreUObject (12)
+[2018.02.27-22.58.27:096][269]LogModuleManager: Shutting down and abandoning module NetworkFile (10)
+[2018.02.27-22.58.27:096][269]LogModuleManager: Shutting down and abandoning module CookedIterativeFile (8)
+[2018.02.27-22.58.27:096][269]LogModuleManager: Shutting down and abandoning module StreamingFile (6)
+[2018.02.27-22.58.27:096][269]LogModuleManager: Shutting down and abandoning module SandboxFile (4)
+[2018.02.27-22.58.27:096][269]LogModuleManager: Shutting down and abandoning module PakFile (2)
+[2018.02.27-22.58.27:099][269]LogExit: Exiting.
+[2018.02.27-22.58.27:110][269]Log file closed, 02/27/18 17:58:27
