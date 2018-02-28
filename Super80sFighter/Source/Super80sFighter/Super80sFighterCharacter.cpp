@@ -703,6 +703,7 @@ void ASuper80sFighterCharacter::AttackTaunt()
 {
 	QueStopAttacking();
 	isAttackingTaunt = true;
+	++playerScore.numTaunts;
 }
 void ASuper80sFighterCharacter::SetLastPressedKey(FKey inKey)
 {
@@ -925,8 +926,11 @@ void ASuper80sFighterCharacter::PressJump()
 			jumpEffect = false;
 		}
 	}
+
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
+
+	InitialsBlueprintEvent();
 }
 void ASuper80sFighterCharacter::ReleaseJump()
 {
