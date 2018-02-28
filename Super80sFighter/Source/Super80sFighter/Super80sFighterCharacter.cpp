@@ -4,13 +4,13 @@
 AFighterParent::AFighterParent()
 {
 	//I love asian qt3.14s
-	// Set size for collision capsule
+	//Set size for collision capsule.
 	GetCapsuleComponent()->InitCapsuleSize(42.00f, 96.00f);
 
 	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	//Don't rotate when the controller rotates.+
+	//Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -31,23 +31,23 @@ AFighterParent::AFighterParent()
 															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
-	GetCharacterMovement()->GravityScale = 2.f;
+	GetCharacterMovement()->GravityScale = 2.00f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 1000.f;
-	GetCharacterMovement()->GroundFriction = 3.f;
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
-	GetCharacterMovement()->MaxFlySpeed = 600.f;
+	GetCharacterMovement()->JumpZVelocity = 1000.00f;
+	GetCharacterMovement()->GroundFriction = 3.00f;
+	GetCharacterMovement()->MaxWalkSpeed = 600.00f;
+	GetCharacterMovement()->MaxFlySpeed = 600.00f;
 
-	TotalStamina = 100.0f;
+	TotalStamina = 100.00f;
 	CurrentStamina = TotalStamina;
 
-	TotalHealth = 100.0f;
+	TotalHealth = 100.00f;
 	CurrentHealth = TotalHealth;
 
-	CustomHighJumpVelocity = 1000.0f;
-	CustomShortJumpVelocity = 700.0f;
-	JumpThreshold = 0.1f;
-	AttackThreshold = 0.2f;
+	CustomHighJumpVelocity = 1000.00f;
+	CustomShortJumpVelocity = 700.00f;
+	JumpThreshold = 0.10f;
+	AttackThreshold = 0.20f;
 	BlockThreshold = 0.05f;
 
 	holdThreshold = 0.13;
@@ -300,7 +300,7 @@ void AFighterParent::takeDamage(float damage)
 		stamina_tier--;
 	}
 
-	else if (TotalHealth * 0.5f > CurrentHealth && health_tier == 2)
+	else if (TotalHealth * 0.50f > CurrentHealth && health_tier == 2)
 	{
 		health_tier--;
 		stamina_tier--;

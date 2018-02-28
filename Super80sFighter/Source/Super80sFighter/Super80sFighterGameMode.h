@@ -17,9 +17,19 @@
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
+
 	CLASS_DEFAULT		UMETA(DisplayName = "Base"),
 	CLASS_THUG			UMETA(DisplayName = "Thug"),
-	CLASS_TOBY			UMETA(DisplayName = "Toby")
+
+	CLASS_TOBY			UMETA(DisplayName = "Toby"),
+	CLASS_TREY			UMETA(DisplayName = "Trey"),
+	CLASS_AUDREY		UMETA(DisplayName = "Audrey"),
+	CLASS_ORION			UMETA(DisplayName = "Orion"),
+	CLASS_BRRIDER		UMETA(DisplayName = "BRRider"),
+	CLASS_GEORGE		UMETA(DisplayName = "George"),
+	CLASS_TYPHOON		UMETA(DisplayName = "Typhoon"),
+	CLASS_DON			UMETA(DisplayName = "Don"),
+	CLASS_KARMA			UMETA(DisplayName = "Karma"),
 };
 
 UENUM(BlueprintType)
