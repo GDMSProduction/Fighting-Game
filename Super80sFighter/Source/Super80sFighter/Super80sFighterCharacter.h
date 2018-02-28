@@ -145,6 +145,7 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		FKey GetLastPressedKey();
 #pragma region Command System
+
 	void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
@@ -222,7 +223,7 @@ protected:
 	struct Command
 	{
 		TArray<ButtonSet> InputsForCommand;
-		void(AFighterParent::*functionToCall)();
+		void (*functionToCall)();
 
 		bool operator==(const Command &test) {
 			if (InputsForCommand.Num() != test.InputsForCommand.Num())
@@ -238,7 +239,7 @@ protected:
 		}
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)());
+	void AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
