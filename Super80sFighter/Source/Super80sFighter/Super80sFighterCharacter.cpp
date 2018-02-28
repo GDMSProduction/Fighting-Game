@@ -52,74 +52,7 @@ AFighterParent::AFighterParent()
 
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
-#pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
 
-	button1.button = PUNCH;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack0);
-
-
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.Clear();
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack2);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = RIGHT;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = DOWN;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	AddCommand(tempCommand, &AFighterParent::Attack3);
-
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = PUNCH;
-	button1.wasHeld = true;
-	buttonSet.inputs.Add(button1);
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack3);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	button1.button = SPECIAL;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::AttackTaunt);
-#pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
@@ -512,7 +445,7 @@ void AFighterParent::StopCrouch()
 	isCrouching = false;
 	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
-void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)())
+void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
@@ -661,7 +594,7 @@ void AFighterParent::CheckCommand()
 					}
 				}
 				if (same) {
-					(this->*CommandCopy[currentCommand].functionToCall)();
+					(*CommandCopy[currentCommand].functionToCall)();
 					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
 				}
 			}
