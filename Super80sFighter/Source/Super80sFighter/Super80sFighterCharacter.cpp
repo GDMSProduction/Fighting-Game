@@ -212,7 +212,7 @@ void AFighterParent::SetDead(bool willBeDead)
 void AFighterParent::takeDamage(float damage)
 {
 	//If the player is ready to block.
-	//if (true)
+	//if (playerState == backingUp)
 	//{
 		//damage = Block(damage);
 		//playerScore.damageBlockedAverage += damage;
