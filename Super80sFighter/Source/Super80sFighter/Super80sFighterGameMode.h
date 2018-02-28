@@ -128,7 +128,7 @@ protected:
 		TSubclassOf<class UUserWidget> PlayerHUDClass;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Players", Meta = (BlueprintProtected = "true", DisplayName = "Players"))
-		TSubclassOf<class ASuper80sFighterCharacter> ThugClass;
+		TSubclassOf<class AFighterParent> ThugClass;
 
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
@@ -137,7 +137,7 @@ protected:
 		void draw();
 
 private:
-	class ASuper80sFighterCharacter *Player1, *Player2;
+	class AFighterParent *Player1, *Player2;
 	APlayerController *p1_controller, *p2_controller;
 
 	FHighScore currentEntry;

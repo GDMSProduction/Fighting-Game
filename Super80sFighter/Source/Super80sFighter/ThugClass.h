@@ -24,7 +24,7 @@
 #pragma endregion
 
 UCLASS()
-class SUPER80SFIGHTER_API AThugClass : public ASuper80sFighterCharacter
+class SUPER80SFIGHTER_API AThugClass : public AFighterParent
 {
 	GENERATED_BODY()
 

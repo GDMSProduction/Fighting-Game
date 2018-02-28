@@ -130,7 +130,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 		if (otherActor->IsA(AHitbox::StaticClass()) && otherComp->GetAttachParent() != thisHitbox->GetAttachParent())
 		{
 			AHitbox * otherHitbox = (AHitbox*)otherActor;
-			ASuper80sFighterCharacter* otherCharacter = (ASuper80sFighterCharacter*)(otherComp->GetAttachParent()->GetAttachmentRootActor());
+			AFighterParent* otherCharacter = (AFighterParent*)(otherComp->GetAttachParent()->GetAttachmentRootActor());
 			switch (hitboxType)
 			{
 			case EHITBOX_TYPE::VE_HITBOX_STRIKE:
