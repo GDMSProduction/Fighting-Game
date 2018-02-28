@@ -382,6 +382,21 @@ float ASuper80sFighterCharacter::Block(float _damage)
 void ASuper80sFighterCharacter::decide()
 {
 }
+void ASuper80sFighterCharacter::initialize_move_data()
+{
+	for (int i = 0; i < CommandList.Num(); ++i)
+	{
+		Move_Data temp;
+		temp.attack_function = CommandList[i].functionToCall;
+		temp.past_attempt = 0;
+		temp.past_success = 0;
+		temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
+		temp.damage = 0;//figure out how to get damage from the hitboxes spawned by calling the attack_function
+		temp.stamina_cost = 0; //this is not yet enabled in attacks, however once it is we'll probably store it on the hitboxes and so getting this will be the same as damage
+		temp.timeframe_cost = 0;//find the duration of the animation linked with the attack function
+		current_game_state.M_Move_Data.Push(temp);
+	}
+}
 #pragma endregion
 
 #pragma region Character Reset

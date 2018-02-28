@@ -370,7 +370,10 @@ private:
 		TArray<Move_Data> E_Move_Data;
 	};
 
+	GameState current_game_state;
+
 	void decide();
+	void initialize_move_data();
 
 #pragma endregion
 
