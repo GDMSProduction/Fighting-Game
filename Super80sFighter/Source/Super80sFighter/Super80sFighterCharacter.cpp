@@ -10,7 +10,7 @@ AFighterParent::AFighterParent()
 	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	//Don't rotate when the controller rotates.
+	//Don't rotate when the controller rotates.+
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
