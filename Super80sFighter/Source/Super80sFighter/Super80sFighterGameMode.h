@@ -41,6 +41,8 @@ enum class EInputTypes : uint8
 	ATT2,
 	ATT3,
 	ATT4,
+	PUNCHANDKICK,
+	KICKANDSPECIAL,
 	NUMOFINPUTTYPES
 };
 
