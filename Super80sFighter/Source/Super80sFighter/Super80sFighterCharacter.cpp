@@ -1,5 +1,6 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #include "Super80sFighterCharacter.h"
+#include <fstream>
 
 AFighterParent::AFighterParent()
 {
@@ -353,6 +354,15 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage, visible);
 
 	hitboxes.Add(tempHitbox);
+
+	//save hitbox data if that variable is true
+	if (save_hitbox_data)
+	{
+		std::ofstream save;
+		save.open("../../Content/SideScrollerCPP/AI Data/FighterParentAIData.bin");
+	}
+
+
 	return tempHitbox;
 }
 void AFighterParent::StopBlocking()
@@ -391,10 +401,26 @@ void AFighterParent::initialize_move_data()
 		temp.past_attempt = 0;
 		temp.past_success = 0;
 		temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
-		temp.damage = 0;//figure out how to get damage from the hitboxes spawned by calling the attack_function
-		temp.stamina_cost = 0; //this is not yet enabled in attacks, however once it is we'll probably store it on the hitboxes and so getting this will be the same as damage
-		temp.timeframe_cost = 0;//find the duration of the animation linked with the attack function
+		//NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
+		temp.damage = 0;
+		temp.stamina_cost = 0; 
+		temp.timeframe_cost = 0;
+		//-------------------------------------------------------------------------------------------------------------------------------------------------
 		current_game_state.M_Move_Data.Push(temp);
+	}
+	for (int i = 0; i < EnemyPlayer->CommandList.Num(); ++i)
+	{
+		Move_Data temp;
+		temp.attack_function = EnemyPlayer->CommandList[i].functionToCall;
+		temp.past_attempt = 0;
+		temp.past_success = 0;
+		temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
+								  //NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
+		temp.damage = 0;
+		temp.stamina_cost = 0;
+		temp.timeframe_cost = 0;
+		//-------------------------------------------------------------------------------------------------------------------------------------------------
+		current_game_state.E_Move_Data.Push(temp);
 	}
 }
 #pragma endregion
@@ -705,26 +731,41 @@ void AFighterParent::Attack0()
 {
 	QueStopAttacking();
 	isAttacking0 = true;
+
+	if (save_hitbox_data)
+		last_called_attack_function = &AFighterParent::Attack0;
 }
 void AFighterParent::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
+
+	if (save_hitbox_data)
+		last_called_attack_function = &AFighterParent::Attack1;
 }
 void AFighterParent::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
+
+	if (save_hitbox_data)
+		last_called_attack_function = &AFighterParent::Attack2;
 }
 void AFighterParent::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
+
+	if (save_hitbox_data)
+		last_called_attack_function = &AFighterParent::Attack3;
 }
 void AFighterParent::AttackTaunt()
 {
 	QueStopAttacking();
 	isAttackingTaunt = true;
+
+	if (save_hitbox_data)
+		last_called_attack_function = &AFighterParent::AttackTaunt;
 }
 void AFighterParent::SetLastPressedKey(FKey inKey)
 {

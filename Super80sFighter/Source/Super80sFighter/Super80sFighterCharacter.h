@@ -340,7 +340,11 @@ private:
 #pragma region AI
 public:
 	bool what_is_my_purpose;
-	
+
+	//variables for getting data out of hitboxes
+	bool save_hitbox_data = true;
+	void(*last_called_attack_function)();
+
 private:
 	enum PlayerState : uint32
 	{
@@ -353,7 +357,7 @@ private:
 	};
 	struct Move_Data
 	{
-		void(AFighterParent::*attack_function)();
+		void(*attack_function)();
 		int combo_potential;
 		int damage;
 		int past_success;
