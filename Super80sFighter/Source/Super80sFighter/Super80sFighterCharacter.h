@@ -145,7 +145,6 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		FKey GetLastPressedKey();
 #pragma region Command System
-
 	void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
@@ -223,7 +222,7 @@ protected:
 	struct Command
 	{
 		TArray<ButtonSet> InputsForCommand;
-		void (*functionToCall)();
+		void(AFighterParent::*functionToCall)();
 
 		bool operator==(const Command &test) {
 			if (InputsForCommand.Num() != test.InputsForCommand.Num())
@@ -239,7 +238,7 @@ protected:
 		}
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)());
+	void AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
@@ -344,7 +343,11 @@ public:
 
 	//variables for getting data out of hitboxes
 	bool save_hitbox_data = true;
-	void(*last_called_attack_function)();
+	bool first_save = true;
+	int attack_saved_bool_32 = INT_MAX;
+	void(AFighterParent::*last_called_attack_function)();
+	void(AFighterParent::*last_called_attack_function_test)();
+
 
 private:
 	enum PlayerState : uint32
@@ -356,9 +359,13 @@ private:
 		ATTACKING = (1 << 4),
 		STUNNED   = (1 << 5)
 	};
+	struct save_cast
+	{
+		double a, b;
+	};
 	struct Move_Data
 	{
-		void(*attack_function)();
+		void(AFighterParent::*attack_function)();
 		int combo_potential;
 		int damage;
 		int past_success;

@@ -53,7 +53,74 @@ AFighterParent::AFighterParent()
 
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
+#pragma region Adding in commands for attacks
+	TArray<ButtonSet> tempCommand;
+	ButtonSet buttonSet;
+	ButtonInput button1;
 
+	button1.button = PUNCH;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand(tempCommand, &AFighterParent::Attack0);
+
+
+	button1.button = KICK;
+	button1.wasHeld = false;
+	buttonSet.Clear();
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand(tempCommand, &AFighterParent::Attack2);
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	buttonSet.Clear();
+	button1.button = RIGHT;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	buttonSet.Clear();
+	button1.button = DOWN;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	AddCommand(tempCommand, &AFighterParent::Attack3);
+
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = PUNCH;
+	button1.wasHeld = true;
+	buttonSet.inputs.Add(button1);
+	button1.button = KICK;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand(tempCommand, &AFighterParent::Attack3);
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	button1.button = SPECIAL;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand(tempCommand, &AFighterParent::AttackTaunt);
+#pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
@@ -288,11 +355,41 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 
 	hitboxes.Add(tempHitbox);
 
-	//save hitbox data if that variable is true
-	if (save_hitbox_data)
+	//save hitbox data (if this is a save run and its a strike hitbox)
+	if (save_hitbox_data && tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE)
 	{
+		save_cast temp;
+
+		std::memcpy(&temp, &last_called_attack_function, 16);
+		std::memcpy(&last_called_attack_function_test, &temp, 16);
+		UE_LOG(LogTemp, Warning, TEXT("%e%e"), temp.a, temp.b);
+
 		std::ofstream save;
-		save.open("../../Content/SideScrollerCPP/AI Data/FighterParentAIData.bin");
+		save.open("../../Content/SideScrollerCPP/AI Data/FighterParentAIData.bin", std::ofstream::binary | std::ofstream::app);
+		//switch ((save_cast)&last_called_attack_function)
+		//{
+		//case (save_cast)&AFighterParent::Attack0:
+		//	//check if this attack data has been saved already
+		//	if (attack_saved_bool_32 & (1 << 0))
+		//	{
+		//		//save stuff
+
+		//		//set this attack to not be saved again
+		//		attack_saved_bool_32 -= (1 << 0);
+		//	}
+		//	break;
+		//case (save_cast)&AFighterParent::Attack1:
+		//	break;
+		//case (save_cast)&AFighterParent::Attack2:
+		//	break;
+		//case (save_cast)&AFighterParent::Attack3:
+		//	break;
+		//case (save_cast)&AFighterParent::AttackTaunt:
+		//	break;
+		//default:
+		//	break;
+		//}
+		//save.close();
 	}
 
 
@@ -493,7 +590,7 @@ void AFighterParent::StopCrouch()
 	isCrouching = false;
 	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
-void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(*functionToCall)())
+void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
@@ -642,7 +739,7 @@ void AFighterParent::CheckCommand()
 					}
 				}
 				if (same) {
-					(*CommandCopy[currentCommand].functionToCall)();
+					(this->*CommandCopy[currentCommand].functionToCall)();
 					AlreadyCalledCommands.Add(CommandCopy[currentCommand]);
 				}
 			}
