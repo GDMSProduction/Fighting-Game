@@ -374,14 +374,14 @@ void ASuper80sFighterGameMode::ResetInputs()
 	}
 #pragma region Player 1
 #pragma region Jumping
-	FInputActionKeyMapping actionmapping(FName("HighJump_P1"), FKey(EKeys::X), false, false, false, false);
+	FInputActionKeyMapping actionmapping(FName("Jump_P1"), FKey(EKeys::W), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
-	actionmapping = FInputActionKeyMapping(FName("ShortHop_P1"), FKey(EKeys::SpaceBar), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
-	actionmapping = FInputActionKeyMapping(FName("Jump_P1"), FKey(EKeys::W), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+	
+	//actionmapping = FInputActionKeyMapping(FName("ShortHop_P1"), FKey(EKeys::SpaceBar), false, false, false, false);
+	//((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+	//
+	//actionmapping = FInputActionKeyMapping(FName("HighJump_P1"), FKey(EKeys::X), false, false, false, false);
+	//((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 	actionmapping = FInputActionKeyMapping(FName("Jump_P1"), FKey("Gamepad_RightStick_Up"), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
@@ -478,11 +478,11 @@ void ASuper80sFighterGameMode::ResetInputs()
 #pragma region Player 2
 #pragma region Jumping
 
-	actionmapping = FInputActionKeyMapping(FName("HighJump_P2"), FKey(EKeys::X), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
-
-	actionmapping = FInputActionKeyMapping(FName("ShortHop_P2"), FKey(EKeys::SpaceBar), false, false, false, false);
-	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+	//actionmapping = FInputActionKeyMapping(FName("HighJump_P2"), FKey(EKeys::X), false, false, false, false);
+	//((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
+	//
+	//actionmapping = FInputActionKeyMapping(FName("ShortHop_P2"), FKey(EKeys::SpaceBar), false, false, false, false);
+	//((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
 
 	actionmapping = FInputActionKeyMapping(FName("Jump_P2"), FKey(EKeys::W), false, false, false, false);
 	((UInputSettings*)InputSettings)->AddActionMapping(actionmapping);
