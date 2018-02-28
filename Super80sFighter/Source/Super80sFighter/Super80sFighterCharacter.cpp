@@ -10,7 +10,7 @@ AFighterParent::AFighterParent()
 	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	//Don't rotate when the controller rotates.
+	//Don't rotate when the controller rotates.+
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -636,6 +636,7 @@ void AFighterParent::AttackTaunt()
 {
 	QueStopAttacking();
 	isAttackingTaunt = true;
+	++playerScore.numTaunts;
 }
 void AFighterParent::SetLastPressedKey(FKey inKey)
 {
@@ -858,8 +859,11 @@ void AFighterParent::PressJump()
 			jumpEffect = false;
 		}
 	}
+
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
+
+	InitialsBlueprintEvent();
 }
 void AFighterParent::ReleaseJump()
 {

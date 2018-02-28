@@ -442,8 +442,9 @@ public:
 		void takeDamage(float damage);
 #pragma endregion
 #pragma region Blueprint Events
+	//Creates an event that fires off in blueprints.
 	UFUNCTION(BlueprintImplementableEvent, Category = "Hitboxes")
-		void TakeDamageBlueprintEvent();//Creates an event that fires off in blueprints
+		void TakeDamageBlueprintEvent();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
 		void FirstAttackEffectBlueprintEvent();
@@ -475,7 +476,8 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void DeathEffectBlueprintEvent();
 
-
+	UFUNCTION(BlueprintImplementableEvent, Category = "Initials")
+		void InitialsBlueprintEvent();
 
 #pragma endregion
 
