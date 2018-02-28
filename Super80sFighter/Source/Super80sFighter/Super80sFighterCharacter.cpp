@@ -379,10 +379,10 @@ float AFighterParent::Block(float _damage)
 #pragma endregion
 
 #pragma region AI
-void ASuper80sFighterCharacter::decide()
+void AFighterParent::decide()
 {
 }
-void ASuper80sFighterCharacter::initialize_move_data()
+void AFighterParent::initialize_move_data()
 {
 	for (int i = 0; i < CommandList.Num(); ++i)
 	{

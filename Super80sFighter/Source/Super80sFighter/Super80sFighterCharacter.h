@@ -340,6 +340,7 @@ private:
 #pragma region AI
 public:
 	bool what_is_my_purpose;
+	
 private:
 	enum PlayerState : uint32
 	{
@@ -352,7 +353,7 @@ private:
 	};
 	struct Move_Data
 	{
-		void(ASuper80sFighterCharacter::*attack_function)();
+		void(AFighterParent::*attack_function)();
 		int combo_potential;
 		int damage;
 		int past_success;
