@@ -1,7 +1,7 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #include "Super80sFighterCharacter.h"
 
-ASuper80sFighterCharacter::ASuper80sFighterCharacter()
+AFighterParent::AFighterParent()
 {
 	//I love asian qt3.14s
 	// Set size for collision capsule
@@ -61,7 +61,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	button1.wasHeld = false;
 	buttonSet.inputs.Add(button1);
 	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack0);
+	AddCommand(tempCommand, &AFighterParent::Attack0);
 
 
 	button1.button = KICK;
@@ -69,7 +69,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.Clear();
 	buttonSet.inputs.Add(button1);
 	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack2);
+	AddCommand(tempCommand, &AFighterParent::Attack2);
 
 	while (tempCommand.Num() > 0)
 		tempCommand.RemoveAt(0);
@@ -90,7 +90,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Add(buttonSet);
 
-	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
+	AddCommand(tempCommand, &AFighterParent::Attack3);
 
 
 	while (tempCommand.Num() > 0)
@@ -105,7 +105,7 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 
 	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &ASuper80sFighterCharacter::Attack3);
+	AddCommand(tempCommand, &AFighterParent::Attack3);
 
 	while (tempCommand.Num() > 0)
 		tempCommand.RemoveAt(0);
@@ -118,14 +118,14 @@ ASuper80sFighterCharacter::ASuper80sFighterCharacter()
 	buttonSet.inputs.Add(button1);
 
 	tempCommand.Add(buttonSet);
-	AddCommand(tempCommand, &ASuper80sFighterCharacter::AttackTaunt);
+	AddCommand(tempCommand, &AFighterParent::AttackTaunt);
 #pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
 }
 #pragma region Initialization
-void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	int id = -1;
 
@@ -136,66 +136,66 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	if (id == 0)
 	{
-		PlayerInputComponent->BindAction("HighJump_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
-		PlayerInputComponent->BindAction("HighJump_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
-		PlayerInputComponent->BindAction("ShortHop_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
-		PlayerInputComponent->BindAction("ShortHop_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
-		PlayerInputComponent->BindAction("Jump_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
-		PlayerInputComponent->BindAction("Jump_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
-		PlayerInputComponent->BindAction("PressRight_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
-		PlayerInputComponent->BindAction("PressRight_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
-		PlayerInputComponent->BindAction("PressLeft_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
-		PlayerInputComponent->BindAction("PressLeft_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
-		PlayerInputComponent->BindAxis("MoveRight_P1", this, &ASuper80sFighterCharacter::MoveRight);
-		PlayerInputComponent->BindAxis("MoveLeft_P1", this, &ASuper80sFighterCharacter::MoveLeft);
-		PlayerInputComponent->BindAction("Attack1_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
-		PlayerInputComponent->BindAction("Attack2_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
-		PlayerInputComponent->BindAction("Attack3_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
-		PlayerInputComponent->BindAction("Attack4_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
-		PlayerInputComponent->BindAction("Attack1_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunch);
-		PlayerInputComponent->BindAction("Attack2_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKick);
-		PlayerInputComponent->BindAction("Attack3_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHeavy);
-		PlayerInputComponent->BindAction("Attack4_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
-		PlayerInputComponent->BindAction("Crouch_P1", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
-		PlayerInputComponent->BindAction("Crouch_P1", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
+		PlayerInputComponent->BindAction("HighJump_P1", IE_Pressed, this, &AFighterParent::PressHighJump);
+		PlayerInputComponent->BindAction("HighJump_P1", IE_Released, this, &AFighterParent::ReleaseHighJump);
+		PlayerInputComponent->BindAction("ShortHop_P1", IE_Pressed, this, &AFighterParent::PressShortHop);
+		PlayerInputComponent->BindAction("ShortHop_P1", IE_Released, this, &AFighterParent::ReleaseShortHop);
+		PlayerInputComponent->BindAction("Jump_P1", IE_Pressed, this, &AFighterParent::PressNormalJump);
+		PlayerInputComponent->BindAction("Jump_P1", IE_Released, this, &AFighterParent::ReleaseNormalJump);
+		PlayerInputComponent->BindAction("PressRight_P1", IE_Pressed, this, &AFighterParent::PressRight);
+		PlayerInputComponent->BindAction("PressRight_P1", IE_Released, this, &AFighterParent::ReleaseRight);
+		PlayerInputComponent->BindAction("PressLeft_P1", IE_Pressed, this, &AFighterParent::PressLeft);
+		PlayerInputComponent->BindAction("PressLeft_P1", IE_Released, this, &AFighterParent::ReleaseLeft);
+		PlayerInputComponent->BindAxis("MoveRight_P1", this, &AFighterParent::MoveRight);
+		PlayerInputComponent->BindAxis("MoveLeft_P1", this, &AFighterParent::MoveLeft);
+		PlayerInputComponent->BindAction("Attack1_P1", IE_Pressed, this, &AFighterParent::PressPunch);
+		PlayerInputComponent->BindAction("Attack2_P1", IE_Pressed, this, &AFighterParent::PressKick);
+		PlayerInputComponent->BindAction("Attack3_P1", IE_Pressed, this, &AFighterParent::PressHeavy);
+		PlayerInputComponent->BindAction("Attack4_P1", IE_Pressed, this, &AFighterParent::PressSpecial);
+		PlayerInputComponent->BindAction("Attack1_P1", IE_Released, this, &AFighterParent::ReleasePunch);
+		PlayerInputComponent->BindAction("Attack2_P1", IE_Released, this, &AFighterParent::ReleaseKick);
+		PlayerInputComponent->BindAction("Attack3_P1", IE_Released, this, &AFighterParent::ReleaseHeavy);
+		PlayerInputComponent->BindAction("Attack4_P1", IE_Released, this, &AFighterParent::ReleaseSpecial);
+		PlayerInputComponent->BindAction("Crouch_P1", IE_Pressed, this, &AFighterParent::StartCrouch);
+		PlayerInputComponent->BindAction("Crouch_P1", IE_Released, this, &AFighterParent::StopCrouch);
 
-		PlayerInputComponent->BindAction("PunchKick_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunchAndKick);
-		PlayerInputComponent->BindAction("PunchKick_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P1", IE_Pressed, this, &AFighterParent::PressPunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P1", IE_Released, this, &AFighterParent::ReleasePunchAndKick);
 
-		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Pressed, this, &ASuper80sFighterCharacter::PressKickAndSpecial);
-		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Pressed, this, &AFighterParent::PressKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Released, this, &AFighterParent::ReleaseKickAndSpecial);
 
 	}
 	else if (id == 1)
 	{
-		PlayerInputComponent->BindAction("HighJump_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressHighJump);
-		PlayerInputComponent->BindAction("HighJump_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHighJump);
-		PlayerInputComponent->BindAction("ShortHop_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressShortHop);
-		PlayerInputComponent->BindAction("ShortHop_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseShortHop);
-		PlayerInputComponent->BindAction("Jump_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressNormalJump);
-		PlayerInputComponent->BindAction("Jump_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseNormalJump);
-		PlayerInputComponent->BindAction("PressRight_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressRight);
-		PlayerInputComponent->BindAction("PressRight_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseRight);
-		PlayerInputComponent->BindAction("PressLeft_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressLeft);
-		PlayerInputComponent->BindAction("PressLeft_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseLeft);
-		PlayerInputComponent->BindAxis("MoveRight_P2", this, &ASuper80sFighterCharacter::MoveRight);
-		PlayerInputComponent->BindAxis("MoveLeft_P2", this, &ASuper80sFighterCharacter::MoveLeft);
-		PlayerInputComponent->BindAction("Attack1_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunch);
-		PlayerInputComponent->BindAction("Attack2_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKick);
-		PlayerInputComponent->BindAction("Attack3_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressHeavy);
-		PlayerInputComponent->BindAction("Attack4_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressSpecial);
-		PlayerInputComponent->BindAction("Attack1_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunch);
-		PlayerInputComponent->BindAction("Attack2_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKick);
-		PlayerInputComponent->BindAction("Attack3_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseHeavy);
-		PlayerInputComponent->BindAction("Attack4_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseSpecial);
-		PlayerInputComponent->BindAction("Crouch_P2", IE_Pressed, this, &ASuper80sFighterCharacter::StartCrouch);
-		PlayerInputComponent->BindAction("Crouch_P2", IE_Released, this, &ASuper80sFighterCharacter::StopCrouch);
+		PlayerInputComponent->BindAction("HighJump_P2", IE_Pressed, this, &AFighterParent::PressHighJump);
+		PlayerInputComponent->BindAction("HighJump_P2", IE_Released, this, &AFighterParent::ReleaseHighJump);
+		PlayerInputComponent->BindAction("ShortHop_P2", IE_Pressed, this, &AFighterParent::PressShortHop);
+		PlayerInputComponent->BindAction("ShortHop_P2", IE_Released, this, &AFighterParent::ReleaseShortHop);
+		PlayerInputComponent->BindAction("Jump_P2", IE_Pressed, this, &AFighterParent::PressNormalJump);
+		PlayerInputComponent->BindAction("Jump_P2", IE_Released, this, &AFighterParent::ReleaseNormalJump);
+		PlayerInputComponent->BindAction("PressRight_P2", IE_Pressed, this, &AFighterParent::PressRight);
+		PlayerInputComponent->BindAction("PressRight_P2", IE_Released, this, &AFighterParent::ReleaseRight);
+		PlayerInputComponent->BindAction("PressLeft_P2", IE_Pressed, this, &AFighterParent::PressLeft);
+		PlayerInputComponent->BindAction("PressLeft_P2", IE_Released, this, &AFighterParent::ReleaseLeft);
+		PlayerInputComponent->BindAxis("MoveRight_P2", this, &AFighterParent::MoveRight);
+		PlayerInputComponent->BindAxis("MoveLeft_P2", this, &AFighterParent::MoveLeft);
+		PlayerInputComponent->BindAction("Attack1_P2", IE_Pressed, this, &AFighterParent::PressPunch);
+		PlayerInputComponent->BindAction("Attack2_P2", IE_Pressed, this, &AFighterParent::PressKick);
+		PlayerInputComponent->BindAction("Attack3_P2", IE_Pressed, this, &AFighterParent::PressHeavy);
+		PlayerInputComponent->BindAction("Attack4_P2", IE_Pressed, this, &AFighterParent::PressSpecial);
+		PlayerInputComponent->BindAction("Attack1_P2", IE_Released, this, &AFighterParent::ReleasePunch);
+		PlayerInputComponent->BindAction("Attack2_P2", IE_Released, this, &AFighterParent::ReleaseKick);
+		PlayerInputComponent->BindAction("Attack3_P2", IE_Released, this, &AFighterParent::ReleaseHeavy);
+		PlayerInputComponent->BindAction("Attack4_P2", IE_Released, this, &AFighterParent::ReleaseSpecial);
+		PlayerInputComponent->BindAction("Crouch_P2", IE_Pressed, this, &AFighterParent::StartCrouch);
+		PlayerInputComponent->BindAction("Crouch_P2", IE_Released, this, &AFighterParent::StopCrouch);
 
-		PlayerInputComponent->BindAction("PunchKick_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressPunchAndKick);
-		PlayerInputComponent->BindAction("PunchKick_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleasePunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P2", IE_Pressed, this, &AFighterParent::PressPunchAndKick);
+		PlayerInputComponent->BindAction("PunchKick_P2", IE_Released, this, &AFighterParent::ReleasePunchAndKick);
 
-		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Pressed, this, &ASuper80sFighterCharacter::PressKickAndSpecial);
-		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Released, this, &ASuper80sFighterCharacter::ReleaseKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Pressed, this, &AFighterParent::PressKickAndSpecial);
+		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Released, this, &AFighterParent::ReleaseKickAndSpecial);
 
 	}
 
@@ -206,7 +206,7 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0, false);
 
 	//add onHit to capsule component
-	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &ASuper80sFighterCharacter::onHit);
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AFighterParent::onHit);
 
 	//set startLocation
 	startLocation = GetTransform().GetLocation();
@@ -219,64 +219,64 @@ void ASuper80sFighterCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 
 }
-APlayerController * ASuper80sFighterCharacter::GetPlayerController()
+APlayerController * AFighterParent::GetPlayerController()
 {
 	APlayerController* ret = Cast<APlayerController>(Controller);
 	return ret;
 }
-void ASuper80sFighterCharacter::SetOtherPlayer(ASuper80sFighterCharacter * OtherPlayer)
+void AFighterParent::SetOtherPlayer(AFighterParent * OtherPlayer)
 {
 	EnemyPlayer = OtherPlayer;
 }
 #pragma endregion
 #pragma region Health and Stamina
-float ASuper80sFighterCharacter::GetTotalStamina()
+float AFighterParent::GetTotalStamina()
 {
 	return TotalStamina;
 }
-float ASuper80sFighterCharacter::GetCurrentStamina()
+float AFighterParent::GetCurrentStamina()
 {
 	return CurrentStamina;
 }
-void ASuper80sFighterCharacter::UpdateCurrentStamina(float Stamina)
+void AFighterParent::UpdateCurrentStamina(float Stamina)
 {
 	CurrentStamina = CurrentStamina + Stamina;
 }
-void ASuper80sFighterCharacter::UpdateCurrentHealth(float Health)
+void AFighterParent::UpdateCurrentHealth(float Health)
 {
 	CurrentHealth = CurrentHealth + Health;
 }
-float ASuper80sFighterCharacter::GetTotalHealth()
+float AFighterParent::GetTotalHealth()
 {
 	return TotalHealth;
 }
-float ASuper80sFighterCharacter::GetCurrentHealth()
+float AFighterParent::GetCurrentHealth()
 {
 	return CurrentHealth;
 }
-void ASuper80sFighterCharacter::SetStaminaRegen(bool tf)
+void AFighterParent::SetStaminaRegen(bool tf)
 {
 	regen_stamina = tf;
 }
 #pragma endregion
 #pragma region Death and Destruction
-void ASuper80sFighterCharacter::destroy()
+void AFighterParent::destroy()
 {
 	for (int i = 0; i < hitboxes.Num(); ++i)
 		hitboxes[i]->Destroy();
 	Destroy();
 }
-bool ASuper80sFighterCharacter::GetDead()
+bool AFighterParent::GetDead()
 {
 	return isDead;
 }
-void ASuper80sFighterCharacter::SetDead(bool willBeDead)
+void AFighterParent::SetDead(bool willBeDead)
 {
 	this->isDead = willBeDead;
 }
 #pragma endregion
 #pragma region Hitboxes
-void ASuper80sFighterCharacter::takeDamage(float damage)
+void AFighterParent::takeDamage(float damage)
 {
 	//If the player is ready to block.
 	//if (true)
@@ -333,7 +333,7 @@ void ASuper80sFighterCharacter::takeDamage(float damage)
 
 	EnemyPlayer->ComboCounter();
 }
-AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
+AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
 {
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
@@ -355,11 +355,11 @@ AHitbox* ASuper80sFighterCharacter::spawnHitbox(EHITBOX_TYPE type, FVector offse
 	hitboxes.Add(tempHitbox);
 	return tempHitbox;
 }
-void ASuper80sFighterCharacter::StopBlocking()
+void AFighterParent::StopBlocking()
 {
 	isBlocking = false;
 }
-float ASuper80sFighterCharacter::Block(float _damage)
+float AFighterParent::Block(float _damage)
 {
 	//Begin blocking.
 	isBlocking = true;
@@ -371,7 +371,7 @@ float ASuper80sFighterCharacter::Block(float _damage)
 	++playerScore.numAttacksBlocked;
 
 	//Set (and reset upon finishing) the blocking timer.
-	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &ASuper80sFighterCharacter::StopBlocking, BlockThreshold);
+	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &AFighterParent::StopBlocking, BlockThreshold);
 
 	//Return the modified (lower) damage amount.
 	return (_damage);
@@ -400,107 +400,107 @@ void ASuper80sFighterCharacter::initialize_move_data()
 #pragma endregion
 
 #pragma region Character Reset
-void ASuper80sFighterCharacter::ResetHealth()
+void AFighterParent::ResetHealth()
 {
 	CurrentHealth = TotalHealth;
 	health_tier = 3;
 }
-void ASuper80sFighterCharacter::ResetStamina()
+void AFighterParent::ResetStamina()
 {
 	CurrentStamina = TotalStamina;
 	stamina_tier = 3;
 }
 #pragma endregion
 #pragma region Character Inputs
-void ASuper80sFighterCharacter::SuperAbility()
+void AFighterParent::SuperAbility()
 {
 	UpdateCurrentStamina((-0.25f) * TotalStamina);
 }
-void ASuper80sFighterCharacter::MoveRight(float Value)
+void AFighterParent::MoveRight(float Value)
 {
 	// add movement in that direction
 	if (grounded && !isDead)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
 }
-void ASuper80sFighterCharacter::MoveLeft(float Val)
+void AFighterParent::MoveLeft(float Val)
 {
 	MoveRight(-Val);
 }
-void ASuper80sFighterCharacter::PressRight()
+void AFighterParent::PressRight()
 {
 	AddInput(RIGHT, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressLeft()
+void AFighterParent::PressLeft()
 {
 	AddInput(LEFT, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseRight()
+void AFighterParent::ReleaseRight()
 {
 	AddInput(RIGHT, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseLeft()
+void AFighterParent::ReleaseLeft()
 {
 	AddInput(LEFT, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressPunch()
+void AFighterParent::PressPunch()
 {
 	AddInput(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressKick()
+void AFighterParent::PressKick()
 {
 
 	AddInput(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressHeavy()
+void AFighterParent::PressHeavy()
 {
 
 	AddInput(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressSpecial()
+void AFighterParent::PressSpecial()
 {
 
 	AddInput(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::PressPunchAndKick()
+void AFighterParent::PressPunchAndKick()
 {
 	PressPunch();
 	PressKick();
 }
-void ASuper80sFighterCharacter::PressKickAndSpecial()
+void AFighterParent::PressKickAndSpecial()
 {
 	PressKick();
 	PressSpecial();
 }
-void ASuper80sFighterCharacter::ReleasePunch()
+void AFighterParent::ReleasePunch()
 {
 	AddInput(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseKick()
+void AFighterParent::ReleaseKick()
 {
 
 	AddInput(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseHeavy()
+void AFighterParent::ReleaseHeavy()
 {
 
 	AddInput(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseSpecial()
+void AFighterParent::ReleaseSpecial()
 {
 
 	AddInput(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleasePunchAndKick()
+void AFighterParent::ReleasePunchAndKick()
 {
 	ReleasePunch();
 	ReleaseKick();
 }
-void ASuper80sFighterCharacter::ReleaseKickAndSpecial()
+void AFighterParent::ReleaseKickAndSpecial()
 {
 	ReleaseKick();
 	ReleaseSpecial();
 }
-void ASuper80sFighterCharacter::TauntStaminaRegen()
+void AFighterParent::TauntStaminaRegen()
 {
 	if (stamina_tier < 3)
 	{
@@ -524,24 +524,24 @@ void ASuper80sFighterCharacter::TauntStaminaRegen()
 		}
 	}
 }
-void ASuper80sFighterCharacter::StartCrouch()
+void AFighterParent::StartCrouch()
 {
 	isCrouching = true;
 	AddInput(DOWN, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::StopCrouch()
+void AFighterParent::StopCrouch()
 {
 	isCrouching = false;
 	AddInput(DOWN, false, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)())
+void AFighterParent::AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)())
 {
 	Command tempCommand;
 	tempCommand.functionToCall = functionToCall;
 	tempCommand.InputsForCommand = InputsForCommand;
 	CommandList.Add(tempCommand);
 }
-void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
+void AFighterParent::AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress)
 {
 	ButtonBufferInput tempInput;
 	tempInput.Buttons = incomingAttack;
@@ -552,9 +552,9 @@ void ASuper80sFighterCharacter::AddInput(INPUT_TYPE incomingAttack, bool wasPres
 		buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
 	CheckCommand();
 
-	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &ASuper80sFighterCharacter::ClearCommands, AttackThreshold);
+	GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &AFighterParent::ClearCommands, AttackThreshold);
 }
-void ASuper80sFighterCharacter::CheckCommand()
+void AFighterParent::CheckCommand()
 {
 	if (isDead)
 		return;
@@ -691,7 +691,7 @@ void ASuper80sFighterCharacter::CheckCommand()
 	}
 }
 
-void ASuper80sFighterCharacter::ClearCommands()
+void AFighterParent::ClearCommands()
 {
 	while (buttonBuffer.Num() != 0)
 		buttonBuffer.RemoveAt(0);
@@ -701,40 +701,40 @@ void ASuper80sFighterCharacter::ClearCommands()
 	QueStopAttacking();
 }
 
-void ASuper80sFighterCharacter::Attack0()
+void AFighterParent::Attack0()
 {
 	QueStopAttacking();
 	isAttacking0 = true;
 }
-void ASuper80sFighterCharacter::Attack1()
+void AFighterParent::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
 }
-void ASuper80sFighterCharacter::Attack2()
+void AFighterParent::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
 }
-void ASuper80sFighterCharacter::Attack3()
+void AFighterParent::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
 }
-void ASuper80sFighterCharacter::AttackTaunt()
+void AFighterParent::AttackTaunt()
 {
 	QueStopAttacking();
 	isAttackingTaunt = true;
 }
-void ASuper80sFighterCharacter::SetLastPressedKey(FKey inKey)
+void AFighterParent::SetLastPressedKey(FKey inKey)
 {
 	LastPressedKey = inKey;
 }
-FKey ASuper80sFighterCharacter::GetLastPressedKey()
+FKey AFighterParent::GetLastPressedKey()
 {
 	return LastPressedKey;
 }
-void ASuper80sFighterCharacter::QueStopAttacking() {
+void AFighterParent::QueStopAttacking() {
 	isAttacking0 = false;
 	isAttacking1 = false;
 	isAttacking2 = false;
@@ -742,7 +742,7 @@ void ASuper80sFighterCharacter::QueStopAttacking() {
 	isAttackingTaunt = false;
 }
 
-void ASuper80sFighterCharacter::ComboCounter()
+void AFighterParent::ComboCounter()
 {
 	bool proMode = false;
 
@@ -788,7 +788,7 @@ void ASuper80sFighterCharacter::ComboCounter()
 }
 #pragma endregion
 #pragma region Overloaded Unreal
-void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
+void AFighterParent::onHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComponent, FVector NormalImpulse, const FHitResult & Hit)
 {
 	lock_grounded = false;
 	if (OtherActor == EnemyPlayer)
@@ -806,7 +806,7 @@ void ASuper80sFighterCharacter::onHit(UPrimitiveComponent * HitComponent, AActor
 		}
 	}
 }
-void ASuper80sFighterCharacter::Tick(float DeltaTime)
+void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -881,7 +881,7 @@ void ASuper80sFighterCharacter::Tick(float DeltaTime)
 }
 #pragma endregion
 #pragma region Jump functions
-void ASuper80sFighterCharacter::PressShortHop()
+void AFighterParent::PressShortHop()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomShortJumpVelocity;
 	PressJump();
@@ -892,11 +892,11 @@ void ASuper80sFighterCharacter::PressShortHop()
 		jumpEffect = false;
 	}
 }
-void ASuper80sFighterCharacter::ReleaseShortHop()
+void AFighterParent::ReleaseShortHop()
 {
 	ReleaseJump();
 }
-void ASuper80sFighterCharacter::PressHighJump()
+void AFighterParent::PressHighJump()
 {
 	GetCharacterMovement()->JumpZVelocity = CustomHighJumpVelocity;
 	PressJump();
@@ -907,17 +907,17 @@ void ASuper80sFighterCharacter::PressHighJump()
 		jumpEffect = false;
 	}
 }
-void ASuper80sFighterCharacter::ReleaseHighJump()
+void AFighterParent::ReleaseHighJump()
 {
 	ReleaseJump();
 }
-void ASuper80sFighterCharacter::PressNormalJump()
+void AFighterParent::PressNormalJump()
 {
-	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &ASuper80sFighterCharacter::JumpReachesThreshold, JumpThreshold);
+	GetWorld()->GetTimerManager().SetTimer(JumpTimer, this, &AFighterParent::JumpReachesThreshold, JumpThreshold);
 	HasJumpReachedThreshold = false;
 }
 
-void ASuper80sFighterCharacter::ReleaseNormalJump() {
+void AFighterParent::ReleaseNormalJump() {
 
 	if (HasJumpReachedThreshold)
 	{
@@ -930,13 +930,13 @@ void ASuper80sFighterCharacter::ReleaseNormalJump() {
 
 	PressJump();
 }
-void ASuper80sFighterCharacter::JumpReachesThreshold()
+void AFighterParent::JumpReachesThreshold()
 {
 	HasJumpReachedThreshold = true;
 
 	ReleaseNormalJump();
 }
-void ASuper80sFighterCharacter::PressJump()
+void AFighterParent::PressJump()
 {
 	if (!isDead)
 	{
@@ -950,19 +950,19 @@ void ASuper80sFighterCharacter::PressJump()
 	isHoldingJump = true;
 	AddInput(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
 }
-void ASuper80sFighterCharacter::ReleaseJump()
+void AFighterParent::ReleaseJump()
 {
 	ACharacter::StopJumping();
 	isHoldingJump = false;
 }
 #pragma endregion
 #pragma region Miscellaneous Character Functions
-void ASuper80sFighterCharacter::FlipCharacter()
+void AFighterParent::FlipCharacter()
 {
 	FlipCharacter(!IsFacingRight);
 
 }
-void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
+void AFighterParent::FlipCharacter(bool forceFaceRight)
 {
 	if (forceFaceRight)//If we're forcing them to face right, face them right
 	{
@@ -983,12 +983,12 @@ void ASuper80sFighterCharacter::FlipCharacter(bool forceFaceRight)
 
 	IsFacingRight = forceFaceRight;
 }
-void ASuper80sFighterCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AFighterParent::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	// jump on any touch
 	Jump();
 }
-void ASuper80sFighterCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
+void AFighterParent::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	StopJumping();
 }

@@ -5,7 +5,7 @@
 #include "MySuper80sFighterAIBehavior.generated.h"
 
 UCLASS()
-class SUPER80SFIGHTER_API AMySuper80sFighterAIBehavior : public ASuper80sFighterCharacter
+class SUPER80SFIGHTER_API AMySuper80sFighterAIBehavior : public AFighterParent
 {	
 	
 	GENERATED_BODY()

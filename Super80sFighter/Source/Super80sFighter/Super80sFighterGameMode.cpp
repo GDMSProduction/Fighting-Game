@@ -11,16 +11,16 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	p1_controller = UGameplayStatics::GetPlayerController(this, 0);
-	Player1 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+	Player1 = Cast<AFighterParent>(UGameplayStatics::GetPlayerPawn(this, 0));
 	p2_controller = UGameplayStatics::CreatePlayer(this, 1);
-	Player2 = Cast<ASuper80sFighterCharacter>(UGameplayStatics::GetPlayerPawn(this, 1));
+	Player2 = Cast<AFighterParent>(UGameplayStatics::GetPlayerPawn(this, 1));
 
 	//variables required for spawning a character as a different type
 	UWorld* const world = GetWorld();
 	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
 	FVector pos;
 	FRotator rot = FRotator(0, -90, 0);
-	ASuper80sFighterCharacter* temp;
+	AFighterParent* temp;
 	//change player 1 (or possibly not if he's the default class)
 	switch (p1_type)
 	{
