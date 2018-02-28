@@ -75,7 +75,7 @@ struct FScoreSystem
 #pragma endregion
 
 UCLASS(config = Game)
-class ASuper80sFighterCharacter : public ACharacter
+class AFighterParent : public ACharacter
 {
 #pragma region Blueprint Defaults
 	GENERATED_BODY()
@@ -222,7 +222,7 @@ protected:
 	struct Command
 	{
 		TArray<ButtonSet> InputsForCommand;
-		void(ASuper80sFighterCharacter::*functionToCall)();
+		void(AFighterParent::*functionToCall)();
 
 		bool operator==(const Command &test) {
 			if (InputsForCommand.Num() != test.InputsForCommand.Num())
@@ -238,7 +238,7 @@ protected:
 		}
 	};
 	TArray<Command> CommandList;
-	void AddCommand(TArray<ButtonSet> InputsForCommand, void(ASuper80sFighterCharacter::*functionToCall)());
+	void AddCommand(TArray<ButtonSet> InputsForCommand, void(AFighterParent::*functionToCall)());
 	void AddInput(INPUT_TYPE incomingAttack, bool wasPressed, double timeOfPress);
 #pragma endregion
 #pragma endregion
@@ -298,7 +298,7 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Orientation")
 		bool IsFacingRight;
 
-	ASuper80sFighterCharacter* EnemyPlayer;
+	AFighterParent* EnemyPlayer;
 
 	FTimerHandle BlockTimer;
 #pragma endregion
@@ -339,7 +339,7 @@ private:
 
 public:
 #pragma region Camera Set-Up
-	ASuper80sFighterCharacter();
+	AFighterParent();
 
 	FVector startLocation;
 
@@ -394,7 +394,7 @@ public:
 	bool GetDead();
 	void SetDead(bool willBeDead);
 
-	void SetOtherPlayer(ASuper80sFighterCharacter* OtherPlayer);
+	void SetOtherPlayer(AFighterParent* OtherPlayer);
 
 	float Block(float _damage);
 
