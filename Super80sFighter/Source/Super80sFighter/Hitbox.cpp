@@ -146,8 +146,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
 					//deal damage and stun enemy (maybe)... implement function for damage
-					otherCharacter->takeDamage(damage);
-					
+					otherCharacter->takeDamage(damage);					
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
 					break;
@@ -188,8 +187,9 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				case EHITBOX_TYPE::VE_HITBOX_THROW: //do nothing
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
-					//if enemy is in neutral state, start blocking
+					//If enemy is in neutral state, start blocking.
 					UE_LOG(LogTemp, Warning, TEXT("Proximity box has hit painbox, if enemy is in neutral start blocking"));
+					otherCharacter->Block(damage);
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
 					break;
@@ -213,8 +213,7 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX:
 					//throw enemy
 					UE_LOG(LogTemp, Warning, TEXT("Throw box has hit enemy throw area, begin throw"));
-					otherCharacter->takeDamage(damage);
-				
+					otherCharacter->takeDamage(damage);			
 					break;
 				default:
 					break;
