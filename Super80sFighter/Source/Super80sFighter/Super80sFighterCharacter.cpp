@@ -807,6 +807,90 @@ void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//switch (initialSelector)
+	//{
+	//case 0:
+	//	if (initialCounter < 25)
+	//	{
+	//		++initialCounter;
+	//	}
+
+	//	else
+	//	{
+	//		initialCounter = 0;
+	//	}
+
+	//	break;
+
+	//case 1:
+	//	if (initial2Counter < 25)
+	//	{
+	//		++initial2Counter;
+	//	}
+
+	//	else
+	//	{
+	//		initial2Counter = 0;
+	//	}
+
+	//	break;
+
+	//case 2:
+	//	if (initial3Counter < 25)
+	//	{
+	//		++initial3Counter;
+	//	}
+
+	//	else
+	//	{
+	//		initial3Counter = 0;
+	//	}
+
+	//	break;
+	//}
+
+	//switch (initialSelector)
+	//{
+	//case 0:
+	//	if (initialCounter > 0)
+	//	{
+	//		--initialCounter;
+	//	}
+
+	//	else
+	//	{
+	//		initialCounter = 25;
+	//	}
+
+	//	break;
+
+	//case 1:
+	//	if (initial2Counter > 0)
+	//	{
+	//		--initial2Counter;
+	//	}
+
+	//	else
+	//	{
+	//		initial2Counter = 25;
+	//	}
+
+	//	break;
+
+	//case 2:
+	//	if (initial3Counter > 0)
+	//	{
+	//		--initial3Counter;
+	//	}
+
+	//	else
+	//	{
+	//		initial3Counter = 25;
+	//	}
+
+	//	break;
+	//}
+
 	//implementing my physics
 	if (!lock_grounded)
 	{
@@ -853,7 +937,8 @@ void AFighterParent::Tick(float DeltaTime)
 	}
 
 	//Flipping the character on grounded.
-	if (grounded) {
+	if (grounded) 
+	{
 		if (EnemyPlayer->GetTransform().GetLocation().Y > GetTransform().GetLocation().Y)
 		{
 			FlipCharacter(false);
@@ -947,8 +1032,6 @@ void AFighterParent::PressJump()
 
 	isHoldingJump = true;
 	PressUp<AFighterParent>();
-
-	InitialsBlueprintEvent();
 }
 void AFighterParent::ReleaseJump()
 {
