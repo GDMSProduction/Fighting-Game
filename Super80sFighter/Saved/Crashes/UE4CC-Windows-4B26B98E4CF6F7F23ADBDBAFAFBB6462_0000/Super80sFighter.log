@@ -1,0 +1,571 @@
+﻿Log file open, 03/01/18 15:19:19
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogInit: Display: Running engine for game: Super80sFighter
+LogPlatformFile: Not using cached read wrapper
+LogInit: Display: RandInit(-1150596123) SRandInit(-1150596123).
+LogInit: Read version file with build ID '3709383'
+LogInit: Overriding engine version to CL 3794801, compatible CL 3709383
+LogInit: Registered custom module enumerator with build ID '3709383'
+LogTaskGraph: Started task graph with 5 named threads and 14 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.205557
+LogD3D11RHI: Aftermath initialized
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin NullSourceCodeAccess
+LogPluginManager: Mounting plugin PerforceSourceControl
+LogPluginManager: Mounting plugin SubversionSourceControl
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin SpeedTreeImporter
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin HTML5Networking
+LogPluginManager: Mounting plugin Substance
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleARKit
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin ImmediatePhysics
+LogPluginManager: Mounting plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Plugin shader directory ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Shaders found
+LogPluginManager: Mapping shader source directory ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Shaders to virtual directory /Plugin/OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogModuleManager: Display: Found up-to-date module file ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Binaries/Win64/UE4Editor-Super80sFighter-171.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2D.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2DEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperSpriteSheetImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-PaperTiledImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-SmartSnapping.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeRuntime.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4Editor-LightPropagationVolumeEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/GitSourceControl/Binaries/Win64/UE4Editor-GitSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/PerforceSourceControl/Binaries/Win64/UE4Editor-PerforceSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/SubversionSourceControl/Binaries/Win64/UE4Editor-SubversionSourceControl.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/UObjectPlugin/Binaries/Win64/UE4Editor-UObjectPlugin.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/VisualStudioCodeSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioCodeSourceCodeAccess.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Developer/VisualStudioSourceCodeAccess/Binaries/Win64/UE4Editor-VisualStudioSourceCodeAccess.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/AssetManagerEditor/Binaries/Win64/UE4Editor-AssetManagerEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/AudioCapture/Binaries/Win64/UE4Editor-AudioCapture.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4Editor-FacialAnimation.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4Editor-FacialAnimationEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/GameplayTagsEditor/Binaries/Win64/UE4Editor-GameplayTagsEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/MobileLauncherProfileWizard/Binaries/Win64/UE4Editor-MobileLauncherProfileWizard.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/PluginBrowser/Binaries/Win64/UE4Editor-PluginBrowser.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Editor/SpeedTreeImporter/Binaries/Win64/UE4Editor-SpeedTreeImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/AlembicImporter/Binaries/Win64/UE4Editor-AlembicImporter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/AlembicImporter/Binaries/Win64/UE4Editor-AlembicLibrary.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4Editor-CharacterAI.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4Editor-HTML5Networking.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceCore.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceSource.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Marketplace/Substance/Binaries/Win64/UE4Editor-SubstanceLiveLink.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AndroidMedia/Binaries/Win64/UE4Editor-AndroidMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AndroidMedia/Binaries/Win64/UE4Editor-AndroidMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/AvfMedia/Binaries/Win64/UE4Editor-AvfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMedia.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-ImgMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/ImgMedia/Binaries/Win64/UE4Editor-OpenExrWrapper.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaCompositing/Binaries/Win64/UE4Editor-MediaCompositing.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaCompositing/Binaries/Win64/UE4Editor-MediaCompositingEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/MediaPlayerEditor/Binaries/Win64/UE4Editor-MediaPlayerEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMedia.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Media/WmfMedia/Binaries/Win64/UE4Editor-WmfMediaFactory.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Messaging/TcpMessaging/Binaries/Win64/UE4Editor-TcpMessaging.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4Editor-UdpMessaging.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/ActorSequence/Binaries/Win64/UE4Editor-ActorSequence.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/LevelSequenceEditor/Binaries/Win64/UE4Editor-LevelSequenceEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/MovieScene/MatineeToLevelSequence/Binaries/Win64/UE4Editor-MatineeToLevelSequence.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystem/Binaries/Win64/UE4Editor-OnlineSubsystem.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemNull/Binaries/Win64/UE4Editor-OnlineSubsystemNull.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4Editor-OnlineSubsystemUtils.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4Editor-OnlineBlueprintSupport.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AndroidDeviceProfileSelector/Binaries/Win64/UE4Editor-AndroidDeviceProfileSelector.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AndroidPermission/Binaries/Win64/UE4Editor-AndroidPermission.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4Editor-ArchVisCharacter.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/CableComponent/Binaries/Win64/UE4Editor-CableComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4Editor-CustomMeshComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4Editor-ExampleDeviceProfileSelector.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4Editor-ImmediatePhysics.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4Editor-ImmediatePhysicsEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/LocationServicesBPLibrary/Binaries/Win64/UE4Editor-LocationServicesBPLibrary.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/MobilePatchingUtils/Binaries/Win64/UE4Editor-MobilePatchingUtils.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusHMD.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusInput.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4Editor-PhysXVehicles.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4Editor-PhysXVehiclesEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponent.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4Editor-ProceduralMeshComponentEditor.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/RuntimePhysXCooking/Binaries/Win64/UE4Editor-RuntimePhysXCooking.dll (API version 3709383).
+LogModuleManager: Display: Found up-to-date module file ../../../Engine/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4Editor-WindowsMoviePlayer.dll (API version 3709383).
+LogInit: Using libcurl 7.47.1
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.0.2g
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = false  - Libcurl will NOT verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - CertBundlePath = nullptr  - Libcurl will use whatever was configured at build time.
+LogHMD: Failed initializing OVRPlugin 1.19.0
+LogInit: Build: ++UE4+Release-4.18-CL-3794801
+LogInit: Engine Version: 4.18.2-3794801+++UE4+Release-4.18
+LogInit: Compatible Engine Version: 4.18.0-3709383+++UE4+Release-4.18
+LogInit: Net CL: 3709383
+LogDevObjectVersion: Number of dev versions registered: 16
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 2
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 20
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 30
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 0
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 0
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 20
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 4
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 0
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 1
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 12
+LogInit: Compiled (64-bit): Dec  8 2017 02:04:53
+LogInit: Compiled with Visual C++: 19.00.24215.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.18
+LogInit: Command line:  
+LogInit: Base directory: C:/Program Files/Epic Games/UE_4.18/Engine/Binaries/Win64/
+LogInit: Installed Engine Build: 1
+LogInit: Presizing for max 8388607 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogInit: Object subsystem initialized
+[2018.03.01-20.19.23:076][  0]LogInit: Selected Device Profile: [Windows]
+[2018.03.01-20.19.23:076][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2018.03.01-20.19.23:115][  0]LogInit: Computer: DESKTOP-BL47S36
+[2018.03.01-20.19.23:115][  0]LogInit: User: Shawnthebro
+[2018.03.01-20.19.23:115][  0]LogInit: CPU Page size=4096, Cores=4
+[2018.03.01-20.19.23:115][  0]LogInit: High frequency timer resolution =2.531254 MHz
+[2018.03.01-20.19.23:116][  0]LogMemory: Memory total: Physical=15.9GB (16GB approx)
+[2018.03.01-20.19.23:116][  0]LogMemory: Platform Memory Stats for Windows
+[2018.03.01-20.19.23:116][  0]LogMemory: Process Physical Memory: 275.90 MB used, 275.90 MB peak
+[2018.03.01-20.19.23:116][  0]LogMemory: Process Virtual Memory: 274.00 MB used, 274.00 MB peak
+[2018.03.01-20.19.23:116][  0]LogMemory: Physical Memory: 4821.80 MB used,  11442.79 MB free, 16264.59 MB total
+[2018.03.01-20.19.23:116][  0]LogMemory: Virtual Memory: 725.87 MB used,  11442.79 MB free, 134217728.00 MB total
+[2018.03.01-20.19.23:573][  0]LogInit: Using OS detected language (en-US).
+[2018.03.01-20.19.23:573][  0]LogInit: Using OS detected locale (en-US).
+[2018.03.01-20.19.23:657][  0]LogTextLocalizationManager: No specific localization for 'en-US' exists, so the 'en' localization will be used.
+[2018.03.01-20.19.24:303][  0]LogInit: Setting process to per monitor DPI aware
+[2018.03.01-20.19.28:459][  0]LogD3D11RHI: D3D11 adapters:
+[2018.03.01-20.19.29:189][  0]LogD3D11RHI:    0. 'NVIDIA Quadro M2000M' (Feature Level 11_0)
+[2018.03.01-20.19.29:189][  0]LogD3D11RHI:       4062/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x10de
+[2018.03.01-20.19.29:200][  0]LogD3D11RHI:    1. 'Intel(R) HD Graphics 530' (Feature Level 11_0)
+[2018.03.01-20.19.29:200][  0]LogD3D11RHI:       128/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x8086
+[2018.03.01-20.19.29:202][  0]LogD3D11RHI:    2. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2018.03.01-20.19.29:202][  0]LogD3D11RHI:       0/0/8132 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2018.03.01-20.19.29:202][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2018.03.01-20.19.29:212][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2018.03.01-20.19.29:213][  0]LogD3D11RHI:     GPU DeviceId: 0x13b0 (for the marketing name, search the web for "GPU Device Id")
+[2018.03.01-20.19.29:213][  0]LogWindows: EnumDisplayDevices:
+[2018.03.01-20.19.29:213][  0]LogWindows:    0. 'Intel(R) HD Graphics 530' (P:1 D:1)
+[2018.03.01-20.19.29:213][  0]LogWindows:    1. 'Intel(R) HD Graphics 530' (P:0 D:0)
+[2018.03.01-20.19.29:214][  0]LogWindows:    2. 'Intel(R) HD Graphics 530' (P:0 D:0)
+[2018.03.01-20.19.29:214][  0]LogWindows:    3. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.03.01-20.19.29:214][  0]LogWindows:    4. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.03.01-20.19.29:214][  0]LogWindows:    5. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.03.01-20.19.29:214][  0]LogWindows:    6. 'NVIDIA Quadro M2000M' (P:0 D:0)
+[2018.03.01-20.19.29:215][  0]LogWindows: DebugString: GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter FoundDriverCount:0 
+[2018.03.01-20.19.29:215][  0]LogD3D11RHI:     Adapter Name: NVIDIA Quadro M2000M
+[2018.03.01-20.19.29:215][  0]LogD3D11RHI:   Driver Version: Unknown (internal:Unknown, unified:Unknown)
+[2018.03.01-20.19.29:215][  0]LogD3D11RHI:      Driver Date: Unknown
+[2018.03.01-20.19.29:215][  0]LogRHI: Texture pool is 2843 MB (70% of 4062 MB)
+[2018.03.01-20.19.29:266][  0]LogD3D11RHI: Async texture creation enabled
+[2018.03.01-20.19.29:300][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 1)
+[2018.03.01-20.19.29:307][  0]LogShaderCompilers: Guid format shader working directory is -30 characters bigger than the processId version (../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Intermediate/Shaders/WorkingDirectory/11536/).
+[2018.03.01-20.19.29:308][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/Shawnthebro/AppData/Local/Temp/UnrealShaderWorkingDir/88E5E50F4766EACFD52CF687AAA72655/'.
+[2018.03.01-20.19.29:308][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2018.03.01-20.19.32:900][  0]LogTemp: Display: Loaded TP AllDesktopTargetPlatform
+[2018.03.01-20.19.32:994][  0]LogTemp: Display: Loaded TP MacClientTargetPlatform
+[2018.03.01-20.19.33:078][  0]LogTemp: Display: Loaded TP MacNoEditorTargetPlatform
+[2018.03.01-20.19.33:194][  0]LogTemp: Display: Loaded TP MacServerTargetPlatform
+[2018.03.01-20.19.33:293][  0]LogTemp: Display: Loaded TP MacTargetPlatform
+[2018.03.01-20.19.33:398][  0]LogTemp: Display: Loaded TP WindowsClientTargetPlatform
+[2018.03.01-20.19.33:488][  0]LogTemp: Display: Loaded TP WindowsNoEditorTargetPlatform
+[2018.03.01-20.19.33:567][  0]LogTemp: Display: Loaded TP WindowsServerTargetPlatform
+[2018.03.01-20.19.33:648][  0]LogTemp: Display: Loaded TP WindowsTargetPlatform
+[2018.03.01-20.19.33:729][  0]LogTemp: Display: Loaded TP Android_ASTCTargetPlatform
+[2018.03.01-20.19.33:811][  0]LogTemp: Display: Loaded TP Android_ATCTargetPlatform
+[2018.03.01-20.19.33:894][  0]LogTemp: Display: Loaded TP Android_DXTTargetPlatform
+[2018.03.01-20.19.33:979][  0]LogTemp: Display: Loaded TP Android_ETC1TargetPlatform
+[2018.03.01-20.19.34:061][  0]LogTemp: Display: Loaded TP Android_ETC2TargetPlatform
+[2018.03.01-20.19.34:251][  0]LogTemp: Display: Loaded TP Android_MultiTargetPlatform
+[2018.03.01-20.19.34:251][  0]LogTemp: Display: Loaded TP Android_PVRTCTargetPlatform
+[2018.03.01-20.19.34:349][  0]LogTemp: Display: Loaded TP AndroidTargetPlatform
+[2018.03.01-20.19.34:431][  0]LogTemp: Display: Loaded TP HTML5TargetPlatform
+[2018.03.01-20.19.34:596][  0]LogTemp: Display: Loaded TP IOSTargetPlatform
+[2018.03.01-20.19.34:646][  0]LogTemp: Display: Loaded TP TVOSTargetPlatform
+[2018.03.01-20.19.34:737][  0]LogTemp: Display: Loaded TP LinuxClientTargetPlatform
+[2018.03.01-20.19.34:820][  0]LogTemp: Display: Loaded TP LinuxNoEditorTargetPlatform
+[2018.03.01-20.19.34:920][  0]LogTemp: Display: Loaded TP LinuxServerTargetPlatform
+[2018.03.01-20.19.35:015][  0]LogTemp: Display: Loaded TP LinuxTargetPlatform
+[2018.03.01-20.19.35:015][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2018.03.01-20.19.35:861][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: Loaded boot cache 0.34s 89MB C:/Users/Shawnthebro/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc.
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/Shawnthebro/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2018.03.01-20.19.36:205][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2018.03.01-20.19.36:234][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2018.03.01-20.19.36:248][  0]LogDerivedDataCache: Using Local data cache path C:/Users/Shawnthebro/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2018.03.01-20.19.36:264][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2018.03.01-20.19.36:268][  0]LogSlate: Using Freetype 2.6.0
+[2018.03.01-20.19.36:286][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.03.01-20.19.36:287][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.03.01-20.19.37:331][  0]LogInit: Selected Device Profile: [Windows]
+[2018.03.01-20.19.38:045][  0]LogSimplygon: Simplygon DLL not present - disabling.
+[2018.03.01-20.19.38:123][  0]LogMeshReduction: Using SimplygonSwarm for distributed automatic mesh merging
+[2018.03.01-20.19.38:124][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2018.03.01-20.19.38:124][  0]LogMeshReduction: No automatic skeletal mesh reduction module available
+[2018.03.01-20.19.38:124][  0]LogMeshReduction: No automatic mesh merging module available
+[2018.03.01-20.19.38:124][  0]LogMeshMerging: No automatic mesh merging module available
+[2018.03.01-20.19.38:243][  0]LogNetVersion: Super80sFighter , NetCL: 3709383, EngineNetVer: 2, GameNetVer: 0 (Checksum: 2015644251)
+[2018.03.01-20.19.38:769][  0]LogAssetRegistry: FAssetRegistry took 0.0302 seconds to start up
+[2018.03.01-20.19.40:180][  0]LogPackageLocalizationCache: Processed 6 localized package path(s) for 2 prioritized culture(s) in 0.108015 seconds
+[2018.03.01-20.19.40:190][  0]LogUObjectArray: 35703 objects as part of root set at end of initial load.
+[2018.03.01-20.19.40:190][  0]LogUObjectAllocator: 7338024 out of 0 bytes used by permanent object pool.
+[2018.03.01-20.19.40:190][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2018.03.01-20.19.40:285][  0]LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+[2018.03.01-20.19.48:254][  0]LogSubstanceCoreModule: Substance [CPU] Engine Loaded, Max Texture Size = 2048
+[2018.03.01-20.19.48:318][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2018.03.01-20.19.48:384][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2018.03.01-20.19.49:178][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.03.01-20.19.49:178][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Meshes/Shape_Cube.uasset.
+[2018.03.01-20.19.49:178][  0]LoadErrors: Error: /Game/SideScrollerCPP/Meshes/Shape_Cube : Can't find file for asset. /Game/StarterContent/Materials/M_Basic_Wall
+[2018.03.01-20.19.49:178][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.03.01-20.19.49:179][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Meshes/Shape_Cube.uasset.
+[2018.03.01-20.19.49:179][  0]LoadErrors: Error: /Game/SideScrollerCPP/Meshes/Shape_Cube : Can't find file for asset. /Game/StarterContent/Materials/M_Basic_Wall
+[2018.03.01-20.19.49:179][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Basic_Wall'
+[2018.03.01-20.19.49:179][  0]LoadErrors: Failed to load /Game/StarterContent/Materials/M_Basic_Wall.M_Basic_Wall Referenced by Shape_Cube
+[2018.03.01-20.19.49:180][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Basic_Wall' while loading NULL.
+[2018.03.01-20.19.49:180][  0]LoadErrors: Failed to load /Game/StarterContent/Materials/M_Basic_Wall.M_Basic_Wall Referenced by Shape_Cube
+[2018.03.01-20.19.49:392][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.03.01-20.19.49:392][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:392][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_Burst
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:393][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_explosion_subUV
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:393][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/m_flare_01
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:393][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_radial_ramp
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.03.01-20.19.49:393][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:394][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_smoke_subUV
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:394][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_Burst
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:394][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_explosion_subUV
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:394][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/m_flare_01
+[2018.03.01-20.19.49:394][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.03.01-20.19.49:395][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:395][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_radial_ramp
+[2018.03.01-20.19.49:395][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.03.01-20.19.49:395][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Particles/P_Explosion.uasset.
+[2018.03.01-20.19.49:395][  0]LoadErrors: Error: /Game/SideScrollerCPP/Particles/P_Explosion : Can't find file for asset. /Game/StarterContent/Particles/Materials/M_smoke_subUV
+[2018.03.01-20.19.49:779][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_smoke_subUV'
+[2018.03.01-20.19.49:779][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_smoke_subUV.M_smoke_subUV Referenced by ParticleModuleRequired_0
+[2018.03.01-20.19.49:779][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_smoke_subUV' while loading NULL.
+[2018.03.01-20.19.49:779][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_smoke_subUV.M_smoke_subUV Referenced by ParticleModuleRequired_0
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_explosion_subUV'
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_explosion_subUV.M_explosion_subUV Referenced by ParticleModuleRequired_2
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_explosion_subUV' while loading NULL.
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_explosion_subUV.M_explosion_subUV Referenced by ParticleModuleRequired_2
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_radial_ramp'
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_radial_ramp.M_radial_ramp Referenced by ParticleModuleRequired_3
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_radial_ramp' while loading NULL.
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_radial_ramp.M_radial_ramp Referenced by ParticleModuleRequired_3
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/m_flare_01'
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/m_flare_01.m_flare_01 Referenced by ParticleModuleRequired_4
+[2018.03.01-20.19.49:780][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/m_flare_01' while loading NULL.
+[2018.03.01-20.19.49:780][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/m_flare_01.m_flare_01 Referenced by ParticleModuleRequired_4
+[2018.03.01-20.19.49:781][  0]LogLinker: Warning: Can't find file '/Game/StarterContent/Particles/Materials/M_Burst'
+[2018.03.01-20.19.49:781][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_Burst.M_Burst Referenced by ParticleModuleRequired_8
+[2018.03.01-20.19.49:781][  0]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Particles/Materials/M_Burst' while loading NULL.
+[2018.03.01-20.19.49:781][  0]LoadErrors: Failed to load /Game/StarterContent/Particles/Materials/M_Burst.M_Burst Referenced by ParticleModuleRequired_8
+[2018.03.01-20.19.50:415][  0]LogMaterial: Uniform references updated for custom material expression Custom.
+[2018.03.01-20.19.51:197][  0]SourceControl: Source control is disabled
+[2018.03.01-20.19.51:197][  0]SourceControl: Source control is disabled
+[2018.03.01-20.19.51:298][  0]SourceControl: Source control is disabled
+[2018.03.01-20.19.51:389][  0]SourceControl: Source control is disabled
+[2018.03.01-20.19.52:856][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2018.03.01-20.19.53:297][  0]LogOcInput: OculusInput pre-init called
+[2018.03.01-20.19.54:145][  0]LogEngine: Initializing Engine...
+[2018.03.01-20.19.54:644][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
+[2018.03.01-20.19.54:644][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
+[2018.03.01-20.19.54:876][  0]LogAIModule: Creating AISystem for world Untitled
+[2018.03.01-20.19.54:896][  0]LogInit: XAudio2 using 'Speakers (2- Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.03.01-20.19.55:061][  0]LogInit: FAudioDevice initialized.
+[2018.03.01-20.19.55:185][  0]LogDerivedDataCache: Saved boot cache 0.12s 89MB C:/Users/Shawnthebro/AppData/Local/UnrealEngine/4.18/DerivedDataCache/Boot.ddc.
+[2018.03.01-20.19.55:210][  0]LogInit: Texture streaming: Enabled
+[2018.03.01-20.19.55:383][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2018.03.01-20.19.55:680][  0]LogInit: Transaction tracking system initialized
+[2018.03.01-20.19.56:298][  0]BlueprintLog: New page: Editor Load
+[2018.03.01-20.19.58:158][  0]LocalizationService: Localization service is disabled
+[2018.03.01-20.19.59:621][  0]LogConsoleResponse: Display: 
+[2018.03.01-20.20.00:306][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2018.03.01-20.20.00:307][  0]LogCook: Display: Mobile HDR setting 1
+[2018.03.01-20.20.00:307][  0]LogGameplayTags: Display: UGameplayTagsManager::DoneAddingNativeTags. DelegateIsBound: 0
+[2018.03.01-20.20.01:355][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/' took 0.02s
+[2018.03.01-20.20.02:591][  0]SourceControl: Source control is disabled
+[2018.03.01-20.20.02:593][  0]Cmd: MAP LOAD FILE="../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Maps/Main_Menu.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2018.03.01-20.20.02:594][  0]LightingResults: New page: Lighting Build
+[2018.03.01-20.20.02:671][  0]MapCheck: New page: Map Check
+[2018.03.01-20.20.02:671][  0]LightingResults: New page: Lighting Build
+[2018.03.01-20.20.03:351][  0]LogAIModule: Creating AISystem for world Main_Menu
+[2018.03.01-20.20.03:356][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2018.03.01-20.20.03:378][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2018.03.01-20.20.03:462][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 83.951ms to complete.
+[2018.03.01-20.20.03:462][  0]LogFileHelpers: Loading map 'Main_Menu' took 0.870
+[2018.03.01-20.20.03:713][  0]LogCollectionManager: Loaded 0 collections in 0.003798 seconds
+[2018.03.01-20.20.03:836][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/Collections/' took 0.01s
+[2018.03.01-20.20.03:836][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/Developers/Shawnthebro/Collections/' took 0.01s
+[2018.03.01-20.20.03:836][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/Collections/' took 0.01s
+[2018.03.01-20.20.03:836][  0]LogCollectionManager: Rebuilt the GUID cache for 0 collections in 0.000000 seconds
+[2018.03.01-20.20.03:851][  0]LogContentBrowser: Native class hierarchy populated in 0.0131 seconds. Added 2382 classes and 522 folders.
+[2018.03.01-20.20.03:969][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0014 seconds. Added 0 classes and 0 folders.
+[2018.03.01-20.20.04:396][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0007 seconds. Added 0 classes and 0 folders.
+[2018.03.01-20.20.04:481][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0012 seconds. Added 1 classes and 2 folders.
+[2018.03.01-20.20.04:593][  0]LogSlate: Took 0.014854 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2018.03.01-20.20.04:606][  0]LogSlate: Took 0.009995 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2018.03.01-20.20.04:623][  0]LogSlate: Took 0.005785 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2018.03.01-20.20.04:831][  0]LogRenderer: Reallocating scene render targets to support 1208x576 Format 10 NumSamples 1 (Frame:1).
+[2018.03.01-20.20.05:108][  0]LogSlate: Took 0.004312 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.01-20.20.05:291][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0007 seconds. Added 1 classes and 2 folders.
+[2018.03.01-20.20.05:291][  0]LogLoad: (Engine Initialization) Total time: 49.04 seconds
+[2018.03.01-20.20.05:291][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2018.03.01-20.20.05:291][  0]LogExternalProfiler: Found external profiler: VSPerf
+[2018.03.01-20.20.05:291][  0]LogExternalProfiler: Using external profiler: VSPerf
+[2018.03.01-20.20.05:667][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2018.03.01-20.20.05:790][  1]LogSubstanceLiveLink: Warning: Unable to send data along socket, closing connection
+[2018.03.01-20.20.05:967][  1]LogFileCache: Retrieving MD5 hashes for directory 'C:/Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/' took 0.32s
+[2018.03.01-20.20.05:986][  1]LogAssetRegistry: Asset discovery search completed in 27.2398 seconds
+[2018.03.01-20.20.05:989][  1]LogCollectionManager: Rebuilt the object cache for 0 collections in 0.000001 seconds (found 0 objects)
+[2018.03.01-20.20.05:989][  1]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000150 seconds (updated 0 objects)
+[2018.03.01-20.20.13:788][343]LogTemp: Repeating last play command: New Editor Window (PIE)
+[2018.03.01-20.20.13:894][343]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.13:895][343]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2018.03.01-20.20.13:897][343]PIE: New page: PIE session: Main_Menu (Mar 1, 2018, 10:20:13 AM)
+[2018.03.01-20.20.13:898][343]LogPlayLevel: Creating play world package: /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu
+[2018.03.01-20.20.13:900][343]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001727s)
+[2018.03.01-20.20.13:900][343]LogAIModule: Creating AISystem for world Main_Menu
+[2018.03.01-20.20.13:901][343]LogPlayLevel: PIE: World Init took: (0.000964s)
+[2018.03.01-20.20.13:901][343]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu to /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu (0.003220s)
+[2018.03.01-20.20.13:918][343]LogInit: XAudio2 using 'Speakers (2- Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.03.01-20.20.13:924][343]LogInit: FAudioDevice initialized.
+[2018.03.01-20.20.13:989][343]LogLoad: Game class is 'MySuper80sFighterGameMode_C'
+[2018.03.01-20.20.13:992][343]LogWorld: Bringing World /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu up for play (max tick rate 0) at 2018.03.01-15.20.13
+[2018.03.01-20.20.13:993][343]LogWorld: Bringing up level for play took: 0.001064
+[2018.03.01-20.20.14:072][343]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0008 seconds. Added 11 classes and 0 folders.
+[2018.03.01-20.20.14:098][343]PIE: Play in editor start time for /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu -0.025
+[2018.03.01-20.20.14:099][343]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.14:106][343]LogRenderer: Reallocating scene render targets to support 1292x756 Format 10 NumSamples 1 (Frame:1).
+[2018.03.01-20.20.14:106][343]LogAudio: Warning: Detected orphaned looping sound '_80s_Sample_4_Cue'.
+[2018.03.01-20.20.15:991][460]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.16:055][460]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.19:305][719]LogTemp: Repeating last play command: New Editor Window (PIE)
+[2018.03.01-20.20.19:326][719]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.19:327][719]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2018.03.01-20.20.19:327][719]PIE: New page: PIE session: Main_Menu (Mar 1, 2018, 10:20:19 AM)
+[2018.03.01-20.20.19:328][719]LogPlayLevel: Creating play world package: /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu
+[2018.03.01-20.20.19:330][719]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002251s)
+[2018.03.01-20.20.19:331][719]LogAIModule: Creating AISystem for world Main_Menu
+[2018.03.01-20.20.19:331][719]LogPlayLevel: PIE: World Init took: (0.001051s)
+[2018.03.01-20.20.19:331][719]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu to /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu (0.003765s)
+[2018.03.01-20.20.19:353][719]LogInit: XAudio2 using 'Speakers (2- Conexant ISST Audio)' : 2 channels at 48 kHz using 32 bits per sample (channel mask 0x3)
+[2018.03.01-20.20.19:360][719]LogInit: FAudioDevice initialized.
+[2018.03.01-20.20.19:427][719]LogLoad: Game class is 'MySuper80sFighterGameMode_C'
+[2018.03.01-20.20.19:429][719]LogWorld: Bringing World /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu.Main_Menu up for play (max tick rate 0) at 2018.03.01-15.20.19
+[2018.03.01-20.20.19:430][719]LogWorld: Bringing up level for play took: 0.002269
+[2018.03.01-20.20.19:448][719]PIE: Play in editor start time for /Game/SideScrollerCPP/Maps/UEDPIE_0_Main_Menu -0.674
+[2018.03.01-20.20.19:449][719]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.20.19:465][719]LogAudio: Warning: Detected orphaned looping sound '_80s_Sample_4_Cue'.
+[2018.03.01-20.20.28:546][239]LogNet: Browse: /Game/SideScrollerCPP/Maps/SideScrollerExampleMap
+[2018.03.01-20.20.28:547][239]LogLoad: LoadMap: /Game/SideScrollerCPP/Maps/SideScrollerExampleMap
+[2018.03.01-20.20.29:133][239]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Glass'
+[2018.03.01-20.20.29:133][239]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Glass' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Maps/SideScrollerExampleMap.umap.
+[2018.03.01-20.20.29:133][239]LoadErrors: Error: /Game/SideScrollerCPP/Maps/SideScrollerExampleMap : Can't find file for asset. /Game/StarterContent/Materials/M_Glass
+[2018.03.01-20.20.29:551][239]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Glass'
+[2018.03.01-20.20.29:551][239]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Glass' while loading ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Maps/SideScrollerExampleMap.umap.
+[2018.03.01-20.20.29:558][239]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Glass'
+[2018.03.01-20.20.29:558][239]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Glass' while loading NULL.
+[2018.03.01-20.20.29:558][239]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Glass'
+[2018.03.01-20.20.29:558][239]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Glass' while loading NULL.
+[2018.03.01-20.20.29:591][239]LogLinker: Warning: Can't find file '/Game/StarterContent/Materials/M_Glass'
+[2018.03.01-20.20.29:592][239]LoadErrors: Failed to load /Game/StarterContent/Materials/M_Glass.M_Glass Referenced by Window_Wall
+[2018.03.01-20.20.29:592][239]LogLinker: Warning: Can't find file for asset '/Game/StarterContent/Materials/M_Glass' while loading NULL.
+[2018.03.01-20.20.31:308][239]LogAIModule: Creating AISystem for world SideScrollerExampleMap
+[2018.03.01-20.20.31:309][239]LogLoad: Game class is 'MySuper80sFighterGameMode_C'
+[2018.03.01-20.20.31:318][239]LogWorld: Bringing World /Game/SideScrollerCPP/Maps/UEDPIE_0_SideScrollerExampleMap.SideScrollerExampleMap up for play (max tick rate 0) at 2018.03.01-15.20.31
+[2018.03.01-20.20.31:319][239]LogWorld: Bringing up level for play took: 0.008778
+[2018.03.01-20.20.31:324][239]LogPlayerManagement: Error: Failed to Create Player: A local player already exists for controller ID 1,
+[2018.03.01-20.20.31:331][239]LogLoad: Took 2.784317 seconds to LoadMap(/Game/SideScrollerCPP/Maps/SideScrollerExampleMap)
+[2018.03.01-20.20.31:335][239]LogAudio: Warning: Detected orphaned looping sound '_80s_Sample_4_Cue'.
+[2018.03.01-20.21.11:089][983]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.21.11:190][983]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel' has LevelScriptBlueprint '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu' with GeneratedClass '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu_C' with ClassGeneratedBy '/Game/SideScrollerCPP/Maps/Main_Menu.Main_Menu:PersistentLevel.Main_Menu'
+[2018.03.01-20.22.16:446][166]LogSlate: Took 0.000188 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.01-20.22.16:934][166]LogContentBrowser: Native class hierarchy updated for 'BlueprintGraph' in 0.0011 seconds. Added 116 classes and 0 folders.
+[2018.03.01-20.22.17:924][166]LogSlate: Took 0.000252 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.01-20.22.17:930][166]LogSlate: Took 0.004904 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2018.03.01-20.22.23:759][487]LogSlate: Took 0.005557 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/Roboto-Italic.ttf' (157K)
+[2018.03.01-20.23.40:833][378]BlueprintLog: New page: Compile HighScoreTable
+[2018.03.01-20.23.41:416][401]LogSavePackage: Save=71.53ms
+[2018.03.01-20.23.41:417][401]LogSavePackage: Moving '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/HighScoreTableA3311B7546DD7CE0EC60229F64E46900.tmp' to '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset'
+[2018.03.01-20.23.41:420][401]LogSavePackage: Display: Finished SavePackage ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset
+[2018.03.01-20.25.12:683][998]BlueprintLog: New page: Compile HighScoreTable
+[2018.03.01-20.25.13:682][ 47]LogSavePackage: Save=87.83ms
+[2018.03.01-20.25.13:682][ 47]LogSavePackage: Moving '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/HighScoreTable2E511C764086202A2395EE840C16FE64.tmp' to '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset'
+[2018.03.01-20.25.13:684][ 47]LogSavePackage: Display: Finished SavePackage ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset
+[2018.03.01-20.31.58:385][561]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/SideScrollerCPP/Maps/Main_Menu' took 0.026
+[2018.03.01-20.31.58:389][561]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/SideScrollerCPP/Blueprints/HUD/HighScoreTable] ([1] browsable assets)...
+[2018.03.01-20.31.58:389][561]OBJ SavePackage: Finished generating thumbnails for package [/Game/SideScrollerCPP/Blueprints/HUD/HighScoreTable]
+[2018.03.01-20.31.58:472][561]LogSavePackage: Save=67.39ms
+[2018.03.01-20.31.58:473][561]LogSavePackage: Moving '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/HighScoreTable_Auto13661289845F3EC55953B35B2FC60D8D3.tmp' to '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/Autosaves/Game/SideScrollerCPP/Blueprints/HUD/HighScoreTable_Auto1.uasset'
+[2018.03.01-20.31.58:476][561]LogSavePackage: Display: Finished SavePackage ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/Autosaves/Game/SideScrollerCPP/Blueprints/HUD/HighScoreTable_Auto1.uasset
+[2018.03.01-20.31.58:476][561]LogFileHelpers: Auto-saving content packages took 0.090
+[2018.03.01-20.32.14:641][610]LogHotReload: New module detected: UE4Editor-Super80sFighter-4718-Win64-DebugGame.dll
+[2018.03.01-20.32.15:662][614]LogHotReload: Starting Hot-Reload from IDE
+[2018.03.01-20.32.15:825][614]LogClass: Could not find existing class DebugCharacter in package /Script/Super80sFighter for HotReload, assuming new class
+[2018.03.01-20.32.15:839][614]LogClass: EHITBOX_TYPE HotReload.
+[2018.03.01-20.32.15:839][614]LogClass: EInputTypes HotReload.
+[2018.03.01-20.32.15:839][614]LogClass: EMenuState HotReload.
+[2018.03.01-20.32.15:839][614]LogClass: ECharacterEnum HotReload.
+[2018.03.01-20.32.15:839][614]LogClass: ScoreSystem HotReload.
+[2018.03.01-20.32.15:839][614]LogClass: HighScore HotReload.
+[2018.03.01-20.32.15:843][614]LogHotReload: Re-instancing Hitbox after hot-reload.
+[2018.03.01-20.32.15:971][614]LogContentBrowser: Native class hierarchy updated for 'Super80sFighter' in 0.0009 seconds. Added 9 classes and 2 folders.
+[2018.03.01-20.32.15:976][614]Display: HotReload successful (29 functions remapped  2 scriptstructs remapped)
+[2018.03.01-20.32.16:439][614]LogContentBrowser: Native class hierarchy populated in 0.0105 seconds. Added 2385 classes and 526 folders.
+[2018.03.01-20.32.16:445][614]Display: HotReload took  0.8s.
+[2018.03.01-20.34.26:788][  5]LogHotReload: New module detected: UE4Editor-Super80sFighter-7750-Win64-DebugGame.dll
+[2018.03.01-20.34.27:800][  9]LogHotReload: Starting Hot-Reload from IDE
+[2018.03.01-20.34.27:998][  9]LogClass: Could not find existing class Super80sFighterGameMode in package /Script/Super80sFighter for HotReload, assuming new class
+[2018.03.01-20.34.27:998][  9]LogClass: Function ConvertKeyToString is new.
+[2018.03.01-20.34.27:998][  9]LogClass: Function draw is new.
+[2018.03.01-20.34.27:998][  9]LogClass: Function GetBindingKey is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function GetIsKeyboardMode is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function OverrideAxisInput is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function OverrideKeyInput is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function ResetInputs is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function ResetInputsWrapper is new.
+[2018.03.01-20.34.27:999][  9]LogClass: Function SetIsKeyboardMode is new.
+[2018.03.01-20.34.28:001][  9]LogClass: EHITBOX_TYPE HotReload.
+[2018.03.01-20.34.28:001][  9]LogClass: EInputTypes HotReload.
+[2018.03.01-20.34.28:001][  9]LogClass: EMenuState HotReload.
+[2018.03.01-20.34.28:001][  9]LogClass: ECharacterEnum HotReload.
+[2018.03.01-20.34.28:001][  9]LogClass: ScoreSystem HotReload.
+[2018.03.01-20.34.28:001][  9]LogClass: HighScore HotReload.
+[2018.03.01-20.34.28:007][  9]LogHotReload: Re-instancing Hitbox after hot-reload.
+[2018.03.01-20.34.28:173][  9]LogHotReload: Re-instancing Super80sFighterGameMode after hot-reload.
+[2018.03.01-20.34.28:325][  9]LogContentBrowser: Native class hierarchy updated for 'Super80sFighter' in 0.0009 seconds. Added 9 classes and 2 folders.
+[2018.03.01-20.34.28:329][  9]Display: HotReload successful (20 functions remapped  2 scriptstructs remapped)
+[2018.03.01-20.34.28:750][  9]LogContentBrowser: Native class hierarchy populated in 0.0127 seconds. Added 2385 classes and 526 folders.
+[2018.03.01-20.34.28:756][  9]Display: HotReload took  1.0s.
+[2018.03.01-20.34.58:194][733]BlueprintLog: New page: Compile HighScoreTable
+[2018.03.01-20.34.58:779][758]LogSavePackage: Save=56.62ms
+[2018.03.01-20.34.58:779][758]LogSavePackage: Moving '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Saved/HighScoreTable672D61D4435CDA56F3161BA7FCC973F1.tmp' to '../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset'
+[2018.03.01-20.34.58:790][758]LogSavePackage: Display: Finished SavePackage ../../../../../../Users/Shawnthebro/Documents/GitHub/FightingGame/Super80sFighter/Content/SideScrollerCPP/Blueprints/HUD/HighScoreTable.uasset
+[2018.03.01-20.35.28:150][109]LogStats: FPlatformStackWalk::StackWalkAndDump -  1.403 s
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: === Handled ensure: ===
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: 
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: Ensure condition failed: !bHasFinishedSpawning [File:D:\Build\++UE4+Release-4.18+Compile\Sync\Engine\Source\Runtime\Engine\Private\Actor.cpp] [Line: 2886]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: 
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: Stack: 
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000CB4D2786 UE4Editor-Core.dll!FWindowsPlatformStackWalk::StackWalkAndDump() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\core\private\windows\windowsplatformstackwalk.cpp:200]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000CB27123A UE4Editor-Core.dll!FDebug::EnsureFailed() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\core\private\misc\assertionmacros.cpp:298]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000CB28B906 UE4Editor-Core.dll!FDebug::OptionallyLogFormattedEnsureMessageReturningFalse() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\core\private\misc\assertionmacros.cpp:425]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B5D59097 UE4Editor-Engine.dll!AActor::FinishSpawning() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\engine\private\actor.cpp:2886]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B5D7DC8E UE4Editor-Engine.dll!AActor::PostSpawnInitialize() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\engine\private\actor.cpp:2867]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B6626787 UE4Editor-Engine.dll!UWorld::SpawnActor() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\engine\private\levelactor.cpp:468]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B6626B67 UE4Editor-Engine.dll!UWorld::SpawnActor() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\engine\private\levelactor.cpp:293]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B492E0E5 UE4Editor-UnrealEd.dll!UWorld::SpawnActor<AActor>() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\engine\classes\engine\world.h:2727]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B515151E UE4Editor-UnrealEd.dll!FClassActorThumbnailScene::SpawnPreviewActor() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\thumbnailhelpers.cpp:1037]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B50E2B6D UE4Editor-UnrealEd.dll!UClassThumbnailRenderer::Draw() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\thumbnailrendering\classthumbnailrenderer.cpp:50]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B4DB7FA4 UE4Editor-UnrealEd.dll!ThumbnailTools::RenderThumbnail() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\objecttools.cpp:3659]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B45C63ED UE4Editor-UnrealEd.dll!FAssetThumbnailPool::Tick() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\assetthumbnail.cpp:1002]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B48A7AF5 UE4Editor-UnrealEd.dll!FTickableEditorObject::TickObjects() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\public\tickableeditorobject.h:21]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B48A58C6 UE4Editor-UnrealEd.dll!UEditorEngine::Tick() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\editorengine.cpp:1433]
+[2018.03.01-20.35.28:151][109]LogOutputDevice: Error: [Callstack] 0x00000000B5154AC6 UE4Editor-UnrealEd.dll!UUnrealEdEngine::Tick() [d:\build\++ue4+release-4.18+compile\sync\engine\source\editor\unrealed\private\unrealedengine.cpp:396]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x000000008A105A26 UE4Editor.exe!FEngineLoop::Tick() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\launch\private\launchengineloop.cpp:3296]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x000000008A115430 UE4Editor.exe!GuardedMain() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\launch\private\launch.cpp:166]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x000000008A1154AA UE4Editor.exe!GuardedMainWrapper() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\launch\private\windows\launchwindows.cpp:134]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x000000008A122379 UE4Editor.exe!WinMain() [d:\build\++ue4+release-4.18+compile\sync\engine\source\runtime\launch\private\windows\launchwindows.cpp:210]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x000000008A123D57 UE4Editor.exe!__scrt_common_main_seh() [f:\dd\vctools\crt\vcstartup\src\startup\exe_common.inl:253]
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x0000000015D41FE4 KERNEL32.DLL!UnknownFunction []
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: [Callstack] 0x00000000187CEFC1 ntdll.dll!UnknownFunction []
+[2018.03.01-20.35.28:152][109]LogOutputDevice: Error: 
+[2018.03.01-20.35.28:161][109]LogStats:                SubmitErrorReport -  0.000 s

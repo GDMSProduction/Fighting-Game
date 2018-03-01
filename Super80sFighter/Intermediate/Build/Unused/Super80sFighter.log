@@ -1,0 +1,10 @@
+﻿  Using 'git status' to determine working set for adaptive non-unity build.
+  Compiling game modules for hot reload
+  Performing 3 actions (4 in parallel)
+  Super80sFighterCharacter.cpp
+  [2/3] Link UE4Editor-Super80sFighter-9432-Win64-DebugGame.dll
+  [3/3] Link UE4Editor-Super80sFighter-9432-Win64-DebugGame.lib
+     Creating library C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-Super80sFighter-9432-Win64-DebugGame.lib and object C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-Super80sFighter-9432-Win64-DebugGame.exp
+     Creating library C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-Super80sFighter-9432-Win64-DebugGame.suppressed.lib and object C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-Super80sFighter-9432-Win64-DebugGame.suppressed.exp
+  Deploying Super80sFighterEditor Win64 DebugGame...
+  Total build time: 4.93 seconds (Local executor: 3.23 seconds)

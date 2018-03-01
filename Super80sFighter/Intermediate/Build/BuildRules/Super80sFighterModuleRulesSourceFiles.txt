@@ -1,0 +1,3 @@
+C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Source\Super80sFighter\Super80sFighter.Build.cs
+C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Source\Super80sFighter.Target.cs
+C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Source\Super80sFighterEditor.Target.cs

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\Super80sFighter.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{8D2CA15A-4611-4EC8-B843-A0FFE94574CC}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Super80sFighter.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\Super80sFighterEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{2C65E7AE-0190-4692-9847-291F54DFCF99}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Super80sFighter">
+			<UniqueIdentifier>{32382CF7-BB79-4D3C-AD00-398A6CFB45F4}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Super80sFighter\AIBase.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\AIBase.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\AIManager.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\AIManager.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\AIThug.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\AIThug.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\FighterController.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\FighterController.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\Hitbox.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\Hitbox.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\MySuper80sFighterAIBehavior.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\MySuper80sFighterAIBehavior.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\OverriddenGameViewportClient.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\OverriddenGameViewportClient.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\Super80sFighter\Super80sFighter.Build.cs">
+			<Filter>Source\Super80sFighter</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Super80sFighter\Super80sFighter.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\Super80sFighter.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\Super80sFighterCharacter.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\Super80sFighterCharacter.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\Super80sFighterGameMode.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\Super80sFighterGameMode.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Super80sFighter\ThugClass.cpp">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Super80sFighter\ThugClass.h">
+			<Filter>Source\Super80sFighter</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

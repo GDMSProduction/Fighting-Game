@@ -1,0 +1,34 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-Super80sFighter-1579.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\AIBase.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\AIManager.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\AIThug.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\DebugCharacter.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\FighterController.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Hitbox.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\MySuper80sFighterAIBehavior.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\OverriddenGameViewportClient.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighter.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighterCharacter.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighterGameMode.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\ThugClass.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\AIManager.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\DebugCharacter.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\FighterController.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Hitbox.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\MySuper80sFighterAIBehavior.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\OverriddenGameViewportClient.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighter.init.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighterCharacter.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\Super80sFighterGameMode.gen.cpp.obj"
+"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\ThugClass.gen.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Super80sFighter\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"C:\Users\Shawnthebro\Documents\GitHub\FightingGame\Super80sFighter\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Super80sFighter-1579.lib"
