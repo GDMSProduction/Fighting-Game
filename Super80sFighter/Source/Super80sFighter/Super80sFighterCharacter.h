@@ -425,6 +425,7 @@ public:
 	void SetOtherPlayer(AFighterParent* OtherPlayer);
 
 	float Block(float _damage);
+	float CrouchBlock(float _damage);
 
 	void StopBlocking();
 

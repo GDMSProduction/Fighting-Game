@@ -282,11 +282,18 @@ void AFighterParent::SetDead(bool willBeDead)
 #pragma region Hitboxes
 void AFighterParent::takeDamage(float damage)
 {
-	//If the player is ready to block.
-	//if (playerState == backingUp)
+	//If the player is ready to block a standing attack.
+	//if (playerState == backingUp && standingUp)
 	//{
 		//damage = Block(damage);
 		//playerScore.damageBlockedAverage += damage;
+	//}
+
+	//If the player is ready to block a crouching attack.
+	//if (playerState == backingUp && crouching)
+	//{
+	//	damage = CrouchBlock(damage);
+	//	playerScore.damageBlockedAverage += damage;
 	//}
 
 	UpdateCurrentHealth(-damage);
@@ -364,6 +371,23 @@ void AFighterParent::StopBlocking()
 	isBlocking = false;
 }
 float AFighterParent::Block(float _damage)
+{
+	//Begin blocking.
+	isBlocking = true;
+
+	//Decrease the amount of damage the player will take.
+	_damage *= 0.50f;
+
+	//Increment the total number of attacks blocked.
+	++playerScore.numAttacksBlocked;
+
+	//Set (and reset upon finishing) the blocking timer.
+	GetWorld()->GetTimerManager().SetTimer(BlockTimer, this, &AFighterParent::StopBlocking, BlockThreshold);
+
+	//Return the modified (lower) damage amount.
+	return (_damage);
+}
+float AFighterParent::CrouchBlock(float _damage)
 {
 	//Begin blocking.
 	isBlocking = true;
@@ -806,48 +830,6 @@ void AFighterParent::onHit(UPrimitiveComponent * HitComponent, AActor * OtherAct
 void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	//switch (initialSelector)
-	//{
-	//case 0:
-	//	if (initialCounter < 25)
-	//	{
-	//		++initialCounter;
-	//	}
-
-	//	else
-	//	{
-	//		initialCounter = 0;
-	//	}
-
-	//	break;
-
-	//case 1:
-	//	if (initial2Counter < 25)
-	//	{
-	//		++initial2Counter;
-	//	}
-
-	//	else
-	//	{
-	//		initial2Counter = 0;
-	//	}
-
-	//	break;
-
-	//case 2:
-	//	if (initial3Counter < 25)
-	//	{
-	//		++initial3Counter;
-	//	}
-
-	//	else
-	//	{
-	//		initial3Counter = 0;
-	//	}
-
-	//	break;
-	//}
 
 	//switch (initialSelector)
 	//{
