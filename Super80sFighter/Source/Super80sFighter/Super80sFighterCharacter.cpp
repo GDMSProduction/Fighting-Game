@@ -1,17 +1,18 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #include "Super80sFighterCharacter.h"
 #include <fstream>
+#include "../Core/Public/Misc/FileHelper.h"
 
 AFighterParent::AFighterParent()
 {
 	//I love asian qt3.14s
-	// Set size for collision capsule
+	//Set size for collision capsule.
 	GetCapsuleComponent()->InitCapsuleSize(42.00f, 96.00f);
 
 	//Disable overlap events on the characters capsule component.
 	GetCapsuleComponent()->bGenerateOverlapEvents = false;
 
-	//Don't rotate when the controller rotates.+
+	//Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -32,23 +33,23 @@ AFighterParent::AFighterParent()
 															  // Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = false; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
-	GetCharacterMovement()->GravityScale = 2.f;
+	GetCharacterMovement()->GravityScale = 2.00f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 1000.f;
-	GetCharacterMovement()->GroundFriction = 3.f;
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
-	GetCharacterMovement()->MaxFlySpeed = 600.f;
+	GetCharacterMovement()->JumpZVelocity = 1000.00f;
+	GetCharacterMovement()->GroundFriction = 3.00f;
+	GetCharacterMovement()->MaxWalkSpeed = 600.00f;
+	GetCharacterMovement()->MaxFlySpeed = 600.00f;
 
-	TotalStamina = 100.0f;
+	TotalStamina = 100.00f;
 	CurrentStamina = TotalStamina;
 
-	TotalHealth = 100.0f;
+	TotalHealth = 100.00f;
 	CurrentHealth = TotalHealth;
 
-	CustomHighJumpVelocity = 1000.0f;
-	CustomShortJumpVelocity = 700.0f;
-	JumpThreshold = 0.1f;
-	AttackThreshold = 0.2f;
+	CustomHighJumpVelocity = 1000.00f;
+	CustomShortJumpVelocity = 700.00f;
+	JumpThreshold = 0.10f;
+	AttackThreshold = 0.20f;
 	BlockThreshold = 0.05f;
 
 	holdThreshold = 0.13;
@@ -124,6 +125,7 @@ AFighterParent::AFighterParent()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
+
 }
 #pragma region Initialization
 void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -217,7 +219,59 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
 
+	//testin shit
+	//add 16 for the TArray of Commands
+	//total_memory_cost += 16;
+	//for (int i = 0; i < CommandList.Num(); ++i)
+	//{
+	//	//start with memory at 32, 16 for the function pointer, 16 for the TArray of InputsForCommand
+	//	int command_memory = 32;
+	//	for (int j = 0; j < CommandList[i].InputsForCommand.Num(); ++j)
+	//	{
+	//		//add 16 to command_memory for each TArray of inputs
+	//		command_memory += 16;
+	//		for (int k = 0; k < CommandList[i].InputsForCommand[j].inputs.Num(); ++k)
+	//		{
+	//			command_memory += sizeof(CommandList[i].InputsForCommand[j].inputs[k]);
+	//		}
+	//	}
+	//	total_memory_cost += command_memory;
+	//}
 
+	//if this is a save run, create a save file directory
+	if (save_hitbox_data)
+	{
+		FString hellothere = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data"));
+		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+
+		if (!PlatformFile.DirectoryExists(*hellothere))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Could not find directory, attempting to create one"));
+			PlatformFile.CreateDirectory(*hellothere);
+
+			if (!PlatformFile.DirectoryExists(*hellothere))
+			{
+				UE_LOG(LogTemp, Warning, TEXT("ERROR: COULD NOT CREATE DIRECTORY FOR AI DATA"));
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Successfully created the directory"));
+			}
+		}
+
+		FString GENERALKENOBI = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+		if (PlatformFile.DeleteFile(*GENERALKENOBI))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Previous test file Deleted"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("no test file found to delete"));
+		}
+
+	}
+	else
+		initialize_move_data();
 
 }
 APlayerController * AFighterParent::GetPlayerController()
@@ -297,7 +351,7 @@ void AFighterParent::takeDamage(float damage)
 		stamina_tier--;
 	}
 
-	else if (TotalHealth * 0.5f > CurrentHealth && health_tier == 2)
+	else if (TotalHealth * 0.50f > CurrentHealth && health_tier == 2)
 	{
 		health_tier--;
 		stamina_tier--;
@@ -356,40 +410,37 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	hitboxes.Add(tempHitbox);
 
 	//save hitbox data (if this is a save run and its a strike hitbox)
-	if (save_hitbox_data && tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE)
+	if (save_hitbox_data && (tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE || tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_THROW))
 	{
-		save_cast temp;
-
-		std::memcpy(&temp, &last_called_attack_function, 16);
-		std::memcpy(&last_called_attack_function_test, &temp, 16);
-		UE_LOG(LogTemp, Warning, TEXT("%e%e"), temp.a, temp.b);
-
-		std::ofstream save;
-		save.open("../../Content/SideScrollerCPP/AI Data/FighterParentAIData.bin", std::ofstream::binary | std::ofstream::app);
-		//switch ((save_cast)&last_called_attack_function)
-		//{
-		//case (save_cast)&AFighterParent::Attack0:
-		//	//check if this attack data has been saved already
-		//	if (attack_saved_bool_32 & (1 << 0))
-		//	{
-		//		//save stuff
-
-		//		//set this attack to not be saved again
-		//		attack_saved_bool_32 -= (1 << 0);
-		//	}
-		//	break;
-		//case (save_cast)&AFighterParent::Attack1:
-		//	break;
-		//case (save_cast)&AFighterParent::Attack2:
-		//	break;
-		//case (save_cast)&AFighterParent::Attack3:
-		//	break;
-		//case (save_cast)&AFighterParent::AttackTaunt:
-		//	break;
-		//default:
-		//	break;
-		//}
-		//save.close();
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == last_called_attack_function)
+			{
+				if (attack_saved_bool_32 & (1 << i))
+				{
+					//save data here
+					FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+					IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+					IFileHandle* file_handle = PlatformFile.OpenWrite(*file_path, true);
+					if (file_handle)
+					{
+						UE_LOG(LogTemp, Warning, TEXT("entered the file handle"));
+						//allocate memory to save, see details below for what is being saved
+						uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4));
+						//copy 4 bytes for the attack's function pointer index
+						memcpy(byte_array, &i, 4);
+						//copy 4 bytes for the attack's damage
+						memcpy(byte_array + 4, &tempHitbox->damage, 4);
+						//write out the data
+						file_handle->Write(byte_array, 8);
+						//close the handle
+						delete file_handle;
+						FMemory::Free(byte_array);
+					}
+					attack_saved_bool_32 -= (1 << i);
+				}
+			}
+		}
 	}
 
 
@@ -424,33 +475,59 @@ void AFighterParent::decide()
 }
 void AFighterParent::initialize_move_data()
 {
+	FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+	IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+	IFileHandle* file_handle = PlatformFile.OpenRead(*file_path);
+	int file_size = PlatformFile.FileSize(*file_path);
+	UE_LOG(LogTemp, Warning, TEXT("f_size 1: %d"), file_size);
+	file_size = file_size / 8;
+	UE_LOG(LogTemp, Warning, TEXT("f_size 2: %d"), file_size);
+
+	for (int i = 0; i < file_size; ++i)
+	{
+		int _index;
+		float _damage;
+		file_handle->Read((uint8*)(&_index), 4);
+		file_handle->Read((uint8*)(&_damage), 4);
+		bool already_in_move_list = false;
+		for (int j = 0; j < current_game_state.M_Move_Data.Num(); ++j)
+		{
+			if (CommandList[_index].functionToCall == current_game_state.M_Move_Data[j].attack_function)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("temp function was already in the list, this was the attack with the damage value of %f"), _damage);
+				already_in_move_list = true;
+			}
+		}
+		if (!already_in_move_list)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("temp function was not in the list, this was the attack with the damage value of %f"), _damage);
+
+			Move_Data temp;
+			temp.attack_function = CommandList[_index].functionToCall;
+			temp.past_attempt = 0;
+			temp.past_success = 0;
+			temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
+									  //NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
+			temp.damage = _damage;
+			temp.stamina_cost = 0;
+			temp.timeframe_cost = 0;
+			//-------------------------------------------------------------------------------------------------------------------------------------------------
+			current_game_state.M_Move_Data.Push(temp);
+		}
+	}
+	//close the file handle
+	delete file_handle;
+
+	//check to see if we actually got our function pointers correctly
 	for (int i = 0; i < CommandList.Num(); ++i)
 	{
-		Move_Data temp;
-		temp.attack_function = CommandList[i].functionToCall;
-		temp.past_attempt = 0;
-		temp.past_success = 0;
-		temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
-		//NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
-		temp.damage = 0;
-		temp.stamina_cost = 0; 
-		temp.timeframe_cost = 0;
-		//-------------------------------------------------------------------------------------------------------------------------------------------------
-		current_game_state.M_Move_Data.Push(temp);
-	}
-	for (int i = 0; i < EnemyPlayer->CommandList.Num(); ++i)
-	{
-		Move_Data temp;
-		temp.attack_function = EnemyPlayer->CommandList[i].functionToCall;
-		temp.past_attempt = 0;
-		temp.past_success = 0;
-		temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
-								  //NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
-		temp.damage = 0;
-		temp.stamina_cost = 0;
-		temp.timeframe_cost = 0;
-		//-------------------------------------------------------------------------------------------------------------------------------------------------
-		current_game_state.E_Move_Data.Push(temp);
+		for (int j = 0; j < current_game_state.M_Move_Data.Num(); ++j)
+		{
+			if (CommandList[i].functionToCall == current_game_state.M_Move_Data[j].attack_function)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("function at command list index %d matched with function at move_data index %d"), i, j);
+			}
+		}
 	}
 }
 #pragma endregion

@@ -19,6 +19,9 @@
 #include "EngineGlobals.h"
 #include "EngineUtils.h"
 #include "CoreMinimal.h"
+#include "../Core/Public/HAL/FileManager.h"
+#include "../Core/Public/HAL/PlatformFilemanager.h"
+#include "../Core/Public/HAL/UnrealMemory.h"
 #include "Super80sFighterCharacter.generated.h"
 
 #pragma region Score
@@ -312,6 +315,9 @@ private:
 	FVector non_grounded_forces;
 	FVector absolute_forces;
 
+	////testing shit
+	//int total_memory_cost = 0;
+
 	bool landedEffect;
 	bool jumpEffect;
 
@@ -342,12 +348,10 @@ public:
 	bool what_is_my_purpose;
 
 	//variables for getting data out of hitboxes
-	bool save_hitbox_data = true;
+	bool save_hitbox_data = false;
 	bool first_save = true;
 	int attack_saved_bool_32 = INT_MAX;
 	void(AFighterParent::*last_called_attack_function)();
-	void(AFighterParent::*last_called_attack_function_test)();
-
 
 private:
 	enum PlayerState : uint32
