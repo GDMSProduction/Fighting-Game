@@ -56,72 +56,9 @@ AFighterParent::AFighterParent()
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
 
 #pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
-
-	button1.button = PUNCH;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack0);
 
 
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.Clear();
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack1);
 
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = RIGHT;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = DOWN;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack3);
-
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = PUNCH;
-	button1.wasHeld = true;
-	buttonSet.inputs.Add(button1);
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack2);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	button1.button = SPECIAL;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::AttackTaunt);
 #pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
@@ -385,6 +322,11 @@ void AFighterParent::takeDamage(float damage)
 	{
 		CurrentStamina = CurrentMaxStamina;
 	}
+
+	//if (attack == thisAttack)
+	//{
+		EnemyPlayer->playerScore.numHits++;
+	//}
 
 	EnemyPlayer->ComboCounter();
 }
