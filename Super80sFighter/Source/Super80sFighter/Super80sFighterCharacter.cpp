@@ -57,7 +57,72 @@ AFighterParent::AFighterParent()
 
 #pragma region Adding in commands for attacks
 
+	TArray<ButtonSet> tempCommand;
+	ButtonSet buttonSet;
+	ButtonInput button1;
 
+	button1.button = PUNCH;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack0);
+
+
+	button1.button = KICK;
+	button1.wasHeld = false;
+	buttonSet.Clear();
+	buttonSet.inputs.Add(button1);
+	tempCommand.Push(buttonSet);
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack1);
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	buttonSet.Clear();
+	button1.button = RIGHT;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	buttonSet.Clear();
+	button1.button = DOWN;
+	buttonSet.inputs.Add(button1);
+	tempCommand.Add(buttonSet);
+
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack3);
+
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = PUNCH;
+	button1.wasHeld = true;
+	buttonSet.inputs.Add(button1);
+	button1.button = KICK;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack2);
+
+	while (tempCommand.Num() > 0)
+		tempCommand.RemoveAt(0);
+
+	buttonSet.Clear();
+	button1.button = HEAVY;
+	button1.wasHeld = false;
+	buttonSet.inputs.Add(button1);
+	button1.button = SPECIAL;
+	buttonSet.inputs.Add(button1);
+
+	tempCommand.Add(buttonSet);
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::AttackTaunt);
 
 #pragma endregion
 
@@ -330,8 +395,9 @@ void AFighterParent::takeDamage(float damage)
 
 	EnemyPlayer->ComboCounter();
 }
-AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
+AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, float stamina_cost, bool visible)
 {
+	UpdateCurrentStamina(-stamina_cost);
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
 	FRotator rot(GetTransform().GetRotation());
@@ -354,7 +420,7 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	//save hitbox data (if this is a save run and its a strike hitbox)
 	if (save_hitbox_data && (tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE || tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_THROW))
 	{
-		saveHitboxData();
+		saveHitboxData(stamina_cost);
 	}
 
 
@@ -421,9 +487,9 @@ void AFighterParent::initialize_move_data()
 		file_handle->Read((uint8*)(&_index), 4);
 		file_handle->Read((uint8*)(&_damage), 4);
 		bool already_in_move_list = false;
-		for (int j = 0; j < current_game_state.M_Move_Data.Num(); ++j)
+		for (int j = 0; j < current_game_state.Move_Data.Num(); ++j)
 		{
-			if (CommandList[_index].functionToCall == current_game_state.M_Move_Data[j].attack_function)
+			if (CommandList[_index].functionToCall == current_game_state.Move_Data[j].attack_function)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("temp function was already in the list, this was the attack with the damage value of %f"), _damage);
 				already_in_move_list = true;
@@ -443,7 +509,7 @@ void AFighterParent::initialize_move_data()
 			temp.stamina_cost = 0;
 			temp.timeframe_cost = 0;
 			//-------------------------------------------------------------------------------------------------------------------------------------------------
-			current_game_state.M_Move_Data.Push(temp);
+			current_game_state.Move_Data.Push(temp);
 		}
 	}
 	//close the file handle
@@ -452,9 +518,9 @@ void AFighterParent::initialize_move_data()
 	//check to see if we actually got our function pointers correctly
 	for (int i = 0; i < CommandList.Num(); ++i)
 	{
-		for (int j = 0; j < current_game_state.M_Move_Data.Num(); ++j)
+		for (int j = 0; j < current_game_state.Move_Data.Num(); ++j)
 		{
-			if (CommandList[i].functionToCall == current_game_state.M_Move_Data[j].attack_function)
+			if (CommandList[i].functionToCall == current_game_state.Move_Data[j].attack_function)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("function at command list index %d matched with function at move_data index %d"), i, j);
 			}
@@ -473,7 +539,7 @@ void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
 		UE_LOG(LogTemp, Warning, TEXT("no test file found to delete"));
 	}
 }
-void AFighterParent::saveHitboxData()
+void AFighterParent::saveHitboxData(float stamina_cost)
 {
 	if (attack_saved_bool_32 & (1 << last_called_attack_index))
 	{
@@ -485,11 +551,13 @@ void AFighterParent::saveHitboxData()
 		{
 			UE_LOG(LogTemp, Warning, TEXT("entered the file handle"));
 			//allocate memory to save, see details below for what is being saved
-			uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4));
+			uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4 + 4));
 			//copy 4 bytes for the attack's function pointer index
 			memcpy(byte_array, &last_called_attack_index, 4);
 			//copy 4 bytes for the attack's damage
 			memcpy(byte_array + 4, &tempHitbox->damage, 4);
+			//copy 4 bytes for the stamina cost
+			memcpy(byte_array + 8, &stamina_cost, 4);
 			//write out the data
 			file_handle->Write(byte_array, 8);
 			//close the handle

@@ -562,12 +562,9 @@ private:
 	template <class C>
 	struct GameState
 	{
-		FVector M_Loc;
-		PlayerState M_PlayerState;
-		TArray<Move_Data<C>> M_Move_Data;
-		FVector E_Loc;
-		PlayerState E_PlayerState;
-		TArray<Move_Data<C>> E_Move_Data;
+		FVector Loc;
+		PlayerState PlayerState;
+		TArray<Move_Data<C>> Move_Data;
 	};
 
 	GameState<AFighterParent> current_game_state;
@@ -577,7 +574,7 @@ private:
 
 	//overridable functions for saving out the data
 	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same
-	virtual void saveHitboxData(); //children should change the file path
+	virtual void saveHitboxData(float stamina_cost); //children should change the file path
 	virtual void set_last_called_attack_index(int _index);
 
 #pragma endregion
