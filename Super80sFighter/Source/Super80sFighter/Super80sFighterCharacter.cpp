@@ -408,6 +408,11 @@ void AFighterParent::takeDamage(float damage)
 		CurrentStamina = CurrentMaxStamina;
 	}
 
+	//if (attack == thisAttack)
+	//{
+		EnemyPlayer->playerScore.numHits++;
+	//}
+
 	EnemyPlayer->ComboCounter();
 }
 AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
