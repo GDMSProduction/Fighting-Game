@@ -851,7 +851,7 @@ void AFighterParent::PressJump()
 	}
 
 	isHoldingJump = true;
-	PressUp<AFighterParent>();
+	PressUp();
 
 	InitialsBlueprintEvent();
 }
