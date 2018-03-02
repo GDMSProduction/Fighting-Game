@@ -54,16 +54,6 @@ AFighterParent::AFighterParent()
 
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
-#pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
-
-	button1.button = PUNCH;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand(tempCommand, &AFighterParent::Attack0);
 
 #pragma region Adding in commands for attacks
 	TArray<ButtonSet> tempCommand;
@@ -75,73 +65,6 @@ AFighterParent::AFighterParent()
 	buttonSet.inputs.Add(button1);
 	tempCommand.Push(buttonSet);
 	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack0);
-
-
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.Clear();
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack1);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = RIGHT;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	buttonSet.Clear();
-	button1.button = DOWN;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Add(buttonSet);
-
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack3);
-
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = PUNCH;
-	button1.wasHeld = true;
-	buttonSet.inputs.Add(button1);
-	button1.button = KICK;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack2);
-
-	while (tempCommand.Num() > 0)
-		tempCommand.RemoveAt(0);
-
-	buttonSet.Clear();
-	button1.button = HEAVY;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	button1.button = SPECIAL;
-	buttonSet.inputs.Add(button1);
-
-	tempCommand.Add(buttonSet);
-	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::AttackTaunt);
-
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
-
-	button1.button = PUNCH;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<AFighterParent>(CommandList,tempCommand, &AFighterParent::Attack0);
 
 
 	button1.button = KICK;
@@ -337,16 +260,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 				UE_LOG(LogTemp, Warning, TEXT("Successfully created the directory"));
 			}
 		}
-
-		FString GENERALKENOBI = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
-		if (PlatformFile.DeleteFile(*GENERALKENOBI))
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Previous test file Deleted"));
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("no test file found to delete"));
-		}
+		deleteOldSaveData(PlatformFile);
 
 	}
 	else
@@ -498,35 +412,7 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	//save hitbox data (if this is a save run and its a strike hitbox)
 	if (save_hitbox_data && (tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE || tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_THROW))
 	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == last_called_attack_function)
-			{
-				if (attack_saved_bool_32 & (1 << i))
-				{
-					//save data here
-					FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
-					IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
-					IFileHandle* file_handle = PlatformFile.OpenWrite(*file_path, true);
-					if (file_handle)
-					{
-						UE_LOG(LogTemp, Warning, TEXT("entered the file handle"));
-						//allocate memory to save, see details below for what is being saved
-						uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4));
-						//copy 4 bytes for the attack's function pointer index
-						memcpy(byte_array, &i, 4);
-						//copy 4 bytes for the attack's damage
-						memcpy(byte_array + 4, &tempHitbox->damage, 4);
-						//write out the data
-						file_handle->Write(byte_array, 8);
-						//close the handle
-						delete file_handle;
-						FMemory::Free(byte_array);
-					}
-					attack_saved_bool_32 -= (1 << i);
-				}
-			}
-		}
+		saveHitboxData();
 	}
 
 
@@ -605,7 +491,7 @@ void AFighterParent::initialize_move_data()
 		{
 			UE_LOG(LogTemp, Warning, TEXT("temp function was not in the list, this was the attack with the damage value of %f"), _damage);
 
-			Move_Data temp;
+			Move_Data<AFighterParent> temp;
 			temp.attack_function = CommandList[_index].functionToCall;
 			temp.past_attempt = 0;
 			temp.past_success = 0;
@@ -632,6 +518,48 @@ void AFighterParent::initialize_move_data()
 			}
 		}
 	}
+}
+void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
+{
+	FString GENERALKENOBI = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+	if (PlatformFile.DeleteFile(*GENERALKENOBI))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Previous test file Deleted"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("no test file found to delete"));
+	}
+}
+void AFighterParent::saveHitboxData()
+{
+	if (attack_saved_bool_32 & (1 << last_called_attack_index))
+	{
+		//save data here
+		FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+		IFileHandle* file_handle = PlatformFile.OpenWrite(*file_path, true);
+		if (file_handle)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("entered the file handle"));
+			//allocate memory to save, see details below for what is being saved
+			uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4));
+			//copy 4 bytes for the attack's function pointer index
+			memcpy(byte_array, &last_called_attack_index, 4);
+			//copy 4 bytes for the attack's damage
+			memcpy(byte_array + 4, &tempHitbox->damage, 4);
+			//write out the data
+			file_handle->Write(byte_array, 8);
+			//close the handle
+			delete file_handle;
+			FMemory::Free(byte_array);
+		}
+		attack_saved_bool_32 -= (1 << last_called_attack_index);
+	}
+}
+void AFighterParent::set_last_called_attack_index(int _index)
+{
+	last_called_attack_index = _index;
 }
 #pragma endregion
 
@@ -796,7 +724,16 @@ void AFighterParent::Attack0()
 	isAttacking0 = true;
 
 	if (save_hitbox_data)
-		last_called_attack_function = &AFighterParent::Attack0;
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack0)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack1()
 {
@@ -804,7 +741,16 @@ void AFighterParent::Attack1()
 	isAttacking1 = true;
 
 	if (save_hitbox_data)
-		last_called_attack_function = &AFighterParent::Attack1;
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack1)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack2()
 {
@@ -812,7 +758,16 @@ void AFighterParent::Attack2()
 	isAttacking2 = true;
 
 	if (save_hitbox_data)
-		last_called_attack_function = &AFighterParent::Attack2;
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack2)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack3()
 {
@@ -820,7 +775,16 @@ void AFighterParent::Attack3()
 	isAttacking3 = true;
 
 	if (save_hitbox_data)
-		last_called_attack_function = &AFighterParent::Attack3;
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack3)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::AttackTaunt()
 {
@@ -829,7 +793,16 @@ void AFighterParent::AttackTaunt()
 	++playerScore.numTaunts;
 
 	if (save_hitbox_data)
-		last_called_attack_function = &AFighterParent::AttackTaunt;
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::AttackTaunt)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::SetLastPressedKey(FKey inKey)
 {

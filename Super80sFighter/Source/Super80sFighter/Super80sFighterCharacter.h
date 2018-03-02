@@ -95,7 +95,7 @@ class AFighterParent : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
-		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible = true);
+		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, float stamina_cost, bool visible = true);
 	UPROPERTY()
 		class AHitbox* tempHitbox;
 #pragma endregion
@@ -526,10 +526,12 @@ public:
 	bool what_is_my_purpose;
 
 	//variables for getting data out of hitboxes
-	bool save_hitbox_data = false;
+	bool save_hitbox_data = true;
 	bool first_save = true;
 	int attack_saved_bool_32 = INT_MAX;
-	void(AFighterParent::*last_called_attack_function)();
+
+	//index of the last called function
+	int last_called_attack_index = -1;
 
 private:
 	enum PlayerState : uint32
@@ -545,9 +547,10 @@ private:
 	{
 		double a, b;
 	};
+	template <class C>
 	struct Move_Data
 	{
-		void(AFighterParent::*attack_function)();
+		void(C::*attack_function)();
 		int combo_potential;
 		int damage;
 		int past_success;
@@ -555,20 +558,26 @@ private:
 		int stamina_cost;
 		int timeframe_cost;
 	};
+	template <class C>
 	struct GameState
 	{
 		FVector M_Loc;
 		PlayerState M_PlayerState;
-		TArray<Move_Data> M_Move_Data;
+		TArray<Move_Data<C>> M_Move_Data;
 		FVector E_Loc;
 		PlayerState E_PlayerState;
-		TArray<Move_Data> E_Move_Data;
+		TArray<Move_Data<C>> E_Move_Data;
 	};
 
-	GameState current_game_state;
+	GameState<AFighterParent> current_game_state;
 
 	void decide();
-	void initialize_move_data();
+	virtual void initialize_move_data(); //change file path and move data templated type
+
+	//overridable functions for saving out the data
+	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same
+	virtual void saveHitboxData(); //children should change the file path
+	virtual void set_last_called_attack_index(int _index);
 
 #pragma endregion
 
