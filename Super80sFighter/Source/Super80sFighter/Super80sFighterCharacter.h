@@ -359,6 +359,7 @@ protected:
 			while (inputs.Num() > 0)
 				inputs.RemoveAt(0);
 		}
+
 	};
 	//This is for input buffer, which is used to determine if inputs are held or tapped
 	struct ButtonBufferInput {

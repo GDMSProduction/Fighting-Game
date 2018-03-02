@@ -1019,6 +1019,7 @@ void AFighterParent::ReleaseJump()
 	ACharacter::StopJumping();
 	ReleaseUp<AFighterParent>();
 	isHoldingJump = false;
+	ReleaseUp<AFighterParent>();
 }
 #pragma endregion
 #pragma region Miscellaneous Character Functions
