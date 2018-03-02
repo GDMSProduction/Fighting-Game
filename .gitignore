@@ -2,14 +2,9 @@ Super80sFighter/Binaries
 Super80sFighter/DerivedDataCache
 Super80sFighter/Intermediate
 *.suo
-Super80sFighter/Saved/Autosaves
-Super80sFighter/Saved/Backup
-Super80sFighter/Saved/Collections
+Super80sFighter/Saved
 configIsInTheRepo.idkHowToComment
-Super80sFighter/Saved/Config/CrashReportClient
-Super80sFighter/Saved/Crashes
-Super80sFighter/Saved/Logs
-Super80sFighter/Saved/AutoScreenshot.png
+
 
 
 # Visual Studio 2015 user specific files
@@ -89,3 +84,5 @@ DerivedDataCache/*
 *.TMP
 *.sln
 /Super80sFighter/Content/StarterContent
+/Super80sFighter/*.sln
+/Super80sFighter/.vs/Super80sFighter/v14/*.suo
