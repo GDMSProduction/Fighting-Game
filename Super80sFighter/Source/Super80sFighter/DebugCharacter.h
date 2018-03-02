@@ -19,7 +19,8 @@ class SUPER80SFIGHTER_API ADebugCharacter : public AFighterParent
 
 		ADebugCharacter();
 	TArray<Command<ADebugCharacter>> CommandList;
-
+	TArray<Command<ADebugCharacter>> AlreadyCalledCommands;
+	virtual void PressRight() override;
 	void testFunc();
-		
+	virtual void CheckCommand()  override;
 };
