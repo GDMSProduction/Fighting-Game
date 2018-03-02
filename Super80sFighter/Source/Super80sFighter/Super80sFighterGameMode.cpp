@@ -686,12 +686,6 @@ void ASuper80sFighterGameMode::endRound(bool p1_win)
 			Player1->playerScore.totalScore += 1000;
 		}
 
-		if (Player1_round_wins == num_rounds)
-		{
-			Player1->playerScore.winPerfectGame = true;
-			Player1->playerScore.totalScore += 1000;
-		}
-
 		Player1->playerScore.specialFinish = true;
 		Player1->playerScore.totalScore += 500;
 	}
@@ -740,6 +734,13 @@ void ASuper80sFighterGameMode::internal_draw()
 void ASuper80sFighterGameMode::endGame()
 {
 	paused = true;
+
+	if (Player1_round_wins == num_rounds)
+	{
+		Player1->playerScore.winPerfectGame = true;
+		Player1->playerScore.totalScore += 1000;
+	}
+
 	DetermineRank(Player1->playerScore.totalScore);
 }
 

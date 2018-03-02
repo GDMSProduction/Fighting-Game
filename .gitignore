@@ -84,3 +84,5 @@ DerivedDataCache/*
 *.TMP
 *.sln
 /Super80sFighter/Content/StarterContent
+/Super80sFighter/*.sln
+/Super80sFighter/.vs/Super80sFighter/v14/*.suo

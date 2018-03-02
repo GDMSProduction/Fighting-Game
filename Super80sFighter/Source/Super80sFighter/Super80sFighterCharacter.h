@@ -466,6 +466,18 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Orientation")
 		bool IsFacingRight;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int initialSelector;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int initialCounter;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int initial2Counter;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+		int initial3Counter;
+
 	AFighterParent* EnemyPlayer;
 
 	FTimerHandle BlockTimer;
@@ -565,6 +577,7 @@ public:
 	void SetOtherPlayer(AFighterParent* OtherPlayer);
 
 	float Block(float _damage);
+	float CrouchBlock(float _damage);
 
 	void StopBlocking();
 
@@ -642,9 +655,6 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "HealthEffects")
 		void DeathEffectBlueprintEvent();
-
-	UFUNCTION(BlueprintImplementableEvent, Category = "Initials")
-		void InitialsBlueprintEvent();
 
 #pragma endregion
 
