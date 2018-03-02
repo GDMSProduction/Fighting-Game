@@ -102,8 +102,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
 		EMenuState current_menu_state = EMenuState::STATE_SPLASH;
 
-
-
 #pragma region Controls 
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		void OverrideKeyInput(FKey inputKey, FString InputName);
@@ -123,6 +121,7 @@ public:
 		bool GetIsKeyboardMode();
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		void SetIsKeyboardMode(bool m_SetKeyboardMode);
+
 
 #pragma region Console Commands
 	UFUNCTION(Exec, Category = "Controls")
