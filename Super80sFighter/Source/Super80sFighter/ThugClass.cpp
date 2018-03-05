@@ -83,10 +83,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = true;
 			isMove10 = false;
 			isMove11 = false;
@@ -96,10 +123,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = true;
 			isMove19 = false;
 			isMove20 = false;
@@ -124,10 +178,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = true;
 			isMove11 = false;
@@ -137,10 +218,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = true;
 			isMove20 = false;
@@ -165,10 +273,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = true;
@@ -178,10 +313,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = true;
@@ -206,10 +368,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -219,10 +408,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
@@ -247,10 +463,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -260,10 +503,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
@@ -288,10 +558,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -301,10 +598,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
@@ -329,10 +653,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = true;
 			isMove7 = false;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -342,10 +693,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = true;
 			isMove16 = false;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
@@ -370,10 +748,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = true;
 			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -383,10 +788,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = true;
 			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
@@ -411,10 +843,37 @@ void AThugClass::ChooseNextMove()
 			isMove6 = false;
 			isMove7 = false;
 			isMove8 = true;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 1)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
 			isMove9 = false;
 			isMove10 = false;
 			isMove11 = false;
@@ -424,10 +883,37 @@ void AThugClass::ChooseNextMove()
 			isMove15 = false;
 			isMove16 = false;
 			isMove17 = true;
+			isMove18 = false;
+			isMove19 = false;
+			isMove20 = false;
+			isMove21 = false;
+			isMove22 = false;
+			isMove23 = false;
+			isMove24 = false;
+			isMove25 = false;
+			isMove26 = false;
 		}
 
 		else if (movesetNumber == 2)
 		{
+			isMove0 = false;
+			isMove1 = false;
+			isMove2 = false;
+			isMove3 = false;
+			isMove4 = false;
+			isMove5 = false;
+			isMove6 = false;
+			isMove7 = false;
+			isMove8 = false;
+			isMove9 = false;
+			isMove10 = false;
+			isMove11 = false;
+			isMove12 = false;
+			isMove13 = false;
+			isMove14 = false;
+			isMove15 = false;
+			isMove16 = false;
+			isMove17 = false;
 			isMove18 = false;
 			isMove19 = false;
 			isMove20 = false;
