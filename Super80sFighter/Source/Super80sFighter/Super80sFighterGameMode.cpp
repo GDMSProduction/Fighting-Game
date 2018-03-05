@@ -116,6 +116,8 @@ void ASuper80sFighterGameMode::BeginPlay()
 
 	Player1->SetOtherPlayer(Player2);
 	Player2->SetOtherPlayer(Player1);
+	Player1->what_is_my_purpose = p1_is_AI;
+	Player2->what_is_my_purpose = p2_is_AI;
 
 	first_time = true;
 	rounds_remaining = num_rounds;
@@ -178,7 +180,7 @@ void ASuper80sFighterGameMode::Tick(float DeltaTime)
 
 ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 {
-	// set default pawn class to our Blueprinted character
+	// get the thug class blueprint to spawn
 	static ConstructorHelpers::FObjectFinder<UClass> PlayerPawnBPClass(TEXT("Class'/Game/SideScrollerCPP/Blueprints/Character/ThugClassBlueprint.ThugClassBlueprint_C'"));
 	PrimaryActorTick.bCanEverTick = true;
 	if (PlayerPawnBPClass.Object != NULL)
