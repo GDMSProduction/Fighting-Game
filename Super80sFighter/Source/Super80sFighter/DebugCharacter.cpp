@@ -10,58 +10,107 @@ ADebugCharacter::ADebugCharacter()
 	punch.wasHeld = false;
 
 	ButtonInput kick;
-	punch.button = KICK;
-	punch.wasHeld = false;
+	kick.button = KICK;
+	kick.wasHeld = false;
 	
 	ButtonInput heavy;
-	punch.button = HEAVY;
-	punch.wasHeld = false;
+	heavy.button = HEAVY;
+	heavy.wasHeld = false;
 	
 	ButtonInput special;
-	punch.button = SPECIAL;
-	punch.wasHeld = false;
+	special.button = SPECIAL;
+	special.wasHeld = false;
 
-	//ButtonInput forward;
-	//punch.button = RIGHT;
-	//punch.wasHeld = false;
-	//
-	//ButtonInput backward;
-	//punch.button = LEFT;
-	//punch.wasHeld = false;
-	//
-	//ButtonInput down;
-	//punch.button = DOWN;
-	//punch.wasHeld = false;
+	ButtonInput forward;
+	forward.button = RIGHT;
+	forward.wasHeld = false;
+	
+	ButtonInput backward;
+	backward.button = LEFT;
+	backward.wasHeld = false;
+	
+	ButtonInput down;
+	down.button = DOWN;
+	down.wasHeld = false;
 
 
 
-	ButtonSet mid_jab;
-	mid_jab.inputs.Add(punch);
+	ButtonSet mid_jab_buttons;
+	mid_jab_buttons.inputs.Add(punch);
 	TArray<ButtonSet> mid_jab_inputs;
-	mid_jab_inputs.Add(mid_jab);
+	mid_jab_inputs.Add(mid_jab_buttons);
 
 	AddCommand<ADebugCharacter>(CommandList, mid_jab_inputs, &ADebugCharacter::mid_jab);
 
-	ButtonSet low_heel_kick;
-	low_heel_kick.inputs.Add(kick);
+	ButtonSet low_heel_kick_buttons;
+	low_heel_kick_buttons.inputs.Add(kick);
 	TArray<ButtonSet> low_heel_kick_inputs;
-	low_heel_kick_inputs.Add(low_heel_kick);
+	low_heel_kick_inputs.Add(low_heel_kick_buttons);
 
 	AddCommand<ADebugCharacter>(CommandList, low_heel_kick_inputs, &ADebugCharacter::low_heel_kick);
 
-	ButtonSet high_cross_punch;
-	high_cross_punch.inputs.Add(heavy);
+	ButtonSet high_cross_punch_buttons;
+	high_cross_punch_buttons.inputs.Add(heavy);
 	TArray<ButtonSet> high_cross_punch_inputs;
-	high_cross_punch_inputs.Add(high_cross_punch);
+	high_cross_punch_inputs.Add(high_cross_punch_buttons);
 
 	AddCommand<ADebugCharacter>(CommandList, high_cross_punch_inputs, &ADebugCharacter::high_cross_punch);
 
-	ButtonSet high_strong_uppercut;
-	high_strong_uppercut.inputs.Add(special);
+	ButtonSet high_strong_uppercut_buttons;
+	high_strong_uppercut_buttons.inputs.Add(special);
 	TArray<ButtonSet> high_strong_uppercut_inputs;
-	high_strong_uppercut_inputs.Add(high_strong_uppercut);
+	high_strong_uppercut_inputs.Add(high_strong_uppercut_buttons);
 
 	AddCommand<ADebugCharacter>(CommandList, high_strong_uppercut_inputs, &ADebugCharacter::high_strong_uppercut);
+
+
+	//Forwards
+	ButtonSet mid_cross_punch_buttons;
+	mid_cross_punch_buttons.inputs.Add(forward);
+	mid_cross_punch_buttons.inputs.Add(punch);
+	TArray<ButtonSet> mid_cross_punch_inputs;
+	mid_cross_punch_inputs.Add(mid_cross_punch_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_cross_punch_inputs, &ADebugCharacter::mid_cross_punch);
+
+	ButtonSet mid_chasing_uppercut_buttons;
+	mid_chasing_uppercut_buttons.inputs.Add(forward);
+	mid_chasing_uppercut_buttons.inputs.Add(heavy);
+	TArray<ButtonSet> mid_chasing_uppercut_inputs;
+	mid_chasing_uppercut_inputs.Add(mid_chasing_uppercut_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_chasing_uppercut_inputs, &ADebugCharacter::mid_chasing_uppercut);
+
+
+	//Backwards
+	ButtonSet mid_alt_hook_buttons;
+	mid_alt_hook_buttons.inputs.Add(backward);
+	mid_alt_hook_buttons.inputs.Add(punch);
+	TArray<ButtonSet> mid_alt_hook_buttons_inputs;
+	mid_alt_hook_buttons_inputs.Add(mid_alt_hook_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_alt_hook_buttons_inputs, &ADebugCharacter::mid_alt_hook);
+
+
+	//Down
+	ButtonSet low_hook_buttons;
+	low_hook_buttons.inputs.Add(down);
+	low_hook_buttons.inputs.Add(punch);
+	TArray<ButtonSet> low_hook_inputs;
+	low_hook_inputs.Add(low_hook_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, low_hook_inputs, &ADebugCharacter::low_hook);
+
+	ButtonSet high_lazy_overhead_buttons;
+	high_lazy_overhead_buttons.inputs.Add(down);
+	high_lazy_overhead_buttons.inputs.Add(special);
+	TArray<ButtonSet> high_lazy_overhead_inputs;
+	high_lazy_overhead_inputs.Add(high_lazy_overhead_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, high_lazy_overhead_inputs, &ADebugCharacter::high_lazy_overhead);
+
+
+
 #pragma endregion
 }
 void ADebugCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
@@ -285,6 +334,7 @@ void ADebugCharacter::mid_jab()
 {
 	QueStopAttacking();
 	is_mid_jab = true;
+
 }
 void ADebugCharacter::low_heel_kick()
 {
