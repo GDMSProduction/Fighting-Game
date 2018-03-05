@@ -263,9 +263,8 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 			}
 		}
 		deleteOldSaveData(PlatformFile);
-
 	}
-	else
+	else if(what_is_my_purpose)
 		initialize_move_data();
 
 }
@@ -477,19 +476,21 @@ void AFighterParent::initialize_move_data()
 	IFileHandle* file_handle = PlatformFile.OpenRead(*file_path);
 	int file_size = PlatformFile.FileSize(*file_path);
 	UE_LOG(LogTemp, Warning, TEXT("f_size 1: %d"), file_size);
-	file_size = file_size / 8;
+	file_size = file_size / 12;
 	UE_LOG(LogTemp, Warning, TEXT("f_size 2: %d"), file_size);
 
 	for (int i = 0; i < file_size; ++i)
 	{
 		int _index;
 		float _damage;
+		float _stamina_cost;
 		file_handle->Read((uint8*)(&_index), 4);
 		file_handle->Read((uint8*)(&_damage), 4);
+		file_handle->Read((uint8*)(&_stamina_cost), 4);
 		bool already_in_move_list = false;
-		for (int j = 0; j < current_game_state.Move_Data.Num(); ++j)
+		for (int j = 0; j < my_player_data.Move_Data.Num(); ++j)
 		{
-			if (CommandList[_index].functionToCall == current_game_state.Move_Data[j].attack_function)
+			if (CommandList[_index].functionToCall == CommandList[my_player_data.Move_Data[j].command_list_index].functionToCall)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("temp function was already in the list, this was the attack with the damage value of %f"), _damage);
 				already_in_move_list = true;
@@ -499,8 +500,8 @@ void AFighterParent::initialize_move_data()
 		{
 			UE_LOG(LogTemp, Warning, TEXT("temp function was not in the list, this was the attack with the damage value of %f"), _damage);
 
-			Move_Data<AFighterParent> temp;
-			temp.attack_function = CommandList[_index].functionToCall;
+			Move_Data temp;
+			temp.command_list_index = _index;
 			temp.past_attempt = 0;
 			temp.past_success = 0;
 			temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
@@ -509,7 +510,7 @@ void AFighterParent::initialize_move_data()
 			temp.stamina_cost = 0;
 			temp.timeframe_cost = 0;
 			//-------------------------------------------------------------------------------------------------------------------------------------------------
-			current_game_state.Move_Data.Push(temp);
+			my_player_data.Move_Data.Push(temp);
 		}
 	}
 	//close the file handle
@@ -518,14 +519,22 @@ void AFighterParent::initialize_move_data()
 	//check to see if we actually got our function pointers correctly
 	for (int i = 0; i < CommandList.Num(); ++i)
 	{
-		for (int j = 0; j < current_game_state.Move_Data.Num(); ++j)
+		for (int j = 0; j < my_player_data.Move_Data.Num(); ++j)
 		{
-			if (CommandList[i].functionToCall == current_game_state.Move_Data[j].attack_function)
+			if (CommandList[i].functionToCall == CommandList[my_player_data.Move_Data[j].command_list_index].functionToCall)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("function at command list index %d matched with function at move_data index %d"), i, j);
 			}
 		}
 	}
+}
+void AFighterParent::notify_incoming_attack(int attack_index)
+{
+
+}
+void AFighterParent::decide_movement()
+{
+
 }
 void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
 {
@@ -559,7 +568,7 @@ void AFighterParent::saveHitboxData(float stamina_cost)
 			//copy 4 bytes for the stamina cost
 			memcpy(byte_array + 8, &stamina_cost, 4);
 			//write out the data
-			file_handle->Write(byte_array, 8);
+			file_handle->Write(byte_array, 12);
 			//close the handle
 			delete file_handle;
 			FMemory::Free(byte_array);
@@ -733,6 +742,18 @@ void AFighterParent::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack0)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
 	if (save_hitbox_data)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
@@ -749,6 +770,18 @@ void AFighterParent::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack1)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
 
 	if (save_hitbox_data)
 	{
@@ -767,6 +800,18 @@ void AFighterParent::Attack2()
 	QueStopAttacking();
 	isAttacking2 = true;
 
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack2)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
 	if (save_hitbox_data)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
@@ -783,6 +828,18 @@ void AFighterParent::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack3)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
 
 	if (save_hitbox_data)
 	{
@@ -801,6 +858,18 @@ void AFighterParent::AttackTaunt()
 	QueStopAttacking();
 	isAttackingTaunt = true;
 	++playerScore.numTaunts;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::AttackTaunt)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
 
 	if (save_hitbox_data)
 	{

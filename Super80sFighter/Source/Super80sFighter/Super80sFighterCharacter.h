@@ -527,7 +527,7 @@ public:
 	bool what_is_my_purpose;
 
 	//variables for getting data out of hitboxes
-	bool save_hitbox_data = true;
+	bool save_hitbox_data = false;
 	bool first_save = true;
 	int attack_saved_bool_32 = INT_MAX;
 
@@ -548,10 +548,9 @@ private:
 	{
 		double a, b;
 	};
-	template <class C>
 	struct Move_Data
 	{
-		void(C::*attack_function)();
+		int command_list_index;
 		int combo_potential;
 		int damage;
 		int past_success;
@@ -559,18 +558,20 @@ private:
 		int stamina_cost;
 		int timeframe_cost;
 	};
-	template <class C>
-	struct GameState
+	struct Player_Data
 	{
 		FVector Loc;
 		PlayerState PlayerState;
-		TArray<Move_Data<C>> Move_Data;
+		TArray<Move_Data> Move_Data;
 	};
 
-	GameState<AFighterParent> current_game_state;
+	Player_Data my_player_data;
+	Player_Data enemy_player_data;
 
 	void decide();
 	virtual void initialize_move_data(); //change file path and move data templated type
+	virtual void notify_incoming_attack(int attack_index);
+	virtual void decide_movement();
 
 	//overridable functions for saving out the data
 	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same
