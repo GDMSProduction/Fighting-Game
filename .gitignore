@@ -87,3 +87,6 @@ DerivedDataCache/*
 /Super80sFighter/*.sln
 /Super80sFighter/.vs/Super80sFighter/v14/*.suo
 Saved
+/Super80sFighter/Saved/Config/Windows/Editor.ini
+/Super80sFighter/Saved/Config/Windows/EditorPerProjectUserSettings.ini
+/Super80sFighter/Saved/Config/Windows/Engine.ini
