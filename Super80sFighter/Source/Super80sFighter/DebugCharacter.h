@@ -71,8 +71,6 @@ class SUPER80SFIGHTER_API ADebugCharacter : public AFighterParent
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		bool is_high_lazy_overhead;
 #pragma endregion
-
-
 	void mid_jab();
 	void low_heel_kick();
 	void high_cross_punch();
@@ -88,5 +86,6 @@ class SUPER80SFIGHTER_API ADebugCharacter : public AFighterParent
 
 
 	void testFunc();
-	virtual void CheckCommand()  override;
+	virtual void CheckCommand() override;
+	virtual void ClearCommands() override;
 };

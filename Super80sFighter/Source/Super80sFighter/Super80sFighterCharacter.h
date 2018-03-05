@@ -166,7 +166,7 @@ protected:
 
 	virtual void CheckCommand();
 	//This clears the list of inputs. Its called when an attack isn't input for a certain amount of time.
-	void ClearCommands();
+	virtual void ClearCommands();
 
 	enum INPUT_TYPE
 	{
@@ -274,7 +274,7 @@ protected:
 			buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
 		CheckCommand();
 
-		GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &C::ClearCommands, AttackThreshold);
+		GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &AFighterParent::ClearCommands, AttackThreshold);
 	};
 #pragma endregion
 #pragma endregion

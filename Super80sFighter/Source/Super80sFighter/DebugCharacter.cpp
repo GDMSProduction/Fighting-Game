@@ -7,16 +7,29 @@ ADebugCharacter::ADebugCharacter()
 
 
 
-#pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
+#pragma region Command setup
+	ButtonInput punch;
+	punch.button = PUNCH;
+	punch.wasHeld = false;
 
-	button1.button = RIGHT;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<ADebugCharacter>(CommandList, tempCommand, &ADebugCharacter::testFunc);
+	//ButtonInput kick;
+	//punch.button = KICK;
+	//punch.wasHeld = false;
+	//
+	//ButtonInput heavy;
+	//punch.button = HEAVY;
+	//punch.wasHeld = false;
+	//
+	//ButtonInput special;
+	//punch.button = SPECIAL;
+	//punch.wasHeld = false;
+
+	ButtonSet oneAttack;
+	oneAttack.inputs.Add(punch);
+	TArray<ButtonSet> inputs;
+	inputs.Add(oneAttack);
+
+	AddCommand<ADebugCharacter>(CommandList, inputs, &ADebugCharacter::mid_jab);
 #pragma endregion
 }
 void ADebugCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
@@ -107,6 +120,7 @@ void ADebugCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent
 	health_tier = 3;
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
+
 
 
 
@@ -401,5 +415,15 @@ void ADebugCharacter::CheckCommand()
 			}
 		}
 	}
+}
+
+void ADebugCharacter::ClearCommands()
+{
+	while (buttonBuffer.Num() != 0)
+		buttonBuffer.RemoveAt(0);
+	while (AlreadyCalledCommands.Num() != 0)
+		AlreadyCalledCommands.RemoveAt(0);
+
+	QueStopAttacking();
 }
 
