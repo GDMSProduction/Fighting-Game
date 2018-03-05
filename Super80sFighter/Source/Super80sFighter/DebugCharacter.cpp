@@ -4,32 +4,64 @@
 
 ADebugCharacter::ADebugCharacter()
 {
-
-
-
 #pragma region Command setup
 	ButtonInput punch;
 	punch.button = PUNCH;
 	punch.wasHeld = false;
 
-	//ButtonInput kick;
-	//punch.button = KICK;
+	ButtonInput kick;
+	punch.button = KICK;
+	punch.wasHeld = false;
+	
+	ButtonInput heavy;
+	punch.button = HEAVY;
+	punch.wasHeld = false;
+	
+	ButtonInput special;
+	punch.button = SPECIAL;
+	punch.wasHeld = false;
+
+	//ButtonInput forward;
+	//punch.button = RIGHT;
 	//punch.wasHeld = false;
 	//
-	//ButtonInput heavy;
-	//punch.button = HEAVY;
+	//ButtonInput backward;
+	//punch.button = LEFT;
 	//punch.wasHeld = false;
 	//
-	//ButtonInput special;
-	//punch.button = SPECIAL;
+	//ButtonInput down;
+	//punch.button = DOWN;
 	//punch.wasHeld = false;
 
-	ButtonSet oneAttack;
-	oneAttack.inputs.Add(punch);
-	TArray<ButtonSet> inputs;
-	inputs.Add(oneAttack);
 
-	AddCommand<ADebugCharacter>(CommandList, inputs, &ADebugCharacter::mid_jab);
+
+	ButtonSet mid_jab;
+	mid_jab.inputs.Add(punch);
+	TArray<ButtonSet> mid_jab_inputs;
+	mid_jab_inputs.Add(mid_jab);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_jab_inputs, &ADebugCharacter::mid_jab);
+
+	ButtonSet low_heel_kick;
+	low_heel_kick.inputs.Add(kick);
+	TArray<ButtonSet> low_heel_kick_inputs;
+	low_heel_kick_inputs.Add(low_heel_kick);
+
+	AddCommand<ADebugCharacter>(CommandList, low_heel_kick_inputs, &ADebugCharacter::low_heel_kick);
+
+	ButtonSet high_cross_punch;
+	high_cross_punch.inputs.Add(heavy);
+	TArray<ButtonSet> high_cross_punch_inputs;
+	high_cross_punch_inputs.Add(high_cross_punch);
+
+	AddCommand<ADebugCharacter>(CommandList, high_cross_punch_inputs, &ADebugCharacter::high_cross_punch);
+
+	ButtonSet high_strong_uppercut;
+	high_strong_uppercut.inputs.Add(special);
+	TArray<ButtonSet> high_strong_uppercut_inputs;
+	high_strong_uppercut_inputs.Add(high_strong_uppercut);
+
+	AddCommand<ADebugCharacter>(CommandList, high_strong_uppercut_inputs, &ADebugCharacter::high_strong_uppercut);
 #pragma endregion
 }
 void ADebugCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
