@@ -2,35 +2,363 @@
 
 #include "DebugCharacter.h"
 
-ADebugCharacter::ADebugCharacter() 
+ADebugCharacter::ADebugCharacter()
 {
+#pragma region Command setup
+	ButtonInput punch;
+	punch.button = PUNCH;
+	punch.wasHeld = false;
+
+	ButtonInput kick;
+	kick.button = KICK;
+	kick.wasHeld = false;
+	
+	ButtonInput heavy;
+	heavy.button = HEAVY;
+	heavy.wasHeld = false;
+	
+	ButtonInput special;
+	special.button = SPECIAL;
+	special.wasHeld = false;
+
+	ButtonInput forward;
+	forward.button = RIGHT;
+	forward.wasHeld = false;
+	
+	ButtonInput backward;
+	backward.button = LEFT;
+	backward.wasHeld = false;
+	
+	ButtonInput down;
+	down.button = DOWN;
+	down.wasHeld = false;
 
 
 
-#pragma region Adding in commands for attacks
-	TArray<ButtonSet> tempCommand;
-	ButtonSet buttonSet;
-	ButtonInput button1;
+	ButtonSet mid_jab_buttons;
+	mid_jab_buttons.inputs.Add(punch);
+	TArray<ButtonSet> mid_jab_inputs;
+	mid_jab_inputs.Add(mid_jab_buttons);
 
-	button1.button = RIGHT;
-	button1.wasHeld = false;
-	buttonSet.inputs.Add(button1);
-	tempCommand.Push(buttonSet);
-	AddCommand<ADebugCharacter>(CommandList, tempCommand, &ADebugCharacter::testFunc);
+	AddCommand<ADebugCharacter>(CommandList, mid_jab_inputs, &ADebugCharacter::mid_jab);
+
+	ButtonSet low_heel_kick_buttons;
+	low_heel_kick_buttons.inputs.Add(kick);
+	TArray<ButtonSet> low_heel_kick_inputs;
+	low_heel_kick_inputs.Add(low_heel_kick_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, low_heel_kick_inputs, &ADebugCharacter::low_heel_kick);
+
+	ButtonSet high_cross_punch_buttons;
+	high_cross_punch_buttons.inputs.Add(heavy);
+	TArray<ButtonSet> high_cross_punch_inputs;
+	high_cross_punch_inputs.Add(high_cross_punch_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, high_cross_punch_inputs, &ADebugCharacter::high_cross_punch);
+
+	ButtonSet high_strong_uppercut_buttons;
+	high_strong_uppercut_buttons.inputs.Add(special);
+	TArray<ButtonSet> high_strong_uppercut_inputs;
+	high_strong_uppercut_inputs.Add(high_strong_uppercut_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, high_strong_uppercut_inputs, &ADebugCharacter::high_strong_uppercut);
+
+
+	//Forwards
+	ButtonSet mid_cross_punch_buttons;
+	mid_cross_punch_buttons.inputs.Add(forward);
+	mid_cross_punch_buttons.inputs.Add(punch);
+	TArray<ButtonSet> mid_cross_punch_inputs;
+	mid_cross_punch_inputs.Add(mid_cross_punch_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_cross_punch_inputs, &ADebugCharacter::mid_cross_punch);
+
+	ButtonSet mid_chasing_uppercut_buttons;
+	mid_chasing_uppercut_buttons.inputs.Add(forward);
+	mid_chasing_uppercut_buttons.inputs.Add(heavy);
+	TArray<ButtonSet> mid_chasing_uppercut_inputs;
+	mid_chasing_uppercut_inputs.Add(mid_chasing_uppercut_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_chasing_uppercut_inputs, &ADebugCharacter::mid_chasing_uppercut);
+
+
+	//Backwards
+	ButtonSet mid_alt_hook_buttons;
+	mid_alt_hook_buttons.inputs.Add(backward);
+	mid_alt_hook_buttons.inputs.Add(punch);
+	TArray<ButtonSet> mid_alt_hook_buttons_inputs;
+	mid_alt_hook_buttons_inputs.Add(mid_alt_hook_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, mid_alt_hook_buttons_inputs, &ADebugCharacter::mid_alt_hook);
+
+
+	//Down
+	ButtonSet low_hook_buttons;
+	low_hook_buttons.inputs.Add(down);
+	low_hook_buttons.inputs.Add(punch);
+	TArray<ButtonSet> low_hook_inputs;
+	low_hook_inputs.Add(low_hook_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, low_hook_inputs, &ADebugCharacter::low_hook);
+
+	ButtonSet high_lazy_overhead_buttons;
+	high_lazy_overhead_buttons.inputs.Add(down);
+	high_lazy_overhead_buttons.inputs.Add(special);
+	TArray<ButtonSet> high_lazy_overhead_inputs;
+	high_lazy_overhead_inputs.Add(high_lazy_overhead_buttons);
+
+	AddCommand<ADebugCharacter>(CommandList, high_lazy_overhead_inputs, &ADebugCharacter::high_lazy_overhead);
+
+
+
 #pragma endregion
 }
+void ADebugCharacter::SetupPlayerInputComponent(UInputComponent * InputComponent)
 
+{
+	int id = -1;
+
+#pragma region Get Id
+	if (GetPlayerController() != nullptr)
+		id = GetPlayerController()->GetLocalPlayer()->GetControllerId();//My intellisense says its bad but it compiles and works. Fuck you VS
+#pragma endregion
+
+	if (id == 0)
+	{
+
+		InputComponent->BindAction("HighJump_P1", IE_Pressed, this, &ADebugCharacter::PressHighJump);
+		InputComponent->BindAction("HighJump_P1", IE_Released, this, &ADebugCharacter::ReleaseHighJump);
+		InputComponent->BindAction("ShortHop_P1", IE_Pressed, this, &ADebugCharacter::PressShortHop);
+		InputComponent->BindAction("ShortHop_P1", IE_Released, this, &ADebugCharacter::ReleaseShortHop);
+		InputComponent->BindAction("Jump_P1", IE_Pressed, this, &ADebugCharacter::PressNormalJump);
+		InputComponent->BindAction("Jump_P1", IE_Released, this, &ADebugCharacter::ReleaseNormalJump);
+		InputComponent->BindAction("PressRight_P1", IE_Pressed, this, &ADebugCharacter::PressRight);
+		InputComponent->BindAction("PressRight_P1", IE_Released, this, &ADebugCharacter::ReleaseRight);
+		InputComponent->BindAction("PressLeft_P1", IE_Pressed, this, &ADebugCharacter::PressLeft);
+		InputComponent->BindAction("PressLeft_P1", IE_Released, this, &ADebugCharacter::ReleaseLeft);
+		InputComponent->BindAxis("MoveRight_P1", this, &ADebugCharacter::MoveRight);
+		InputComponent->BindAxis("MoveLeft_P1", this, &ADebugCharacter::MoveLeft);
+		InputComponent->BindAction("Attack1_P1", IE_Pressed, this, &ADebugCharacter::PressPunch);
+		InputComponent->BindAction("Attack2_P1", IE_Pressed, this, &ADebugCharacter::PressKick);
+		InputComponent->BindAction("Attack3_P1", IE_Pressed, this, &ADebugCharacter::PressHeavy);
+		InputComponent->BindAction("Attack4_P1", IE_Pressed, this, &ADebugCharacter::PressSpecial);
+		InputComponent->BindAction("Attack1_P1", IE_Released, this, &ADebugCharacter::ReleasePunch);
+		InputComponent->BindAction("Attack2_P1", IE_Released, this, &ADebugCharacter::ReleaseKick);
+		InputComponent->BindAction("Attack3_P1", IE_Released, this, &ADebugCharacter::ReleaseHeavy);
+		InputComponent->BindAction("Attack4_P1", IE_Released, this, &ADebugCharacter::ReleaseSpecial);
+		InputComponent->BindAction("Crouch_P1", IE_Pressed, this, &ADebugCharacter::StartCrouch);
+		InputComponent->BindAction("Crouch_P1", IE_Released, this, &ADebugCharacter::StopCrouch);
+		InputComponent->BindAction("PunchKick_P1", IE_Pressed, this, &ADebugCharacter::PressPunchAndKick);
+		InputComponent->BindAction("PunchKick_P1", IE_Released, this, &ADebugCharacter::ReleasePunchAndKick);
+		InputComponent->BindAction("KickSpecial_P1", IE_Pressed, this, &ADebugCharacter::PressKickAndSpecial);
+		InputComponent->BindAction("KickSpecial_P1", IE_Released, this, &ADebugCharacter::ReleaseKickAndSpecial);
+
+	}
+	else if (id == 1)
+	{
+		InputComponent->BindAction("HighJump_P2", IE_Pressed, this, &ADebugCharacter::PressHighJump);
+		InputComponent->BindAction("HighJump_P2", IE_Released, this, &ADebugCharacter::ReleaseHighJump);
+		InputComponent->BindAction("ShortHop_P2", IE_Pressed, this, &ADebugCharacter::PressShortHop);
+		InputComponent->BindAction("ShortHop_P2", IE_Released, this, &ADebugCharacter::ReleaseShortHop);
+		InputComponent->BindAction("Jump_P2", IE_Pressed, this, &ADebugCharacter::PressNormalJump);
+		InputComponent->BindAction("Jump_P2", IE_Released, this, &ADebugCharacter::ReleaseNormalJump);
+		InputComponent->BindAction("PressRight_P2", IE_Pressed, this, &ADebugCharacter::PressRight);
+		InputComponent->BindAction("PressRight_P2", IE_Released, this, &ADebugCharacter::ReleaseRight);
+		InputComponent->BindAction("PressLeft_P2", IE_Pressed, this, &ADebugCharacter::PressLeft);
+		InputComponent->BindAction("PressLeft_P2", IE_Released, this, &ADebugCharacter::ReleaseLeft);
+		InputComponent->BindAxis("MoveRight_P2", this, &ADebugCharacter::MoveRight);
+		InputComponent->BindAxis("MoveLeft_P2", this, &ADebugCharacter::MoveLeft);
+		InputComponent->BindAction("Attack1_P2", IE_Pressed, this, &ADebugCharacter::PressPunch);
+		InputComponent->BindAction("Attack2_P2", IE_Pressed, this, &ADebugCharacter::PressKick);
+		InputComponent->BindAction("Attack3_P2", IE_Pressed, this, &ADebugCharacter::PressHeavy);
+		InputComponent->BindAction("Attack4_P2", IE_Pressed, this, &ADebugCharacter::PressSpecial);
+		InputComponent->BindAction("Attack1_P2", IE_Released, this, &ADebugCharacter::ReleasePunch);
+		InputComponent->BindAction("Attack2_P2", IE_Released, this, &ADebugCharacter::ReleaseKick);
+		InputComponent->BindAction("Attack3_P2", IE_Released, this, &ADebugCharacter::ReleaseHeavy);
+		InputComponent->BindAction("Attack4_P2", IE_Released, this, &ADebugCharacter::ReleaseSpecial);
+		InputComponent->BindAction("Crouch_P2", IE_Pressed, this, &ADebugCharacter::StartCrouch);
+		InputComponent->BindAction("Crouch_P2", IE_Released, this, &ADebugCharacter::StopCrouch);
+		InputComponent->BindAction("PunchKick_P2", IE_Pressed, this, &ADebugCharacter::PressPunchAndKick);
+		InputComponent->BindAction("PunchKick_P2", IE_Released, this, &ADebugCharacter::ReleasePunchAndKick);
+		InputComponent->BindAction("KickSpecial_P2", IE_Pressed, this, &ADebugCharacter::PressKickAndSpecial);
+		InputComponent->BindAction("KickSpecial_P2", IE_Released, this, &ADebugCharacter::ReleaseKickAndSpecial);
+
+	}
+
+
+
+	//spawn a hitbox on the player that can be hit and attacked
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0, false);
+	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX, FVector(0, 0, -60), FVector(.35f, .35f, 1.25f), 0, false);
+
+	//add onHit to capsule component
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AFighterParent::onHit);
+
+	//set startLocation
+	startLocation = GetTransform().GetLocation();
+	//set starting max stam stams
+	stamina_tier = 3;
+	health_tier = 3;
+	regen_stamina = true;
+	CurrentMaxStamina = TotalStamina;
+
+
+
+
+}
+#pragma region Input Functions
 void ADebugCharacter::PressRight()
 {
 	AddInput<ADebugCharacter>(RIGHT, true, FApp::GetCurrentTime());
 }
+void ADebugCharacter::PressLeft()
+{
+	AddInput<ADebugCharacter>(LEFT, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleaseRight()
+{
+	AddInput<ADebugCharacter>(RIGHT, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleaseLeft()
+{
+	AddInput<ADebugCharacter>(LEFT, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::PressPunch()
+{
+	AddInput<ADebugCharacter>(INPUT_TYPE::PUNCH, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::PressKick()
+{
 
+	AddInput<ADebugCharacter>(INPUT_TYPE::KICK, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::PressHeavy()
+{
+
+	AddInput<ADebugCharacter>(INPUT_TYPE::HEAVY, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::PressSpecial()
+{
+
+	AddInput<ADebugCharacter>(INPUT_TYPE::SPECIAL, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleasePunch()
+{
+	AddInput<ADebugCharacter>(INPUT_TYPE::PUNCH, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleaseKick()
+{
+
+	AddInput<ADebugCharacter>(INPUT_TYPE::KICK, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleaseHeavy()
+{
+
+	AddInput<ADebugCharacter>(INPUT_TYPE::HEAVY, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::ReleaseSpecial()
+{
+
+	AddInput<ADebugCharacter>(INPUT_TYPE::SPECIAL, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::StartCrouch()
+{
+	isCrouching = true;
+	AddInput<ADebugCharacter>(DOWN, true, FApp::GetCurrentTime());
+}
+void ADebugCharacter::StopCrouch()
+{
+	isCrouching = false;
+	AddInput<ADebugCharacter>(DOWN, false, FApp::GetCurrentTime());
+}
+void ADebugCharacter::PressJump()
+{
+	if (!isDead)
+	{
+		ACharacter::Jump();
+		if (jumpEffect)
+		{
+			JumpEffectBlueprintEvent();
+			jumpEffect = false;
+		}
+	}
+
+	isHoldingJump = true;
+	PressUp<ADebugCharacter>();
+}
+void ADebugCharacter::ReleaseJump()
+{
+	ACharacter::StopJumping();
+	ReleaseUp<ADebugCharacter>();
+	isHoldingJump = false;
+	ReleaseUp<ADebugCharacter>();
+}
+#pragma endregion
+#pragma region Attacks
+void ADebugCharacter::high_cross_punch()
+{
+	QueStopAttacking();
+	is_high_cross_punch = true;
+}
+void ADebugCharacter::high_strong_uppercut()
+{
+	QueStopAttacking();
+	is_high_strong_uppercut = true;
+}
+void ADebugCharacter::mid_cross_punch()
+{
+	QueStopAttacking();
+	is_mid_cross_punch = true;
+}
+void ADebugCharacter::mid_chasing_uppercut()
+{
+	QueStopAttacking();
+	is_mid_chasing_uppercut = true;
+}
+void ADebugCharacter::mid_alt_hook()
+{
+	QueStopAttacking();
+	is_mid_alt_hook = true;
+}
+void ADebugCharacter::low_hook()
+{
+	QueStopAttacking();
+	is_low_hook = true;
+}
+void ADebugCharacter::high_lazy_overhead()
+{
+	QueStopAttacking();
+	is_high_lazy_overhead = true;
+}
+void ADebugCharacter::mid_jab()
+{
+	QueStopAttacking();
+	is_mid_jab = true;
+
+}
+void ADebugCharacter::low_heel_kick()
+{
+	QueStopAttacking();
+	is_low_heel_kick = true;
+}
+void ADebugCharacter::QueStopAttacking()
+{
+	is_mid_jab = false;
+	is_low_heel_kick = false;
+	is_high_cross_punch = false;
+	is_high_strong_uppercut = false;
+	is_mid_cross_punch = false;
+	is_mid_chasing_uppercut = false;
+	is_mid_alt_hook = false;
+	is_low_hook = false;
+	is_high_lazy_overhead = false;
+}
+#pragma endregion
 void ADebugCharacter::testFunc()
 {
 	int x = 0;
 	return;
 }
-
 void ADebugCharacter::CheckCommand()
 {
 	if (isDead)
@@ -170,3 +498,14 @@ void ADebugCharacter::CheckCommand()
 		}
 	}
 }
+
+void ADebugCharacter::ClearCommands()
+{
+	while (buttonBuffer.Num() != 0)
+		buttonBuffer.RemoveAt(0);
+	while (AlreadyCalledCommands.Num() != 0)
+		AlreadyCalledCommands.RemoveAt(0);
+
+	QueStopAttacking();
+}
+
