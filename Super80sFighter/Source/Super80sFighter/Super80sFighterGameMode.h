@@ -4,6 +4,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "ThugClass.h"
+#include "DebugCharacter.h"
 #include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
 

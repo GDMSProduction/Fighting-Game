@@ -1,8 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterGameMode.h"
-#include "ThugClass.h"
-#include "DebugCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 #define notGAMEPAD_BUILD

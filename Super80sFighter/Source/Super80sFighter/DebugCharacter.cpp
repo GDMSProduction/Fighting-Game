@@ -299,30 +299,42 @@ void ADebugCharacter::high_cross_punch()
 {
 	QueStopAttacking();
 	is_high_cross_punch = true;
+	is_mid_chasing_uppercut = true;
 }
 void ADebugCharacter::high_strong_uppercut()
 {
 	QueStopAttacking();
 	is_high_strong_uppercut = true;
+	is_high_lazy_overhead = true;
 }
 void ADebugCharacter::mid_cross_punch()
 {
 	QueStopAttacking();
+	is_mid_jab = true;
 	is_mid_cross_punch = true;
+	is_mid_alt_hook = true;
+	is_low_hook = true;
 }
 void ADebugCharacter::mid_chasing_uppercut()
 {
 	QueStopAttacking();
+	is_high_cross_punch = true;
 	is_mid_chasing_uppercut = true;
 }
 void ADebugCharacter::mid_alt_hook()
 {
 	QueStopAttacking();
+	is_mid_jab = true;
+	is_mid_cross_punch = true;
 	is_mid_alt_hook = true;
+	is_low_hook = true;
 }
 void ADebugCharacter::low_hook()
 {
 	QueStopAttacking();
+	is_mid_jab = true;
+	is_mid_cross_punch = true;
+	is_mid_alt_hook = true;
 	is_low_hook = true;
 }
 void ADebugCharacter::high_lazy_overhead()
@@ -334,6 +346,9 @@ void ADebugCharacter::mid_jab()
 {
 	QueStopAttacking();
 	is_mid_jab = true;
+	is_mid_cross_punch = true;
+	is_mid_alt_hook = true;
+	is_low_hook = true;
 
 }
 void ADebugCharacter::low_heel_kick()

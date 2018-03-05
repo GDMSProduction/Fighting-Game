@@ -331,7 +331,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Hitboxes")
 		TArray<AHitbox*> hitboxes;
 
-	UPROPERTY(VisibleAnywhere, Category = "Orientation")
+	UPROPERTY(BlueprintReadWrite, Category = "Orientation")
 		bool IsFacingRight;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
