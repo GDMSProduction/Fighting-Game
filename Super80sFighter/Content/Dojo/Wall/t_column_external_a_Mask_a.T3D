@@ -1,0 +1,12 @@
+Begin Object Class=/Script/Engine.Texture2D Name="t_column_external_a_Mask_a"
+   Begin Object Class=/Script/Engine.AssetImportData Name="AssetImportData"
+   End Object
+   Begin Object Name="AssetImportData"
+   End Object
+   ImportedSize=(X=2048,Y=2048)
+   Source=(Id=B8A0E6694422275563D039B25A81FC37,SizeX=2048,SizeY=2048,NumSlices=1,NumMips=1,bPNGCompressed=True,Format=TSF_G8)
+   LightingGuid=210052AF429255F5877B9389A2858465
+   AssetImportData=AssetImportData'"AssetImportData"'
+   SRGB=False
+   CompressionSettings=TC_Masks
+End Object
