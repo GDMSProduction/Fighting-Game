@@ -1,5 +1,9 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #include "Super80sFighterCharacter.h"
+#include "ThugClass.h"
+#include "../Core/Public/Misc/FileHelper.h"
+#include "../CoreUObject/Public/UObject/UObjectIterator.h"
+#include "../Engine/Classes/Engine/BlockingVolume.h"
 
 AFighterParent::AFighterParent()
 {
@@ -53,9 +57,7 @@ AFighterParent::AFighterParent()
 	holdThreshold = 0.13;
 	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
 
-
 #pragma region Adding in commands for attacks
-
 
 	TArray<ButtonSet> tempCommand;
 	ButtonSet buttonSet;
@@ -65,7 +67,7 @@ AFighterParent::AFighterParent()
 	button1.wasHeld = false;
 	buttonSet.inputs.Add(button1);
 	tempCommand.Push(buttonSet);
-	AddCommand<AFighterParent>(CommandList,tempCommand, &AFighterParent::Attack0);
+	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack0);
 
 
 	button1.button = KICK;
@@ -123,10 +125,13 @@ AFighterParent::AFighterParent()
 
 	tempCommand.Add(buttonSet);
 	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::AttackTaunt);
+
 #pragma endregion
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
+
+
 }
 #pragma region Initialization
 void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -221,7 +226,49 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	regen_stamina = true;
 	CurrentMaxStamina = TotalStamina;
 
+	//testin shit
+	//add 16 for the TArray of Commands
+	//total_memory_cost += 16;
+	//for (int i = 0; i < CommandList.Num(); ++i)
+	//{
+	//	//start with memory at 32, 16 for the function pointer, 16 for the TArray of InputsForCommand
+	//	int command_memory = 32;
+	//	for (int j = 0; j < CommandList[i].InputsForCommand.Num(); ++j)
+	//	{
+	//		//add 16 to command_memory for each TArray of inputs
+	//		command_memory += 16;
+	//		for (int k = 0; k < CommandList[i].InputsForCommand[j].inputs.Num(); ++k)
+	//		{
+	//			command_memory += sizeof(CommandList[i].InputsForCommand[j].inputs[k]);
+	//		}
+	//	}
+	//	total_memory_cost += command_memory;
+	//}
 
+	//if this is a save run, create a save file directory
+	if (save_hitbox_data)
+	{
+		FString hellothere = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data"));
+		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+
+		if (!PlatformFile.DirectoryExists(*hellothere))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Could not find directory, attempting to create one"));
+			PlatformFile.CreateDirectory(*hellothere);
+
+			if (!PlatformFile.DirectoryExists(*hellothere))
+			{
+				UE_LOG(LogTemp, Warning, TEXT("ERROR: COULD NOT CREATE DIRECTORY FOR AI DATA"));
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Successfully created the directory"));
+			}
+		}
+		deleteOldSaveData(PlatformFile);
+	}
+	else
+		initialize_move_data();
 
 }
 APlayerController * AFighterParent::GetPlayerController()
@@ -350,8 +397,9 @@ void AFighterParent::takeDamage(float damage)
 
 	EnemyPlayer->ComboCounter();
 }
-AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible)
+AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, float stamina_cost, bool visible)
 {
+	UpdateCurrentStamina(-stamina_cost);
 	FVector tempVec;
 	tempVec = GetTransform().GetLocation();
 	FRotator rot(GetTransform().GetRotation());
@@ -370,6 +418,14 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	tempHitbox->SetHitboxProperties(type, offset, dimensions, damage, visible);
 
 	hitboxes.Add(tempHitbox);
+
+	//save hitbox data (if this is a save run and its a strike hitbox)
+	if (save_hitbox_data && (tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE || tempHitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_THROW))
+	{
+		saveHitboxData(stamina_cost);
+	}
+
+
 	return tempHitbox;
 }
 void AFighterParent::StopBlocking()
@@ -411,6 +467,197 @@ float AFighterParent::CrouchBlock(float _damage)
 	return (_damage);
 }
 #pragma endregion
+
+#pragma region AI
+void AFighterParent::decide()
+{
+	decide_movement();
+}
+void AFighterParent::initialize_move_data()
+{
+	for (TObjectIterator<ABlockingVolume> itr; itr; ++itr)
+	{
+		ABlockingVolume * idontknowwhatimdoing = *itr;
+		if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Left_Boundary"))))
+			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+		else if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Right_Boundary"))))
+			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+	}
+
+
+	FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+	IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+	IFileHandle* file_handle = PlatformFile.OpenRead(*file_path);
+	int file_size = PlatformFile.FileSize(*file_path);
+	UE_LOG(LogTemp, Warning, TEXT("f_size 1: %d"), file_size);
+	file_size = file_size / 12;
+	UE_LOG(LogTemp, Warning, TEXT("f_size 2: %d"), file_size);
+
+	for (int i = 0; i < file_size; ++i)
+	{
+		int _index;
+		float _damage;
+		float _stamina_cost;
+		file_handle->Read((uint8*)(&_index), 4);
+		file_handle->Read((uint8*)(&_damage), 4);
+		file_handle->Read((uint8*)(&_stamina_cost), 4);
+		bool already_in_move_list = false;
+		for (int j = 0; j < my_player_data.Move_Data.Num(); ++j)
+		{
+			if (CommandList[_index].functionToCall == CommandList[my_player_data.Move_Data[j].command_list_index].functionToCall)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("temp function was already in the list, this was the attack with the damage value of %f"), _damage);
+				already_in_move_list = true;
+			}
+		}
+		if (!already_in_move_list)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("temp function was not in the list, this was the attack with the damage value of %f"), _damage);
+
+			Move_Data temp;
+			temp.command_list_index = _index;
+			temp.past_attempt = 0;
+			temp.past_success = 0;
+			temp.combo_potential = 1; //this is temporary until i understand more of the combo system and how that works
+									  //NOTE - these final three values will be recieved from a save file that will be created for each character... for now they are pretty much nothing
+			temp.damage = _damage;
+			temp.stamina_cost = 0;
+			temp.timeframe_cost = 0;
+			//-------------------------------------------------------------------------------------------------------------------------------------------------
+			my_player_data.Move_Data.Push(temp);
+		}
+	}
+	//close the file handle
+	delete file_handle;
+
+	//check to see if we actually got our function pointers correctly
+	for (int i = 0; i < CommandList.Num(); ++i)
+	{
+		for (int j = 0; j < my_player_data.Move_Data.Num(); ++j)
+		{
+			if (CommandList[i].functionToCall == CommandList[my_player_data.Move_Data[j].command_list_index].functionToCall)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("function at command list index %d matched with function at move_data index %d"), i, j);
+			}
+		}
+	}
+}
+void AFighterParent::notify_incoming_attack(int attack_index)
+{
+	attack_incoming = true;
+}
+bool AFighterParent::decide_movement()
+{
+	prev_distance = curr_distance;
+	curr_distance = distance(GetTransform().GetLocation(), EnemyPlayer->GetTransform().GetLocation());
+	float left_boundary_distance = distance(GetTransform().GetLocation(), left_boundary);
+	float right_boundary_distance = distance(GetTransform().GetLocation(), right_boundary);
+	//if enemy is in attack range
+	if (curr_distance < 125)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Enemy is in attack range"));
+		return true;
+	}
+	else
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Enemy not in attack range, deciding movement"));
+		//ill use this variable to decide which direction to go
+		FVector desired_movement = FVector::ZeroVector;
+		bool try_jumping = false;
+		//if we have the health advantage, push the enemy. otherwise, back off a little
+		//desired_movement.Y += ((CurrentHealth - EnemyPlayer->CurrentHealth) * -.05f * GetTransform().GetScale3D().X);
+		//if the enemy is coming towards us, we should probably not move forward
+		if (EnemyPlayer->GetTransform().GetLocation() != enemy_previous_location)
+			desired_movement.Y += ((curr_distance - prev_distance) * -.25f * GetTransform().GetScale3D().X);
+		//enemy projectiles incoming
+		//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
+		//if an attack is coming and you're in range, move back a bit
+		//if (attack_incoming && curr_distance < incoming_attack.offset.Y * incoming_attack.dimensions.Y * .5f)
+		//	desired_movement.Y -= .5f;
+		//if being cornered, try jumping over the other player
+		if (left_boundary_distance < 250 || right_boundary_distance < 250)
+		{
+			desired_movement.Y += (100 * GetTransform().GetScale3D().X * -1);
+			try_jumping = true;
+		}
+		//if the enemy is standing still, begin to approach them.
+		if (curr_distance == prev_distance)
+			desired_movement.Y += 100 * (GetTransform().GetScale3D().X * -1);
+
+		UE_LOG(LogTemp, Warning, TEXT("%f, %f, %f     %f, %f, %f"), left_boundary.X, left_boundary.Y, left_boundary.Z, right_boundary.X, right_boundary.Y, right_boundary.Z);
+		ControlInputVector += desired_movement;
+		enemy_previous_location = EnemyPlayer->GetTransform().GetLocation();
+		if (try_jumping)
+			Jump();
+	}
+	return false;
+}
+void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
+{
+	FString GENERALKENOBI = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+	if (PlatformFile.DeleteFile(*GENERALKENOBI))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Previous test file Deleted"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("no test file found to delete"));
+	}
+}
+void AFighterParent::saveHitboxData(float stamina_cost)
+{
+	if (attack_saved_bool_32 & (1 << last_called_attack_index))
+	{
+		//save data here
+		FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
+		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+		IFileHandle* file_handle = PlatformFile.OpenWrite(*file_path, true);
+		if (file_handle)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("entered the file handle"));
+			//allocate memory to save, see details below for what is being saved
+			uint8* byte_array = reinterpret_cast<uint8*>(FMemory::Malloc(4 + 4 + 4));
+			//copy 4 bytes for the attack's function pointer index
+			memcpy(byte_array, &last_called_attack_index, 4);
+			//copy 4 bytes for the attack's damage
+			memcpy(byte_array + 4, &tempHitbox->damage, 4);
+			//copy 4 bytes for the stamina cost
+			memcpy(byte_array + 8, &stamina_cost, 4);
+			//write out the data
+			file_handle->Write(byte_array, 12);
+			//close the handle
+			delete file_handle;
+			FMemory::Free(byte_array);
+		}
+		attack_saved_bool_32 -= (1 << last_called_attack_index);
+	}
+}
+void AFighterParent::set_last_called_attack_index(int _index)
+{
+	last_called_attack_index = _index;
+}
+float AFighterParent::distance(FVector a, FVector b)
+{	
+	return fast_sqrt((((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)) + ((a.Z - b.Z) * (a.Z - b.Z))));
+}
+float AFighterParent::fast_sqrt(float num)
+{
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = num * 0.5F;
+	y = num;
+	i = *(long *)&y;
+	i = 0x5f3759df - (i >> 1);
+	y = *(float *)&i;
+	y = y * (threehalfs - (x2 * y * y));
+	y = 1 / y;
+
+	return y;
+}
+#pragma endregion
+
 #pragma region Character Reset
 void AFighterParent::ResetHealth()
 {
@@ -700,27 +947,147 @@ void AFighterParent::Attack0()
 {
 	QueStopAttacking();
 	isAttacking0 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack0)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
+	if (save_hitbox_data)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack0)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack1()
 {
 	QueStopAttacking();
 	isAttacking1 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack1)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
+	if (save_hitbox_data)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack1)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack2()
 {
 	QueStopAttacking();
 	isAttacking2 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack2)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
+	if (save_hitbox_data)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack2)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::Attack3()
 {
 	QueStopAttacking();
 	isAttacking3 = true;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack3)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
+	if (save_hitbox_data)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::Attack3)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::AttackTaunt()
 {
 	QueStopAttacking();
 	isAttackingTaunt = true;
 	++playerScore.numTaunts;
+
+	if (EnemyPlayer->what_is_my_purpose)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::AttackTaunt)
+			{
+				EnemyPlayer->notify_incoming_attack(i);
+				break;
+			}
+		}
+	}
+
+	if (save_hitbox_data)
+	{
+		for (int i = 0; i < CommandList.Num(); ++i)
+		{
+			if (CommandList[i].functionToCall == &AFighterParent::AttackTaunt)
+			{
+				set_last_called_attack_index(i);
+				break;
+			}
+		}
+	}
 }
 void AFighterParent::SetLastPressedKey(FKey inKey)
 {
@@ -805,6 +1172,10 @@ void AFighterParent::onHit(UPrimitiveComponent * HitComponent, AActor * OtherAct
 void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+
+	if (what_is_my_purpose)
+		decide();
 
 	//switch (initialSelector)
 	//{
