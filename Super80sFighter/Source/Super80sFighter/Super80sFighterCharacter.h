@@ -111,19 +111,26 @@ protected:
 	virtual void PressHeavy();
 	virtual void PressSpecial();
 
-	virtual void PressKickAndSpecial();
+	void PressPunchAndKick();
+	void PressKickAndSpecial();
 
 	virtual void ReleasePunch();
 	virtual void ReleaseKick();
 	virtual void ReleaseHeavy();
 	virtual void ReleaseSpecial();
 
-	virtual void ReleaseKickAndSpecial();
+	void ReleasePunchAndKick();
+	void ReleaseKickAndSpecial();
 
 	virtual void StartCrouch();
 	virtual void StopCrouch();
 
-	virtual void ReleaseNormalJump();
+	void PressShortHop();
+	void ReleaseShortHop();
+	void PressHighJump();
+	void ReleaseHighJump();
+	void PressNormalJump();
+	void ReleaseNormalJump();
 
 	virtual void PressJump();
 	virtual	void ReleaseJump();
@@ -133,7 +140,7 @@ protected:
 		AddInput<C>(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
 	};
 	template <class C>
-	void ReleaseUp() 
+	void ReleaseUp()
 	{
 		AddInput<C>(INPUT_TYPE::UP, false, FApp::GetCurrentTime());
 	};
@@ -152,6 +159,7 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		FKey GetLastPressedKey();
 #pragma region Command System
+
 	virtual void QueStopAttacking();
 	void JumpReachesThreshold();
 	//Call this every time a new input is given. 
@@ -269,7 +277,7 @@ protected:
 			buttonBuffer.RemoveAt(buttonBuffer.Num() - 1);
 		CheckCommand();
 
-		GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &C::ClearCommands, AttackThreshold);
+		GetWorld()->GetTimerManager().SetTimer(AttackTimer, this, &AFighterParent::ClearCommands, AttackThreshold);
 	};
 #pragma endregion
 #pragma endregion
@@ -571,7 +579,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
 		void FourthAttackEffectBlueprintEvent();
-
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
 		void JumpEffectBlueprintEvent();
 
