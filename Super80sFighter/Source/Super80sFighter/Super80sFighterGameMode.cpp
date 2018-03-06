@@ -1,7 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Super80sFighterGameMode.h"
-#include "ThugClass.h"
 #include "UObject/ConstructorHelpers.h"
 
 #define notGAMEPAD_BUILD
@@ -41,7 +40,14 @@ void ASuper80sFighterGameMode::BeginPlay()
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
 		break;
 	case ECharacterEnum::CLASS_TREY:
-		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TREY NOT YET IMPLEMENTED"));
+		pos = Player1->GetTransform().GetLocation();
+		spawn_parameters.bDeferConstruction = true;
+		p1_controller->UnPossess();
+		Player1->destroy();
+		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, pos, rot, spawn_parameters);
+		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+		Player1 = temp;
+		p1_controller->Possess(Player1);
 		break;
 	case ECharacterEnum::CLASS_AUDREY:
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: AUDREY NOT YET IMPLEMENTED"));
@@ -186,6 +192,13 @@ ASuper80sFighterGameMode::ASuper80sFighterGameMode()
 	if (PlayerPawnBPClass.Object != NULL)
 	{
 		ThugClass = PlayerPawnBPClass.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UClass> PlayerPawnBPClass2(TEXT("Class'/Game/SideScrollerCPP/Blueprints/Character/DebugCharacter.DebugCharacter_C'"));
+	PrimaryActorTick.bCanEverTick = true;
+	if (PlayerPawnBPClass.Object != NULL)
+	{
+		DebugCharacter = PlayerPawnBPClass2.Object;
 	}
 	num_rounds = 1;
 	rounds_remaining = num_rounds;

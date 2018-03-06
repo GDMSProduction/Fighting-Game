@@ -1,34 +1,27 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+//Fill out your copyright notice in the description page of Project Settings.
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Hitbox.generated.h"
 
-
-//enum for hitbox types
+//Enum for hitbox types
 UENUM(BlueprintType)
 enum class EHITBOX_TYPE : uint8
 {
-	VE_HITBOX_STRIKE			UMETA(DisplayName="Strike"),		//hitbox of a strike attack
-	VE_HITBOX_PROJECTILE		UMETA(DisplayName="Projectile"),	//hitbox of a projectile attack
-	VE_HITBOX_PROXIMITY			UMETA(DisplayName = "Proximity"),	//hitbox that protrudes from an attack to determine whether the player should block it
-	VE_HITBOX_THROW				UMETA(DisplayName="Throw"),			//hitbox that shows the area that the grab attack is affecting
-	VE_HITBOX_GET_PAINBOX		UMETA(DisplayName="P_Hitbox"),		//the area of the player that can be hit
-	VE_HITBOX_GET_THROWBOX		UMETA(DisplayName="P_Throwbox")		//the grab area of a player
+	VE_HITBOX_STRIKE			UMETA(DisplayName="Strike"),		//Hitbox of a strike attack
+	VE_HITBOX_PROJECTILE		UMETA(DisplayName="Projectile"),	//Hitbox of a projectile attack
+	VE_HITBOX_PROXIMITY			UMETA(DisplayName="Proximity"),		//Hitbox that protrudes from an attack to determine whether the player should block it
+	VE_HITBOX_THROW				UMETA(DisplayName="Throw"),			//Hitbox that shows the area that the grab attack is affecting
+	VE_HITBOX_GET_PAINBOX		UMETA(DisplayName="P_Hitbox"),		//The area of the player that can be hit
+	VE_HITBOX_GET_THROWBOX		UMETA(DisplayName="P_Throwbox")		//The grab area of a player
 };
-
-
 
 UCLASS()
 class SUPER80SFIGHTER_API AHitbox : public AActor
 {
 	GENERATED_BODY()
 
-
 public:	
-
 	//-------------------------------------Primary Hitbox Attributes------------------------------------------------
 
 	//the type of hitbox this is

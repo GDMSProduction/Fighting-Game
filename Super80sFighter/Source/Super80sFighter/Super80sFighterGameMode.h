@@ -4,6 +4,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "ThugClass.h"
+#include "DebugCharacter.h"
 #include "Super80sFighterCharacter.h"
 #include "Super80sFighterGameMode.generated.h"
 
@@ -143,6 +145,8 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Players", Meta = (BlueprintProtected = "true", DisplayName = "Players"))
 		TSubclassOf<class AFighterParent> ThugClass;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Players", Meta = (BlueprintProtected = "true", DisplayName = "Players"))
+		TSubclassOf<class ADebugCharacter> DebugCharacter;
 
 	UPROPERTY()
 		class UUserWidget* PlayerWidget;
