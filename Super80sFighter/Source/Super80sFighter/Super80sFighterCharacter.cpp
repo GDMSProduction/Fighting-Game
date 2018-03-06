@@ -1,7 +1,9 @@
 //Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 #include "Super80sFighterCharacter.h"
-#include <fstream>
+#include "ThugClass.h"
 #include "../Core/Public/Misc/FileHelper.h"
+#include "../CoreUObject/Public/UObject/UObjectIterator.h"
+#include "../Engine/Classes/Engine/BlockingVolume.h"
 
 AFighterParent::AFighterParent()
 {
@@ -128,6 +130,7 @@ AFighterParent::AFighterParent()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++) 
+
 
 }
 #pragma region Initialization
@@ -264,7 +267,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 		}
 		deleteOldSaveData(PlatformFile);
 	}
-	else if(what_is_my_purpose)
+	else
 		initialize_move_data();
 
 }
@@ -468,9 +471,20 @@ float AFighterParent::CrouchBlock(float _damage)
 #pragma region AI
 void AFighterParent::decide()
 {
+	decide_movement();
 }
 void AFighterParent::initialize_move_data()
 {
+	for (TObjectIterator<ABlockingVolume> itr; itr; ++itr)
+	{
+		ABlockingVolume * idontknowwhatimdoing = *itr;
+		if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Left_Boundary"))))
+			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+		else if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Right_Boundary"))))
+			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+	}
+
+
 	FString file_path = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data/FighterParentAIData.bin"));
 	IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
 	IFileHandle* file_handle = PlatformFile.OpenRead(*file_path);
@@ -530,11 +544,53 @@ void AFighterParent::initialize_move_data()
 }
 void AFighterParent::notify_incoming_attack(int attack_index)
 {
-
+	attack_incoming = true;
 }
-void AFighterParent::decide_movement()
+bool AFighterParent::decide_movement()
 {
+	prev_distance = curr_distance;
+	curr_distance = distance(GetTransform().GetLocation(), EnemyPlayer->GetTransform().GetLocation());
+	float left_boundary_distance = distance(GetTransform().GetLocation(), left_boundary);
+	float right_boundary_distance = distance(GetTransform().GetLocation(), right_boundary);
+	//if enemy is in attack range
+	if (curr_distance < 125)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Enemy is in attack range"));
+		return true;
+	}
+	else
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Enemy not in attack range, deciding movement"));
+		//ill use this variable to decide which direction to go
+		FVector desired_movement = FVector::ZeroVector;
+		bool try_jumping = false;
+		//if we have the health advantage, push the enemy. otherwise, back off a little
+		//desired_movement.Y += ((CurrentHealth - EnemyPlayer->CurrentHealth) * -.05f * GetTransform().GetScale3D().X);
+		//if the enemy is coming towards us, we should probably not move forward
+		if (EnemyPlayer->GetTransform().GetLocation() != enemy_previous_location)
+			desired_movement.Y += ((curr_distance - prev_distance) * -.25f * GetTransform().GetScale3D().X);
+		//enemy projectiles incoming
+		//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
+		//if an attack is coming and you're in range, move back a bit
+		//if (attack_incoming && curr_distance < incoming_attack.offset.Y * incoming_attack.dimensions.Y * .5f)
+		//	desired_movement.Y -= .5f;
+		//if being cornered, try jumping over the other player
+		if (left_boundary_distance < 250 || right_boundary_distance < 250)
+		{
+			desired_movement.Y += (100 * GetTransform().GetScale3D().X * -1);
+			try_jumping = true;
+		}
+		//if the enemy is standing still, begin to approach them.
+		if (curr_distance == prev_distance)
+			desired_movement.Y += 100 * (GetTransform().GetScale3D().X * -1);
 
+		UE_LOG(LogTemp, Warning, TEXT("%f, %f, %f     %f, %f, %f"), left_boundary.X, left_boundary.Y, left_boundary.Z, right_boundary.X, right_boundary.Y, right_boundary.Z);
+		ControlInputVector += desired_movement;
+		enemy_previous_location = EnemyPlayer->GetTransform().GetLocation();
+		if (try_jumping)
+			Jump();
+	}
+	return false;
 }
 void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
 {
@@ -579,6 +635,26 @@ void AFighterParent::saveHitboxData(float stamina_cost)
 void AFighterParent::set_last_called_attack_index(int _index)
 {
 	last_called_attack_index = _index;
+}
+float AFighterParent::distance(FVector a, FVector b)
+{	
+	return fast_sqrt((((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)) + ((a.Z - b.Z) * (a.Z - b.Z))));
+}
+float AFighterParent::fast_sqrt(float num)
+{
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = num * 0.5F;
+	y = num;
+	i = *(long *)&y;
+	i = 0x5f3759df - (i >> 1);
+	y = *(float *)&i;
+	y = y * (threehalfs - (x2 * y * y));
+	y = 1 / y;
+
+	return y;
 }
 #pragma endregion
 
@@ -966,6 +1042,10 @@ void AFighterParent::onHit(UPrimitiveComponent * HitComponent, AActor * OtherAct
 void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+
+	if (what_is_my_purpose)
+		decide();
 
 	//switch (initialSelector)
 	//{

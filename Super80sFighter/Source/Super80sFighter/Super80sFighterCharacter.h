@@ -560,25 +560,35 @@ private:
 	};
 	struct Player_Data
 	{
-		FVector Loc;
 		PlayerState PlayerState;
 		TArray<Move_Data> Move_Data;
 	};
 
-	Player_Data my_player_data;
-	Player_Data enemy_player_data;
+	//movement variables
+	FVector enemy_previous_location;
+	float prev_distance = 0;
+	float curr_distance = 0;
+	FVector left_boundary;
+	FVector right_boundary;
+	bool attack_incoming = false;
 
 	void decide();
 	virtual void initialize_move_data(); //change file path and move data templated type
 	virtual void notify_incoming_attack(int attack_index);
-	virtual void decide_movement();
+	virtual bool decide_movement();
 
 	//overridable functions for saving out the data
 	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same
 	virtual void saveHitboxData(float stamina_cost); //children should change the file path
 	virtual void set_last_called_attack_index(int _index);
 
+	float distance(FVector a, FVector b);
+	float fast_sqrt(float num);
 #pragma endregion
+
+protected:
+	//attack data and locations
+	Player_Data my_player_data;
 
 public:
 #pragma region Camera Set-Up
