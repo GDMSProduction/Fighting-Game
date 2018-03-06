@@ -20,6 +20,9 @@
 #include "EngineGlobals.h"
 #include "EngineUtils.h"
 #include "CoreMinimal.h"
+#include "../Core/Public/HAL/FileManager.h"
+#include "../Core/Public/HAL/PlatformFilemanager.h"
+#include "../Core/Public/HAL/UnrealMemory.h"
 #include "Super80sFighterCharacter.generated.h"
 
 #pragma region Score
@@ -29,49 +32,49 @@ struct FScoreSystem
 {
 	GENERATED_USTRUCT_BODY()
 
-		//The total score of the match for the player.
-		UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		int totalScore;
+	//The total score of the match for the player.
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	int totalScore;
 
 	//The amount of time remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float timeRemaining;
+	float timeRemaining;
 
 	//The amount of health remaining after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float healthRemaining;
+	float healthRemaining;
 
 	//The number of landed punches and kicks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float numHits;
+	float numHits;
 
 	//The number of landed heavy attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float numHeavyHits;
+	float numHeavyHits;
 
 	//The number of landed special attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float numSpecialHits;
+	float numSpecialHits;
 
 	//The number of landed special attacks throughout the match.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float numTaunts;
+	float numTaunts;
 
 	//The amount of blocked attacks after each round.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		float numAttacksBlocked;
+	float numAttacksBlocked;
 
 	//Was the round a perfect round for the player?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		bool perfectRound;
+	bool perfectRound;
 
 	//Was the game a win-perfect game for the player?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		bool winPerfectGame;
+	bool winPerfectGame;
 
 	//Was the round won with a special finish?
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		bool specialFinish;
+	bool specialFinish;
 };
 #pragma endregion
 
@@ -92,7 +95,7 @@ class AFighterParent : public ACharacter
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "Hitboxes")
-		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, bool visible = true);
+		AHitbox* spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector dimensions, float damage, float stamina_cost, bool visible = true);
 	UPROPERTY()
 		class AHitbox* tempHitbox;
 #pragma endregion
@@ -137,7 +140,7 @@ protected:
 		AddInput<C>(INPUT_TYPE::UP, true, FApp::GetCurrentTime());
 	};
 	template <class C>
-	void ReleaseUp() 
+	void ReleaseUp()
 	{
 		AddInput<C>(INPUT_TYPE::UP, false, FApp::GetCurrentTime());
 	};
@@ -307,7 +310,7 @@ protected:
 
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		FScoreSystem playerScore;
+	FScoreSystem playerScore;
 #pragma endregion
 
 protected:
@@ -353,12 +356,15 @@ protected:
 #pragma region Physics and Forces
 	/**dave cranes private physics variables, if they're screwy, its entirely his fault*/
 	UPROPERTY(VisibleAnywhere, Category = "Physics")
-		bool grounded;
+	bool grounded;
 	bool lock_grounded;
 	bool isDead;
 	FVector grounded_forces;
 	FVector non_grounded_forces;
 	FVector absolute_forces;
+
+	////testing shit
+	//int total_memory_cost = 0;
 
 	bool landedEffect;
 	bool jumpEffect;
@@ -376,7 +382,7 @@ protected:
 
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
-		int comboCounter;
+	int comboCounter;
 
 protected:
 	float AttackThreshold;
@@ -384,6 +390,74 @@ protected:
 	double lastHit;
 	double samePressThreshold;//Used to determine if two button presses should be considered simultaneous
 #pragma endregion
+
+#pragma region AI
+public:
+	bool what_is_my_purpose;
+
+	//variables for getting data out of hitboxes
+	bool save_hitbox_data = false;
+	bool first_save = true;
+	int attack_saved_bool_32 = INT_MAX;
+
+	//index of the last called function
+	int last_called_attack_index = -1;
+
+private:
+	enum PlayerState : uint32
+	{
+		NEUTRAL   = (1 << 0),
+		JUMPING   = (1 << 1),
+		CROUCHING = (1 << 2),
+		BLOCKING  = (1 << 3),
+		ATTACKING = (1 << 4),
+		STUNNED   = (1 << 5)
+	};
+	struct save_cast
+	{
+		double a, b;
+	};
+	struct Move_Data
+	{
+		int command_list_index;
+		int combo_potential;
+		int damage;
+		int past_success;
+		int past_attempt;
+		int stamina_cost;
+		int timeframe_cost;
+	};
+	struct Player_Data
+	{
+		PlayerState PlayerState;
+		TArray<Move_Data> Move_Data;
+	};
+
+	//movement variables
+	FVector enemy_previous_location;
+	float prev_distance = 0;
+	float curr_distance = 0;
+	FVector left_boundary;
+	FVector right_boundary;
+	bool attack_incoming = false;
+
+	void decide();
+	virtual void initialize_move_data(); //change file path and move data templated type
+	virtual void notify_incoming_attack(int attack_index);
+	virtual bool decide_movement();
+
+	//overridable functions for saving out the data
+	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same
+	virtual void saveHitboxData(float stamina_cost); //children should change the file path
+	virtual void set_last_called_attack_index(int _index);
+
+	float distance(FVector a, FVector b);
+	float fast_sqrt(float num);
+#pragma endregion
+
+protected:
+	//attack data and locations
+	Player_Data my_player_data;
 
 public:
 #pragma region Camera Set-Up
@@ -505,7 +579,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AttackEffects")
 		void FourthAttackEffectBlueprintEvent();
-
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "MovementEffects")
 		void JumpEffectBlueprintEvent();
 

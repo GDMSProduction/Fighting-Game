@@ -101,6 +101,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
 		ECharacterEnum p2_type = ECharacterEnum::CLASS_DEFAULT;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
+		bool p1_is_AI = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
+		bool p2_is_AI = false;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
 		EMenuState current_menu_state = EMenuState::STATE_SPLASH;
 
