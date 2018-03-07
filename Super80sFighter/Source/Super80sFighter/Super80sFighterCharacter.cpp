@@ -142,7 +142,6 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	if (GetPlayerController() != nullptr)
 		id = GetPlayerController()->GetLocalPlayer()->GetControllerId();//My intellisense says its bad but it compiles and works. Fuck you VS
 #pragma endregion
-
 	if (id == 0)
 	{
 
@@ -479,9 +478,9 @@ void AFighterParent::initialize_move_data()
 	{
 		ABlockingVolume * idontknowwhatimdoing = *itr;
 		if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Left_Boundary"))))
-			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+			left_boundary = idontknowwhatimdoing->GetTransform().GetLocation();
 		else if (idontknowwhatimdoing->GetName().Equals(FString(TEXT("Right_Boundary"))))
-			left_boundary = FVector(idontknowwhatimdoing->GetActorLocation());
+			left_boundary = idontknowwhatimdoing->GetTransform().GetLocation();
 	}
 
 
@@ -545,52 +544,48 @@ void AFighterParent::initialize_move_data()
 void AFighterParent::notify_incoming_attack(int attack_index)
 {
 	attack_incoming = true;
+	UE_LOG(LogTemp, Warning, TEXT("Attack incoming"));
 }
-bool AFighterParent::decide_movement()
+void AFighterParent::notify_attack_ending()
+{
+	attack_incoming = false;
+	UE_LOG(LogTemp, Warning, TEXT("Attack ending"));
+}
+void AFighterParent::decide_movement()
 {
 	prev_distance = curr_distance;
 	curr_distance = distance(GetTransform().GetLocation(), EnemyPlayer->GetTransform().GetLocation());
 	float left_boundary_distance = distance(GetTransform().GetLocation(), left_boundary);
 	float right_boundary_distance = distance(GetTransform().GetLocation(), right_boundary);
-	//if enemy is in attack range
-	if (curr_distance < 125)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Enemy is in attack range"));
-		return true;
-	}
-	else
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("Enemy not in attack range, deciding movement"));
-		//ill use this variable to decide which direction to go
-		FVector desired_movement = FVector::ZeroVector;
-		bool try_jumping = false;
-		//if we have the health advantage, push the enemy. otherwise, back off a little
-		//desired_movement.Y += ((CurrentHealth - EnemyPlayer->CurrentHealth) * -.05f * GetTransform().GetScale3D().X);
-		//if the enemy is coming towards us, we should probably not move forward
-		if (EnemyPlayer->GetTransform().GetLocation() != enemy_previous_location)
-			desired_movement.Y += ((curr_distance - prev_distance) * -.25f * GetTransform().GetScale3D().X);
-		//enemy projectiles incoming
-		//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
-		//if an attack is coming and you're in range, move back a bit
-		//if (attack_incoming && curr_distance < incoming_attack.offset.Y * incoming_attack.dimensions.Y * .5f)
-		//	desired_movement.Y -= .5f;
-		//if being cornered, try jumping over the other player
-		if (left_boundary_distance < 250 || right_boundary_distance < 250)
-		{
-			desired_movement.Y += (100 * GetTransform().GetScale3D().X * -1);
-			try_jumping = true;
-		}
-		//if the enemy is standing still, begin to approach them.
-		if (curr_distance == prev_distance)
-			desired_movement.Y += 100 * (GetTransform().GetScale3D().X * -1);
 
-		UE_LOG(LogTemp, Warning, TEXT("%f, %f, %f     %f, %f, %f"), left_boundary.X, left_boundary.Y, left_boundary.Z, right_boundary.X, right_boundary.Y, right_boundary.Z);
-		ControlInputVector += desired_movement;
-		enemy_previous_location = EnemyPlayer->GetTransform().GetLocation();
-		if (try_jumping)
-			Jump();
+	//UE_LOG(LogTemp, Warning, TEXT("Enemy not in attack range, deciding movement"));
+	//ill use this variable to decide which direction to go
+	FVector desired_movement = FVector::ZeroVector;
+	bool try_jumping = false;
+	//multiply by the scale and then -1 because unreal is wierd... this way, forward will be a positive number, and back will be negative
+	int direction = GetTransform().GetScale3D().X * -1;
+	//if we have the health advantage, push the enemy. otherwise, back off a little
+	//desired_movement.Y += ((CurrentHealth - EnemyPlayer->CurrentHealth) * -.05f * GetTransform().GetScale3D().X);
+	//if the enemy is coming towards us, we should probably not move forward
+	if (EnemyPlayer->GetTransform().GetLocation() != enemy_previous_location && curr_distance < prev_distance)
+		desired_movement.Y += (-1 * direction);
+	//enemy projectiles incoming
+	//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
+	//if an attack is coming and you're in range, move back a bit
+	//if (attack_incoming && curr_distance < incoming_attack.offset.Y * incoming_attack.dimensions.Y * .5f)
+	//	desired_movement.Y += -2f;
+	//if being cornered, try jumping over the other player
+	if (left_boundary_distance < 250 || right_boundary_distance < 250)
+	{
+		desired_movement.Y += (10 * direction);
+		try_jumping = true;
 	}
-	return false;
+	//always try to approach the enemy , other factors will cut this down a bit or even possibly reverse direction
+	desired_movement.Y += (1 * direction);
+	ControlInputVector += desired_movement;
+	enemy_previous_location = EnemyPlayer->GetTransform().GetLocation();
+	if (try_jumping)
+		PressHighJump();
 }
 void AFighterParent::deleteOldSaveData(IPlatformFile& PlatformFile)
 {
@@ -678,7 +673,7 @@ void AFighterParent::SuperAbility()
 void AFighterParent::MoveRight(float Value)
 {
 	// add movement in that direction
-	if (grounded && !isDead)
+	if (grounded && !isDead && !what_is_my_purpose)
 		ControlInputVector += (FVector(0, -1.f, 0) * Value);
 }
 void AFighterParent::MoveLeft(float Val)
@@ -948,19 +943,7 @@ void AFighterParent::Attack0()
 	QueStopAttacking();
 	isAttacking0 = true;
 
-	if (EnemyPlayer->what_is_my_purpose)
-	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == &AFighterParent::Attack0)
-			{
-				EnemyPlayer->notify_incoming_attack(i);
-				break;
-			}
-		}
-	}
-
-	if (save_hitbox_data)
+	if (save_hitbox_data || EnemyPlayer->what_is_my_purpose)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
 		{
@@ -977,19 +960,7 @@ void AFighterParent::Attack1()
 	QueStopAttacking();
 	isAttacking1 = true;
 
-	if (EnemyPlayer->what_is_my_purpose)
-	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == &AFighterParent::Attack1)
-			{
-				EnemyPlayer->notify_incoming_attack(i);
-				break;
-			}
-		}
-	}
-
-	if (save_hitbox_data)
+	if (save_hitbox_data || EnemyPlayer->what_is_my_purpose)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
 		{
@@ -1006,19 +977,7 @@ void AFighterParent::Attack2()
 	QueStopAttacking();
 	isAttacking2 = true;
 
-	if (EnemyPlayer->what_is_my_purpose)
-	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == &AFighterParent::Attack2)
-			{
-				EnemyPlayer->notify_incoming_attack(i);
-				break;
-			}
-		}
-	}
-
-	if (save_hitbox_data)
+	if (save_hitbox_data || EnemyPlayer->what_is_my_purpose)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
 		{
@@ -1035,19 +994,7 @@ void AFighterParent::Attack3()
 	QueStopAttacking();
 	isAttacking3 = true;
 
-	if (EnemyPlayer->what_is_my_purpose)
-	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == &AFighterParent::Attack3)
-			{
-				EnemyPlayer->notify_incoming_attack(i);
-				break;
-			}
-		}
-	}
-
-	if (save_hitbox_data)
+	if (save_hitbox_data || EnemyPlayer->what_is_my_purpose)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
 		{
@@ -1065,19 +1012,7 @@ void AFighterParent::AttackTaunt()
 	isAttackingTaunt = true;
 	++playerScore.numTaunts;
 
-	if (EnemyPlayer->what_is_my_purpose)
-	{
-		for (int i = 0; i < CommandList.Num(); ++i)
-		{
-			if (CommandList[i].functionToCall == &AFighterParent::AttackTaunt)
-			{
-				EnemyPlayer->notify_incoming_attack(i);
-				break;
-			}
-		}
-	}
-
-	if (save_hitbox_data)
+	if (save_hitbox_data || EnemyPlayer->what_is_my_purpose)
 	{
 		for (int i = 0; i < CommandList.Num(); ++i)
 		{

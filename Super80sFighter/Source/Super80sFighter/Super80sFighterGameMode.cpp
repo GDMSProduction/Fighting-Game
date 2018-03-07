@@ -125,6 +125,11 @@ void ASuper80sFighterGameMode::BeginPlay()
 	Player1->what_is_my_purpose = p1_is_AI;
 	Player2->what_is_my_purpose = p2_is_AI;
 
+	if (p1_is_AI)
+		Player1->InputComponent->ClearActionBindings();
+	if (p2_is_AI)
+		Player2->InputComponent->ClearActionBindings();
+
 	first_time = true;
 	rounds_remaining = num_rounds;
 }

@@ -161,6 +161,14 @@ protected:
 	void ChooseNextMove();
 #pragma endregion
 
+#pragma region AI
+	int save_counter = 0;
+	virtual void initialize_move_data() override;
+	virtual void saveHitboxData(float stamina_cost) override;
+	virtual void deleteOldSaveData(IPlatformFile& PlatformFile) override;
+
+#pragma endregion
+
 public:
 #pragma region Construction
 	//The default constructor for the thug.

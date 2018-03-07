@@ -46,6 +46,7 @@ AHitbox::AHitbox()
 	//set the hitbox to call OnHit when triggered
 	hitbox->bGenerateOverlapEvents = true;
 	hitbox->OnComponentBeginOverlap.AddDynamic(this, &AHitbox::OnHit);
+	OnDestroyed.AddDynamic(this, &AHitbox::onDestruction);
 
 	RootComponent = hitbox;
 
@@ -259,9 +260,23 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 				break;
 			default:
 				//this shouldn't ever happen, throw a log error
-				UE_LOG(LogTemp, Warning, TEXT("ERROR: ONHIT FUNCTION REACHED DEFAULT IN SWITCH... THIS IS BAD... CONTACT DAVID CRANE AND ASK HIM WHAT HE DID WRONG"));
+				UE_LOG(LogTemp, Fatal, TEXT("ERROR: ONHIT FUNCTION REACHED DEFAULT IN SWITCH... THIS IS BAD... CONTACT DAVID CRANE AND ASK HIM WHAT HE DID WRONG"));
 				break;
 			}
+		}
+	}
+}
+
+void AHitbox::onDestruction(AActor * actor)
+{
+	if (actor->IsA(AHitbox::StaticClass()))
+	{
+		AHitbox* destroyed_hitbox = (AHitbox*)actor;
+		if (destroyed_hitbox->hitboxType == EHITBOX_TYPE::VE_HITBOX_STRIKE)
+		{
+			AFighterParent* daddy_fighter = (AFighterParent*)destroyed_hitbox->GetAttachParentActor();
+			if (daddy_fighter->EnemyPlayer->what_is_my_purpose)
+				daddy_fighter->EnemyPlayer->notify_attack_ending();
 		}
 	}
 }
