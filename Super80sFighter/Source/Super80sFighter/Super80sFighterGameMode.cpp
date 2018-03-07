@@ -20,7 +20,7 @@ void ASuper80sFighterGameMode::BeginPlay()
 	//variables required for spawning a character as a different type
 	UWorld* const world = GetWorld();
 	FActorSpawnParameters spawn_parameters = FActorSpawnParameters();
-	FVector pos;
+	//FVector pos;
 	FRotator rot = FRotator(0, -90, 0);
 	AFighterParent* temp;
 	//Change player 1 (or possibly not if he's the default class).
@@ -30,11 +30,11 @@ void ASuper80sFighterGameMode::BeginPlay()
 		//Do nothing, characters already spawn as base classes.
 		break;
 	case ECharacterEnum::CLASS_THUG:
-		pos = Player1->GetTransform().GetLocation();
+
 		spawn_parameters.bDeferConstruction = true;
 		p1_controller->UnPossess();
 		Player1->destroy();
-		temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		temp = world->SpawnActor<AThugClass>(ThugClass, player1SpawnLocation, rot, spawn_parameters);
 		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		Player1 = temp;
 		p1_controller->Possess(Player1);
@@ -43,11 +43,11 @@ void ASuper80sFighterGameMode::BeginPlay()
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
 		break;
 	case ECharacterEnum::CLASS_TREY:
-		pos = Player1->GetTransform().GetLocation();
+		
 		spawn_parameters.bDeferConstruction = true;
 		p1_controller->UnPossess();
 		Player1->destroy();
-		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, pos, rot, spawn_parameters);
+		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, player1SpawnLocation, rot, spawn_parameters);
 		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		Player1 = temp;
 		p1_controller->Possess(Player1);
@@ -84,11 +84,10 @@ void ASuper80sFighterGameMode::BeginPlay()
 		//Do nothing, this is default pawn.
 		break;
 	case ECharacterEnum::CLASS_THUG:
-		pos = Player2->GetTransform().GetLocation();
 		spawn_parameters.bDeferConstruction = true;
 		p2_controller->UnPossess();
 		Player2->destroy();
-		temp = world->SpawnActor<AThugClass>(ThugClass, pos, rot, spawn_parameters);
+		temp = world->SpawnActor<AThugClass>(ThugClass, player2SpawnLocation, rot, spawn_parameters);
 		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		Player2 = temp;
 		p2_controller->Possess(Player2);
@@ -97,11 +96,10 @@ void ASuper80sFighterGameMode::BeginPlay()
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
 		break;
 	case ECharacterEnum::CLASS_TREY:
-		pos = Player2->GetTransform().GetLocation();
 		spawn_parameters.bDeferConstruction = true;
 		p2_controller->UnPossess();
 		Player2->destroy();
-		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, pos, rot, spawn_parameters);
+		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, player2SpawnLocation, rot, spawn_parameters);
 		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
 		Player2 = temp;
 		p2_controller->Possess(Player2);
