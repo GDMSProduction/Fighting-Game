@@ -391,7 +391,7 @@ protected:
 
 #pragma region AI
 public:
-	bool what_is_my_purpose;
+	bool what_is_my_purpose = false;
 
 	//variables for getting data out of hitboxes
 	bool save_hitbox_data = false;

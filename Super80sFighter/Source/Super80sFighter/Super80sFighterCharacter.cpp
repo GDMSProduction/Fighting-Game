@@ -423,8 +423,6 @@ AHitbox* AFighterParent::spawnHitbox(EHITBOX_TYPE type, FVector offset, FVector 
 	{
 		saveHitboxData(stamina_cost);
 	}
-
-
 	return tempHitbox;
 }
 void AFighterParent::StopBlocking()
@@ -572,10 +570,10 @@ void AFighterParent::decide_movement()
 	//enemy projectiles incoming
 	//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
 	//if an attack is coming and you're in range, move back a bit
-	//if (attack_incoming && curr_distance < incoming_attack.offset.Y * incoming_attack.dimensions.Y * .5f)
-	//	desired_movement.Y += -2f;
+	if (attack_incoming)
+		desired_movement.Y += -2 * direction;
 	//if being cornered, try jumping over the other player
-	if (left_boundary_distance < 250 || right_boundary_distance < 250)
+	if ((left_boundary_distance < 300 && GetTransform().GetLocation().Y > EnemyPlayer->GetTransform().GetLocation().Y) || (right_boundary_distance < 300 && GetTransform().GetLocation().Y < EnemyPlayer->GetTransform().GetLocation().Y))
 	{
 		desired_movement.Y += (10 * direction);
 		try_jumping = true;
