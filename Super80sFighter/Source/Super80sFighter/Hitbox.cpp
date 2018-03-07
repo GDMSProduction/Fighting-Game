@@ -117,7 +117,6 @@ void AHitbox::SetHitboxProperties(EHITBOX_TYPE _hitboxType, FVector _hitboxPosit
 	//disable the hitbox (will be enabled at the appropriate time in the animation)
 	//hitbox->SetActive(false);
 	hitbox->SetVisibility(visible);
-
 	//finish spawning the hitbox so unreal knows to check it for collision
 	/*FinishSpawning(GetTransform());*/
 }
@@ -189,7 +188,8 @@ void AHitbox::OnHit(UPrimitiveComponent * thisHitbox, AActor * otherActor, UPrim
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX:
 					//If enemy is in neutral state, start blocking.
-					UE_LOG(LogTemp, Warning, TEXT("Proximity box has hit painbox, if enemy is in neutral start blocking"));
+					if (otherCharacter->what_is_my_purpose)
+						otherCharacter->notify_incoming_attack(((AFighterParent*)RootComponent->GetAttachmentRootActor())->last_called_attack_index);
 					otherCharacter->Block(damage);
 					break;
 				case EHITBOX_TYPE::VE_HITBOX_GET_THROWBOX: //do nothing
