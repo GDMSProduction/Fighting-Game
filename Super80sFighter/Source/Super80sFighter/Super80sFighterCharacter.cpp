@@ -571,7 +571,7 @@ void AFighterParent::decide_movement()
 	//desired_movement.Y += 2.0; flat value to determine how forwardy they'll go, keep it high 
 	//if an attack is coming and you're in range, move back a bit
 	if (attack_incoming)
-		desired_movement.Y += -2 * direction;
+		desired_movement.Y += (-2 * direction);
 	//if being cornered, try jumping over the other player
 	if ((left_boundary_distance < 300 && GetTransform().GetLocation().Y > EnemyPlayer->GetTransform().GetLocation().Y) || (right_boundary_distance < 300 && GetTransform().GetLocation().Y < EnemyPlayer->GetTransform().GetLocation().Y))
 	{
