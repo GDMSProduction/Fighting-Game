@@ -113,6 +113,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Menu")
 		EMenuState current_menu_state = EMenuState::STATE_SPLASH;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Settings")
+		bool visible_hitboxes = true;
+
 #pragma region Controls 
 	UFUNCTION(BlueprintCallable, Category = "Controls")
 		void OverrideKeyInput(FKey inputKey, FString InputName);
