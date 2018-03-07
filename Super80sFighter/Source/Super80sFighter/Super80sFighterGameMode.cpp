@@ -7,6 +7,8 @@
 
 void ASuper80sFighterGameMode::BeginPlay()
 {
+
+
 	Super::BeginPlay();
 
 	p1_controller = UGameplayStatics::GetPlayerController(this, 0);
