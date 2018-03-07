@@ -16,8 +16,6 @@
 #define CRANK 5000
 #pragma endregion
 
-
-
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
