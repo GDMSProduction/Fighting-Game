@@ -16,6 +16,8 @@
 #define CRANK 5000
 #pragma endregion
 
+
+
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
@@ -95,6 +97,8 @@ public:
 		int num_rounds = 3;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rounds")
 		int rounds_remaining;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
+		FName mapName = "NA";
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Characters")
 		ECharacterEnum p1_type = ECharacterEnum::CLASS_DEFAULT;

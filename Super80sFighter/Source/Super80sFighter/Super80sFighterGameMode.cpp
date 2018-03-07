@@ -7,6 +7,8 @@
 
 void ASuper80sFighterGameMode::BeginPlay()
 {
+
+
 	Super::BeginPlay();
 
 	p1_controller = UGameplayStatics::GetPlayerController(this, 0);
@@ -93,7 +95,14 @@ void ASuper80sFighterGameMode::BeginPlay()
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TOBY NOT YET IMPLEMENTED"));
 		break;
 	case ECharacterEnum::CLASS_TREY:
-		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: TREY NOT YET IMPLEMENTED"));
+		pos = Player2->GetTransform().GetLocation();
+		spawn_parameters.bDeferConstruction = true;
+		p2_controller->UnPossess();
+		Player2->destroy();
+		temp = world->SpawnActor<ADebugCharacter>(DebugCharacter, pos, rot, spawn_parameters);
+		UGameplayStatics::FinishSpawningActor(temp, temp->GetTransform());
+		Player2 = temp;
+		p2_controller->Possess(Player2);
 		break;
 	case ECharacterEnum::CLASS_AUDREY:
 		UE_LOG(LogTemp, Fatal, TEXT("FATAL ERROR: AUDREY NOT YET IMPLEMENTED"));
