@@ -312,7 +312,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	FScoreSystem playerScore;
 #pragma endregion
-
+	AFighterParent* EnemyPlayer;
 protected:
 #pragma region Main Health and Stamina Variables
 	/**Player Total Stamina*/
@@ -348,8 +348,6 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 		int initial3Counter;
-
-	AFighterParent* EnemyPlayer;
 
 	FTimerHandle BlockTimer;
 #pragma endregion
@@ -403,7 +401,12 @@ public:
 	//index of the last called function
 	int last_called_attack_index = -1;
 
-private:
+
+	//notification functions for attacks
+	virtual void notify_incoming_attack(int attack_index);
+	virtual void notify_attack_ending();
+
+protected:
 	enum PlayerState : uint32
 	{
 		NEUTRAL   = (1 << 0),
@@ -443,8 +446,7 @@ private:
 
 	void decide();
 	virtual void initialize_move_data(); //change file path and move data templated type
-	virtual void notify_incoming_attack(int attack_index);
-	virtual bool decide_movement();
+	virtual void decide_movement();
 
 	//overridable functions for saving out the data
 	virtual void deleteOldSaveData(IPlatformFile& PlatformFile); //children should change the file name but otherwise do the function exactly the same

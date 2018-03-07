@@ -68,7 +68,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Hitboxes")
 	void OnHit(UPrimitiveComponent* thisHitbox, AActor* otherActor, UPrimitiveComponent* otherComp, int32 otherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	
+	UFUNCTION()
+	void onDestruction(AActor* actor);
 		
 
 protected:
