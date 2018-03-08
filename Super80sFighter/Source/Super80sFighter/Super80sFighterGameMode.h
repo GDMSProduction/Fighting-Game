@@ -16,8 +16,6 @@
 #define CRANK 5000
 #pragma endregion
 
-
-
 UENUM(BlueprintType)
 enum class ECharacterEnum : uint8
 {
@@ -90,6 +88,13 @@ class ASuper80sFighterGameMode : public AGameModeBase
 
 public:
 	ASuper80sFighterGameMode();
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+		FVector player1SpawnLocation = FVector(0.0f, 0.0f, 0.0f);
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+		FVector player2SpawnLocation = FVector(0.0f, 0.0f, 0.0f);
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause")
 		bool paused;
@@ -164,6 +169,7 @@ protected:
 
 private:
 	class AFighterParent *Player1, *Player2;
+
 	APlayerController *p1_controller, *p2_controller;
 
 	FHighScore currentEntry;

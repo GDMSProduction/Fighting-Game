@@ -55,10 +55,11 @@ AFighterParent::AFighterParent()
 	BlockThreshold = 0.05f;
 
 	holdThreshold = 0.13;
-	samePressThreshold = 1.0 / 60.0;//framecount / 60.0 for how many frames leneancy to give them
+
+	//Framecount divided by 60.00 for how many frames of leniency to give in between attacks before buffer.
+	samePressThreshold = 1.0 / 60.00;
 
 #pragma region Adding in commands for attacks
-
 	TArray<ButtonSet> tempCommand;
 	ButtonSet buttonSet;
 	ButtonInput button1;
@@ -80,7 +81,6 @@ AFighterParent::AFighterParent()
 	while (tempCommand.Num() > 0)
 		tempCommand.RemoveAt(0);
 
-
 	buttonSet.Clear();
 	button1.button = HEAVY;
 	buttonSet.inputs.Add(button1);
@@ -97,7 +97,6 @@ AFighterParent::AFighterParent()
 	tempCommand.Add(buttonSet);
 
 	AddCommand<AFighterParent>(CommandList, tempCommand, &AFighterParent::Attack3);
-
 
 	while (tempCommand.Num() > 0)
 		tempCommand.RemoveAt(0);
@@ -144,7 +143,6 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 #pragma endregion
 	if (id == 0)
 	{
-
 		PlayerInputComponent->BindAction("HighJump_P1", IE_Pressed, this, &AFighterParent::PressHighJump);
 		PlayerInputComponent->BindAction("HighJump_P1", IE_Released, this, &AFighterParent::ReleaseHighJump);
 		PlayerInputComponent->BindAction("ShortHop_P1", IE_Pressed, this, &AFighterParent::PressShortHop);
@@ -175,6 +173,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 		PlayerInputComponent->BindAction("KickSpecial_P1", IE_Released, this, &AFighterParent::ReleaseKickAndSpecial);
 
 	}
+
 	else if (id == 1)
 	{
 		PlayerInputComponent->BindAction("HighJump_P2", IE_Pressed, this, &AFighterParent::PressHighJump);
@@ -205,10 +204,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 
 		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Pressed, this, &AFighterParent::PressKickAndSpecial);
 		PlayerInputComponent->BindAction("KickSpecial_P2", IE_Released, this, &AFighterParent::ReleaseKickAndSpecial);
-
 	}
-
-
 
 	//spawn a hitbox on the player that can be hit and attacked
 	spawnHitbox(EHITBOX_TYPE::VE_HITBOX_GET_PAINBOX, FVector(0, 0, -80), FVector(.5f, .5f, 1.5f), 0, false);
@@ -244,7 +240,7 @@ void AFighterParent::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	//	total_memory_cost += command_memory;
 	//}
 
-	//if this is a save run, create a save file directory
+	//If this is a save run, create a save file directory.
 	if (save_hitbox_data)
 	{
 		FString hellothere = FString(TEXT("C:/Users/disca/Documents/GitHub/Fighting-Game/Super80sFighter/Content/SideScrollerCPP/AI Data"));
@@ -1105,7 +1101,6 @@ void AFighterParent::onHit(UPrimitiveComponent * HitComponent, AActor * OtherAct
 void AFighterParent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 
 	if (what_is_my_purpose)
 		decide();
