@@ -13,14 +13,10 @@ Action::Action()
 Action::~Action()
 {
 	for (auto itr = preconditions.begin(); itr != preconditions.end(); itr++)
-	{
 		itr->first.clear();
-	}
 	preconditions.clear();
 	for (auto itr = effects.begin(); itr != effects.end(); itr++)
-	{
 		itr->first.clear();
-	}
 	effects.clear();
 }
 

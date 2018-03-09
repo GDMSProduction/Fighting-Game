@@ -12,7 +12,6 @@ class SUPER80SFIGHTER_API Action
 private:
 	std::unordered_map<std::string, bool> preconditions;
 	std::unordered_map<std::string, bool> effects;
-
 protected:
 
 
