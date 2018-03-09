@@ -38,11 +38,11 @@ public:
 	virtual bool in_range();
 
 
-	void add_precondition(string key, bool value);
-	void remove_precondition(string key);
-	void add_effect(string key, bool value);
-	void remove_effect(string key);
+	void add_precondition(std::string key, bool value);
+	void remove_precondition(std::string key);
+	void add_effect(std::string key, bool value);
+	void remove_effect(std::string key);
 
-	unordered_map<std::string, bool> get_preconditions() { return preconditions; }
-	unordered_map<std::string, bool> get_effects() { return effects; }
+	std::unordered_map<std::string, bool> get_preconditions() { return preconditions; }
+	std::unordered_map<std::string, bool> get_effects() { return effects; }
 };

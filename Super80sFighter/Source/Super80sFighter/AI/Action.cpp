@@ -6,17 +6,15 @@ using namespace std;
 
 Action::Action()
 {
-	preconditions = new unordered_map<string, bool>();
-	effects = new unordered_map<string, bool>();
 }
 
 Action::~Action()
 {
 	for (auto itr = preconditions.begin(); itr != preconditions.end(); itr++)
-		itr->first.clear();
+		delete[] itr->first.c_str();
 	preconditions.clear();
 	for (auto itr = effects.begin(); itr != effects.end(); itr++)
-		itr->first.clear();
+		delete[] itr->first.c_str();
 	effects.clear();
 }
 
@@ -46,7 +44,7 @@ bool Action::in_range()
 
 void Action::add_precondition(string key, bool value)
 {
-	preconditions.insert(key, value);
+	preconditions.insert(std::pair<string, bool>(key, value));
 }
 
 void Action::remove_precondition(string key)
@@ -56,7 +54,7 @@ void Action::remove_precondition(string key)
 
 void Action::add_effect(string key, bool value)
 {
-	effects.insert(key, value);
+	effects.insert(std::pair<string, bool>(key, value));
 }
 
 void Action::remove_effect(string key)
